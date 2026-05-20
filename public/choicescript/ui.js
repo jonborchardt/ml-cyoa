@@ -3706,6 +3706,7 @@ window.onload=function() {
         inputType = ev.target.type;
       }
       if (inputType === 'text' || inputType === 'number' || inputType === 'email' || inputType === 'password') return;
+      if (ev.target && ev.target.tagName === 'TEXTAREA') return;
       var dialog = document.getElementById('keyboardShortcuts');
       if (dialog && dialog.open) {
         dialog.close();
@@ -3804,6 +3805,7 @@ window.onload=function() {
     }, false);
 
     document.addEventListener('keyup', function (ev) {
+      if (ev.target && ev.target.tagName === 'TEXTAREA') return;
       var now = Date.now();
       var activatingNext = window.activatingNext;
       window.activatingNext = null;

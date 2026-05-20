@@ -4,6 +4,7 @@ dist/
 .env.local
 *.local
 .playwright-mcp/
+emails/
 
 # Claude Code / Spec-kit
 .claude
