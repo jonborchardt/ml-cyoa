@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+.env.local
+*.local
+.playwright-mcp/
+
+# Claude Code / Spec-kit
+.claude
+CLAUDE.local.md
+specs/

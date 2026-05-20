@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>ml-cyoa game</title>
+<link href="style.css" rel="stylesheet" type="text/css">
+<link href="alertify.css" rel="stylesheet" type="text/css">
+<style id="dynamic"></style>
+<style>
+  html, body { background: #fff; }
+  #header #identity, #headerLinks, #mobileLinks, #advertisement, #makeyourowngames, #tools { display: none !important; }
+  #menuButton {
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    text-transform: uppercase;
+    padding: 3px 9px;
+    border: 1px solid rgba(25, 118, 210, 0.5);
+    border-radius: 4px;
+    color: #1976d2;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 250ms ease, border-color 250ms ease;
+  }
+  #menuButton:hover {
+    border-color: #1976d2;
+    background-color: rgba(25, 118, 210, 0.04);
+  }
+  .next {
+    font-family: Roboto, Helvetica, Arial, sans-serif !important;
+    font-size: 0.9375rem !important;
+    font-weight: 500 !important;
+    line-height: 1.75 !important;
+    letter-spacing: 0.02857em !important;
+    text-transform: uppercase !important;
+    padding: 6px 16px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    background-color: #1976d2 !important;
+    color: #fff !important;
+    box-shadow: 0px 3px 1px -2px rgba(0,0,0,0.2), 0px 2px 2px 0px rgba(0,0,0,0.14), 0px 1px 5px 0px rgba(0,0,0,0.12) !important;
+    cursor: pointer;
+    transition: background-color 250ms ease, box-shadow 250ms ease !important;
+  }
+  .next:hover {
+    background-color: #1565c0 !important;
+    box-shadow: 0px 2px 4px -1px rgba(0,0,0,0.2), 0px 4px 5px 0px rgba(0,0,0,0.14), 0px 1px 10px 0px rgba(0,0,0,0.12) !important;
+    color: #fff !important;
+  }
+</style>
+</head>
+<body>
+<div class="container" id="container1">
+<div id="advertisement"></div>
+<div id="header">
+  <div id="identity">
+    <a href="#" id="email" style="display:none">you@example.com</a>
+    <a href="#" id="logout" style="display:none">Sign Out</a>
+  </div>
+  <div id="titleRow" style="display:flex;align-items:flex-start;gap:16px;">
+    <img id="coverImage" style="display:none;width:110px;height:110px;object-fit:cover;border-radius:8px;flex-shrink:0;">
+    <div>
+      <h1 id="title" class="gameTitle" style="margin:0"></h1>
+      <h2 id="author" class="gameTitle" style="margin:0"></h2>
+      <p id="buttons" style="margin:8px 0 0 0;padding:0;">
+        <button id="statsButton" class="spacedLink" onclick="showStats()" style="display:none">Show Stats</button>
+        <button id="achievementsButton" onclick="showAchievements()" class="spacedLink" style="display:none">Achievements</button>
+        <button id="bugButton" onclick="reportBug()" class="spacedLink" style="display:none">Report Bug</button>
+        <button id="menuButton" onclick="showMenu()" class="spacedLink">Options</button>
+      </p>
+    </div>
+  </div>
+  <p id="headerLinks"></p>
+</div>
+<div id="main">
+<div id="text"></div>
+</div>
+<div id="mobileLinks" class="webOnly"></div>
+<noscript><p>This game requires JavaScript.</p></noscript>
+<p><a id="makeyourowngames" href="https://www.choiceofgames.com/make-your-own-games/choicescript-intro/">Make your own games with ChoiceScript</a></p>
+<div id="tools"></div>
+<dialog id="keyboardShortcuts" onclick="event.target === this && this.close()">
+<header><span>Keyboard Shortcuts</span> <form method="dialog"><button>X</button></form></header>
+<div class="table">
+  <div>Scroll Down</div><div><span class="key">Space</span></div>
+  <div>Scroll Up</div><div><span class="key">Shift</span> + <span class="key">Space</span></div>
+  <div>Next Option</div><div><span class="key">J</span></div>
+  <div>Previous Option</div><div><span class="key">K</span></div>
+  <div>Next (Press and Hold)</div><div><span class="key">Enter</span></div>
+  <div>Jump to Option</div><div><span class="key">1</span> - <span class="key">9</span></div>
+  <div>Show Stats</div><div><span class="key">Q</span></div>
+  <div>Options</div><div><span class="key">W</span></div>
+  <div>Show Shortcuts</div><div><span class="key">?</span></div>
+</div>
+</dialog>
+</div>
+
+<script>
+  window.isFile = true;
+  window.storeName = null;
+  window.version = 'ml-cyoa';
+  var rootDir = './';
+
+  var bootData = null;
+  var booted = false;
+
+  function loadScripts(list, done) {
+    var i = 0;
+    function next() {
+      if (i >= list.length) return done();
+      var s = document.createElement('script');
+      s.src = list[i++];
+      s.onload = next;
+      s.onerror = function () {
+        document.getElementById('text').textContent = 'Failed to load ' + s.src;
+      };
+      document.head.appendChild(s);
+    }
+    next();
+  }
+
+  function bootGame(data) {
+    if (booted) return;
+    booted = true;
+
+    window.uploadedFiles = {};
+    for (var name in data.scenes) {
+      window.uploadedFiles[name + '.txt'] = data.scenes[name];
+    }
+
+    document.title = data.title || 'ml-cyoa';
+    document.getElementById('title').textContent = data.title || '';
+    document.getElementById('author').textContent = data.author ? 'by ' + data.author : '';
+    var coverEl = document.getElementById('coverImage');
+    if (data.coverImage) {
+      coverEl.src = data.coverImage;
+      coverEl.style.display = 'block';
+    }
+
+    loadScripts(
+      ['persist.js', 'alertify.min.js', 'util.js', 'ui.js', 'scene.js', 'navigator.js'],
+      function () {
+        // util.js sets window.isFile based on URL protocol, so we have to
+        // (re)set it AFTER it loads. The engine uses isFile mode to read
+        // scene text from window.uploadedFiles instead of fetching .txt files.
+        window.isFile = true;
+        window.isWeb = false;
+        window.nav = new SceneNavigator(data.sceneList && data.sceneList.length ? data.sceneList : ['startup']);
+        window.stats = data.startingStats || {};
+        if (typeof window.onload === 'function') {
+          try { window.onload(); } catch (e) { console.error(e); }
+        }
+      }
+    );
+  }
+
+  window.addEventListener('message', function (e) {
+    if (e.source !== window.parent) return;
+    if (e.data && e.data.type === 'load-game') bootGame(e.data);
+  });
+
+  if (window.parent !== window) {
+    window.parent.postMessage({ type: 'host-ready' }, '*');
+  }
+</script>
+</body>
+</html>

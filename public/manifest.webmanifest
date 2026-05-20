@@ -1,0 +1,19 @@
+{
+  "name": "Middle Level Choose Your Own Adventure",
+  "short_name": "ml-cyoa",
+  "description": "A small collection of ChoiceScript games.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "fullscreen",
+  "orientation": "any",
+  "background_color": "#ffffff",
+  "theme_color": "#1976d2",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

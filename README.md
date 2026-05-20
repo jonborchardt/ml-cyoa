@@ -26,10 +26,11 @@ Open [http://localhost:5173/ml-cyoa/](http://localhost:5173/ml-cyoa/).
 
 ## Adding a game
 
-1. Create `src/games/<your-game-id>/startup.txt` (and any other scene files).
+1. Create `src/games/<your-game-id>/startup.txt` (and any other scene files). Optionally add a square cover image.
 2. Register it in [src/games/index.ts](src/games/index.ts):
     ```ts
     import myStartup from './my-game/startup.txt?raw';
+    import myCover from './my-game/cover.png'; // optional
 
     export const games: Game[] = [
         // ...
@@ -37,12 +38,14 @@ Open [http://localhost:5173/ml-cyoa/](http://localhost:5173/ml-cyoa/).
             id: 'my-game',
             title: 'My Game',
             authors: ['Your Name'],
+            year: '2025-2026',
             sceneList: ['startup'], // order matters: scenes flow in order
             scenes: { startup: myStartup },
+            coverImage: myCover,   // optional
         },
     ];
     ```
-3. The game becomes available at `/<base>/<your-game-id>` and appears in the left menu.
+3. The game becomes available at `/<base>/<your-game-id>` and appears on the home page, grouped by year.
 
 Scene files use the [ChoiceScript syntax](https://choicescriptdev.fandom.com/wiki/ChoiceScript_%E2%80%90_Wiki). The official engine in [public/choicescript/](public/choicescript/) interprets them, so all engine features (`*choice`, `*if`, `*set`, `*goto`, stats, save/load, etc.) work.
 
