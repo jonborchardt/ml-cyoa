@@ -5,6 +5,8 @@ The garden smells like copper and rain. Every flower here is mechanical — gear
 
 At the center of the garden stands a small copper fountain that spouts tiny golden sparks instead of water.
 
+*image ../images/game3/clockwork-garden.svg center
+
 What would you like to explore first?
 
 *choice

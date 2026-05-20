@@ -3,6 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import type { Game } from './games';
 
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN as string | undefined;
+
+async function fileGitHubIssue(title: string, body: string) {
+    if (!GITHUB_TOKEN) return;
+    await fetch('https://api.github.com/repos/jonborchardt/ml-cyoa/issues', {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${GITHUB_TOKEN}`,
+            Accept: 'application/vnd.github+json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ title, body }),
+    });
+}
+
 interface Props {
     game: Game;
 }
@@ -34,6 +49,7 @@ export function ChoiceScriptGame({ game }: Props) {
             if (e.source !== iframe.contentWindow) return;
             if (e.data?.type === 'host-ready') send();
             if (e.data?.type === 'navigate-home') navigate('/');
+            if (e.data?.type === 'report-bug') fileGitHubIssue(e.data.title, e.data.body);
         };
 
         window.addEventListener('message', onMessage);

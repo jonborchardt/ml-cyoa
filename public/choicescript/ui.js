@@ -3340,15 +3340,16 @@ function reportBug() {
         issueBody += "**Line:** " + (window.stats.scene.lineNum + 1) + "\n";
       }
       issueBody += "\n**Description:**\n" + description;
-      window.open(
-        "https://github.com/jonborchardt/ml-cyoa/issues/new" +
-          "?title=" + encodeURIComponent(issueTitle) +
-          "&body=" + encodeURIComponent(issueBody),
-        "_blank"
+      window.parent.postMessage(
+        { type: 'report-bug', title: issueTitle, body: issueBody },
+        window.location.origin
       );
       clearScreen(function() {
-        setButtonTitles();
-        loadAndRestoreGame();
+        println("Thank you! Your report has been submitted.");
+        setTimeout(function() {
+          setButtonTitles();
+          loadAndRestoreGame();
+        }, 2000);
       });
       return false;
     };
