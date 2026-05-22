@@ -20,9 +20,12 @@ async function fileGitHubIssue(title: string, body: string) {
 
 interface Props {
     game: Game;
+    onStart?: () => void;
+    onPageTurn?: () => void;
+    onChoiceMade?: (label: string) => void;
 }
 
-export function ChoiceScriptGame({ game }: Props) {
+export function ChoiceScriptGame({ game, onStart, onPageTurn, onChoiceMade }: Props) {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const navigate = useNavigate();
 
@@ -35,7 +38,7 @@ export function ChoiceScriptGame({ game }: Props) {
                 {
                     type: 'load-game',
                     title: game.title,
-                    author: game.authors.join(', '),
+                    author: game.authors.map((a) => a.name).join(', '),
                     coverImage: game.coverImage ?? null,
                     sceneList: game.sceneList,
                     scenes: game.scenes,
@@ -48,6 +51,9 @@ export function ChoiceScriptGame({ game }: Props) {
         const onMessage = (e: MessageEvent) => {
             if (e.source !== iframe.contentWindow) return;
             if (e.data?.type === 'host-ready') send();
+            if (e.data?.type === 'game-started') onStart?.();
+            if (e.data?.type === 'page-turn') onPageTurn?.();
+            if (e.data?.type === 'choice-made') onChoiceMade?.(e.data.label as string);
             if (e.data?.type === 'navigate-home') navigate('/');
             if (e.data?.type === 'report-bug') fileGitHubIssue(e.data.title, e.data.body);
         };
@@ -59,7 +65,7 @@ export function ChoiceScriptGame({ game }: Props) {
             window.removeEventListener('message', onMessage);
             iframe.removeEventListener('load', send);
         };
-    }, [game, navigate]);
+    }, [game, navigate, onStart, onPageTurn, onChoiceMade]);
 
     // Bust the iframe cache when switching games so the engine resets cleanly.
     const src = `${import.meta.env.BASE_URL}choicescript/host.html?g=${encodeURIComponent(game.id)}`;

@@ -40,17 +40,32 @@ src/
   App.tsx              — MUI ThemeProvider + BrowserRouter + routes
   Layout.tsx           — thin flex-column shell wrapping <Outlet />
   HomePage.tsx         — year-grouped card grid listing all games
-  GamePage.tsx         — resolves :gameId, renders GameHeader + ChoiceScriptGame
-  GameHeader.tsx       — "← Home" button bar shown while a game is active
+  GameShell.tsx        — resolves :gameId; owns tab state and lazy-mounts Story/Flow/Authors panels
+  GameTabHeader.tsx    — shared tab header (← Home · Story | Flow | Authors tabs)
   CoverArt.tsx         — cover image with fallback icon
   ChoiceScriptGame.tsx — mounts an iframe pointing at /choicescript/host.html and posts the game payload
+  FlowPanel.tsx        — read-only React Flow branching diagram panel (shown on the Flow tab)
+  AuthorsPanel.tsx     — alternating image/bio author grid panel (shown on the Authors tab)
+  parseGameFlow.ts     — parses ChoiceScript scenes into React Flow nodes + edges with tree layout
   games/
     index.ts           — game registry (id, title, authors, year, sceneList, scenes, coverImage?)
     <game-id>/*.txt    — ChoiceScript scene files (imported via Vite ?raw)
-    <game-id>/*.png    — optional cover images (imported as asset URLs)
+    <game-id>/*.png    — optional cover/author images (imported as asset URLs)
 ```
 
-Routes: `/` → `HomePage`, `/:gameId` → `GamePage`.
+Routes: `/` → `HomePage`, `/:gameId` → `GameShell` (Story tab), `/:gameId/flow` → `GameShell` (Flow tab), `/:gameId/authors` → `GameShell` (Authors tab). All three game sub-routes render `GameShell`; the active tab is derived from the URL path.
+
+## In-game navigation
+
+Every game sub-page (`GamePage`, `FlowPage`, `AuthorsPage`) shares `GameTabHeader`, which renders a **← Home** button, the game title, and three tabs — **Story**, **Flow**, **Authors** — that navigate between `/:gameId`, `/:gameId/flow`, and `/:gameId/authors`. The active tab is derived from `useLocation().pathname`.
+
+## Story flow diagram
+
+The **Flow** tab at `/:gameId/flow` shows a read-only top-down tree diagram of the game's branching structure, built at runtime from the bundled scene text.
+
+- `parseGameFlow.ts` walks each scene's raw text, tracking indentation to find `*choice` blocks and `#option` lines. It builds a `TreeNode` tree, then lays it out with a leaf-counting algorithm (leaves spaced left-to-right, parents centered over their children). Nodes are typed `start | passage | ending`.
+- `FlowPage.tsx` renders the tree with `@xyflow/react`. Custom node components style each type: green for Start, blue-bordered for passages, amber for endings. A custom `FlowEdge` component places choice-text labels at 78 % of the way toward the target node so sibling labels spread apart rather than clustering at the edge midpoint.
+- ChoiceScript commands recognised: `*choice`, `#option`, `*finish`, `*ending`, `*end_game`. Commands `*page_break`, `*image`, `*title`, `*author`, `*comment` are skipped. `*goto` / `*goto_scene` / `*if` are not parsed — they appear as narrative text in the node label, which is acceptable for the simple games currently in the collection.
 
 ## How the ChoiceScript engine is integrated
 

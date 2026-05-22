@@ -154,9 +154,36 @@
         if (typeof window.onload === 'function') {
           try { window.onload(); } catch (e) { console.error(e); }
         }
+        if (window.parent !== window) {
+          window.parent.postMessage({ type: 'game-started' }, window.location.origin);
+        }
       }
     );
   }
+
+  // Notify parent whenever the reader advances a page, capturing any choice made.
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    while (t && t !== document.body) {
+      if (t.classList && t.classList.contains('next')) {
+        if (window.parent !== window) {
+          var choiceDiv = document.querySelector('.choice');
+          if (choiceDiv) {
+            var selected = choiceDiv.querySelector('input[type=radio]:checked');
+            if (selected) {
+              var labelEl = document.querySelector('label[for="' + selected.id + '"]');
+              if (labelEl) {
+                window.parent.postMessage({ type: 'choice-made', label: labelEl.textContent.trim() }, window.location.origin);
+              }
+            }
+          }
+          window.parent.postMessage({ type: 'page-turn' }, window.location.origin);
+        }
+        break;
+      }
+      t = t.parentElement;
+    }
+  });
 
   window.addEventListener('message', function (e) {
     if (e.source !== window.parent) return;
@@ -164,7 +191,7 @@
   });
 
   if (window.parent !== window) {
-    window.parent.postMessage({ type: 'host-ready' }, '*');
+    window.parent.postMessage({ type: 'host-ready' }, window.location.origin);
   }
 </script>
 </body>

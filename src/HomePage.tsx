@@ -32,7 +32,7 @@ function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
                     {g.title}
                 </Typography>
                 <Typography variant="caption" color="text.secondary">
-                    {g.authors.join(', ')}
+                    {g.authors.map((a) => a.name).join(', ')}
                 </Typography>
             </Box>
         </Box>
