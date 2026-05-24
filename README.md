@@ -1,6 +1,6 @@
 # ml-cyoa
 
-**Middle Level Choose Your Own Adventure.** A small collection of [ChoiceScript](https://www.choiceofgames.com/make-your-own-games/choicescript-intro/) games rendered as a Progressive Web App.
+**Middle Level Choose Your Own Adventure.** A small collection of [ChoiceScript](https://www.choiceofgames.com/make-your-own-games/choicescript-intro/) games rendered as a Progressive Web App — plus a built-in story editor so students can write and submit their own.
 
 Built with Vite, TypeScript, React, MUI, and the official ChoiceScript engine (vendored into [public/choicescript/](public/choicescript/)).
 
@@ -24,21 +24,30 @@ Open [http://localhost:5173/ml-cyoa/](http://localhost:5173/ml-cyoa/).
 | `npm run lint:fix` | Run ESLint with auto-fix                     |
 | `npm run deploy`   | Build and push `dist/` to the `gh-pages` branch |
 
-## In-game tabs
+## Reading a game
 
-Each game has three tabs — **Story**, **Flow**, and **Authors** — accessible from the shared header while playing. The **Flow** tab shows a read-only, pan/zoom tree diagram of all choices and endings, built at runtime from the bundled ChoiceScript text. The **Authors** tab shows an alternating image/bio grid for each author.
+Each game has three tabs — **Story**, **Flow**, and **Authors** — accessible from the shared header while playing.
 
-## Adding a game
+- **Story** — the playable ChoiceScript game inside an iframe.
+- **Flow** — a read-only, pan/zoom tree diagram of all choices and endings, built at runtime from the bundled ChoiceScript text. The current node highlights as you make choices.
+- **Authors** — an alternating image/bio grid for each author.
+
+## Writing a story (My Stories)
+
+The home page has a **My Stories** section where anyone can write their own CYOA. Stories are saved locally in the browser (localStorage).
+
+- Click **Write a Story** to create a new story and open the flow editor.
+- The **Flow** tab of a My Story is an editable graph: drag nodes, add passages and endings, connect them with labelled choices, and edit prose content for each node.
+- The **Story Info** panel (toolbar) lets you set a title, author name, bio, author photo, and cover image. All images are auto-compressed on upload to keep storage manageable.
+- The **Authors** tab shows a preview of the author card.
+- The **Story** tab plays the serialized ChoiceScript in the engine, updating every time you switch back to it.
+- Click **Submit to GitHub** to file a GitHub issue with the story's ChoiceScript source so it can be added to the published collection.
+
+## Adding a curated game
 
 1. Create `src/games/<your-game-id>/startup.txt` (and any other scene files). Optionally add a square cover image.
 2. Register it in [src/games/index.ts](src/games/index.ts). Use the `authors()` helper to attach optional bio text and images (named `author-0.png`, `author-1.png`, …):
     ```ts
-    // At the top of games/index.ts the helpers are already defined:
-    //   startup(id)          — loads <id>/startup.txt via Vite ?raw
-    //   cover(id)            — loads <id>/cover.png (optional)
-    //   authors(id, entries) — maps name/bio pairs + author-N.png images
-
-    // Add to the games array:
     {
         id: 'my-game',
         title: 'My Game',
@@ -74,6 +83,6 @@ The app ships a [manifest](public/manifest.webmanifest) and a [service worker](p
 
 - **Vite** (v7), **TypeScript** (strict), **React** 18, **React Router** v7 (browser routing)
 - **MUI** v7 (`@mui/material`, `@mui/icons-material`, `@emotion/react`, `@emotion/styled`)
-- **React Flow** (`@xyflow/react`) — story branching diagrams
+- **React Flow** (`@xyflow/react`) — story branching diagrams (read-only for curated games, editable for My Stories)
 - **ChoiceScript** engine — vendored from [dfabulich/choicescript](https://github.com/dfabulich/choicescript), BSD-2 licensed
 - Service worker + web app manifest for installability and offline play

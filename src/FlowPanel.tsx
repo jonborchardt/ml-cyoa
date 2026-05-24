@@ -5,8 +5,11 @@ import {
 import type { NodeProps, EdgeProps, Node, Edge } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { useEffect, useMemo } from 'react';
+import { Box } from '@mui/material';
 import type { Game } from './games';
 import { parseGameFlow, NODE_W, NODE_H } from './parseGameFlow';
+
+// ─── Node styles ──────────────────────────────────────────────────────────
 
 const nodeStyle: React.CSSProperties = {
     width: NODE_W,
@@ -18,13 +21,11 @@ const nodeStyle: React.CSSProperties = {
     boxSizing: 'border-box',
 };
 
-const currentRing: React.CSSProperties = {
-    outline: '3px solid #ff9800',
-    outlineOffset: 2,
-};
+const currentRing: React.CSSProperties = { outline: '3px solid #ff9800', outlineOffset: 2 };
 
 function StartNode({ data }: NodeProps) {
-    const style = { ...nodeStyle, background: '#e8f5e9', border: '2px solid #4caf50', fontWeight: 700, color: '#1b5e20', ...(data.isCurrent ? currentRing : {}) };
+    const isCurrent = !!(data.isCurrent as boolean);
+    const style = { ...nodeStyle, background: '#e8f5e9', border: '2px solid #4caf50', fontWeight: 700, color: '#1b5e20', ...(isCurrent ? currentRing : {}) };
     return (
         <div style={style}>
             {data.label as string}
@@ -34,7 +35,8 @@ function StartNode({ data }: NodeProps) {
 }
 
 function PassageNode({ data }: NodeProps) {
-    const style = { ...nodeStyle, background: '#fff', border: data.isCurrent ? '2px solid #ff9800' : '1.5px solid #90caf9', ...(data.isCurrent ? currentRing : {}) };
+    const isCurrent = !!(data.isCurrent as boolean);
+    const style = { ...nodeStyle, background: '#fff', border: isCurrent ? '2px solid #ff9800' : '1.5px solid #90caf9', ...(isCurrent ? currentRing : {}) };
     return (
         <div style={style}>
             <Handle type="target" position={Position.Top} style={{ background: '#90caf9' }} />
@@ -45,7 +47,8 @@ function PassageNode({ data }: NodeProps) {
 }
 
 function EndingNode({ data }: NodeProps) {
-    const style = { ...nodeStyle, background: '#fff8e1', border: data.isCurrent ? '2px solid #ff9800' : '1.5px solid #ffb74d', color: '#5d3a00', ...(data.isCurrent ? currentRing : {}) };
+    const isCurrent = !!(data.isCurrent as boolean);
+    const style = { ...nodeStyle, background: '#fff8e1', border: isCurrent ? '2px solid #ff9800' : '1.5px solid #ffb74d', color: '#5d3a00', ...(isCurrent ? currentRing : {}) };
     return (
         <div style={style}>
             <Handle type="target" position={Position.Top} style={{ background: '#ffb74d' }} />
@@ -54,34 +57,34 @@ function EndingNode({ data }: NodeProps) {
     );
 }
 
+// ─── Edge ─────────────────────────────────────────────────────────────────
+
 function FlowEdge({ id, sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, label, markerEnd, style }: EdgeProps) {
     const [edgePath] = getSmoothStepPath({ sourceX, sourceY, sourcePosition, targetX, targetY, targetPosition });
-    // Place label 78% toward the target so sibling labels spread apart instead of clustering at the midpoint
     const lx = sourceX + (targetX - sourceX) * 0.78;
-    const ly = sourceY + (targetY - sourceY) * 0.78;
+    const ly = sourceY + (targetY - sourceY) * 0.5;
+    if (!label) return <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} style={style} />;
     return (
         <>
             <BaseEdge id={id} path={edgePath} markerEnd={markerEnd} style={style} />
-            {label && (
-                <EdgeLabelRenderer>
-                    <div
-                        style={{
-                            position: 'absolute',
-                            transform: `translate(-50%, -50%) translate(${lx}px,${ly}px)`,
-                            fontSize: 11,
-                            color: '#444',
-                            background: 'rgba(255,255,255,0.92)',
-                            padding: '2px 6px',
-                            borderRadius: 3,
-                            pointerEvents: 'none',
-                            maxWidth: 150,
-                            textAlign: 'center',
-                            lineHeight: 1.3,
-                        }}>
-                        {label as string}
-                    </div>
-                </EdgeLabelRenderer>
-            )}
+            <EdgeLabelRenderer>
+                <div
+                    style={{
+                        position: 'absolute',
+                        transform: `translate(-50%, -50%) translate(${lx}px,${ly}px)`,
+                        fontSize: 11,
+                        color: '#444',
+                        background: 'rgba(255,255,255,0.92)',
+                        padding: '2px 6px',
+                        borderRadius: 3,
+                        pointerEvents: 'none',
+                        maxWidth: 150,
+                        textAlign: 'center',
+                        lineHeight: 1.3,
+                    }}>
+                    {label as string}
+                </div>
+            </EdgeLabelRenderer>
         </>
     );
 }
@@ -89,6 +92,8 @@ function FlowEdge({ id, sourceX, sourceY, targetX, targetY, sourcePosition, targ
 const nodeTypes = { start: StartNode, passage: PassageNode, ending: EndingNode };
 const edgeTypes = { flow: FlowEdge };
 const defaultEdgeOptions = { type: 'flow' };
+
+// ─── View helpers ─────────────────────────────────────────────────────────
 
 function findCurrentNodeId(nodes: Node[], edges: Edge[], choiceHistory: string[]): string | null {
     if (nodes.length === 0) return null;
@@ -101,7 +106,6 @@ function findCurrentNodeId(nodes: Node[], edges: Edge[], choiceHistory: string[]
         adj.get(edge.source)!.push({ label: (edge.label as string) ?? '', targetId: edge.target });
     }
 
-    // Follow the unlabeled start → first passage edge
     let currentId = startNode.id;
     const startEdges = adj.get(currentId) ?? [];
     if (startEdges.length > 0) currentId = startEdges[0].targetId;
@@ -127,35 +131,50 @@ function FlowViewSyncer({ currentNodeId, nodes }: { currentNodeId: string | null
     return null;
 }
 
-export function FlowPanel({ game, choiceHistory }: { game: Game; choiceHistory: string[] }) {
-    const { nodes: rawNodes, edges } = useMemo(() => parseGameFlow(game.scenes), [game]);
+// ─── Main component ───────────────────────────────────────────────────────
 
-    const currentNodeId = useMemo(
-        () => findCurrentNodeId(rawNodes, edges, choiceHistory),
-        [rawNodes, edges, choiceHistory],
+interface FlowPanelProps {
+    game: Game;
+    choiceHistory: string[];
+}
+
+export function FlowPanel({ game, choiceHistory }: FlowPanelProps) {
+    const { nodes: parsedNodes, edges: parsedEdges } = useMemo(
+        () => parseGameFlow(game.scenes),
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        [game.id],
     );
 
-    const nodes = useMemo(
-        () => rawNodes.map(n => ({ ...n, data: { ...n.data, isCurrent: n.id === currentNodeId } })),
-        [rawNodes, currentNodeId],
+    const currentNodeId = useMemo(
+        () => findCurrentNodeId(parsedNodes, parsedEdges, choiceHistory),
+        [parsedNodes, parsedEdges, choiceHistory],
+    );
+
+    const viewNodes = useMemo(
+        () => parsedNodes.map(n => ({ ...n, data: { ...n.data, isCurrent: n.id === currentNodeId } })),
+        [parsedNodes, currentNodeId],
     );
 
     return (
-        <ReactFlow
-            nodes={nodes}
-            edges={edges}
-            nodeTypes={nodeTypes}
-            edgeTypes={edgeTypes}
-            defaultEdgeOptions={defaultEdgeOptions}
-            fitView
-            fitViewOptions={{ padding: 0.2 }}
-            nodesDraggable={false}
-            nodesConnectable={false}
-            elementsSelectable={false}
-            panOnScroll>
-            <Background />
-            <Controls showInteractive={false} />
-            <FlowViewSyncer currentNodeId={currentNodeId} nodes={rawNodes} />
-        </ReactFlow>
+        <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'relative' }}>
+            <Box sx={{ flex: 1, minHeight: 0 }}>
+                <ReactFlow
+                    nodes={viewNodes}
+                    edges={parsedEdges}
+                    nodeTypes={nodeTypes}
+                    edgeTypes={edgeTypes}
+                    defaultEdgeOptions={defaultEdgeOptions}
+                    fitView
+                    fitViewOptions={{ padding: 0.2 }}
+                    nodesDraggable={false}
+                    nodesConnectable={false}
+                    elementsSelectable={false}
+                    panOnScroll>
+                    <Background />
+                    <Controls showInteractive={false} />
+                    <FlowViewSyncer currentNodeId={currentNodeId} nodes={parsedNodes} />
+                </ReactFlow>
+            </Box>
+        </Box>
     );
 }

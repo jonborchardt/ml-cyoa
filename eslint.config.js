@@ -19,6 +19,6 @@ export default tseslint.config(
         rules: reactHooks.configs.recommended.rules,
     },
     {
-        ignores: ['dist/**'],
+        ignores: ['dist/**', 'public/choicescript/**'],
     }
 );

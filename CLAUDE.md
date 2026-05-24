@@ -39,21 +39,30 @@ src/
   main.tsx             — entry point; registers the service worker
   App.tsx              — MUI ThemeProvider + BrowserRouter + routes
   Layout.tsx           — thin flex-column shell wrapping <Outlet />
-  HomePage.tsx         — year-grouped card grid listing all games
+  HomePage.tsx         — year-grouped card grid + My Stories section
   GameShell.tsx        — resolves :gameId; owns tab state and lazy-mounts Story/Flow/Authors panels
-  GameTabHeader.tsx    — shared tab header (← Home · Story | Flow | Authors tabs)
+  GameTabHeader.tsx    — shared tab header (← Home · Story | Flow | Authors tabs); accepts basePath for My Stories
   CoverArt.tsx         — cover image with fallback icon
   ChoiceScriptGame.tsx — mounts an iframe pointing at /choicescript/host.html and posts the game payload
   FlowPanel.tsx        — read-only React Flow branching diagram panel (shown on the Flow tab)
   AuthorsPanel.tsx     — alternating image/bio author grid panel (shown on the Authors tab)
   parseGameFlow.ts     — parses ChoiceScript scenes into React Flow nodes + edges with tree layout
+  imageUtils.ts        — compressImage() helper (canvas resize + JPEG re-encode)
+  github.ts            — fileGitHubIssue() — posts a GitHub issue via VITE_GITHUB_TOKEN
+  myStoryStore.ts      — localStorage CRUD for MyStory records
+  serializeFlow.ts     — validateFlow() + serializeFlow(): React Flow graph → ChoiceScript text
+  MyStoryShell.tsx     — resolves :storyId; owns tab state and story sync for My Stories
+  MyStoryFlowPanel.tsx — editable React Flow graph + metadata editor + submit dialog
+  MyStoryAuthorsPanel.tsx — author preview panel for My Stories
+  NodeEditDialog.tsx   — dialog to edit a passage/ending node's prose and type
+  EdgeEditDialog.tsx   — dialog to edit a choice edge's label
   games/
     index.ts           — game registry (id, title, authors, year, sceneList, scenes, coverImage?)
     <game-id>/*.txt    — ChoiceScript scene files (imported via Vite ?raw)
     <game-id>/*.png    — optional cover/author images (imported as asset URLs)
 ```
 
-Routes: `/` → `HomePage`, `/:gameId` → `GameShell` (Story tab), `/:gameId/flow` → `GameShell` (Flow tab), `/:gameId/authors` → `GameShell` (Authors tab). All three game sub-routes render `GameShell`; the active tab is derived from the URL path.
+Routes: `/` → `HomePage`, `/:gameId` → `GameShell` (Story tab), `/:gameId/flow` → `GameShell` (Flow tab), `/:gameId/authors` → `GameShell` (Authors tab). `/my/:storyId` → `MyStoryShell` (Story tab), `/my/:storyId/flow` → `MyStoryShell` (Flow tab), `/my/:storyId/authors` → `MyStoryShell` (Authors tab). Active tab is derived from `useLocation().pathname` in both shells.
 
 ## In-game navigation
 
@@ -79,6 +88,27 @@ The official engine is a large native-JS app that owns the page (it manages `<ti
 6. The host then dynamically loads the engine scripts in order, constructs `window.nav = new SceneNavigator(sceneList)` and `window.stats = {}`, and manually fires `window.onload` (since DOMContentLoaded has already fired by that point).
 
 Scene `.txt` files are imported via Vite's `?raw` suffix and bundled into JS at build time — there is no runtime fetch of game content.
+
+## My Stories feature
+
+Students can write their own CYOA stories in the browser without any code. Stories are persisted in `localStorage` under the key `ml-cyoa-my-stories` as an array of `MyStory` objects (see `myStoryStore.ts`).
+
+**Data model** (`MyStory`): `id`, `title`, `authorName`, `authorBio?`, `authorPhoto?` (base64), `coverImage?` (base64), `nodes` (React Flow `Node<NodeData>[]`), `edges` (`Edge[]`), `images` (map of filename → base64), `createdAt`, `updatedAt`.
+
+**Flow editor** (`MyStoryFlowPanel`):
+- Editable React Flow canvas with three node types: `start` (green, one outgoing edge allowed), `passage` (blue), `ending` (amber).
+- Clicking a node (non-start) opens `NodeEditDialog` — prose content, type toggle, image insertion.
+- Clicking an edge label opens `EdgeEditDialog` — choice text.
+- Dragging between node handles opens an inline dialog for the choice label.
+- Auto-layout (`applyTreeLayout`) reflows nodes into a tree.
+- Auto-saves nodes/edges/images and metadata separately with 1 s debounce. Shows "Saving…" / "Saved ✓" in the toolbar. Shows an error snackbar if `localStorage` quota is exceeded.
+- Live validation banner shows errors (blocking) and warnings (non-blocking) from `validateFlow`.
+
+**Image handling**: All uploads (node images, author photo, cover) go through `compressImage()` in `imageUtils.ts` — canvas-resized to max 1024 px at 0.75 JPEG quality before storing. On submission to GitHub, images are re-compressed to 300 px / 0.5 quality to fit within GitHub's 65 536-char issue body limit.
+
+**Serialization** (`serializeFlow.ts`): `serializeFlow()` walks the graph depth-first from the start node and emits `*label`, prose lines, `*choice` / `#option` blocks, and `*finish` for endings. Cycles are handled with `*goto`. `validateFlow()` returns `{ errors, warnings, infos }` — errors block submission; warnings are shown as non-blocking alerts.
+
+**Submission** (`github.ts`): `fileGitHubIssue(title, body)` POSTs to the GitHub Issues API using `VITE_GITHUB_TOKEN`. Set this env var in `.env.local` (never commit it). The function throws on non-2xx responses so callers can surface the error.
 
 ## Adding a game
 

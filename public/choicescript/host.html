@@ -127,6 +127,9 @@
     if (booted) return;
     booted = true;
 
+    // Store uploaded images (filename → base64 data URL) for *image intercept below
+    window.uploadedImages = data.images || {};
+
     window.uploadedFiles = {};
     for (var name in data.scenes) {
       window.uploadedFiles[name + '.txt'] = data.scenes[name];
@@ -139,6 +142,29 @@
     if (data.coverImage) {
       coverEl.src = data.coverImage;
       coverEl.style.display = 'block';
+    }
+
+    // Watch for <img> elements inserted by the engine and swap in uploaded base64 sources
+    if (Object.keys(window.uploadedImages).length > 0) {
+      var imgObserver = new MutationObserver(function (mutations) {
+        for (var i = 0; i < mutations.length; i++) {
+          var nodes = mutations[i].addedNodes;
+          for (var j = 0; j < nodes.length; j++) {
+            var el = nodes[j];
+            if (el.nodeType !== 1) continue;
+            var imgs = el.tagName === 'IMG' ? [el] : el.querySelectorAll('img');
+            for (var k = 0; k < imgs.length; k++) {
+              var img = imgs[k];
+              var src = img.getAttribute('src') || '';
+              var filename = src.split('/').pop();
+              if (filename && window.uploadedImages[filename]) {
+                img.src = window.uploadedImages[filename];
+              }
+            }
+          }
+        }
+      });
+      imgObserver.observe(document.body, { childList: true, subtree: true });
     }
 
     loadScripts(

@@ -2,30 +2,18 @@ import { useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Box } from '@mui/material';
 import type { Game } from './games';
-
-const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN as string | undefined;
-
-async function fileGitHubIssue(title: string, body: string) {
-    if (!GITHUB_TOKEN) return;
-    await fetch('https://api.github.com/repos/jonborchardt/ml-cyoa/issues', {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${GITHUB_TOKEN}`,
-            Accept: 'application/vnd.github+json',
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ title, body }),
-    });
-}
+import { fileGitHubIssue } from './github';
 
 interface Props {
     game: Game;
+    scenes?: Record<string, string>;
+    images?: Record<string, string>;
     onStart?: () => void;
     onPageTurn?: () => void;
     onChoiceMade?: (label: string) => void;
 }
 
-export function ChoiceScriptGame({ game, onStart, onPageTurn, onChoiceMade }: Props) {
+export function ChoiceScriptGame({ game, scenes, images, onStart, onPageTurn, onChoiceMade }: Props) {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const navigate = useNavigate();
 
@@ -41,7 +29,8 @@ export function ChoiceScriptGame({ game, onStart, onPageTurn, onChoiceMade }: Pr
                     author: game.authors.map((a) => a.name).join(', '),
                     coverImage: game.coverImage ?? null,
                     sceneList: game.sceneList,
-                    scenes: game.scenes,
+                    scenes: scenes ?? game.scenes,
+                    images: images ?? {},
                     startingStats: {},
                 },
                 window.location.origin
@@ -59,15 +48,13 @@ export function ChoiceScriptGame({ game, onStart, onPageTurn, onChoiceMade }: Pr
         };
 
         window.addEventListener('message', onMessage);
-        // Belt-and-suspenders: also send on load in case host-ready fires before listener attaches.
         iframe.addEventListener('load', send);
         return () => {
             window.removeEventListener('message', onMessage);
             iframe.removeEventListener('load', send);
         };
-    }, [game, navigate, onStart, onPageTurn, onChoiceMade]);
+    }, [game, scenes, images, navigate, onStart, onPageTurn, onChoiceMade]);
 
-    // Bust the iframe cache when switching games so the engine resets cleanly.
     const src = `${import.meta.env.BASE_URL}choicescript/host.html?g=${encodeURIComponent(game.id)}`;
 
     return (

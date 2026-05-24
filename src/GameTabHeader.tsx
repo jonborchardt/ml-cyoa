@@ -5,14 +5,16 @@ import type { Game } from './games';
 
 interface Props {
     game: Game;
+    basePath?: string;
 }
 
-export function GameTabHeader({ game }: Props) {
+export function GameTabHeader({ game, basePath }: Props) {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
     const tabValue = pathname.endsWith('/flow') ? 1 : pathname.endsWith('/authors') ? 2 : 0;
-    const paths = [`/${game.id}`, `/${game.id}/flow`, `/${game.id}/authors`];
+    const base = basePath ?? `/${game.id}`;
+    const paths = [base, `${base}/flow`, `${base}/authors`];
 
     return (
         <Box

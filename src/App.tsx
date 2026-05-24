@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { GameShell } from './GameShell';
+import { MyStoryShell } from './MyStoryShell';
 import { HomePage } from './HomePage';
 
 const theme = createTheme({
@@ -20,6 +21,11 @@ export function App() {
                     <Route path="/" element={<Layout />}>
                         <Route index element={<HomePage />} />
                         <Route path=":gameId" element={<GameShell />}>
+                            <Route index element={null} />
+                            <Route path="flow" element={null} />
+                            <Route path="authors" element={null} />
+                        </Route>
+                        <Route path="my/:storyId" element={<MyStoryShell />}>
                             <Route index element={null} />
                             <Route path="flow" element={null} />
                             <Route path="authors" element={null} />

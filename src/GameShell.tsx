@@ -15,8 +15,6 @@ export function GameShell() {
 
     const tabValue = pathname.endsWith('/flow') ? 1 : pathname.endsWith('/authors') ? 2 : 0;
 
-    // Lazy-mount Flow and Authors only after first visit.
-    // Use the initial tabValue so a direct link to /flow or /authors renders immediately.
     const [tabsVisited, setTabsVisited] = useState<Set<number>>(() => new Set([tabValue]));
     if (!tabsVisited.has(tabValue)) {
         setTabsVisited(new Set([...tabsVisited, tabValue]));
@@ -24,7 +22,6 @@ export function GameShell() {
 
     const [choiceHistory, setChoiceHistory] = useState<string[]>([]);
     const handleChoiceMade = useCallback((label: string) => setChoiceHistory(prev => [...prev, label]), []);
-
 
     if (!game) {
         return (
@@ -41,13 +38,12 @@ export function GameShell() {
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
             <GameTabHeader game={game} />
 
-            {/* Story — always mounted so the iframe never resets */}
             <Box sx={{ flex: 1, minHeight: 0, flexDirection: 'column', display: tabValue === 0 ? 'flex' : 'none' }}>
                 <ChoiceScriptGame game={game} onChoiceMade={handleChoiceMade} />
             </Box>
 
             {tabsVisited.has(1) && (
-                <Box sx={{ flex: 1, minHeight: 0, display: tabValue === 1 ? 'block' : 'none' }}>
+                <Box sx={{ flex: 1, minHeight: 0, display: tabValue === 1 ? 'flex' : 'none', flexDirection: 'column' }}>
                     <FlowPanel game={game} choiceHistory={choiceHistory} />
                 </Box>
             )}
