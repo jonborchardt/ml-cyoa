@@ -7,6 +7,9 @@ import {
     registerChoiceScriptLanguage,
     registerCompletionProvider,
     registerHoverProvider,
+    registerDocumentHighlightProvider,
+    registerDefinitionProvider,
+    type SceneSwitchFn,
 } from './choicescriptLanguage';
 import type { MyStory } from './myStoryStore';
 
@@ -17,11 +20,17 @@ interface Props {
     readOnly?: boolean;
     height?: string | number;
     onSave?: (value: string) => void;
+    sceneId?: string;
+    onSwitchScene?: SceneSwitchFn;
 }
 
-export function MonacoEditor({ value, onChange, story, readOnly = false, height = '100%', onSave }: Props) {
+export function MonacoEditor({ value, onChange, story, readOnly = false, height = '100%', onSave, sceneId, onSwitchScene }: Props) {
     const storyRef = useRef(story ?? null);
+    const sceneIdRef = useRef(sceneId ?? '');
+    const switchSceneRef = useRef(onSwitchScene);
     useEffect(() => { storyRef.current = story ?? null; }, [story]);
+    useEffect(() => { sceneIdRef.current = sceneId ?? ''; }, [sceneId]);
+    useEffect(() => { switchSceneRef.current = onSwitchScene; }, [onSwitchScene]);
 
     const disposeRefs = useRef<Array<{ dispose: () => void }>>([]);
 
@@ -30,8 +39,11 @@ export function MonacoEditor({ value, onChange, story, readOnly = false, height 
 
         // Register providers once per monaco instance
         const getStory = () => storyRef.current;
-        disposeRefs.current.push(registerCompletionProvider(monaco, getStory));
+        const getSceneId = () => sceneIdRef.current;
+        disposeRefs.current.push(registerCompletionProvider(monaco, getStory, getSceneId));
         disposeRefs.current.push(registerHoverProvider(monaco, getStory));
+        disposeRefs.current.push(registerDocumentHighlightProvider(monaco));
+        disposeRefs.current.push(registerDefinitionProvider(monaco, getStory, getSceneId, (id) => switchSceneRef.current?.(id)));
 
         // Ctrl+S → onSave
         editor.addCommand(monaco.KeyMod.CtrlCmd | monaco.KeyCode.KeyS, () => {

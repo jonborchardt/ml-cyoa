@@ -5,7 +5,7 @@ import {
 } from '@xyflow/react';
 import type {
     NodeProps, EdgeProps, Node, Edge, Connection,
-    NodeChange, EdgeChange,
+    NodeChange, EdgeChange, ReactFlowInstance,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -19,6 +19,7 @@ import AddIcon from '@mui/icons-material/Add';
 import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 import CloseIcon from '@mui/icons-material/Close';
 import CodeIcon from '@mui/icons-material/Code';
+import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import DataObjectIcon from '@mui/icons-material/DataObject';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
@@ -31,7 +32,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import SwapVertIcon from '@mui/icons-material/SwapVert';
 import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import UndoIcon from '@mui/icons-material/Undo';
-import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { useNavigate } from 'react-router-dom';
 import { updateMyStory, type MyStory, type SceneDef, type SubroutineDef } from './myStoryStore';
 import { applyTreeLayout, NODE_W } from './parseGameFlow';
@@ -78,9 +79,13 @@ import { ExportMenu } from './ExportMenu';
 import { FindReplacePanel } from './FindReplacePanel';
 import { StoryStatsDrawer } from './StoryStatsDrawer';
 import { KeyboardShortcutsHelp } from './KeyboardShortcutsHelp';
+import { SceneOutlinePanel } from './SceneOutlinePanel';
+import { ChoiceScriptGame } from './ChoiceScriptGame';
+import type { Game } from './games';
 import type { VariableDef, NodeType, EdgeData, SceneJumpData, StatEntry, Achievement } from './types';
 
-type EditorMode = 'graph' | 'code' | 'split';
+type PanelId = 'graph' | 'code' | 'story';
+type ActivePanels = Record<PanelId, boolean>;
 
 // ─── Context for edge click ───────────────────────────────────────────────
 
@@ -347,9 +352,11 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const [pendingConnection, setPendingConnection] = useState<Connection | null>(null);
     const [connectionLabel, setConnectionLabel] = useState('');
     const [submitOpen, setSubmitOpen] = useState(false);
-    const [editorMode, setEditorMode] = useState<EditorMode>('graph');
+    const [activePanels, setActivePanels] = useState<ActivePanels>({ graph: true, code: false, story: false });
     const [codeText, setCodeText] = useState('');
     const [unsupportedBanner, setUnsupportedBanner] = useState(false);
+    const [storyPreviewKey, setStoryPreviewKey] = useState(0);
+    const [storyPreviewScenes, setStoryPreviewScenes] = useState<Record<string, string>>({});
     // Power UX state
     const [showMinimap, setShowMinimap] = useState(true);
     const [findOpen, setFindOpen] = useState(false);
@@ -357,7 +364,10 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
     const [pendingBulkDelete, setPendingBulkDelete] = useState<string[] | null>(null);
 
+    const [outlineOpen, setOutlineOpen] = useState(false);
+
     const uidRef = useRef(1000);
+    const rfInstanceRef = useRef<ReactFlowInstance<Node<NodeData>, Edge> | null>(null);
     const savingResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     const photoInputRef = useRef<HTMLInputElement>(null);
     const coverInputRef = useRef<HTMLInputElement>(null);
@@ -369,10 +379,18 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     // Refs for stable keyboard handler closures
     const nodesRef = useRef(nodes);
     const edgesRef = useRef(edges);
-    const editorModeRef = useRef(editorMode);
+    const activePanelsRef = useRef(activePanels);
     const layoutDirRef = useRef(layoutDirection);
     const setGraphRef = useRef(setGraph);
     const sceneGlobalReuseModeRef = useRef(sceneGlobalReuseMode);
+    // Tracks the last code text pushed TO Monaco from the graph (to suppress echo back)
+    const codeFromGraphRef = useRef('');
+    // Set to true when applyCodeToGraph triggers a graph change; suppresses graph→code echo
+    const graphUpdatedFromCodeRef = useRef(false);
+    // Debounce timer for code→graph parse
+    const codeUpdateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    // Track current codeText without stale closure issues
+    const codeTextRef = useRef(codeText);
 
     useLayoutEffect(() => {
         onStoryChangeRef.current = onStoryChange;
@@ -380,10 +398,11 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         activeSceneIdRef.current = activeSceneId;
         nodesRef.current = nodes;
         edgesRef.current = edges;
-        editorModeRef.current = editorMode;
+        activePanelsRef.current = activePanels;
         layoutDirRef.current = layoutDirection;
         setGraphRef.current = setGraph;
         sceneGlobalReuseModeRef.current = sceneGlobalReuseMode;
+        codeTextRef.current = codeText;
     });
 
     const buildUpdatedScenes = useCallback((n: Node<NodeData>[], e: Edge[], sceneId: string, subs?: SubroutineDef[]) => {
@@ -441,6 +460,21 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [title, authorName, authorBio, authorPhoto, coverImage, ifid, storyId]);
 
+    // ─── Graph → Code live sync ─────────────────────────────────────────────
+    // Skip when the graph change itself came from code→graph (applyCodeToGraph sets the flag).
+    useEffect(() => {
+        if (!activePanels.code) return;
+        if (graphUpdatedFromCodeRef.current) {
+            graphUpdatedFromCodeRef.current = false;
+            return;
+        }
+        const serialized = serializeFlow(nodes, edges, undefined);
+        codeFromGraphRef.current = serialized;
+        setCodeText(serialized);
+    }, [nodes, edges, activePanels.code]);
+
+    const prevStoryPanelRef = useRef(false);
+
     // ─── Keyboard shortcuts ─────────────────────────────────────────────────
 
     useEffect(() => {
@@ -481,18 +515,13 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                 return;
             }
 
-            // Toggle code / graph mode
+            // Toggle code pane
             if (ctrl && e.key === 'e') {
                 e.preventDefault();
-                // Delegate to switchToMode via ref — capture the latest version
-                const nextMode = editorModeRef.current === 'graph' ? 'code' : 'graph';
-                // We call the setter-based version to avoid stale closure
-                setEditorMode(prev => {
-                    if (prev !== 'graph' && nextMode === 'graph') {
-                        // Leaving code: parse text back to graph
-                        // We can't call applyCodeToGraph here cleanly; rely on blur handler
-                    }
-                    return nextMode;
+                setActivePanels(prev => {
+                    const next = { ...prev, code: !prev.code };
+                    if (!next.graph && !next.code && !next.story) return prev;
+                    return next;
                 });
                 return;
             }
@@ -581,9 +610,40 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
 
     const { errors: liveErrors, warnings: liveWarnings } = useMemo(() => validateStory(liveStory), [liveStory]);
 
+    // ─── Story pane: immediate refresh on first open ────────────────────────
+    useEffect(() => {
+        if (activePanels.story && !prevStoryPanelRef.current) {
+            const files = serializeStory(liveStory);
+            setStoryPreviewScenes(Object.fromEntries(files.entries()));
+            setStoryPreviewKey(k => k + 1);
+        }
+        prevStoryPanelRef.current = activePanels.story;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [activePanels.story]);
+
+    // ─── Story pane: 2s debounced auto-refresh on story changes ────────────
+    useEffect(() => {
+        if (!activePanels.story) return;
+        const timer = setTimeout(() => {
+            const files = serializeStory(liveStory);
+            setStoryPreviewScenes(Object.fromEntries(files.entries()));
+            setStoryPreviewKey(k => k + 1);
+        }, 2000);
+        return () => clearTimeout(timer);
+    }, [liveStory, activePanels.story]);
+
     // ─── Scene management ───────────────────────────────────────────────────
 
     const switchScene = useCallback((sceneId: string) => {
+        // Flush any pending code→graph debounce before leaving the scene
+        if (codeUpdateTimerRef.current) {
+            clearTimeout(codeUpdateTimerRef.current);
+            codeUpdateTimerRef.current = null;
+            if (codeTextRef.current !== codeFromGraphRef.current) {
+                const result = parseScene(codeTextRef.current);
+                graph.set({ nodes: result.nodes as Node<NodeData>[], edges: result.edges });
+            }
+        }
         const updatedScenes = buildUpdatedScenes(nodes, edges, activeSceneId, subroutines);
         completeSave({ scenes: updatedScenes });
         const newScene = storyRef.current.scenes.find(s => s.id === sceneId);
@@ -649,32 +709,53 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         completeSave({ layoutDirection: newDir });
     };
 
-    // ─── Editor mode switch helpers ─────────────────────────────────────────
-
-    const getCodeForCurrentScene = useCallback(() => {
-        return serializeFlow(nodes, edges, undefined);
-    }, [nodes, edges]);
+    // ─── Editor panel helpers ───────────────────────────────────────────────
 
     const applyCodeToGraph = useCallback((text: string) => {
         const result = parseScene(text);
         setUnsupportedBanner(result.unsupportedSyntax);
+        graphUpdatedFromCodeRef.current = true;
         setGraph(result.nodes as Node<NodeData>[], result.edges);
     }, [setGraph]);
 
-    const switchToMode = useCallback((mode: EditorMode) => {
-        if (mode !== 'graph' && editorMode === 'graph') {
-            setCodeText(getCodeForCurrentScene());
-        }
-        if (mode === 'graph' && editorMode !== 'graph') {
-            applyCodeToGraph(codeText);
-        }
-        setEditorMode(mode);
-    }, [editorMode, codeText, getCodeForCurrentScene, applyCodeToGraph]);
+    const togglePanel = useCallback((panel: PanelId) => {
+        setActivePanels(prev => {
+            const next = { ...prev, [panel]: !prev[panel] };
+            if (!next.graph && !next.code && !next.story) return prev;
+            return next;
+        });
+    }, []);
 
+    // Code → Graph: debounced live sync; skip if text came from the graph (loop guard)
+    const handleCodeChange = useCallback((text: string) => {
+        setCodeText(text);
+        codeTextRef.current = text;
+        if (!activePanelsRef.current.graph) return;
+        if (text === codeFromGraphRef.current) return;
+        if (codeUpdateTimerRef.current) clearTimeout(codeUpdateTimerRef.current);
+        codeUpdateTimerRef.current = setTimeout(() => {
+            codeFromGraphRef.current = text;
+            applyCodeToGraph(text);
+        }, 600);
+    }, [applyCodeToGraph]);
+
+    // Ctrl+S in Monaco: immediate apply (flush debounce)
     const handleCodeSave = useCallback((text: string) => {
+        if (codeUpdateTimerRef.current) { clearTimeout(codeUpdateTimerRef.current); codeUpdateTimerRef.current = null; }
+        codeFromGraphRef.current = text;
         setCodeText(text);
         applyCodeToGraph(text);
     }, [applyCodeToGraph]);
+
+    const gameAdapter = useMemo<Game>(() => ({
+        id: story.id,
+        title: liveStory.title || 'My Story',
+        authors: [{ name: liveStory.authorName || 'Author', bio: liveStory.authorBio, image: liveStory.authorPhoto }],
+        year: new Date(story.createdAt).getFullYear().toString(),
+        sceneList: liveStory.sceneOrder.length > 0 ? liveStory.sceneOrder : ['startup'],
+        scenes: {},
+        coverImage: liveStory.coverImage,
+    }), [story.id, story.createdAt, liveStory.title, liveStory.authorName, liveStory.authorBio, liveStory.authorPhoto, liveStory.sceneOrder, liveStory.coverImage]);
 
     // ─── Find & replace ─────────────────────────────────────────────────────
 
@@ -830,7 +911,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     };
 
     const handleGotoRandomSave = (nodeId: string, sceneIds: string[]) => {
-        const next = nodes.map(n => n.id === nodeId ? { ...n, data: { ...n.data, scenes: sceneIds, label: `→ ${sceneIds.join(', ')}` || 'Random Scene Jump' } } : n);
+        const next = nodes.map(n => n.id === nodeId ? { ...n, data: { ...n.data, scenes: sceneIds, label: sceneIds.length > 0 ? `→ ${sceneIds.join(', ')}` : 'Random Scene Jump' } } : n);
         setGraph(next, edges);
     };
 
@@ -872,6 +953,11 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const handleAutoLayout = () => {
         setGraph(applyTreeLayout(nodes, edges, layoutDirection), edges);
     };
+
+    const handleFocusNode = useCallback((nodeId: string) => {
+        setGraph(nodes.map(n => ({ ...n, selected: n.id === nodeId })), edges);
+        rfInstanceRef.current?.fitView({ nodes: [{ id: nodeId }], maxZoom: 1.5, duration: 300 });
+    }, [nodes, edges, setGraph]);
 
     const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>, setter: (v: string) => void) => {
         const file = e.target.files?.[0];
@@ -948,6 +1034,11 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                             <SearchIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
+                    <Tooltip title="Scene outline">
+                        <IconButton size="small" onClick={() => setOutlineOpen(o => !o)} color={outlineOpen ? 'primary' : 'default'}>
+                            <FormatListBulletedIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
                     <Tooltip title="Story statistics">
                         <IconButton size="small" onClick={() => setStatsDrawerOpen(true)}>
                             <BarChartIcon fontSize="small" />
@@ -959,19 +1050,19 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                         </IconButton>
                     </Tooltip>
                     <Box sx={{ flex: 1 }} />
-                    <Tooltip title="Graph mode">
-                        <IconButton size="small" onClick={() => switchToMode('graph')} color={editorMode === 'graph' ? 'primary' : 'default'}>
+                    <Tooltip title="Graph pane">
+                        <IconButton size="small" onClick={() => togglePanel('graph')} color={activePanels.graph ? 'primary' : 'default'}>
                             <HubIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Code mode (Ctrl+E)">
-                        <IconButton size="small" onClick={() => switchToMode('code')} color={editorMode === 'code' ? 'primary' : 'default'}>
+                    <Tooltip title="Code pane (Ctrl+E)">
+                        <IconButton size="small" onClick={() => togglePanel('code')} color={activePanels.code ? 'primary' : 'default'}>
                             <CodeIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Split mode">
-                        <IconButton size="small" onClick={() => switchToMode('split')} color={editorMode === 'split' ? 'primary' : 'default'}>
-                            <ViewSidebarIcon fontSize="small" />
+                    <Tooltip title="Story preview pane">
+                        <IconButton size="small" onClick={() => togglePanel('story')} color={activePanels.story ? 'primary' : 'default'}>
+                            <PlayArrowIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
                     <Tooltip title="Keyboard shortcuts (?)">
@@ -1093,11 +1184,19 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                     />
                 )}
 
-                {/* Canvas / Code editor */}
+                {/* Canvas / Code / Story panes */}
                 <Box sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'row' }}>
                     {/* Graph pane */}
-                    {(editorMode === 'graph' || editorMode === 'split') && (
-                        <Box sx={{ flex: 1, minHeight: 0, minWidth: 0 }}>
+                    {activePanels.graph && (
+                        <Box sx={{ flex: 1, minHeight: 0, minWidth: 0, position: 'relative' }}>
+                            {outlineOpen && (
+                                <SceneOutlinePanel
+                                    nodes={nodes}
+                                    edges={edges}
+                                    onFocusNode={handleFocusNode}
+                                    onClose={() => setOutlineOpen(false)}
+                                />
+                            )}
                             <ReactFlow
                                 nodes={nodes}
                                 edges={edges}
@@ -1111,6 +1210,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                                 onEdgesChange={onEdgesChange}
                                 onConnect={onConnect}
                                 onNodeClick={onNodeClick}
+                                onInit={inst => { rfInstanceRef.current = inst; }}
                                 panOnScroll>
                                 <Background />
                                 <Controls showInteractive={false} />
@@ -1138,20 +1238,40 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                         </Box>
                     )}
 
-                    {/* Divider between split panes */}
-                    {editorMode === 'split' && (
+                    {/* Divider between graph and code */}
+                    {activePanels.graph && activePanels.code && (
                         <Box sx={{ width: 4, bgcolor: 'divider', flexShrink: 0, cursor: 'col-resize' }} />
                     )}
 
                     {/* Code pane */}
-                    {(editorMode === 'code' || editorMode === 'split') && (
+                    {activePanels.code && (
                         <Box sx={{ flex: 1, minHeight: 0, minWidth: 0 }}>
                             <MonacoEditor
                                 value={codeText}
-                                onChange={setCodeText}
+                                onChange={handleCodeChange}
                                 story={liveStory}
                                 height="100%"
                                 onSave={handleCodeSave}
+                                sceneId={activeSceneId}
+                                onSwitchScene={switchScene}
+                            />
+                        </Box>
+                    )}
+
+                    {/* Divider before story pane */}
+                    {(activePanels.graph || activePanels.code) && activePanels.story && (
+                        <Box sx={{ width: 4, bgcolor: 'divider', flexShrink: 0, cursor: 'col-resize' }} />
+                    )}
+
+                    {/* Story preview pane */}
+                    {activePanels.story && (
+                        <Box sx={{ flex: 1, minHeight: 0, minWidth: 0 }}>
+                            <ChoiceScriptGame
+                                key={story.id + '-preview-' + storyPreviewKey}
+                                game={gameAdapter}
+                                scenes={storyPreviewScenes}
+                                images={liveStory.images}
+                                disableNavigation
                             />
                         </Box>
                     )}

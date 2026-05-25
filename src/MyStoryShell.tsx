@@ -14,7 +14,7 @@ export function MyStoryShell() {
     const { storyId } = useParams<{ storyId: string }>();
     const { pathname } = useLocation();
 
-    const tabValue = pathname.endsWith('/flow') ? 1 : pathname.endsWith('/authors') ? 2 : 0;
+    const tabValue = pathname.endsWith('/flow') ? 2 : pathname.endsWith('/authors') ? 1 : 0;
 
     const [tabsVisited, setTabsVisited] = useState<Set<number>>(() => new Set([tabValue]));
     if (!tabsVisited.has(tabValue)) {
@@ -79,14 +79,14 @@ export function MyStoryShell() {
             </Box>
 
             {tabsVisited.has(1) && (
-                <Box sx={{ flex: 1, minHeight: 0, display: tabValue === 1 ? 'flex' : 'none', flexDirection: 'column' }}>
-                    <MyStoryFlowPanel story={story} onStoryChange={handleStoryChange} />
+                <Box sx={{ flex: 1, overflow: 'auto', display: tabValue === 1 ? 'block' : 'none' }}>
+                    <MyStoryAuthorsPanel story={story} />
                 </Box>
             )}
 
             {tabsVisited.has(2) && (
-                <Box sx={{ flex: 1, overflow: 'auto', display: tabValue === 2 ? 'block' : 'none' }}>
-                    <MyStoryAuthorsPanel story={story} />
+                <Box sx={{ flex: 1, minHeight: 0, display: tabValue === 2 ? 'flex' : 'none', flexDirection: 'column' }}>
+                    <MyStoryFlowPanel story={story} onStoryChange={handleStoryChange} />
                 </Box>
             )}
         </Box>

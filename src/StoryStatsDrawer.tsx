@@ -4,7 +4,13 @@ import {
 } from '@mui/material';
 import type { MyStory } from './myStoryStore';
 import type { NodeData } from './parseGameFlow';
-import type { Node } from '@xyflow/react';
+import type { Node, Edge } from '@xyflow/react';
+import type { EdgeData } from './types';
+
+function countWords(text: string): number {
+    const trimmed = text.trim();
+    return trimmed ? trimmed.split(/\s+/).length : 0;
+}
 
 export interface StoryStats {
     totalNodes: number;
@@ -30,16 +36,22 @@ export function computeStoryStats(story: MyStory): StoryStats {
     for (const scene of story.scenes) {
         totalEdges += scene.edges.length;
 
+        // Count player-visible words from choice labels (edges)
+        for (const edge of scene.edges as Edge<EdgeData>[]) {
+            const label = typeof edge.label === 'string' ? edge.label : ((edge.data as EdgeData | undefined)?.content ?? '');
+            totalWords += countWords(label);
+        }
+
         for (const node of scene.nodes) {
             totalNodes++;
             const t = node.type ?? 'unknown';
             nodesByType[t] = (nodesByType[t] ?? 0) + 1;
             if (t === 'ending') endingCount++;
 
-            const content = ((node as Node<NodeData>).data.content as string) ?? '';
-            const trimmed = content.trim();
-            if (trimmed) {
-                totalWords += trimmed.split(/\s+/).length;
+            // Only count prose from player-visible node types
+            if (t === 'passage' || t === 'start' || t === 'ending' || t === 'fake_choice') {
+                const content = ((node as Node<NodeData>).data.content as string) ?? '';
+                totalWords += countWords(content);
             }
         }
 
@@ -125,7 +137,7 @@ export function StoryStatsDrawer({ open, story, onClose }: Props) {
             <Divider sx={{ my: 1.5 }} />
 
             <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 0.5 }}>Writing</Typography>
-            <StatRow label="Total words" value={stats.totalWords} />
+            <StatRow label="Player-visible words" value={stats.totalWords} />
             <StatRow label="Avg words / node" value={stats.avgWordsPerNode} />
             <StatRow
                 label="Est. read time"
@@ -150,7 +162,7 @@ export function StoryStatsDrawer({ open, story, onClose }: Props) {
 
             <Box sx={{ mt: 2, p: 1.5, bgcolor: 'grey.50', borderRadius: 1 }}>
                 <Typography variant="caption" color="text.secondary">
-                    Read time is estimated at 200 wpm and varies by path through the story.
+                    Word count includes prose passages and choice labels only. Read time estimated at 200 wpm and varies by path.
                 </Typography>
             </Box>
         </Drawer>

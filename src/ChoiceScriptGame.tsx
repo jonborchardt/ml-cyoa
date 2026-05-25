@@ -11,9 +11,10 @@ interface Props {
     onStart?: () => void;
     onPageTurn?: () => void;
     onChoiceMade?: (label: string) => void;
+    disableNavigation?: boolean;
 }
 
-export function ChoiceScriptGame({ game, scenes, images, onStart, onPageTurn, onChoiceMade }: Props) {
+export function ChoiceScriptGame({ game, scenes, images, onStart, onPageTurn, onChoiceMade, disableNavigation }: Props) {
     const iframeRef = useRef<HTMLIFrameElement | null>(null);
     const navigate = useNavigate();
 
@@ -43,7 +44,7 @@ export function ChoiceScriptGame({ game, scenes, images, onStart, onPageTurn, on
             if (e.data?.type === 'game-started') onStart?.();
             if (e.data?.type === 'page-turn') onPageTurn?.();
             if (e.data?.type === 'choice-made') onChoiceMade?.(e.data.label as string);
-            if (e.data?.type === 'navigate-home') navigate('/');
+            if (e.data?.type === 'navigate-home' && !disableNavigation) navigate('/');
             if (e.data?.type === 'report-bug') fileGitHubIssue(e.data.title, e.data.body);
         };
 
@@ -53,7 +54,7 @@ export function ChoiceScriptGame({ game, scenes, images, onStart, onPageTurn, on
             window.removeEventListener('message', onMessage);
             iframe.removeEventListener('load', send);
         };
-    }, [game, scenes, images, navigate, onStart, onPageTurn, onChoiceMade]);
+    }, [game, scenes, images, navigate, onStart, onPageTurn, onChoiceMade, disableNavigation]);
 
     const src = `${import.meta.env.BASE_URL}choicescript/host.html?g=${encodeURIComponent(game.id)}`;
 

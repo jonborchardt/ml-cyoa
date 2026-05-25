@@ -147,6 +147,23 @@ function ProseEditDialog({ node, images, variables, onClose, onSave, onDelete, o
         }
     };
 
+    const wrapSelection = (open: string, close: string) => {
+        const el = textareaRef.current;
+        if (el) {
+            const start = el.selectionStart;
+            const end = el.selectionEnd;
+            const selected = (content as string).slice(start, end);
+            const wrapped = open + selected + close;
+            const next = (content as string).slice(0, start) + wrapped + (content as string).slice(end);
+            setContent(next);
+            setTimeout(() => {
+                el.selectionStart = selected ? start : start + open.length;
+                el.selectionEnd = selected ? start + wrapped.length : start + open.length;
+                el.focus();
+            }, 0);
+        }
+    };
+
     const insertVariable = (name: string) => {
         if (varMode === 'simple') insertAtCursor(`\${${name}}`);
         else insertAtCursor(`@{${name} true-text|false-text}`);
@@ -161,8 +178,11 @@ function ProseEditDialog({ node, images, variables, onClose, onSave, onDelete, o
                 <DialogTitle>{title}</DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} sx={{ mt: 1 }}>
+                        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                        <Button size="small" variant="outlined" onClick={() => wrapSelection('[b]', '[/b]')} sx={{ fontWeight: 700, minWidth: 36 }}>B</Button>
+                        <Button size="small" variant="outlined" onClick={() => wrapSelection('[i]', '[/i]')} sx={{ fontStyle: 'italic', minWidth: 36 }}>I</Button>
                         {variables.length > 0 && (
-                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                            <>
                                 <Button size="small" variant="outlined" onClick={e => { setVarMode('simple'); setVarAnchor(e.currentTarget); }} sx={{ fontFamily: 'monospace', fontSize: 12 }}>{'${…}'}</Button>
                                 <Button size="small" variant="outlined" onClick={e => { setVarMode('conditional'); setVarAnchor(e.currentTarget); }} sx={{ fontFamily: 'monospace', fontSize: 12 }}>{'@{…}'}</Button>
                                 <Popover open={!!varAnchor} anchorEl={varAnchor} onClose={() => setVarAnchor(null)} anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
@@ -180,8 +200,9 @@ function ProseEditDialog({ node, images, variables, onClose, onSave, onDelete, o
                                         </Stack>
                                     </Box>
                                 </Popover>
-                            </Box>
+                            </>
                         )}
+                        </Box>
 
                         <TextField
                             label="Content"

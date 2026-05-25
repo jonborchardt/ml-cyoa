@@ -13,7 +13,7 @@ export function GameShell() {
     const { pathname } = useLocation();
     const game = gameId ? gamesById[gameId] : undefined;
 
-    const tabValue = pathname.endsWith('/flow') ? 1 : pathname.endsWith('/authors') ? 2 : 0;
+    const tabValue = pathname.endsWith('/flow') ? 2 : pathname.endsWith('/authors') ? 1 : 0;
 
     const [tabsVisited, setTabsVisited] = useState<Set<number>>(() => new Set([tabValue]));
     if (!tabsVisited.has(tabValue)) {
@@ -43,14 +43,14 @@ export function GameShell() {
             </Box>
 
             {tabsVisited.has(1) && (
-                <Box sx={{ flex: 1, minHeight: 0, display: tabValue === 1 ? 'flex' : 'none', flexDirection: 'column' }}>
-                    <FlowPanel game={game} choiceHistory={choiceHistory} />
+                <Box sx={{ flex: 1, overflow: 'auto', display: tabValue === 1 ? 'block' : 'none' }}>
+                    <AuthorsPanel game={game} />
                 </Box>
             )}
 
             {tabsVisited.has(2) && (
-                <Box sx={{ flex: 1, overflow: 'auto', display: tabValue === 2 ? 'block' : 'none' }}>
-                    <AuthorsPanel game={game} />
+                <Box sx={{ flex: 1, minHeight: 0, display: tabValue === 2 ? 'flex' : 'none', flexDirection: 'column' }}>
+                    <FlowPanel game={game} choiceHistory={choiceHistory} />
                 </Box>
             )}
         </Box>
