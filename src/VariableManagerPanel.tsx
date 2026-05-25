@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
-    Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,
-    Drawer, FormControl, IconButton, InputLabel, MenuItem, Select,
+    Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle,
+    Drawer, FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, Select,
     Stack, Tab, Tabs, TextField, ToggleButton, ToggleButtonGroup,
     Tooltip, Typography,
 } from '@mui/material';
@@ -41,6 +41,8 @@ function VariableForm({ initial, existingNames, onSave, onCancel }: VariableForm
     const [scope, setScope] = useState<VariableDef['scope']>(initial?.scope ?? 'global');
     const [rawValue, setRawValue] = useState(String(initial?.initialValue ?? '0'));
     const [description, setDescription] = useState(initial?.description ?? '');
+    const [isArray, setIsArray] = useState(initial?.isArray ?? false);
+    const [arrayLength, setArrayLength] = useState(initial?.arrayLength ?? 3);
 
     const nameError = (() => {
         if (!name) return '';
@@ -56,13 +58,15 @@ function VariableForm({ initial, existingNames, onSave, onCancel }: VariableForm
         return '';
     })();
 
-    const canSave = name && !nameError && !valueError;
+    const arrayLengthError = isArray && (arrayLength < 1 || arrayLength > 999 || !Number.isInteger(arrayLength)) ? 'Must be 1–999' : '';
+    const canSave = name && !nameError && !valueError && !arrayLengthError;
 
     const handleSave = () => {
         let initialValue: string | number | boolean = rawValue;
         if (type === 'boolean') initialValue = rawValue === 'true';
         if (type === 'number') initialValue = Number(rawValue);
-        onSave({ name, type, scope, initialValue, description: description || undefined });
+        const extra = isArray ? { isArray: true as const, arrayLength } : {};
+        onSave({ name, type, scope, initialValue, description: description || undefined, ...extra });
     };
 
     const handleTypeChange = (newType: VariableDef['type']) => {
@@ -108,6 +112,23 @@ function VariableForm({ initial, existingNames, onSave, onCancel }: VariableForm
                     helperText={valueError}
                     size="small"
                     type={type === 'number' ? 'number' : 'text'}
+                    fullWidth
+                />
+            )}
+            <FormControlLabel
+                control={<Checkbox size="small" checked={isArray} onChange={e => setIsArray(e.target.checked)} />}
+                label={<Typography variant="body2">Array variable (<code>*create_array</code>)</Typography>}
+            />
+            {isArray && (
+                <TextField
+                    label="Array Length"
+                    type="number"
+                    value={arrayLength}
+                    onChange={e => setArrayLength(Number(e.target.value))}
+                    inputProps={{ min: 1, max: 999, step: 1 }}
+                    error={!!arrayLengthError}
+                    helperText={arrayLengthError || `Creates ${name || 'var'}_1 … ${name || 'var'}_${arrayLength}`}
+                    size="small"
                     fullWidth
                 />
             )}
@@ -205,7 +226,7 @@ export function VariableManagerPanel({ open, story, onChange, onClose }: Props) 
                                         {v.name}
                                     </Typography>
                                     <Typography variant="caption" color="text.secondary">
-                                        {v.type} · initial: <code>{String(v.initialValue)}</code>
+                                        {v.isArray ? `array[${v.arrayLength}] · ${v.type}` : v.type} · initial: <code>{String(v.initialValue)}</code>
                                     </Typography>
                                     {v.description && (
                                         <Typography variant="caption" color="text.secondary" display="block" sx={{ mt: 0.25 }}>

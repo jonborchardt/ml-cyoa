@@ -1,24 +1,24 @@
 import type { Node, Edge } from '@xyflow/react';
 import type { NodeData } from './parseGameFlow';
 import type { MyStory, SubroutineDef } from './myStoryStore';
-import type { VariableDef, ConditionConfig, ActionItem, InputConfig, EdgeData, SceneJumpData, StatEntry } from './types';
+import type { VariableDef, ConditionConfig, ActionItem, InputConfig, EdgeData, SceneJumpData, StatEntry, ImageData } from './types';
 
 // Re-export validateFlow for backward compatibility with existing imports.
 export { validateFlow } from './validateFlow';
 
 // ─── Variable preamble ────────────────────────────────────────────────────
 
-export function serializeStartupPreamble(story: Pick<MyStory, 'variables' | 'statChart' | 'achievements'>): string {
+export function serializeStartupPreamble(story: Pick<MyStory, 'variables' | 'statChart' | 'achievements' | 'ifid'>): string {
     const parts: string[] = [];
+
+    if (story.ifid) parts.push(`*ifid ${story.ifid}`);
 
     const globals = (story.variables ?? []).filter(v => v.scope === 'global');
     if (globals.length > 0) {
         parts.push(globals.map(v => formatCreate(v)).join('\n'));
     }
 
-    const statChart = (story.statChart ?? []).filter(e =>
-        e.kind !== 'divider' && e.variable,
-    ) as StatEntry[];
+    const statChart = (story.statChart ?? []).filter(e => e.variable) as StatEntry[];
     if (statChart.length > 0) {
         const lines = ['*stat_chart'];
         for (const entry of statChart) {
@@ -35,10 +35,11 @@ export function serializeStartupPreamble(story: Pick<MyStory, 'variables' | 'sta
 
     for (const ach of (story.achievements ?? [])) {
         const visibility = ach.isVisible ? 'visible' : 'hidden';
-        const achLines = [`*achievement ${ach.id} title ${ach.points} "${ach.title}" ${visibility}`];
-        achLines.push(`  ${ach.shortDescription}`);
-        if (ach.preDescription) achLines.push(`  ${ach.preDescription}`);
-        if (ach.postDescription) achLines.push(`  ${ach.postDescription}`);
+        const achLines = [`*achievement ${ach.id} ${visibility} ${ach.points} ${ach.title}`];
+        achLines.push(`  ${ach.shortDescription || 'Achievement unlocked'}`);
+        // post-earned description: use postDescription if set, fall back to preDescription (legacy field)
+        const postDesc = ach.postDescription || ach.preDescription;
+        if (postDesc && postDesc !== ach.shortDescription) achLines.push(`  ${postDesc}`);
         parts.push(achLines.join('\n'));
     }
 
@@ -46,6 +47,14 @@ export function serializeStartupPreamble(story: Pick<MyStory, 'variables' | 'sta
 }
 
 function formatCreate(v: VariableDef): string {
+    if (v.isArray) {
+        const len = v.arrayLength ?? 1;
+        if (v.type === 'text') {
+            const escaped = String(v.initialValue).replace(/"/g, '\\"');
+            return `*create_array ${v.name} ${len} "${escaped}"`;
+        }
+        return `*create_array ${v.name} ${len} ${v.initialValue}`;
+    }
     if (v.type === 'text') {
         const escaped = String(v.initialValue).replace(/"/g, '\\"');
         return `*create ${v.name} "${escaped}"`;
@@ -54,6 +63,14 @@ function formatCreate(v: VariableDef): string {
 }
 
 function formatTemp(v: VariableDef): string {
+    if (v.isArray) {
+        const len = v.arrayLength ?? 1;
+        if (v.type === 'text') {
+            const escaped = String(v.initialValue).replace(/"/g, '\\"');
+            return `*temp_array ${v.name} ${len} "${escaped}"`;
+        }
+        return `*temp_array ${v.name} ${len} ${v.initialValue}`;
+    }
     if (v.type === 'text') {
         const escaped = String(v.initialValue).replace(/"/g, '\\"');
         return `*temp ${v.name} "${escaped}"`;
@@ -71,14 +88,15 @@ export function serializeActionNode(node: Node<NodeData>): string {
 function serializeAction(a: ActionItem): string {
     switch (a.kind) {
         case 'set':
-            // *set var value (for =) or *set var +value / -value / etc.
             if (a.op === '=') return `*set ${a.variable} ${a.value}`;
+            if (a.op === 'modulo') return `*set ${a.variable} modulo ${a.value}`;
             return `*set ${a.variable} ${a.op}${a.value}`;
         case 'rand': return `*rand ${a.variable} ${a.min} ${a.max}`;
         case 'input_text': return `*input_text ${a.variable}`;
         case 'input_number': return `*input_number ${a.variable} ${a.min} ${a.max}`;
         case 'page_break': return `*page_break`;
         case 'award_achievement': return `*achieve ${a.achievementId}`;
+        case 'delete': return `*delete ${a.variable}`;
     }
 }
 
@@ -91,12 +109,14 @@ export function serializeConditionNode(
     const cfg = (node.data.condition as ConditionConfig | undefined) ?? { left: '', op: '=', right: '' };
     const lines: string[] = [];
 
-    lines.push(`*if ${cfg.left} ${cfg.op} ${cfg.right}`);
+    const ifExpr = cfg.rawExpression ?? `${cfg.left} ${cfg.op} ${cfg.right}`;
+    lines.push(`*if ${ifExpr}`);
     if (cfg.trueContent) lines.push(`  ${cfg.trueContent}`);
     lines.push(`  *goto ${trueBranchLabel}`);
 
     (cfg.elseIfs ?? []).forEach((ei, i) => {
-        lines.push(`*elseif ${ei.left} ${ei.op} ${ei.right}`);
+        const eiExpr = ei.rawExpression ?? `${ei.left} ${ei.op} ${ei.right}`;
+        lines.push(`*elseif ${eiExpr}`);
         if (ei.content) lines.push(`  ${ei.content}`);
         if (elseIfLabels[i]) lines.push(`  *goto ${elseIfLabels[i]}`);
     });
@@ -138,7 +158,7 @@ function getNodeLabel(node: Node<NodeData>): string {
     return `node_${node.id}`;
 }
 
-export function serializeFlow(nodes: Node<NodeData>[], edges: Edge[], story?: Pick<MyStory, 'variables' | 'statChart' | 'achievements'>): string {
+export function serializeFlow(nodes: Node<NodeData>[], edges: Edge[], story?: Pick<MyStory, 'variables' | 'statChart' | 'achievements' | 'ifid'>): string {
     const nodeById = new Map(nodes.map(n => [n.id, n]));
 
     // Build adjacency: source → [{ edge, target }]
@@ -190,6 +210,39 @@ export function serializeFlow(nodes: Node<NodeData>[], edges: Edge[], story?: Pi
             lines.push(`${pad}*label ${getNodeLabel(node)}`);
             lines.push(`${pad}*page_break`);
             if (children.length > 0) serialize(children[0].target, indent);
+            return;
+        }
+
+        // ── delay_break: emit *delay_break and continue ──
+        if (type === 'delay_break') {
+            lines.push(`${pad}*label ${getNodeLabel(node)}`);
+            lines.push(`${pad}*delay_break`);
+            if (children.length > 0) serialize(children[0].target, indent);
+            return;
+        }
+
+        // ── image: emit *image and continue ──
+        if (type === 'image') {
+            lines.push(`${pad}*label ${getNodeLabel(node)}`);
+            const imgData = node.data as ImageData & NodeData;
+            const file = imgData.imageFile ?? '';
+            const align = imgData.imageAlign ?? 'center';
+            const alt = imgData.imageAlt ?? '';
+            if (file) {
+                const alignStr = align !== 'center' ? ` ${align}` : '';
+                const altStr = alt ? ` "${alt}"` : '';
+                lines.push(`${pad}*image ${file}${alignStr}${altStr}`);
+            }
+            if (children.length > 0) serialize(children[0].target, indent);
+            return;
+        }
+
+        // ── goto_random_scene: emit *goto_random_scene block (no children) ──
+        if (type === 'goto_random_scene') {
+            lines.push(`${pad}*label ${getNodeLabel(node)}`);
+            const scenes = (node.data.scenes as string[] | undefined) ?? [];
+            lines.push(`${pad}*goto_random_scene`);
+            for (const s of scenes) lines.push(`${pad}  ${s}`);
             return;
         }
 

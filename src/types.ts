@@ -1,10 +1,9 @@
 export interface StatEntry {
-    kind: 'percent' | 'opposed_pair' | 'text' | 'divider';
+    kind: 'percent' | 'opposed_pair' | 'text';
     variable?: string;
     label?: string;
     variable2?: string;
     label2?: string;
-    heading?: string;
 }
 
 export interface Achievement {
@@ -24,6 +23,8 @@ export interface VariableDef {
     description?: string;
     scope: 'global' | 'temp';
     sceneId?: string;
+    isArray?: boolean;
+    arrayLength?: number;
 }
 
 export interface ValidationIssue {
@@ -55,9 +56,18 @@ export type NodeType =
     | 'scene_jump'
     | 'scene_label'
     | 'page_break'
+    | 'delay_break'
     | 'check_achievements'
     | 'raw_code'
-    | 'comment';
+    | 'comment'
+    | 'image'
+    | 'goto_random_scene';
+
+export interface ImageData {
+    imageFile: string;
+    imageAlign: 'left' | 'right' | 'center';
+    imageAlt: string;
+}
 
 export interface SceneJumpData {
     targetScene: string;
@@ -70,19 +80,22 @@ export interface ConditionConfig {
     left: string;
     op: string;
     right: string;
-    elseIfs?: Array<{ left: string; op: string; right: string; content?: string }>;
+    rawExpression?: string;  // if set, overrides left/op/right in serialization
+    elseIfs?: Array<{ left: string; op: string; right: string; rawExpression?: string; content?: string }>;
     trueContent?: string;
     falseContent?: string;
 }
 
-// Action node (*set, *rand, *input_text, *input_number, *page_break)
+// Action node (*set, *rand, *input_text, *input_number, *page_break, *delete)
+// set ops: '=' | '+' | '-' | '*' | '/' | '^' | '&' | '%+' | '%-' | 'modulo'
 export type ActionItem =
     | { kind: 'set'; variable: string; op: string; value: string }
     | { kind: 'rand'; variable: string; min: number; max: number }
     | { kind: 'input_text'; variable: string }
     | { kind: 'input_number'; variable: string; min: number; max: number }
     | { kind: 'page_break' }
-    | { kind: 'award_achievement'; achievementId: string };
+    | { kind: 'award_achievement'; achievementId: string }
+    | { kind: 'delete'; variable: string };
 
 // Input node (*input_text / *input_number with a prompt)
 export interface InputConfig {

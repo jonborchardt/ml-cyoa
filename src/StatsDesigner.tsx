@@ -1,5 +1,5 @@
 import {
-    Box, Button, Divider, FormControl, IconButton, InputLabel,
+    Box, Button, FormControl, IconButton, InputLabel,
     MenuItem, Select, Stack, TextField, Typography,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
@@ -25,14 +25,13 @@ function StatRow({ entry, variables, onChange, onDelete, onMoveUp, onMoveDown, i
 
     return (
         <Box sx={{ p: 1.5, border: 1, borderColor: 'divider', borderRadius: 1 }}>
-            <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: entry.kind !== 'divider' ? 1 : 0 }}>
+            <Stack direction="row" alignItems="center" spacing={0.5} sx={{ mb: 1 }}>
                 <FormControl size="small" sx={{ minWidth: 130 }}>
                     <InputLabel>Type</InputLabel>
-                    <Select value={entry.kind} label="Type" onChange={e => onChange({ kind: e.target.value as StatEntry['kind'] })}>
+                    <Select value={entry.kind} label="Type" onChange={e => onChange({ kind: e.target.value as StatEntry['kind'], variable: entry.variable, label: entry.label })}>
                         <MenuItem value="percent">Percent Bar</MenuItem>
                         <MenuItem value="opposed_pair">Opposed Pair</MenuItem>
                         <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="divider">Divider</MenuItem>
                     </Select>
                 </FormControl>
                 <Box sx={{ flex: 1 }} />
@@ -80,9 +79,6 @@ function StatRow({ entry, variables, onChange, onDelete, onMoveUp, onMoveDown, i
                 </Stack>
             )}
 
-            {entry.kind === 'divider' && (
-                <TextField label="Section heading (optional)" value={entry.heading ?? ''} onChange={e => onChange({ ...entry, heading: e.target.value })} size="small" fullWidth />
-            )}
         </Box>
     );
 }
@@ -96,14 +92,6 @@ function StatChartPreview({ entries }: { entries: StatEntry[] }) {
     return (
         <Stack spacing={1}>
             {entries.map((entry, i) => {
-                if (entry.kind === 'divider') {
-                    return (
-                        <Box key={i}>
-                            {entry.heading && <Typography variant="caption" fontWeight={700} sx={{ textTransform: 'uppercase', letterSpacing: 1 }}>{entry.heading}</Typography>}
-                            <Divider />
-                        </Box>
-                    );
-                }
                 if (entry.kind === 'percent') {
                     return (
                         <Box key={i}>
@@ -154,8 +142,7 @@ export function StatsDesigner({ statChart, variables, onChange }: Props) {
         const firstNum = variables.find(v => v.type === 'number')?.name ?? '';
         const entry: StatEntry = kind === 'percent' ? { kind, variable: firstNum, label: '' }
             : kind === 'opposed_pair' ? { kind, variable: firstNum, variable2: '', label: '', label2: '' }
-            : kind === 'text' ? { kind, variable: firstNum, label: '' }
-            : { kind: 'divider', heading: '' };
+            : { kind: 'text', variable: firstNum, label: '' };
         onChange([...statChart, entry]);
     };
 
@@ -178,7 +165,6 @@ export function StatsDesigner({ statChart, variables, onChange }: Props) {
                         <MenuItem value="percent">Percent Bar</MenuItem>
                         <MenuItem value="opposed_pair">Opposed Pair</MenuItem>
                         <MenuItem value="text">Text</MenuItem>
-                        <MenuItem value="divider">Divider</MenuItem>
                     </Select>
                 </FormControl>
             </Stack>

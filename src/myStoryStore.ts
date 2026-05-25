@@ -16,6 +16,7 @@ export interface SceneDef {
     nodes: Node<NodeData>[];
     edges: Edge[];
     subroutines: SubroutineDef[];
+    globalReuseMode?: 'hide' | 'disable';
 }
 
 export interface MyStory {
@@ -32,6 +33,7 @@ export interface MyStory {
     statChart: StatEntry[];
     achievements: Achievement[];
     layoutDirection?: 'TB' | 'LR';
+    ifid?: string;
     createdAt: number;
     updatedAt: number;
 }
@@ -74,6 +76,7 @@ export function migrateStory(raw: unknown): MyStory {
         statChart: story.statChart ?? [],
         achievements: story.achievements ?? [],
         layoutDirection: story.layoutDirection,
+        ifid: story.ifid,
         createdAt: story.createdAt,
         updatedAt: story.updatedAt,
     };

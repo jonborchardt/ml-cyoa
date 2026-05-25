@@ -29,7 +29,7 @@ const CS_COMMANDS: Array<{ name: string; snippet: string; doc: string }> = [
     { name: 'stat_chart', snippet: 'stat_chart\n  percent ${1:variable} "${2:Label}"', doc: 'Show the stats screen.' },
     { name: 'check_achievements', snippet: 'check_achievements', doc: 'Show the achievements screen.' },
     { name: 'achieve', snippet: 'achieve ${1:achievement_id}', doc: 'Award an achievement.' },
-    { name: 'achievement', snippet: 'achievement ${1:id} title ${2:pts} "${3:title}" visible\n  ${4:description}', doc: 'Define an achievement.' },
+    { name: 'achievement', snippet: 'achievement ${1:id} visible ${2:10} ${3:Title}\n  ${4:Pre-earned description}', doc: 'Define an achievement (id visibility points title).' },
     { name: 'create', snippet: 'create ${1:variable} ${2:value}', doc: 'Declare a global variable (startup only).' },
     { name: 'temp', snippet: 'temp ${1:variable} ${2:value}', doc: 'Declare a temporary variable.' },
     { name: 'title', snippet: 'title ${1:My Story}', doc: 'Set the story title (startup only).' },
@@ -41,6 +41,18 @@ const CS_COMMANDS: Array<{ name: string; snippet: string; doc: string }> = [
     { name: 'hide_reuse', snippet: 'hide_reuse', doc: 'Hide a choice after it has been selected.' },
     { name: 'disable_reuse', snippet: 'disable_reuse', doc: 'Disable a choice after it has been selected.' },
     { name: 'allow_reuse', snippet: 'allow_reuse', doc: 'Allow repeated selection of a choice.' },
+    { name: 'delay_break', snippet: 'delay_break', doc: 'Page break with a loading delay before continuing.' },
+    { name: 'goto_random_scene', snippet: 'goto_random_scene\n  ${1:scene_a}\n  ${2:scene_b}', doc: 'Jump to one of several scenes at random.' },
+    { name: 'delete', snippet: 'delete ${1:variable}', doc: 'Remove a variable entirely.' },
+    { name: 'ifid', snippet: 'ifid ${1:UUID-HERE}', doc: 'Set the Interactive Fiction ID (startup only).' },
+    { name: 'redirect_scene', snippet: 'redirect_scene ${1:scene}', doc: 'Navigate from the stats screen to a scene.' },
+    { name: 'save_checkpoint', snippet: 'save_checkpoint', doc: 'Save the current game state to a checkpoint slot.' },
+    { name: 'restore_checkpoint', snippet: 'restore_checkpoint', doc: 'Restore a previously saved checkpoint.' },
+    { name: 'show_password', snippet: 'show_password', doc: 'Display an encoded save-state password box.' },
+    { name: 'share_this_game', snippet: 'share_this_game', doc: 'Show social sharing links.' },
+    { name: 'more_games', snippet: 'more_games', doc: 'Show a list of other games from the publisher.' },
+    { name: 'bug', snippet: 'bug ${1:Custom error message}', doc: 'Halt execution with a debug error message.' },
+    { name: 'looplimit', snippet: 'looplimit ${1:2000}', doc: 'Override the default loop detection limit.' },
 ];
 
 const CMD_DOC_MAP = new Map(CS_COMMANDS.map(c => [c.name, c.doc]));
@@ -66,7 +78,9 @@ export function registerChoiceScriptLanguage(monaco: typeof Monaco): void {
                 [/\*[a-z_]+/, 'keyword'],
                 // Option lines (#...)
                 [/^\s*#.*$/, 'string'],
-                // Variable substitution ${var}
+                // Variable substitution: $!{}, $!!{} (capitalized), ${var#N} (char index), ${var}
+                [/\$!!?\{[^}]+\}/, 'variable'],
+                [/\$\{[^}#]*#\d+[^}]*\}/, 'variable'],
                 [/\$\{[^}]+\}/, 'variable'],
                 // Conditional substitution @{...}
                 [/@@?\{[^}]+\}/, 'keyword.control'],

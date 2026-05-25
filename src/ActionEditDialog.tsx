@@ -12,9 +12,9 @@ import type { Node } from '@xyflow/react';
 import type { NodeData } from './parseGameFlow';
 import type { ActionItem, VariableDef, Achievement } from './types';
 
-const SET_OPS = ['=', '+', '-', '*', '/', '%+', '%-', '&'];
+const SET_OPS = ['=', '+', '-', '*', '/', '^', '%+', '%-', 'modulo', '&'];
 
-type ActionKind = 'set' | 'rand' | 'input_text' | 'input_number' | 'page_break' | 'award_achievement';
+type ActionKind = 'set' | 'rand' | 'input_text' | 'input_number' | 'page_break' | 'award_achievement' | 'delete';
 
 function defaultAction(kind: ActionKind, varName: string): ActionItem {
     switch (kind) {
@@ -24,6 +24,7 @@ function defaultAction(kind: ActionKind, varName: string): ActionItem {
         case 'input_number': return { kind: 'input_number', variable: varName, min: 0, max: 100 };
         case 'page_break': return { kind: 'page_break' };
         case 'award_achievement': return { kind: 'award_achievement', achievementId: '' };
+        case 'delete': return { kind: 'delete', variable: varName };
     }
 }
 
@@ -58,6 +59,7 @@ function ActionRow({ action, variables, achievements, onChange, onDelete, onMove
                         <MenuItem value="input_number">Player number input</MenuItem>
                         <MenuItem value="page_break">Page break</MenuItem>
                         <MenuItem value="award_achievement">Award achievement</MenuItem>
+                        <MenuItem value="delete">Delete variable</MenuItem>
                     </Select>
                 </FormControl>
                 <Box sx={{ flex: 1 }} />
@@ -143,6 +145,19 @@ function ActionRow({ action, variables, achievements, onChange, onDelete, onMove
                     fullWidth
                     helperText={achIds.length === 0 ? 'Add achievements in the Stats & Achievements panel first.' : undefined}>
                     {achIds.map(id => <MenuItem key={id} value={id}>{id}</MenuItem>)}
+                </TextField>
+            )}
+
+            {action.kind === 'delete' && (
+                <TextField
+                    label="Variable to delete"
+                    value={action.variable}
+                    onChange={e => onChange({ ...action, variable: e.target.value })}
+                    size="small"
+                    select={varNames.length > 0}
+                    fullWidth
+                    helperText="*delete removes the variable — referencing it afterward causes an error">
+                    {varNames.map(n => <MenuItem key={n} value={n}>{n}</MenuItem>)}
                 </TextField>
             )}
         </Box>

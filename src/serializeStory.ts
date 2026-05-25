@@ -19,7 +19,11 @@ function serializeScene(scene: SceneDef, story: MyStory, isStartup: boolean): st
     const body = serializeFlow(scene.nodes, scene.edges, isStartup ? story : undefined);
     const subroutineParts = (scene.subroutines ?? []).map(sub => serializeSubroutine(sub));
 
-    let result = isStartup ? buildStartupHeader(story) + '\n' + body : body;
+    const globalReuse = scene.globalReuseMode === 'hide' ? '*hide_reuse\n'
+        : scene.globalReuseMode === 'disable' ? '*disable_reuse\n'
+        : '';
+
+    let result = isStartup ? buildStartupHeader(story) + '\n' + globalReuse + body : globalReuse + body;
     if (subroutineParts.length > 0) {
         result += '\n\n' + subroutineParts.join('\n\n');
     }

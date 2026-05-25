@@ -214,10 +214,13 @@ function parseSection(
     const hasIf = trimmed.some(l => /^\*(if|elseif)\b/.test(l));
     const hasGotoScene = trimmed.some(l => /^\*goto_scene\b/.test(l));
     const hasGotoSubScene = trimmed.some(l => /^\*gosub_scene\b/.test(l));
+    const hasGotoRandomScene = trimmed.some(l => /^\*goto_random_scene\b/.test(l));
     const hasGosub = trimmed.some(l => /^\*gosub\b/.test(l));
     const hasFinish = trimmed.some(l => /^\*(finish|ending|end_game)\b/.test(l));
-    const hasAction = trimmed.some(l => /^\*(set|rand|input_text|input_number)\b/.test(l));
+    const hasAction = trimmed.some(l => /^\*(set|rand|input_text|input_number|delete)\b/.test(l));
     const hasPageBreak = trimmed.some(l => /^\*page_break\b/.test(l));
+    const hasDelayBreak = trimmed.some(l => /^\*delay_break\b/.test(l));
+    const hasImage = trimmed.some(l => /^\*image\b/.test(l));
     const hasCheckAchievements = trimmed.some(l => /^\*check_achievements\b/.test(l));
     const hasUnknownCmd = trimmed.some(l => {
         if (!l.startsWith('*')) return false;
@@ -249,6 +252,44 @@ function parseSection(
     // ── page_break ──
     if (hasPageBreak && !hasChoice && !hasIf) {
         return { node: makeNode(nodeId, 'page_break', 'Page Break', ''), edges, unsupported: false };
+    }
+
+    // ── delay_break ──
+    if (hasDelayBreak && !hasChoice && !hasIf) {
+        return { node: makeNode(nodeId, 'delay_break', 'Delay Break', ''), edges, unsupported: false };
+    }
+
+    // ── image ──
+    if (hasImage && !hasChoice && !hasIf) {
+        const imgLine = trimmed.find(l => /^\*image\b/.test(l))!;
+        const m = imgLine.match(/^\*image\s+(\S+)(?:\s+(left|right))?(?:\s+"([^"]*)")?/);
+        const imageFile = m?.[1] ?? '';
+        const imageAlign = (m?.[2] as 'left' | 'right') ?? 'center';
+        const imageAlt = m?.[3] ?? '';
+        const node = makeNode(nodeId, 'image', `\u{1F5BC} ${imageFile}`, '');
+        node.data.imageFile = imageFile;
+        node.data.imageAlign = imageAlign;
+        node.data.imageAlt = imageAlt;
+        return { node, edges, unsupported: false };
+    }
+
+    // ── goto_random_scene ──
+    if (hasGotoRandomScene && !hasChoice && !hasIf) {
+        const lineIdx = lines.findIndex(l => /^\*goto_random_scene\b/.test(l.trim()));
+        const scenes: string[] = [];
+        if (lineIdx >= 0) {
+            const baseIndent = lines[lineIdx].search(/\S/);
+            for (let k = lineIdx + 1; k < lines.length; k++) {
+                const raw = lines[k];
+                if (!raw.trim()) continue;
+                const ind = raw.search(/\S/);
+                if (ind <= baseIndent) break;
+                scenes.push(raw.trim());
+            }
+        }
+        const node = makeNode(nodeId, 'goto_random_scene', 'goto_random_scene', '');
+        node.data.scenes = scenes;
+        return { node, edges, unsupported: false };
     }
 
     // ── check_achievements ──
@@ -414,9 +455,11 @@ function parseCondition(
 
     const parseExpr = (line: string, cmd: '*if' | '*elseif') => {
         const rest = line.slice(cmd.length).trim();
-        const m = rest.match(/^(\S+)\s+(=|!=|<|>|<=|>=|and|or)\s+(.+)$/);
-        if (m) return { left: m[1], op: m[2], right: m[3].trim() };
-        return { left: rest, op: '=', right: 'true' };
+        // Simple binary expression: var op value (no parens, no and/or)
+        const m = rest.match(/^(\S+)\s+(=|!=|<|>|<=|>=)\s+(.+)$/);
+        if (m) return { left: m[1], op: m[2], right: m[3].trim(), rawExpression: undefined };
+        // Complex expression (contains and/or/not/parens) — pass through verbatim
+        return { left: '', op: '=', right: 'true', rawExpression: rest };
     };
 
     const cfg = parseExpr(ifLine, '*if');
@@ -438,8 +481,8 @@ function parseCondition(
     if (falseLabel) pendingEdges.push({ sourceId: nodeId, targetLabel: falseLabel, sourceHandle: 'false' });
 
     const elseIfs = elseifLines.map(l => {
-        const { left, op, right } = parseExpr(l, '*elseif');
-        return { left, op, right };
+        const { left, op, right, rawExpression } = parseExpr(l, '*elseif');
+        return rawExpression ? { left, op, right, rawExpression } : { left, op, right };
     });
 
     return {
@@ -447,6 +490,7 @@ function parseCondition(
             left: cfg.left,
             op: cfg.op,
             right: cfg.right,
+            ...(cfg.rawExpression ? { rawExpression: cfg.rawExpression } : {}),
             elseIfs: elseIfs.length ? elseIfs : undefined,
         },
     };
@@ -457,7 +501,26 @@ function parseCondition(
 function parseActions(lines: string[]): ActionItem[] {
     const actions: ActionItem[] = [];
     for (const line of lines) {
-        const setMatch = line.match(/^\*set\s+(\S+)\s+([+\-*/]?)(.+)$/);
+        // *delete var
+        const deleteMatch = line.match(/^\*delete\s+(\S+)/);
+        if (deleteMatch) {
+            actions.push({ kind: 'delete', variable: deleteMatch[1] });
+            continue;
+        }
+        // *set with fairmath operators (%+ or %-)
+        const fairmathMatch = line.match(/^\*set\s+(\S+)\s+(%[+-])(.+)$/);
+        if (fairmathMatch) {
+            actions.push({ kind: 'set', variable: fairmathMatch[1], op: fairmathMatch[2], value: fairmathMatch[3].trim() });
+            continue;
+        }
+        // *set var modulo value
+        const moduloMatch = line.match(/^\*set\s+(\S+)\s+modulo\s+(.+)$/);
+        if (moduloMatch) {
+            actions.push({ kind: 'set', variable: moduloMatch[1], op: 'modulo', value: moduloMatch[2].trim() });
+            continue;
+        }
+        // *set with single-char operator (+, -, *, /, ^, &) or no operator (= implicit)
+        const setMatch = line.match(/^\*set\s+(\S+)\s+([+\-*/^&]?)(.+)$/);
         if (setMatch) {
             const op = setMatch[2] || '=';
             actions.push({ kind: 'set', variable: setMatch[1], op, value: setMatch[3].trim() });
@@ -518,13 +581,19 @@ function parseLabelless(lines: string[]): ParseResult {
 
 // Commands that the parser recognises (won't trigger raw_code fallback)
 const KNOWN_COMMANDS = new Set([
-    'label', 'goto', 'gosub', 'gosub_scene', 'goto_scene', 'return',
+    'label', 'goto', 'gosub', 'gosub_scene', 'goto_scene', 'goto_random_scene', 'return',
     'choice', 'fake_choice', 'if', 'elseif', 'else',
-    'set', 'rand', 'input_text', 'input_number',
+    'set', 'rand', 'input_text', 'input_number', 'delete',
     'finish', 'ending', 'end_game',
-    'page_break', 'check_achievements', 'achieve',
-    'title', 'author', 'scene_list', 'create', 'temp', 'comment',
-    'image', 'line_break', 'params',
+    'page_break', 'delay_break', 'line_break', 'check_achievements', 'achieve',
+    'title', 'author', 'scene_list', 'create', 'create_array', 'temp', 'temp_array', 'comment',
+    'image', 'params',
     'hide_reuse', 'disable_reuse', 'allow_reuse', 'selectable_if',
     'stat_chart', 'achievement',
+    // Advanced / platform-specific commands (pass through without raw_code fallback)
+    'redirect_scene',
+    'save_checkpoint', 'restore_checkpoint',
+    'show_password', 'share_this_game', 'more_games',
+    'bug', 'looplimit',
+    'ifid',
 ]);

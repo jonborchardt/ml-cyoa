@@ -24,6 +24,11 @@ function extractAuthor(text: string): string {
     return m ? m[1].trim() : '';
 }
 
+function extractIfid(text: string): string | undefined {
+    const m = text.match(/^\*ifid\s+(\S+)/m);
+    return m ? m[1].trim() : undefined;
+}
+
 function extractSceneList(text: string): string[] {
     const m = text.match(/^\*scene_list[ \t]*\n((?:[ \t]+\S+[ \t]*\n)+)/m);
     if (!m) return [];
@@ -47,8 +52,20 @@ function parseInitialValue(raw: string): string | number | boolean {
 
 function extractVariables(text: string): VariableDef[] {
     const vars: VariableDef[] = [];
-    const re = /^\*create\s+(\w+)\s+(.*)/gm;
+    // *create_array name length value
+    const arrRe = /^\*create_array\s+(\w+)\s+(\d+)\s+(.*)/gm;
     let m: RegExpExecArray | null;
+    while ((m = arrRe.exec(text)) !== null) {
+        const name = m[1].toLowerCase();
+        const length = parseInt(m[2], 10);
+        const val = parseInitialValue(m[3]);
+        const type: VariableDef['type'] =
+            typeof val === 'boolean' ? 'boolean' :
+            typeof val === 'number'  ? 'number'  : 'text';
+        vars.push({ name, type, initialValue: val, scope: 'global', isArray: true, arrayLength: length });
+    }
+    // *create name value (non-array; *create_array won't match because it lacks a space after "create")
+    const re = /^\*create\s+(\w+)\s+(.*)/gm;
     while ((m = re.exec(text)) !== null) {
         const name = m[1].toLowerCase();
         const val = parseInitialValue(m[2]);
@@ -63,9 +80,8 @@ function extractVariables(text: string): VariableDef[] {
 /**
  * Parses *achievement blocks. Format:
  *   *achievement <id> <visible|hidden> <points> <title>
- *     <short_description>
- *     [pre_description]
- *     [post_description]
+ *     <pre_earned_description>
+ *     [post_earned_description]
  */
 function extractAchievements(text: string): Achievement[] {
     const achs: Achievement[] = [];
@@ -82,8 +98,8 @@ function extractAchievements(text: string): Achievement[] {
             bodyLines.push(lines[j].trim());
             j++;
         }
-        const [shortDescription = '', preDescription, postDescription] = bodyLines;
-        achs.push({ id, title: title.trim(), points, isVisible, shortDescription, preDescription, postDescription });
+        const [shortDescription = '', postDescription] = bodyLines;
+        achs.push({ id, title: title.trim(), points, isVisible, shortDescription, postDescription });
     }
     return achs;
 }
@@ -112,8 +128,6 @@ function extractStatChart(text: string): StatEntry[] {
             entries.push({ kind, variable: parts[1], label: parts[2] || parts[1], variable2: parts[3], label2: parts[4] || parts[3] });
         } else if (kind === 'text') {
             entries.push({ kind, variable: parts[1], label: parts.slice(2).join(' ') || parts[1] });
-        } else if (kind === 'divider') {
-            entries.push({ kind, heading: parts.slice(1).join(' ') });
         }
     }
     return entries;
@@ -140,6 +154,7 @@ export function importFromChoiceScript(files: Map<string, string>): MyStory {
     const achievements = extractAchievements(startupText);
     const statChart = extractStatChart(startupText);
     const listedOrder = extractSceneList(startupText);
+    const ifid = extractIfid(startupText);
 
     // Scene order: prefer *scene_list order, fallback to file insertion order
     const fileIds = [...files.keys()];
@@ -147,27 +162,29 @@ export function importFromChoiceScript(files: Map<string, string>): MyStory {
         ? listedOrder.filter(id => files.has(id))
         : fileIds;
 
-    // Build SceneDef for each file
-    const scenes: SceneDef[] = sceneOrder.map(id => {
+    function parseSceneFile(id: string): SceneDef {
         const text = files.get(id) ?? '';
         const result = parseScene(text);
+        const globalReuseMode = /^\*hide_reuse\b/m.test(text) ? 'hide'
+            : /^\*disable_reuse\b/m.test(text) ? 'disable'
+            : undefined;
         return {
             id,
             name: toDisplayName(id),
             nodes: result.nodes as Node<NodeData>[],
             edges: result.edges as Edge[],
             subroutines: [],
+            ...(globalReuseMode ? { globalReuseMode } : {}),
         };
-    });
+    }
+
+    // Build SceneDef for each file
+    const scenes: SceneDef[] = sceneOrder.map(parseSceneFile);
 
     // Any files not in sceneOrder (shouldn't happen, but be safe)
     const orderedSet = new Set(sceneOrder);
     for (const id of fileIds) {
-        if (!orderedSet.has(id)) {
-            const text = files.get(id) ?? '';
-            const result = parseScene(text);
-            scenes.push({ id, name: toDisplayName(id), nodes: result.nodes as Node<NodeData>[], edges: result.edges as Edge[], subroutines: [] });
-        }
+        if (!orderedSet.has(id)) scenes.push(parseSceneFile(id));
     }
 
     const now = Date.now();
@@ -181,6 +198,7 @@ export function importFromChoiceScript(files: Map<string, string>): MyStory {
         variables,
         statChart,
         achievements,
+        ifid,
         createdAt: now,
         updatedAt: now,
     };

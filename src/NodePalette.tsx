@@ -22,6 +22,9 @@ const PALETTE: PaletteEntry[] = [
     { type: 'page_break', label: 'Page Break', description: 'Insert a "Next" button', color: '#9ca3af', icon: '⏎' },
     { type: 'check_achievements', label: 'Check Achievements', description: 'Show the achievements screen (*check_achievements)', color: '#10b981', icon: '★' },
     { type: 'gosub', label: 'Call Subroutine', description: '*gosub — call a reusable subroutine', color: '#7c3aed', icon: '↩' },
+    { type: 'image', label: 'Image', description: '*image — display an image', color: '#3949ab', icon: '🖼' },
+    { type: 'delay_break', label: 'Delay Break', description: '*delay_break — page break with loading pause', color: '#9ca3af', icon: '⏳' },
+    { type: 'goto_random_scene', label: 'Random Scene Jump', description: '*goto_random_scene — jump to a random scene', color: '#9c27b0', icon: '🎲' },
     { type: 'comment', label: 'Note / Comment', description: 'Sticky note for author annotations', color: '#f9a825', icon: '✎' },
 ];
 

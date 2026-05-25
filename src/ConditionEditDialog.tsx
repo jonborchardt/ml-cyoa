@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import {
     Box, Button, Dialog, DialogActions, DialogContent, DialogTitle,
-    FormControl, IconButton, MenuItem, Select, Stack, TextField, Typography,
+    FormControl, FormControlLabel, IconButton, MenuItem, Select, Stack, Switch, TextField, Typography,
 } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -60,6 +60,8 @@ interface Props {
 export function ConditionEditDialog({ node, variables, onSave, onDelete, onClose }: Props) {
     const existing = node.data.condition as ConditionConfig | undefined;
 
+    const [rawMode, setRawMode] = useState(!!existing?.rawExpression);
+    const [rawExpression, setRawExpression] = useState(existing?.rawExpression ?? '');
     const [left, setLeft] = useState(existing?.left ?? '');
     const [op, setOp] = useState(existing?.op ?? '=');
     const [right, setRight] = useState(existing?.right ?? '');
@@ -69,7 +71,10 @@ export function ConditionEditDialog({ node, variables, onSave, onDelete, onClose
     const [confirmDelete, setConfirmDelete] = useState(false);
 
     const handleSave = () => {
-        onSave(node.id, { left, op, right, trueContent: trueContent || undefined, falseContent: falseContent || undefined, elseIfs: elseIfs.length ? elseIfs : undefined });
+        const cfg: ConditionConfig = rawMode
+            ? { left: '', op: '=', right: 'true', rawExpression: rawExpression || undefined, trueContent: trueContent || undefined, falseContent: falseContent || undefined, elseIfs: elseIfs.length ? elseIfs : undefined }
+            : { left, op, right, trueContent: trueContent || undefined, falseContent: falseContent || undefined, elseIfs: elseIfs.length ? elseIfs : undefined };
+        onSave(node.id, cfg);
         onClose();
     };
 
@@ -88,12 +93,32 @@ export function ConditionEditDialog({ node, variables, onSave, onDelete, onClose
                 <DialogTitle>Edit Condition</DialogTitle>
                 <DialogContent>
                     <Stack spacing={2} sx={{ mt: 1 }}>
-                        <Typography variant="subtitle2">Condition</Typography>
-                        <ExprRow
-                            left={left} op={op} right={right}
-                            variables={variables}
-                            onLeft={setLeft} onOp={setOp} onRight={setRight}
-                        />
+                        <Stack direction="row" alignItems="center" justifyContent="space-between">
+                            <Typography variant="subtitle2">Condition</Typography>
+                            <FormControlLabel
+                                control={<Switch size="small" checked={rawMode} onChange={e => setRawMode(e.target.checked)} />}
+                                label={<Typography variant="caption">Raw expression</Typography>}
+                                labelPlacement="start"
+                            />
+                        </Stack>
+
+                        {rawMode ? (
+                            <TextField
+                                label="Expression"
+                                value={rawExpression}
+                                onChange={e => setRawExpression(e.target.value)}
+                                size="small"
+                                fullWidth
+                                placeholder="e.g. (strength > 50) and (not coward)"
+                                helperText="Verbatim ChoiceScript expression. Supports and, or, not, parentheses."
+                            />
+                        ) : (
+                            <ExprRow
+                                left={left} op={op} right={right}
+                                variables={variables}
+                                onLeft={setLeft} onOp={setOp} onRight={setRight}
+                            />
+                        )}
 
                         {elseIfs.map((ei, i) => (
                             <Box key={i}>
@@ -149,7 +174,7 @@ export function ConditionEditDialog({ node, variables, onSave, onDelete, onClose
                     </Button>
                     <Stack direction="row" spacing={1}>
                         <Button onClick={onClose}>Cancel</Button>
-                        <Button variant="contained" onClick={handleSave} disabled={!left}>Save</Button>
+                        <Button variant="contained" onClick={handleSave} disabled={rawMode ? !rawExpression.trim() : !left}>Save</Button>
                     </Stack>
                 </DialogActions>
             </Dialog>

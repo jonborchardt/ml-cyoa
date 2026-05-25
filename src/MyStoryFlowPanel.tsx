@@ -11,7 +11,7 @@ import '@xyflow/react/dist/style.css';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
     Alert, Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle,
-    FormControlLabel, IconButton, Snackbar, Stack, TextField, Tooltip, Typography,
+    FormControlLabel, IconButton, MenuItem, Select, Snackbar, Stack, TextField, Tooltip, Typography,
 } from '@mui/material';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import BarChartIcon from '@mui/icons-material/BarChart';
@@ -56,9 +56,14 @@ import { GosubCallNode } from './nodes/GosubCallNode';
 import { SubroutineEntryNode } from './nodes/SubroutineEntryNode';
 import { SubroutineReturnNode } from './nodes/SubroutineReturnNode';
 import { CommentNode } from './nodes/CommentNode';
+import { ImageNode } from './nodes/ImageNode';
+import { DelayBreakNode } from './nodes/DelayBreakNode';
+import { GotoRandomSceneNode } from './nodes/GotoRandomSceneNode';
 import { SceneTabBar } from './SceneTabBar';
 import { SceneJumpEditDialog } from './SceneJumpEditDialog';
 import { GosubCallEditDialog } from './GosubCallEditDialog';
+import { ImageEditDialog } from './ImageEditDialog';
+import { GotoRandomSceneEditDialog } from './GotoRandomSceneEditDialog';
 import { SubroutineGroupManager } from './SubroutineGroupManager';
 import { StatsDesigner } from './StatsDesigner';
 import { AchievementsDesigner } from './AchievementsDesigner';
@@ -172,6 +177,7 @@ const nodeTypes = {
     input: InputNode,
     random_branch: RandomBranchNode,
     page_break: PageBreakNode,
+    delay_break: DelayBreakNode,
     scene_jump: SceneJumpNode,
     scene_label: SceneLabelNode,
     check_achievements: CheckAchievementsNode,
@@ -180,6 +186,8 @@ const nodeTypes = {
     subroutine_return: SubroutineReturnNode,
     raw_code: RawCodeNode,
     comment: CommentNode,
+    image: ImageNode,
+    goto_random_scene: GotoRandomSceneNode,
 };
 const edgeTypes = { flow: FlowEdge };
 const defaultEdgeOptions = { type: 'flow' };
@@ -313,12 +321,14 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const [achievements, setAchievements] = useState<Achievement[]>(story.achievements ?? []);
     const [subroutines, setSubroutines] = useState<SubroutineDef[]>(initialScene?.subroutines ?? []);
     const [layoutDirection, setLayoutDirection] = useState<'TB' | 'LR'>(story.layoutDirection ?? 'TB');
+    const [sceneGlobalReuseMode, setSceneGlobalReuseMode] = useState<'hide' | 'disable' | undefined>(initialScene?.globalReuseMode);
 
     const [title, setTitle] = useState(story.title);
     const [authorName, setAuthorName] = useState(story.authorName);
     const [authorBio, setAuthorBio] = useState(story.authorBio ?? '');
     const [authorPhoto, setAuthorPhoto] = useState(story.authorPhoto ?? '');
     const [coverImage, setCoverImage] = useState(story.coverImage ?? '');
+    const [ifid, setIfid] = useState(story.ifid ?? '');
 
     const [metaOpen, setMetaOpen] = useState(false);
     const [varPanelOpen, setVarPanelOpen] = useState(false);
@@ -332,6 +342,8 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const [editingSceneJump, setEditingSceneJump] = useState<Node<NodeData> | null>(null);
     const [editingGosub, setEditingGosub] = useState<Node<NodeData> | null>(null);
     const [editingRawCode, setEditingRawCode] = useState<Node<NodeData> | null>(null);
+    const [editingImage, setEditingImage] = useState<Node<NodeData> | null>(null);
+    const [editingGotoRandom, setEditingGotoRandom] = useState<Node<NodeData> | null>(null);
     const [pendingConnection, setPendingConnection] = useState<Connection | null>(null);
     const [connectionLabel, setConnectionLabel] = useState('');
     const [submitOpen, setSubmitOpen] = useState(false);
@@ -360,6 +372,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const editorModeRef = useRef(editorMode);
     const layoutDirRef = useRef(layoutDirection);
     const setGraphRef = useRef(setGraph);
+    const sceneGlobalReuseModeRef = useRef(sceneGlobalReuseMode);
 
     useLayoutEffect(() => {
         onStoryChangeRef.current = onStoryChange;
@@ -370,12 +383,18 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         editorModeRef.current = editorMode;
         layoutDirRef.current = layoutDirection;
         setGraphRef.current = setGraph;
+        sceneGlobalReuseModeRef.current = sceneGlobalReuseMode;
     });
 
     const buildUpdatedScenes = useCallback((n: Node<NodeData>[], e: Edge[], sceneId: string, subs?: SubroutineDef[]) => {
-        return storyRef.current.scenes.map(s =>
-            s.id === sceneId ? { ...s, nodes: n, edges: e, subroutines: subs ?? s.subroutines ?? [] } : s
-        );
+        const grm = sceneGlobalReuseModeRef.current;
+        return storyRef.current.scenes.map(s => {
+            if (s.id !== sceneId) return s;
+            const updated = { ...s, nodes: n, edges: e, subroutines: subs ?? s.subroutines ?? [] };
+            if (grm) updated.globalReuseMode = grm;
+            else delete updated.globalReuseMode;
+            return updated;
+        });
     }, []);
 
     const completeSave = useCallback((patch: Parameters<typeof updateMyStory>[1]) => {
@@ -404,7 +423,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         }, 1000);
         return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [nodes, edges, images, variables, statChart, achievements, subroutines, storyId]);
+    }, [nodes, edges, images, variables, statChart, achievements, subroutines, sceneGlobalReuseMode, storyId]);
 
     // Auto-save metadata (debounced 1s)
     const isFirstMetaRender = useRef(true);
@@ -416,10 +435,11 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
             authorBio: authorBio || undefined,
             authorPhoto: authorPhoto || undefined,
             coverImage: coverImage || undefined,
+            ifid: ifid || undefined,
         }), 1000);
         return () => clearTimeout(timer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [title, authorName, authorBio, authorPhoto, coverImage, storyId]);
+    }, [title, authorName, authorBio, authorPhoto, coverImage, ifid, storyId]);
 
     // ─── Keyboard shortcuts ─────────────────────────────────────────────────
 
@@ -545,12 +565,19 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
 
     const liveStory = useMemo<MyStory>(() => ({
         ...story,
-        scenes: story.scenes.map(s => s.id === activeSceneId ? { ...s, nodes, edges, subroutines } : s),
+        scenes: story.scenes.map(s => {
+            if (s.id !== activeSceneId) return s;
+            const updated = { ...s, nodes, edges, subroutines };
+            if (sceneGlobalReuseMode) updated.globalReuseMode = sceneGlobalReuseMode;
+            else delete updated.globalReuseMode;
+            return updated;
+        }),
         images, variables, statChart, achievements, title, authorName,
         authorBio: authorBio || undefined,
         authorPhoto: authorPhoto || undefined,
         coverImage: coverImage || undefined,
-    }), [story, activeSceneId, nodes, edges, subroutines, images, variables, statChart, achievements, title, authorName, authorBio, authorPhoto, coverImage]);
+        ifid: ifid || undefined,
+    }), [story, activeSceneId, nodes, edges, subroutines, sceneGlobalReuseMode, images, variables, statChart, achievements, title, authorName, authorBio, authorPhoto, coverImage, ifid]);
 
     const { errors: liveErrors, warnings: liveWarnings } = useMemo(() => validateStory(liveStory), [liveStory]);
 
@@ -563,6 +590,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         if (!newScene) return;
         setActiveSceneId(sceneId);
         setSubroutines(newScene.subroutines ?? []);
+        setSceneGlobalReuseMode(newScene.globalReuseMode);
         graph.reset({ nodes: newScene.nodes, edges: newScene.edges });
         isFirstGraphRender.current = true;
     }, [nodes, edges, activeSceneId, subroutines, buildUpdatedScenes, completeSave, graph]);
@@ -729,7 +757,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
             setSnackbar({ msg: 'The Start node cannot be edited — connect it to your first Story Part.', severity: 'info' });
             return;
         }
-        if (node.type === 'page_break' || node.type === 'check_achievements') return;
+        if (node.type === 'page_break' || node.type === 'delay_break' || node.type === 'check_achievements') return;
         if (node.type === 'subroutine_entry' || node.type === 'subroutine_return') return;
         if (node.type === 'scene_jump') {
             setEditingSceneJump(node as Node<NodeData>);
@@ -741,6 +769,14 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         }
         if (node.type === 'raw_code') {
             setEditingRawCode(node as Node<NodeData>);
+            return;
+        }
+        if (node.type === 'image') {
+            setEditingImage(node as Node<NodeData>);
+            return;
+        }
+        if (node.type === 'goto_random_scene') {
+            setEditingGotoRandom(node as Node<NodeData>);
             return;
         }
         setEditingNode(node as Node<NodeData>);
@@ -788,6 +824,16 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         setGraph(next, edges);
     };
 
+    const handleImageSave = (nodeId: string, updates: Partial<{ imageFile: string; imageAlign: string; imageAlt: string }>) => {
+        const next = nodes.map(n => n.id === nodeId ? { ...n, data: { ...n.data, ...updates, label: updates.imageFile || n.data.label } } : n);
+        setGraph(next, edges);
+    };
+
+    const handleGotoRandomSave = (nodeId: string, sceneIds: string[]) => {
+        const next = nodes.map(n => n.id === nodeId ? { ...n, data: { ...n.data, scenes: sceneIds, label: `→ ${sceneIds.join(', ')}` || 'Random Scene Jump' } } : n);
+        setGraph(next, edges);
+    };
+
     const handleAddImage = (filename: string, dataUrl: string) => setImages(prev => ({ ...prev, [filename]: dataUrl }));
 
     const handleDeleteImage = (filename: string) => {
@@ -805,14 +851,19 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
             position: { x: 300, y: 300 },
             data: {
                 label: type === 'page_break' ? 'Page Break'
+                    : type === 'delay_break' ? 'Delay Break'
                     : type === 'check_achievements' ? 'Check Achievements'
                     : type === 'scene_jump' ? 'Scene Jump'
                     : type === 'scene_label' ? 'entry'
                     : type === 'gosub' ? 'Call Subroutine'
                     : type === 'comment' ? 'Comment'
+                    : type === 'image' ? 'Image'
+                    : type === 'goto_random_scene' ? 'Random Scene Jump'
                     : 'New Story Part',
                 content: '',
                 ...(type === 'gosub' ? { subroutineId: '', params: [] } : {}),
+                ...(type === 'image' ? { imageFile: '', imageAlign: 'center', imageAlt: '' } : {}),
+                ...(type === 'goto_random_scene' ? { scenes: [] } : {}),
             },
         };
         setGraph([...nodes, newNode], edges);
@@ -942,6 +993,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                         <TextField label="Title" value={title} onChange={e => setTitle(e.target.value)} required size="small" sx={{ minWidth: { xs: '100%', sm: 200 } }} />
                         <TextField label="Author Name" value={authorName} onChange={e => setAuthorName(e.target.value)} required size="small" sx={{ minWidth: { xs: '100%', sm: 200 } }} />
                         <TextField label="Author Bio (optional)" value={authorBio} onChange={e => setAuthorBio(e.target.value)} multiline rows={2} size="small" sx={{ minWidth: { xs: '100%', sm: 300 }, flex: 1 }} />
+                        <TextField label="IFID (optional)" value={ifid} onChange={e => setIfid(e.target.value)} size="small" sx={{ minWidth: { xs: '100%', sm: 200 } }} helperText="Interactive Fiction ID (*ifid)" />
                         <Box>
                             <Typography variant="caption" display="block" sx={{ mb: 0.5, color: 'text.secondary' }}>Author Photo</Typography>
                             <input type="file" accept=".png,.jpg,.jpeg" ref={photoInputRef} style={{ display: 'none' }} onChange={e => handlePhotoUpload(e, setAuthorPhoto)} />
@@ -1011,6 +1063,25 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                     onRename={handleRenameScene}
                     onReorder={handleReorderScenes}
                 />
+
+                {/* Scene-level settings */}
+                <Box sx={{ px: 2, py: 0.5, borderBottom: 1, borderColor: 'divider', display: 'flex', alignItems: 'center', gap: 1.5, bgcolor: 'grey.50', flexShrink: 0 }}>
+                    <Typography variant="caption" color="text.secondary" sx={{ whiteSpace: 'nowrap' }}>Global reuse:</Typography>
+                    <Select
+                        size="small"
+                        value={sceneGlobalReuseMode ?? ''}
+                        onChange={e => setSceneGlobalReuseMode((e.target.value as 'hide' | 'disable') || undefined)}
+                        displayEmpty
+                        sx={{ fontSize: 12, minWidth: 160 }}
+                    >
+                        <MenuItem value=""><em>None</em></MenuItem>
+                        <MenuItem value="hide">*hide_reuse (hide used)</MenuItem>
+                        <MenuItem value="disable">*disable_reuse (grey out used)</MenuItem>
+                    </Select>
+                    {sceneGlobalReuseMode && (
+                        <Typography variant="caption" color="text.secondary">Applies to all choices in this scene</Typography>
+                    )}
+                </Box>
 
                 {/* Find & Replace panel */}
                 {findOpen && (
@@ -1154,6 +1225,28 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                     subroutines={subroutines}
                     onClose={() => setEditingGosub(null)}
                     onSave={handleGosubSave}
+                    onDelete={handleNodeDelete}
+                />
+            )}
+
+            {/* Image edit dialog */}
+            {editingImage && (
+                <ImageEditDialog
+                    node={editingImage}
+                    images={images}
+                    onClose={() => setEditingImage(null)}
+                    onSave={handleImageSave}
+                    onDelete={handleNodeDelete}
+                />
+            )}
+
+            {/* Goto random scene edit dialog */}
+            {editingGotoRandom && (
+                <GotoRandomSceneEditDialog
+                    node={editingGotoRandom}
+                    scenes={story.scenes}
+                    onClose={() => setEditingGotoRandom(null)}
+                    onSave={handleGotoRandomSave}
                     onDelete={handleNodeDelete}
                 />
             )}
