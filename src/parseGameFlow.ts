@@ -9,6 +9,7 @@ export type NodeData = {
     label: string;
     content: string;
     isCurrent?: boolean;
+    rawContent?: string;   // for raw_code nodes — serialized back verbatim
 } & Record<string, unknown>;
 
 interface TreeNode {

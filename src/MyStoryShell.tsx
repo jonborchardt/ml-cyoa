@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
 import { Box, Button, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
@@ -7,7 +7,7 @@ import { GameTabHeader } from './GameTabHeader';
 import { ChoiceScriptGame } from './ChoiceScriptGame';
 import { MyStoryFlowPanel } from './MyStoryFlowPanel';
 import { MyStoryAuthorsPanel } from './MyStoryAuthorsPanel';
-import { serializeFlow } from './serializeFlow';
+import { serializeStory } from './serializeStory';
 import type { Game } from './games';
 
 export function MyStoryShell() {
@@ -21,9 +21,6 @@ export function MyStoryShell() {
         setTabsVisited(new Set([...tabsVisited, tabValue]));
     }
 
-    // story state is kept up to date via onStoryChange from MyStoryFlowPanel.
-    // No need to reload from localStorage on every tab switch — the flow panel
-    // calls onStoryChange after every auto-save, keeping this in sync.
     const [story, setStory] = useState<MyStory | null>(() => (storyId ? getMyStory(storyId) : null));
     const [storyVersion, setStoryVersion] = useState(0);
 
@@ -37,15 +34,12 @@ export function MyStoryShell() {
         if (tabValue === 0) setStoryVersion(v => v + 1);
     }, [tabValue]);
 
-    // storyRef always holds the latest story so storyScenes can read it
-    // without adding story to the memo's dependency array.
-    const storyRef = useRef(story);
-    // eslint-disable-next-line react-hooks/refs
-    storyRef.current = story;
-
     const storyScenes = useMemo(
-        // eslint-disable-next-line react-hooks/refs
-        () => storyRef.current ? { startup: serializeFlow(storyRef.current.nodes, storyRef.current.edges) } : undefined,
+        () => {
+            if (!story) return undefined;
+            const files = serializeStory(story);
+            return Object.fromEntries(files.entries());
+        },
         // eslint-disable-next-line react-hooks/exhaustive-deps
         [storyVersion],
     );
@@ -66,7 +60,7 @@ export function MyStoryShell() {
         title: story.title || 'My Story',
         authors: [{ name: story.authorName || 'Author', bio: story.authorBio, image: story.authorPhoto }],
         year: new Date(story.createdAt).getFullYear().toString(),
-        sceneList: ['startup'],
+        sceneList: story.sceneOrder.length > 0 ? story.sceneOrder : ['startup'],
         scenes: storyScenes ?? { startup: '' },
         coverImage: story.coverImage,
     };
