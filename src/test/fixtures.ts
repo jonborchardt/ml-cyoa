@@ -207,6 +207,21 @@ export function makeStoryWithSingleVisitHideReuse(): MyStory {
     return makeStory({ scenes: [scene], sceneOrder: ['startup'] });
 }
 
+// Creates a linear chain: start(0) → p1(1) → … → p(depth-1)(depth-1) → ending(depth)
+// makeLinearStory(3) → start → p1 → p2 → ending, longestPathDepth = 3
+export function makeLinearStory(depth: number): MyStory {
+    const nodes: Node<NodeData>[] = [makeStartNode()];
+    const edges: Edge[] = [];
+    for (let i = 1; i < depth; i++) {
+        nodes.push(makePassageNode({ id: `p${i}`, data: { label: `Passage ${i}`, content: `Passage ${i}.` } }));
+        edges.push(makeEdge(i === 1 ? 'start' : `p${i - 1}`, `p${i}`, 'Continue'));
+    }
+    nodes.push(makeEndingNode({ id: 'ending', data: { label: 'The End', content: '' } }));
+    edges.push(makeEdge(depth > 1 ? `p${depth - 1}` : 'start', 'ending', 'Continue'));
+    const scene = makeScene({ id: 'startup', name: 'Startup', nodes, edges });
+    return makeStory({ scenes: [scene], sceneOrder: ['startup'] });
+}
+
 export function makeStoryWithSceneJump(jumpData: Partial<SceneJumpData>): MyStory {
     const jumpNode = makeSceneJumpNode(jumpData, { id: 'sj1' });
     const scene = makeScene({

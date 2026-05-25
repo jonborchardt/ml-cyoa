@@ -6,10 +6,12 @@ import {
 import AddIcon from '@mui/icons-material/Add';
 import AutoStoriesIcon from '@mui/icons-material/AutoStories';
 import DeleteIcon from '@mui/icons-material/Delete';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
 import { useNavigate } from 'react-router-dom';
 import { games, type Game } from './games';
 import { listMyStories, createMyStory, deleteMyStory, type MyStory } from './myStoryStore';
 import { CoverArt } from './CoverArt';
+import { ImportDialog } from './ImportDialog';
 
 function groupByYear(gs: typeof games): [string, typeof games][] {
     const map = new Map<string, typeof games>();
@@ -93,6 +95,7 @@ export function HomePage() {
 
     const [myStories, setMyStories] = useState<MyStory[]>(() => listMyStories());
     const [deleteTarget, setDeleteTarget] = useState<MyStory | null>(null);
+    const [importOpen, setImportOpen] = useState(false);
 
     const handleAdd = () => {
         const story = createMyStory();
@@ -105,6 +108,11 @@ export function HomePage() {
         deleteMyStory(deleteTarget.id);
         setMyStories(listMyStories());
         setDeleteTarget(null);
+    };
+
+    const handleImported = (story: MyStory) => {
+        setMyStories(listMyStories());
+        navigate(`/my/${story.id}/flow`);
     };
 
     return (
@@ -137,9 +145,14 @@ export function HomePage() {
                     <Typography variant="h6" sx={{ fontWeight: 700 }}>
                         My Stories
                     </Typography>
-                    <Button startIcon={<AddIcon />} onClick={handleAdd}>
-                        Write a Story
-                    </Button>
+                    <Box sx={{ display: 'flex', gap: 1 }}>
+                        <Button startIcon={<UploadFileIcon />} variant="outlined" onClick={() => setImportOpen(true)}>
+                            Import
+                        </Button>
+                        <Button startIcon={<AddIcon />} onClick={handleAdd}>
+                            Write a Story
+                        </Button>
+                    </Box>
                 </Box>
                 {myStories.length === 0 ? (
                     <Typography color="text.secondary">
@@ -155,6 +168,8 @@ export function HomePage() {
                     </Grid>
                 )}
             </Box>
+
+            <ImportDialog open={importOpen} onClose={() => setImportOpen(false)} onImported={handleImported} />
 
             {/* Delete confirmation dialog */}
             <Dialog open={!!deleteTarget} onClose={() => setDeleteTarget(null)}>

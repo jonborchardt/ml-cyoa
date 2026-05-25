@@ -15,7 +15,7 @@
 
 import type { Node, Edge } from '@xyflow/react';
 import type { NodeData } from './parseGameFlow';
-import { applyTreeLayout, NODE_W } from './parseGameFlow';
+import { applyTreeLayout } from './parseGameFlow';
 import type { ConditionConfig, ActionItem, SceneJumpData } from './types';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
@@ -308,14 +308,14 @@ function parseSection(
     // ── fake_choice ──
     if (hasFakeChoice) {
         const node = makeNode(nodeId, 'fake_choice', labelDisplay, proseText);
-        const fakeEdges = parseChoiceEdges(lines, nodeId, pendingEdges, true);
+        const fakeEdges = parseChoiceEdges(lines, nodeId, pendingEdges);
         return { node, edges: fakeEdges, unsupported: false };
     }
 
     // ── passage with *choice ──
     if (hasChoice) {
         const node = makeNode(nodeId, 'passage', labelDisplay, proseText);
-        const choiceEdges = parseChoiceEdges(lines, nodeId, pendingEdges, false);
+        const choiceEdges = parseChoiceEdges(lines, nodeId, pendingEdges);
         return { node, edges: choiceEdges, unsupported: false };
     }
 
@@ -351,7 +351,6 @@ function parseChoiceEdges(
     lines: string[],
     sourceId: string,
     pendingEdges: Array<{ sourceId: string; targetLabel: string; label?: string; data?: Record<string, unknown> }>,
-    _isFakeChoice?: boolean,
 ): Edge[] {
     const edges: Edge[] = [];
     let inChoice = false;

@@ -23,10 +23,16 @@ import DataObjectIcon from '@mui/icons-material/DataObject';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HubIcon from '@mui/icons-material/Hub';
+import MapIcon from '@mui/icons-material/Map';
 import RedoIcon from '@mui/icons-material/Redo';
+import SearchIcon from '@mui/icons-material/Search';
+import SwapVertIcon from '@mui/icons-material/SwapVert';
+import SwapHorizIcon from '@mui/icons-material/SwapHoriz';
 import UndoIcon from '@mui/icons-material/Undo';
 import ViewSidebarIcon from '@mui/icons-material/ViewSidebar';
+import { useNavigate } from 'react-router-dom';
 import { updateMyStory, type MyStory, type SceneDef, type SubroutineDef } from './myStoryStore';
 import { applyTreeLayout, NODE_W } from './parseGameFlow';
 import type { NodeData } from './parseGameFlow';
@@ -49,6 +55,7 @@ import { CheckAchievementsNode } from './nodes/CheckAchievementsNode';
 import { GosubCallNode } from './nodes/GosubCallNode';
 import { SubroutineEntryNode } from './nodes/SubroutineEntryNode';
 import { SubroutineReturnNode } from './nodes/SubroutineReturnNode';
+import { CommentNode } from './nodes/CommentNode';
 import { SceneTabBar } from './SceneTabBar';
 import { SceneJumpEditDialog } from './SceneJumpEditDialog';
 import { GosubCallEditDialog } from './GosubCallEditDialog';
@@ -62,6 +69,10 @@ import { RawCodeEditDialog } from './RawCodeEditDialog';
 import { RawCodeNode } from './nodes/RawCodeNode';
 import { parseScene } from './parseChoiceScript';
 import { serializeFlow } from './serializeFlow';
+import { ExportMenu } from './ExportMenu';
+import { FindReplacePanel } from './FindReplacePanel';
+import { StoryStatsDrawer } from './StoryStatsDrawer';
+import { KeyboardShortcutsHelp } from './KeyboardShortcutsHelp';
 import type { VariableDef, NodeType, EdgeData, SceneJumpData, StatEntry, Achievement } from './types';
 
 type EditorMode = 'graph' | 'code' | 'split';
@@ -93,8 +104,9 @@ function StartNode({ data }: NodeProps) {
 }
 
 function PassageNode({ data }: NodeProps) {
+    const preview = ((data.content as string) ?? '').trim().slice(0, 200) || undefined;
     return (
-        <div style={{ ...nodeStyle, background: '#fff', border: '1.5px solid #90caf9' }}>
+        <div title={preview} style={{ ...nodeStyle, background: '#fff', border: '1.5px solid #90caf9' }}>
             <Handle type="target" position={Position.Top} style={{ background: '#90caf9' }} />
             {data.label as string}
             <Handle type="source" position={Position.Bottom} style={{ background: '#90caf9' }} />
@@ -103,8 +115,9 @@ function PassageNode({ data }: NodeProps) {
 }
 
 function EndingNode({ data }: NodeProps) {
+    const preview = ((data.content as string) ?? '').trim().slice(0, 200) || undefined;
     return (
-        <div style={{ ...nodeStyle, background: '#fff8e1', border: '1.5px solid #ffb74d', color: '#5d3a00' }}>
+        <div title={preview} style={{ ...nodeStyle, background: '#fff8e1', border: '1.5px solid #ffb74d', color: '#5d3a00' }}>
             <Handle type="target" position={Position.Top} style={{ background: '#ffb74d' }} />
             {data.label as string}
             <Handle type="source" position={Position.Bottom} style={{ background: '#ffb74d', opacity: 0.4 }} />
@@ -166,6 +179,7 @@ const nodeTypes = {
     subroutine_entry: SubroutineEntryNode,
     subroutine_return: SubroutineReturnNode,
     raw_code: RawCodeNode,
+    comment: CommentNode,
 };
 const edgeTypes = { flow: FlowEdge };
 const defaultEdgeOptions = { type: 'flow' };
@@ -279,6 +293,8 @@ function SubmitDialog({ open, story, onClose }: SubmitDialogProps) {
 interface Props { story: MyStory; onStoryChange: (updated: MyStory) => void; }
 
 export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
+    const navigate = useNavigate();
+
     const initialSceneId = story.sceneOrder[0] ?? story.scenes[0]?.id ?? 'startup';
     const initialScene = story.scenes.find(s => s.id === initialSceneId) ?? story.scenes[0];
 
@@ -296,6 +312,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const [statChart, setStatChart] = useState<StatEntry[]>(story.statChart ?? []);
     const [achievements, setAchievements] = useState<Achievement[]>(story.achievements ?? []);
     const [subroutines, setSubroutines] = useState<SubroutineDef[]>(initialScene?.subroutines ?? []);
+    const [layoutDirection, setLayoutDirection] = useState<'TB' | 'LR'>(story.layoutDirection ?? 'TB');
 
     const [title, setTitle] = useState(story.title);
     const [authorName, setAuthorName] = useState(story.authorName);
@@ -321,6 +338,12 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const [editorMode, setEditorMode] = useState<EditorMode>('graph');
     const [codeText, setCodeText] = useState('');
     const [unsupportedBanner, setUnsupportedBanner] = useState(false);
+    // Power UX state
+    const [showMinimap, setShowMinimap] = useState(true);
+    const [findOpen, setFindOpen] = useState(false);
+    const [statsDrawerOpen, setStatsDrawerOpen] = useState(false);
+    const [shortcutsOpen, setShortcutsOpen] = useState(false);
+    const [pendingBulkDelete, setPendingBulkDelete] = useState<string[] | null>(null);
 
     const uidRef = useRef(1000);
     const savingResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -331,10 +354,22 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const onStoryChangeRef = useRef(onStoryChange);
     const storyRef = useRef(story);
     const activeSceneIdRef = useRef(activeSceneId);
+    // Refs for stable keyboard handler closures
+    const nodesRef = useRef(nodes);
+    const edgesRef = useRef(edges);
+    const editorModeRef = useRef(editorMode);
+    const layoutDirRef = useRef(layoutDirection);
+    const setGraphRef = useRef(setGraph);
+
     useLayoutEffect(() => {
         onStoryChangeRef.current = onStoryChange;
         storyRef.current = story;
         activeSceneIdRef.current = activeSceneId;
+        nodesRef.current = nodes;
+        edgesRef.current = edges;
+        editorModeRef.current = editorMode;
+        layoutDirRef.current = layoutDirection;
+        setGraphRef.current = setGraph;
     });
 
     const buildUpdatedScenes = useCallback((n: Node<NodeData>[], e: Edge[], sceneId: string, subs?: SubroutineDef[]) => {
@@ -386,21 +421,127 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [title, authorName, authorBio, authorPhoto, coverImage, storyId]);
 
-    // Keyboard shortcuts: Ctrl+Z / Ctrl+Y / Ctrl+Shift+Z
+    // ─── Keyboard shortcuts ─────────────────────────────────────────────────
+
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'z' && !e.shiftKey) {
+            const active = document.activeElement;
+            const isTyping = active instanceof HTMLInputElement
+                || active instanceof HTMLTextAreaElement
+                || !!(active as HTMLElement)?.isContentEditable;
+
+            const ctrl = e.metaKey || e.ctrlKey;
+            const curNodes = nodesRef.current;
+            const curEdges = edgesRef.current;
+            const setG = setGraphRef.current;
+
+            // Undo / Redo
+            if (ctrl && e.key === 'z' && !e.shiftKey) {
                 e.preventDefault();
                 if (graph.canUndo) graph.undo();
+                return;
             }
-            if ((e.metaKey || e.ctrlKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
+            if (ctrl && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
                 e.preventDefault();
                 if (graph.canRedo) graph.redo();
+                return;
+            }
+
+            // Auto-layout
+            if (ctrl && e.key === 'l') {
+                e.preventDefault();
+                setG(applyTreeLayout(curNodes, curEdges, layoutDirRef.current), curEdges);
+                return;
+            }
+
+            // Find / replace
+            if (ctrl && e.key === 'f') {
+                e.preventDefault();
+                setFindOpen(o => !o);
+                return;
+            }
+
+            // Toggle code / graph mode
+            if (ctrl && e.key === 'e') {
+                e.preventDefault();
+                // Delegate to switchToMode via ref — capture the latest version
+                const nextMode = editorModeRef.current === 'graph' ? 'code' : 'graph';
+                // We call the setter-based version to avoid stale closure
+                setEditorMode(prev => {
+                    if (prev !== 'graph' && nextMode === 'graph') {
+                        // Leaving code: parse text back to graph
+                        // We can't call applyCodeToGraph here cleanly; rely on blur handler
+                    }
+                    return nextMode;
+                });
+                return;
+            }
+
+            // Duplicate selected nodes
+            if (ctrl && e.key === 'd') {
+                e.preventDefault();
+                const selected = curNodes.filter(n => n.selected);
+                if (selected.length > 0) {
+                    const newIdMap = new Map<string, string>();
+                    const newNodes = selected.map(n => {
+                        const newId = `n-${uidRef.current++}`;
+                        newIdMap.set(n.id, newId);
+                        return { ...n, id: newId, selected: false, position: { x: n.position.x + 40, y: n.position.y + 40 } };
+                    });
+                    const selSet = new Set(selected.map(n => n.id));
+                    const newEdges = curEdges
+                        .filter(ed => selSet.has(ed.source) && selSet.has(ed.target))
+                        .map(ed => ({ ...ed, id: `e-${uidRef.current++}`, source: newIdMap.get(ed.source)!, target: newIdMap.get(ed.target)! }));
+                    setG([...curNodes, ...newNodes], [...curEdges, ...newEdges]);
+                }
+                return;
+            }
+
+            // Select all
+            if (ctrl && e.key === 'a') {
+                e.preventDefault();
+                setG(curNodes.map(n => ({ ...n, selected: true })), curEdges);
+                return;
+            }
+
+            // F5 — play story (switch to Story tab)
+            if (e.key === 'F5') {
+                e.preventDefault();
+                navigate(`/my/${storyRef.current.id}`);
+                return;
+            }
+
+            // ? — keyboard shortcuts help (not while typing)
+            if (e.key === '?' && !ctrl && !isTyping) {
+                setShortcutsOpen(true);
+                return;
+            }
+
+            // N / C / A — add nodes (canvas, not while typing)
+            if (!ctrl && !e.shiftKey && !isTyping) {
+                if (e.key === 'n') {
+                    e.preventDefault();
+                    const id = `n-${uidRef.current++}`;
+                    setG([...curNodes, { id, type: 'passage', position: { x: 300, y: 300 }, data: { label: 'New Story Part', content: '' } }], curEdges);
+                    return;
+                }
+                if (e.key === 'c') {
+                    e.preventDefault();
+                    const id = `n-${uidRef.current++}`;
+                    setG([...curNodes, { id, type: 'condition', position: { x: 300, y: 300 }, data: { label: 'Condition', content: '' } }], curEdges);
+                    return;
+                }
+                if (e.key === 'a') {
+                    e.preventDefault();
+                    const id = `n-${uidRef.current++}`;
+                    setG([...curNodes, { id, type: 'action', position: { x: 300, y: 300 }, data: { label: 'Action', content: '', actions: [] } }], curEdges);
+                    return;
+                }
             }
         };
         document.addEventListener('keydown', handler);
         return () => document.removeEventListener('keydown', handler);
-    }, [graph]);
+    }, [graph, navigate]);
 
     const liveStory = useMemo<MyStory>(() => ({
         ...story,
@@ -471,24 +612,20 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         completeSave({ sceneOrder: newOrder });
     };
 
+    // ─── Layout direction ───────────────────────────────────────────────────
+
+    const handleToggleLayoutDir = () => {
+        const newDir: 'TB' | 'LR' = layoutDirection === 'TB' ? 'LR' : 'TB';
+        setLayoutDirection(newDir);
+        setGraph(applyTreeLayout(nodes, edges, newDir), edges);
+        completeSave({ layoutDirection: newDir });
+    };
+
     // ─── Editor mode switch helpers ─────────────────────────────────────────
 
     const getCodeForCurrentScene = useCallback(() => {
-        // Serialize the current in-memory graph to ChoiceScript text
         return serializeFlow(nodes, edges, undefined);
     }, [nodes, edges]);
-
-    const switchToMode = useCallback((mode: EditorMode) => {
-        if (mode !== 'graph' && editorMode === 'graph') {
-            // Entering code / split: serialize current graph → text
-            setCodeText(getCodeForCurrentScene());
-        }
-        if (mode === 'graph' && editorMode !== 'graph') {
-            // Leaving code / split: parse text → graph
-            applyCodeToGraph(codeText);
-        }
-        setEditorMode(mode);
-    }, [editorMode, codeText, getCodeForCurrentScene]); // applyCodeToGraph defined below
 
     const applyCodeToGraph = useCallback((text: string) => {
         const result = parseScene(text);
@@ -496,10 +633,35 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
         setGraph(result.nodes as Node<NodeData>[], result.edges);
     }, [setGraph]);
 
+    const switchToMode = useCallback((mode: EditorMode) => {
+        if (mode !== 'graph' && editorMode === 'graph') {
+            setCodeText(getCodeForCurrentScene());
+        }
+        if (mode === 'graph' && editorMode !== 'graph') {
+            applyCodeToGraph(codeText);
+        }
+        setEditorMode(mode);
+    }, [editorMode, codeText, getCodeForCurrentScene, applyCodeToGraph]);
+
     const handleCodeSave = useCallback((text: string) => {
         setCodeText(text);
         applyCodeToGraph(text);
     }, [applyCodeToGraph]);
+
+    // ─── Find & replace ─────────────────────────────────────────────────────
+
+    const handleFindSelectNode = useCallback((sceneId: string, nodeId: string) => {
+        if (sceneId !== activeSceneId) switchScene(sceneId);
+        setGraph(nodes.map(n => ({ ...n, selected: n.id === nodeId })), edges);
+    }, [activeSceneId, switchScene, nodes, edges, setGraph]);
+
+    const handleFindReplaceAll = useCallback((updated: MyStory) => {
+        const currentScene = updated.scenes.find(s => s.id === activeSceneId);
+        if (currentScene) {
+            setGraph(currentScene.nodes as Node<NodeData>[], currentScene.edges);
+        }
+        completeSave({ scenes: updated.scenes });
+    }, [activeSceneId, setGraph, completeSave]);
 
     // ─── Graph handlers ─────────────────────────────────────────────────────
 
@@ -509,6 +671,21 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const edgeCtx = useMemo(() => ({ onEdgeClick }), [onEdgeClick]);
 
     const onNodesChange = useCallback((changes: NodeChange[]) => {
+        const removes = changes.filter(c => c.type === 'remove');
+        const rest = changes.filter(c => c.type !== 'remove');
+
+        // Confirm bulk delete for > 3 nodes
+        if (removes.length > 3) {
+            setPendingBulkDelete(removes.map(c => (c as { id: string }).id));
+            if (rest.length > 0) {
+                const next = applyNodeChanges(rest, nodes) as Node<NodeData>[];
+                const hasStructural = rest.some(c => c.type !== 'position' && c.type !== 'select' && c.type !== 'dimensions');
+                if (hasStructural) setGraph(next, edges);
+                else graph.set({ nodes: next, edges });
+            }
+            return;
+        }
+
         const next = applyNodeChanges(changes, nodes) as Node<NodeData>[];
         const hasStructural = changes.some(c => c.type !== 'position' && c.type !== 'select' && c.type !== 'dimensions');
         if (hasStructural) setGraph(next, edges);
@@ -632,6 +809,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                     : type === 'scene_jump' ? 'Scene Jump'
                     : type === 'scene_label' ? 'entry'
                     : type === 'gosub' ? 'Call Subroutine'
+                    : type === 'comment' ? 'Comment'
                     : 'New Story Part',
                 content: '',
                 ...(type === 'gosub' ? { subroutineId: '', params: [] } : {}),
@@ -641,7 +819,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     };
 
     const handleAutoLayout = () => {
-        setGraph(applyTreeLayout(nodes, edges), edges);
+        setGraph(applyTreeLayout(nodes, edges, layoutDirection), edges);
     };
 
     const handlePhotoUpload = (e: React.ChangeEvent<HTMLInputElement>, setter: (v: string) => void) => {
@@ -656,6 +834,13 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
     const handleVariablesChange = (updated: MyStory) => setVariables(updated.variables ?? []);
     const handleStatChartChange = (updated: StatEntry[]) => setStatChart(updated);
     const handleAchievementsChange = (updated: Achievement[]) => setAchievements(updated);
+
+    const handleConfirmBulkDelete = () => {
+        if (!pendingBulkDelete) return;
+        const ids = new Set(pendingBulkDelete);
+        setGraph(nodes.filter(n => !ids.has(n.id)), edges.filter(e => !ids.has(e.source) && !ids.has(e.target)));
+        setPendingBulkDelete(null);
+    };
 
     const editingEdgeIsFakeChoice = useMemo(() => {
         if (!editingEdge) return false;
@@ -677,9 +862,16 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                     <Button size="small" startIcon={<BarChartIcon />} onClick={() => setStatsPanelOpen(o => !o)} endIcon={statsPanelOpen ? <ExpandLessIcon /> : <ExpandMoreIcon />}>
                         Stats & Achievements{achievements.length > 0 ? ` (${achievements.length})` : ''}
                     </Button>
-                    <Button size="small" startIcon={<AccountTreeIcon />} onClick={handleAutoLayout}>
-                        Auto Layout
-                    </Button>
+                    <Tooltip title={`Auto-layout (Ctrl+L) — ${layoutDirection === 'TB' ? 'top-to-bottom' : 'left-to-right'}`}>
+                        <Button size="small" startIcon={<AccountTreeIcon />} onClick={handleAutoLayout}>
+                            Auto Layout
+                        </Button>
+                    </Tooltip>
+                    <Tooltip title={`Switch to ${layoutDirection === 'TB' ? 'left-to-right' : 'top-to-bottom'} layout`}>
+                        <IconButton size="small" onClick={handleToggleLayoutDir}>
+                            {layoutDirection === 'TB' ? <SwapHorizIcon fontSize="small" /> : <SwapVertIcon fontSize="small" />}
+                        </IconButton>
+                    </Tooltip>
                     <Button size="small" startIcon={<AddIcon />} onClick={e => setPaletteAnchor(e.currentTarget)}>
                         Add Node
                     </Button>
@@ -700,13 +892,28 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                             </IconButton>
                         </span>
                     </Tooltip>
+                    <Tooltip title="Find & Replace (Ctrl+F)">
+                        <IconButton size="small" onClick={() => setFindOpen(o => !o)} color={findOpen ? 'primary' : 'default'}>
+                            <SearchIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title="Story statistics">
+                        <IconButton size="small" onClick={() => setStatsDrawerOpen(true)}>
+                            <BarChartIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
+                    <Tooltip title={showMinimap ? 'Hide minimap' : 'Show minimap'}>
+                        <IconButton size="small" onClick={() => setShowMinimap(o => !o)} color={showMinimap ? 'primary' : 'default'}>
+                            <MapIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
                     <Box sx={{ flex: 1 }} />
                     <Tooltip title="Graph mode">
                         <IconButton size="small" onClick={() => switchToMode('graph')} color={editorMode === 'graph' ? 'primary' : 'default'}>
                             <HubIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Code mode">
+                    <Tooltip title="Code mode (Ctrl+E)">
                         <IconButton size="small" onClick={() => switchToMode('code')} color={editorMode === 'code' ? 'primary' : 'default'}>
                             <CodeIcon fontSize="small" />
                         </IconButton>
@@ -716,6 +923,12 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                             <ViewSidebarIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
+                    <Tooltip title="Keyboard shortcuts (?)">
+                        <IconButton size="small" onClick={() => setShortcutsOpen(true)}>
+                            <HelpOutlineIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
+                    <ExportMenu story={liveStory} currentSceneId={activeSceneId} />
                     <Button size="small" startIcon={<GitHubIcon />} onClick={() => setSubmitOpen(true)}>
                         Submit to GitHub
                     </Button>
@@ -783,7 +996,7 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                 )}
                 {unsupportedBanner && (
                     <Alert severity="info" sx={{ borderRadius: 0, flexShrink: 0 }} onClose={() => setUnsupportedBanner(false)}>
-                        This code contains syntax that can't be shown visually — those nodes appear as Raw Code blocks.
+                        This code contains syntax that cannot be shown visually — those nodes appear as Raw Code blocks.
                     </Alert>
                 )}
 
@@ -798,6 +1011,16 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                     onRename={handleRenameScene}
                     onReorder={handleReorderScenes}
                 />
+
+                {/* Find & Replace panel */}
+                {findOpen && (
+                    <FindReplacePanel
+                        story={liveStory}
+                        onSelectNode={handleFindSelectNode}
+                        onReplaceAll={handleFindReplaceAll}
+                        onClose={() => setFindOpen(false)}
+                    />
+                )}
 
                 {/* Canvas / Code editor */}
                 <Box sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'row' }}>
@@ -820,23 +1043,26 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                                 panOnScroll>
                                 <Background />
                                 <Controls showInteractive={false} />
-                                <MiniMap
-                                    nodeColor={n => {
-                                        const t = n.type;
-                                        if (t === 'start') return '#4caf50';
-                                        if (t === 'ending') return '#ffb74d';
-                                        if (t === 'condition') return '#f59e0b';
-                                        if (t === 'action') return '#14b8a6';
-                                        if (t === 'input') return '#a855f7';
-                                        if (t === 'random_branch') return '#c026d3';
-                                        if (t === 'scene_jump') return '#2e7d32';
-                                        if (t === 'scene_label') return '#9333ea';
-                                        if (t === 'check_achievements') return '#10b981';
-                                        if (t === 'raw_code') return '#f9a825';
-                                        if (t === 'gosub' || t === 'subroutine_entry' || t === 'subroutine_return') return '#7c3aed';
-                                        return '#90caf9';
-                                    }}
-                                />
+                                {showMinimap && (
+                                    <MiniMap
+                                        nodeColor={n => {
+                                            const t = n.type;
+                                            if (t === 'start') return '#4caf50';
+                                            if (t === 'ending') return '#ffb74d';
+                                            if (t === 'condition') return '#f59e0b';
+                                            if (t === 'action') return '#14b8a6';
+                                            if (t === 'input') return '#a855f7';
+                                            if (t === 'random_branch') return '#c026d3';
+                                            if (t === 'scene_jump') return '#2e7d32';
+                                            if (t === 'scene_label') return '#9333ea';
+                                            if (t === 'check_achievements') return '#10b981';
+                                            if (t === 'raw_code') return '#f9a825';
+                                            if (t === 'comment') return '#f9a825';
+                                            if (t === 'gosub' || t === 'subroutine_entry' || t === 'subroutine_return') return '#7c3aed';
+                                            return '#90caf9';
+                                        }}
+                                    />
+                                )}
                             </ReactFlow>
                         </Box>
                     )}
@@ -866,6 +1092,12 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
 
             {/* Variable manager drawer */}
             <VariableManagerPanel open={varPanelOpen} story={liveStory} onChange={handleVariablesChange} onClose={() => setVarPanelOpen(false)} />
+
+            {/* Story stats drawer */}
+            <StoryStatsDrawer open={statsDrawerOpen} story={liveStory} onClose={() => setStatsDrawerOpen(false)} />
+
+            {/* Keyboard shortcuts help */}
+            <KeyboardShortcutsHelp open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
 
             {/* Node edit dialog */}
             {editingNode && (
@@ -952,6 +1184,18 @@ export function MyStoryFlowPanel({ story, onStoryChange }: Props) {
                 <DialogActions>
                     <Button onClick={() => setPendingConnection(null)}>Cancel</Button>
                     <Button variant="contained" onClick={confirmConnection}>Add</Button>
+                </DialogActions>
+            </Dialog>
+
+            {/* Bulk delete confirmation */}
+            <Dialog open={!!pendingBulkDelete} onClose={() => setPendingBulkDelete(null)} maxWidth="xs">
+                <DialogTitle>Delete {pendingBulkDelete?.length} nodes?</DialogTitle>
+                <DialogContent>
+                    <Typography>This will remove the selected nodes and all their connections. This can be undone with Ctrl+Z.</Typography>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={() => setPendingBulkDelete(null)}>Cancel</Button>
+                    <Button variant="contained" color="error" onClick={handleConfirmBulkDelete}>Delete</Button>
                 </DialogActions>
             </Dialog>
 

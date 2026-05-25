@@ -56,7 +56,8 @@ export type NodeType =
     | 'scene_label'
     | 'page_break'
     | 'check_achievements'
-    | 'raw_code';
+    | 'raw_code'
+    | 'comment';
 
 export interface SceneJumpData {
     targetScene: string;

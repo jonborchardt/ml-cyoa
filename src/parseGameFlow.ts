@@ -127,7 +127,7 @@ function buildTreeLayout(root: TreeNode, rfNodes: Node<NodeData>[], rfEdges: Edg
 // Sugiyama-style layered layout for story flow graphs (trees and DAGs).
 // Steps: BFS layer assignment → barycenter ordering within each layer →
 //        even spacing centered over parent bounding box → collision pass.
-export function applyTreeLayout(nodes: Node<NodeData>[], edges: Edge[]): Node<NodeData>[] {
+export function applyTreeLayout(nodes: Node<NodeData>[], edges: Edge[], direction: 'TB' | 'LR' = 'TB'): Node<NodeData>[] {
     if (nodes.length === 0) return nodes;
     const startNode = nodes.find(n => n.type === 'start');
     if (!startNode) return nodes;
@@ -201,13 +201,25 @@ export function applyTreeLayout(nodes: Node<NodeData>[], edges: Edge[]): Node<No
 
     // 5. Build position map.
     const posMap = new Map<string, { x: number; y: number }>();
-    for (const [id, l] of layerOf) posMap.set(id, { x: xOf.get(id)!, y: l * (NODE_H + V_GAP) });
+    for (const [id, l] of layerOf) {
+        const ix = xOf.get(id)!;
+        if (direction === 'TB') {
+            posMap.set(id, { x: ix, y: l * (NODE_H + V_GAP) });
+        } else {
+            posMap.set(id, { x: l * (NODE_H + V_GAP), y: ix });
+        }
+    }
 
-    // 6. Orphan nodes (not reachable from start) go in a row below the tree.
+    // 6. Orphan nodes (not reachable from start) go in a row below/after the tree.
     const orphans = nodes.filter(n => !layerOf.has(n.id));
     if (orphans.length > 0) {
-        const maxY = posMap.size ? Math.max(...[...posMap.values()].map(p => p.y)) : 0;
-        orphans.forEach((n, i) => posMap.set(n.id, { x: i * (NODE_W + H_GAP), y: maxY + NODE_H + V_GAP }));
+        if (direction === 'TB') {
+            const maxY = posMap.size ? Math.max(...[...posMap.values()].map(p => p.y)) : 0;
+            orphans.forEach((n, i) => posMap.set(n.id, { x: i * (NODE_W + H_GAP), y: maxY + NODE_H + V_GAP }));
+        } else {
+            const maxX = posMap.size ? Math.max(...[...posMap.values()].map(p => p.x)) : 0;
+            orphans.forEach((n, i) => posMap.set(n.id, { x: maxX + NODE_H + V_GAP, y: i * (NODE_W + H_GAP) }));
+        }
     }
 
     return nodes.map(n => { const p = posMap.get(n.id); return p ? { ...n, position: p } : n; });

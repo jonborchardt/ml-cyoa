@@ -31,6 +31,7 @@ export interface MyStory {
     variables: VariableDef[];
     statChart: StatEntry[];
     achievements: Achievement[];
+    layoutDirection?: 'TB' | 'LR';
     createdAt: number;
     updatedAt: number;
 }
@@ -72,6 +73,7 @@ export function migrateStory(raw: unknown): MyStory {
         variables: story.variables ?? [],
         statChart: story.statChart ?? [],
         achievements: story.achievements ?? [],
+        layoutDirection: story.layoutDirection,
         createdAt: story.createdAt,
         updatedAt: story.updatedAt,
     };
@@ -254,6 +256,14 @@ export function updateMyStory(id: string, patch: Partial<Omit<MyStory, 'id' | 'c
     const idx = stories.findIndex(s => s.id === id);
     if (idx === -1) return;
     stories[idx] = { ...stories[idx], ...patch, updatedAt: Date.now() };
+    persist(stories);
+}
+
+export function saveMyStory(story: MyStory): void {
+    const stories = load();
+    const idx = stories.findIndex(s => s.id === story.id);
+    if (idx === -1) stories.push(story);
+    else stories[idx] = story;
     persist(stories);
 }
 

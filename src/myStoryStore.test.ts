@@ -117,7 +117,7 @@ describe('migrateStory subroutine migration', () => {
             scenes: [{ id: 'startup', name: 'Startup', nodes: [], edges: [] }],
             sceneOrder: ['startup'],
         };
-        const migrated = migrateStory(legacy as any);
+        const migrated = migrateStory(legacy as unknown);
         expect(migrated.scenes[0].subroutines).toEqual([]);
     });
 
@@ -128,7 +128,7 @@ describe('migrateStory subroutine migration', () => {
             scenes: [{ id: 'startup', name: 'Startup', nodes: [], edges: [], subroutines: [sub] }],
             sceneOrder: ['startup'],
         };
-        const migrated = migrateStory(raw as any);
+        const migrated = migrateStory(raw as unknown);
         expect(migrated.scenes[0].subroutines).toHaveLength(1);
         expect(migrated.scenes[0].subroutines[0].id).toBe('heal');
     });

@@ -21,7 +21,7 @@ interface Props {
 
 export function MonacoEditor({ value, onChange, story, readOnly = false, height = '100%', onSave }: Props) {
     const storyRef = useRef(story ?? null);
-    storyRef.current = story ?? null;
+    useEffect(() => { storyRef.current = story ?? null; }, [story]);
 
     const disposeRefs = useRef<Array<{ dispose: () => void }>>([]);
 
