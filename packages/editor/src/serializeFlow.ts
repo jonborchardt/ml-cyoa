@@ -13,6 +13,25 @@ export function serializeStartupPreamble(story: Pick<MyStory, 'variables' | 'sta
 
     if (story.ifid) parts.push(`*ifid ${story.ifid}`);
 
+    // *achievement must appear before *create — ChoiceScript enforces this ordering.
+    // Hidden achievements: pre-earned line must literally be "hidden"; post-earned line
+    // is the description shown after earning. Visible achievements use shortDescription
+    // as the pre-earned line and optionally a separate post-earned line.
+    for (const ach of (story.achievements ?? [])) {
+        const visibility = ach.isVisible ? 'visible' : 'hidden';
+        const achLines = [`*achievement ${ach.id} ${visibility} ${ach.points} ${ach.title}`];
+        if (ach.isVisible) {
+            achLines.push(`  ${ach.shortDescription || 'Achievement unlocked'}`);
+            const postDesc = ach.postDescription || ach.preDescription;
+            if (postDesc && postDesc !== ach.shortDescription) achLines.push(`  ${postDesc}`);
+        } else {
+            achLines.push(`  hidden`);
+            const postDesc = ach.postDescription || ach.shortDescription || 'Achievement unlocked';
+            achLines.push(`  ${postDesc}`);
+        }
+        parts.push(achLines.join('\n'));
+    }
+
     const globals = (story.variables ?? []).filter(v => v.scope === 'global');
     if (globals.length > 0) {
         parts.push(globals.map(v => formatCreate(v)).join('\n'));
@@ -31,16 +50,6 @@ export function serializeStartupPreamble(story: Pick<MyStory, 'variables' | 'sta
             }
         }
         parts.push(lines.join('\n'));
-    }
-
-    for (const ach of (story.achievements ?? [])) {
-        const visibility = ach.isVisible ? 'visible' : 'hidden';
-        const achLines = [`*achievement ${ach.id} ${visibility} ${ach.points} ${ach.title}`];
-        achLines.push(`  ${ach.shortDescription || 'Achievement unlocked'}`);
-        // post-earned description: use postDescription if set, fall back to preDescription (legacy field)
-        const postDesc = ach.postDescription || ach.preDescription;
-        if (postDesc && postDesc !== ach.shortDescription) achLines.push(`  ${postDesc}`);
-        parts.push(achLines.join('\n'));
     }
 
     return parts.join('\n');

@@ -4,14 +4,17 @@ import { StatsDesigner } from './StatsDesigner';
 import type { StatEntry, VariableDef } from './types';
 
 interface Props {
-    open: boolean;
-    onClose: () => void;
+    open?: boolean;
+    onClose?: () => void;
+    inline?: boolean;
     statChart: StatEntry[];
     variables: VariableDef[];
     onChange: (statChart: StatEntry[]) => void;
 }
 
-export function StatsDrawer({ open, onClose, statChart, variables, onChange }: Props) {
+export function StatsDrawer({ open, onClose, inline, statChart, variables, onChange }: Props) {
+    if (inline) return <StatsDesigner statChart={statChart} variables={variables} onChange={onChange} />;
+
     return (
         <Drawer anchor="right" open={open} onClose={onClose}
             PaperProps={{ sx: { width: 420, p: 2, display: 'flex', flexDirection: 'column', gap: 2 } }}>

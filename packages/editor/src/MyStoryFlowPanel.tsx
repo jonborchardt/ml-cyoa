@@ -11,23 +11,14 @@ import '@xyflow/react/dist/style.css';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import {
     Alert, Box, Button, Checkbox, Dialog, DialogActions, DialogContent, DialogTitle,
-    Drawer, FormControlLabel, IconButton, Menu, MenuItem, Select, Snackbar, Stack, TextField, Tooltip, Typography,
+    Drawer, FormControlLabel, IconButton, Snackbar, Stack, TextField, Tooltip, Typography,
 } from '@mui/material';
-import AccountTreeIcon from '@mui/icons-material/AccountTree';
-import BarChartIcon from '@mui/icons-material/BarChart';
-import EqualizerIcon from '@mui/icons-material/Equalizer';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import AddIcon from '@mui/icons-material/Add';
 import CloseIcon from '@mui/icons-material/Close';
 import CodeIcon from '@mui/icons-material/Code';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import DataObjectIcon from '@mui/icons-material/DataObject';
-import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import GitHubIcon from '@mui/icons-material/GitHub';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
 import HubIcon from '@mui/icons-material/Hub';
-import MapIcon from '@mui/icons-material/Map';
+import MenuIcon from '@mui/icons-material/Menu';
 import RedoIcon from '@mui/icons-material/Redo';
 import SearchIcon from '@mui/icons-material/Search';
 import UndoIcon from '@mui/icons-material/Undo';
@@ -40,7 +31,6 @@ import { validateStory } from './validateFlow';
 import { serializeStory } from './serializeStory';
 import { NodeEditDialog } from './NodeEditDialog';
 import { EdgeEditDialog } from './EdgeEditDialog';
-import { VariableManagerPanel } from './VariableManagerPanel';
 import { NodePalette } from './NodePalette';
 import { ConditionNode } from './nodes/ConditionNode';
 import { ActionNode } from './nodes/ActionNode';
@@ -63,10 +53,6 @@ import { SceneJumpEditDialog } from './SceneJumpEditDialog';
 import { GosubCallEditDialog } from './GosubCallEditDialog';
 import { ImageEditDialog } from './ImageEditDialog';
 import { GotoRandomSceneEditDialog } from './GotoRandomSceneEditDialog';
-import { SubroutineGroupManager } from './SubroutineGroupManager';
-import { StoryInfoDrawer } from './StoryInfoDrawer';
-import { StatsDrawer } from './StatsDrawer';
-import { AchievementsDrawer } from './AchievementsDrawer';
 import { useUndoableState } from './useUndoableState';
 import { compressImage } from './imageUtils';
 import { MonacoEditor } from './MonacoEditor';
@@ -76,9 +62,10 @@ import { parseScene } from './parseChoiceScript';
 import { serializeFlow } from './serializeFlow';
 import { ExportMenu } from './ExportMenu';
 import { FindReplacePanel } from './FindReplacePanel';
-import { StoryStatsDrawer } from './StoryStatsDrawer';
 import { KeyboardShortcutsHelp } from './KeyboardShortcutsHelp';
 import { SceneOutlinePanel } from './SceneOutlinePanel';
+import { StoryMenuDrawer } from './StoryMenuDrawer';
+import { GraphPaneToolbar } from './GraphPaneToolbar';
 import type { RenderGamePreview } from './MyStoryShell';
 import type { VariableDef, NodeType, EdgeData, SceneJumpData, StatEntry, Achievement } from './types';
 
@@ -343,13 +330,8 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     const [coverImage, setCoverImage] = useState(story.coverImage ?? '');
     const [ifid, setIfid] = useState(story.ifid ?? '');
 
-    const [storyInfoOpen, setStoryInfoOpen] = useState(false);
-    const [varPanelOpen, setVarPanelOpen] = useState(false);
-    const [statDesignerOpen, setStatDesignerOpen] = useState(false);
-    const [achievementsOpen, setAchievementsOpen] = useState(false);
-    const [subroutineManagerOpen, setSubroutineManagerOpen] = useState(false);
     const [paletteOpen, setPaletteOpen] = useState(false);
-    const [layoutMenuAnchor, setLayoutMenuAnchor] = useState<HTMLElement | null>(null);
+    const [menuDrawerOpen, setMenuDrawerOpen] = useState(false);
     const [saving, setSaving] = useState<'idle' | 'saving' | 'saved'>('idle');
     const [snackbar, setSnackbar] = useState<{ msg: string; severity: 'success' | 'warning' | 'error' | 'info' } | null>(null);
     const [editingNode, setEditingNode] = useState<Node<NodeData> | null>(null);
@@ -370,7 +352,6 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     // Power UX state
     const [showMinimap, setShowMinimap] = useState(true);
     const [findOpen, setFindOpen] = useState(false);
-    const [statsDrawerOpen, setStatsDrawerOpen] = useState(false);
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
     const [pendingBulkDelete, setPendingBulkDelete] = useState<string[] | null>(null);
 
@@ -993,27 +974,15 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
             <Box sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
 
                 {/* Toolbar */}
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, px: 1.5, py: 0.75, borderBottom: 1, borderColor: 'divider', flexShrink: 0, flexWrap: 'wrap' }}>
-                    {/* Left — structural */}
-                    <Button size="small" startIcon={<InfoOutlinedIcon />} onClick={() => setStoryInfoOpen(true)}>
-                        Story
-                    </Button>
-                    <Button size="small" startIcon={<DataObjectIcon />} onClick={() => setVarPanelOpen(true)}>
-                        Variables{variables.length > 0 ? ` (${variables.length})` : ''}
-                    </Button>
-                    <Button size="small" startIcon={<BarChartIcon />} onClick={() => setStatDesignerOpen(true)}>
-                        Stats{statChart.length > 0 ? ` (${statChart.length})` : ''}
-                    </Button>
-                    <Button size="small" startIcon={<EmojiEventsIcon />} onClick={() => setAchievementsOpen(true)}>
-                        Achievements{achievements.length > 0 ? ` (${achievements.length})` : ''}
-                    </Button>
-                    <Button size="small" onClick={() => setSubroutineManagerOpen(true)}>
-                        Subroutines{subroutines.length > 0 ? ` (${subroutines.length})` : ''}
-                    </Button>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5, px: 1, py: 0.75, borderBottom: 1, borderColor: 'divider', flexShrink: 0 }}>
+                    <Tooltip title="Story menu">
+                        <IconButton size="small" onClick={() => setMenuDrawerOpen(true)}>
+                            <MenuIcon fontSize="small" />
+                        </IconButton>
+                    </Tooltip>
 
-                    <Box sx={{ width: 1, height: 20, bgcolor: 'divider', mx: 0.5 }} />
+                    <Box sx={{ width: '1px', height: 20, bgcolor: 'divider', mx: 0.5, flexShrink: 0 }} />
 
-                    {/* Middle — editing */}
                     <Tooltip title="Undo (Ctrl+Z)">
                         <span>
                             <IconButton size="small" onClick={() => graph.undo()} disabled={!graph.canUndo}>
@@ -1028,27 +997,17 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                             </IconButton>
                         </span>
                     </Tooltip>
+
+                    <Box sx={{ width: '1px', height: 20, bgcolor: 'divider', mx: 0.5, flexShrink: 0 }} />
+
                     <Tooltip title="Find & Replace (Ctrl+F)">
                         <IconButton size="small" onClick={() => setFindOpen(o => !o)} color={findOpen ? 'primary' : 'default'}>
                             <SearchIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
-                    <Button size="small" startIcon={<AddIcon />} onClick={() => setPaletteOpen(true)}>
-                        Add Node
-                    </Button>
-                    <Button size="small" startIcon={<AccountTreeIcon />} endIcon={<ExpandMoreIcon />}
-                            onClick={e => setLayoutMenuAnchor(e.currentTarget)}>
-                        Layout
-                    </Button>
-                    <Menu anchorEl={layoutMenuAnchor} open={Boolean(layoutMenuAnchor)}
-                          onClose={() => setLayoutMenuAnchor(null)}>
-                        <MenuItem onClick={() => { handleAutoLayout(); setLayoutMenuAnchor(null); }}>
-                            Auto Layout<Typography variant="caption" color="text.secondary" sx={{ ml: 1 }}>Ctrl+L</Typography>
-                        </MenuItem>
-                        <MenuItem onClick={() => { handleToggleLayoutDir(); setLayoutMenuAnchor(null); }}>
-                            {layoutDirection === 'TB' ? 'Switch to Left→Right' : 'Switch to Top→Bottom'}
-                        </MenuItem>
-                    </Menu>
+
+                    <Box sx={{ width: '1px', height: 20, bgcolor: 'divider', mx: 0.5, flexShrink: 0 }} />
+
                     <Tooltip title="Graph pane">
                         <IconButton size="small" onClick={() => togglePanel('graph')} color={activePanels.graph ? 'primary' : 'default'}>
                             <HubIcon fontSize="small" />
@@ -1069,28 +1028,12 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                             <FormatListBulletedIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title={showMinimap ? 'Hide minimap' : 'Show minimap'}>
-                        <IconButton size="small" onClick={() => setShowMinimap(o => !o)} color={showMinimap ? 'primary' : 'default'}>
-                            <MapIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
-                    <Tooltip title="Story statistics">
-                        <IconButton size="small" onClick={() => setStatsDrawerOpen(true)}>
-                            <EqualizerIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
 
                     <Box sx={{ flex: 1 }} />
 
-                    {/* Right */}
                     <ExportMenu story={liveStory} currentSceneId={activeSceneId} />
-                    <Tooltip title="Keyboard shortcuts (?)">
-                        <IconButton size="small" onClick={() => setShortcutsOpen(true)}>
-                            <HelpOutlineIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
                     {onSubmitStory && (
-                        <Button size="small" startIcon={<GitHubIcon />} onClick={() => setSubmitOpen(true)}>
+                        <Button size="small" startIcon={<GitHubIcon />} onClick={() => setSubmitOpen(true)} sx={{ whiteSpace: 'nowrap' }}>
                             Submit to GitHub
                         </Button>
                     )}
@@ -1127,30 +1070,20 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                     onReorder={handleReorderScenes}
                 />
 
-                {/* Scene-level settings */}
-                <Box sx={{ px: 2, py: 0.5, borderBottom: 1, borderColor: 'divider', display: 'flex', alignItems: 'center', gap: 1.5, bgcolor: 'grey.50', flexShrink: 0 }}>
-                    <Typography variant="caption" color="text.secondary" sx={{ whiteSpace: 'nowrap' }}>Global reuse:</Typography>
-                    <Select
-                        size="small"
-                        value={sceneGlobalReuseMode ?? ''}
-                        onChange={e => setSceneGlobalReuseMode((e.target.value as 'hide' | 'disable') || undefined)}
-                        displayEmpty
-                        sx={{ fontSize: 12, minWidth: 160 }}
-                    >
-                        <MenuItem value=""><em>None</em></MenuItem>
-                        <MenuItem value="hide">*hide_reuse (hide used)</MenuItem>
-                        <MenuItem value="disable">*disable_reuse (grey out used)</MenuItem>
-                    </Select>
-                    {sceneGlobalReuseMode && (
-                        <Typography variant="caption" color="text.secondary">Applies to all choices in this scene</Typography>
-                    )}
-                </Box>
-
                 {/* Canvas / Code / Story panes */}
                 <Box sx={{ flex: 1, minHeight: 0, display: 'flex', flexDirection: 'row' }}>
                     {/* Graph pane */}
                     {activePanels.graph && (
                         <Box sx={{ flex: 1, minHeight: 0, minWidth: 0, position: 'relative' }}>
+                            <GraphPaneToolbar
+                                onAddNode={() => setPaletteOpen(true)}
+                                onAutoLayout={handleAutoLayout}
+                                onToggleLayoutDir={handleToggleLayoutDir}
+                                layoutDirection={layoutDirection}
+                                showMinimap={showMinimap}
+                                onToggleMinimap={() => setShowMinimap(o => !o)}
+                                onOpenKeyboardShortcuts={() => setShortcutsOpen(true)}
+                            />
                             <ReactFlow
                                 nodes={nodes}
                                 edges={edges}
@@ -1234,11 +1167,22 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
             {/* Node palette */}
             <NodePalette open={paletteOpen} onClose={() => setPaletteOpen(false)} onSelect={handleAddNode} />
 
-            {/* Variable manager drawer */}
-            <VariableManagerPanel open={varPanelOpen} story={liveStory} onChange={handleVariablesChange} onClose={() => setVarPanelOpen(false)} />
-
-            {/* Story stats drawer */}
-            <StoryStatsDrawer open={statsDrawerOpen} story={liveStory} onClose={() => setStatsDrawerOpen(false)} />
+            {/* Story menu drawer */}
+            <StoryMenuDrawer
+                open={menuDrawerOpen}
+                onClose={() => setMenuDrawerOpen(false)}
+                title={title} authorName={authorName} authorBio={authorBio}
+                authorPhoto={authorPhoto} coverImage={coverImage} ifid={ifid}
+                onTitleChange={setTitle} onAuthorNameChange={setAuthorName}
+                onAuthorBioChange={setAuthorBio} onAuthorPhotoChange={setAuthorPhoto}
+                onCoverImageChange={setCoverImage} onIfidChange={setIfid}
+                story={liveStory} onStoryChange={handleVariablesChange}
+                statChart={statChart} variables={variables} onStatChartChange={handleStatChartChange}
+                achievements={achievements} onAchievementsChange={handleAchievementsChange}
+                subroutines={subroutines} onSubroutinesChange={setSubroutines}
+                globalReuse={sceneGlobalReuseMode ?? ''}
+                onGlobalReuseChange={v => setSceneGlobalReuseMode(v === '' ? undefined : v)}
+            />
 
             {/* Keyboard shortcuts help */}
             <KeyboardShortcutsHelp open={shortcutsOpen} onClose={() => setShortcutsOpen(false)} />
@@ -1343,51 +1287,6 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                     onDelete={handleNodeDelete}
                 />
             )}
-
-            {/* Story info drawer */}
-            <StoryInfoDrawer
-                open={storyInfoOpen}
-                onClose={() => setStoryInfoOpen(false)}
-                title={title}
-                authorName={authorName}
-                authorBio={authorBio}
-                authorPhoto={authorPhoto}
-                coverImage={coverImage}
-                ifid={ifid}
-                onTitleChange={setTitle}
-                onAuthorNameChange={setAuthorName}
-                onAuthorBioChange={setAuthorBio}
-                onAuthorPhotoChange={setAuthorPhoto}
-                onCoverImageChange={setCoverImage}
-                onIfidChange={setIfid}
-            />
-
-            {/* Stat chart designer drawer */}
-            <StatsDrawer
-                open={statDesignerOpen}
-                onClose={() => setStatDesignerOpen(false)}
-                statChart={statChart}
-                variables={variables}
-                onChange={handleStatChartChange}
-            />
-
-            {/* Achievements drawer */}
-            <AchievementsDrawer
-                open={achievementsOpen}
-                onClose={() => setAchievementsOpen(false)}
-                achievements={achievements}
-                onChange={handleAchievementsChange}
-            />
-
-            {/* Subroutine manager drawer */}
-            <SubroutineGroupManager
-                open={subroutineManagerOpen}
-                subroutines={subroutines}
-                variables={variables}
-                achievements={achievements}
-                onClose={() => setSubroutineManagerOpen(false)}
-                onChange={setSubroutines}
-            />
 
             {/* Connection label dialog */}
             <Dialog open={!!pendingConnection} onClose={() => setPendingConnection(null)} maxWidth="xs" fullWidth>

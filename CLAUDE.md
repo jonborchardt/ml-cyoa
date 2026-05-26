@@ -70,6 +70,8 @@ ml-cyoa/                              ← workspace root
 │           ├── GameTabHeader.tsx     ← shared nav header (used by both shells)
 │           ├── MyStoryShell.tsx
 │           ├── MyStoryFlowPanel.tsx
+│           ├── StoryMenuDrawer.tsx   ← hamburger-menu left drawer (accordion sections)
+│           ├── GraphPaneToolbar.tsx  ← floating overlay inside graph pane
 │           ├── MyStoryAuthorsPanel.tsx
 │           ├── SceneOutlinePanel.tsx
 │           ├── … (all editor dialogs, panels, menus)
@@ -198,13 +200,18 @@ Students can write their own CYOA stories in the browser. Stories are persisted 
 - **Code** — full-pane Monaco editor with ChoiceScript syntax highlighting/completion. Switching to code serializes the graph; switching back parses it.
 - **Split** — graph and code side by side.
 
+**Editor toolbar layout**:
+- **Toolbar** (top bar): `☰` hamburger → `StoryMenuDrawer`; Undo/Redo; Find & Replace; pane toggles (Graph, Code, Preview, Outline); Export menu; Submit to GitHub.
+- **`StoryMenuDrawer`** (left drawer, accordion): Story Info, Variables, Stats, Achievements, Subroutines, Scene (global reuse), Story Statistics. Each section uses the panel component's `inline` prop to embed it without an extra drawer.
+- **`GraphPaneToolbar`** (floating overlay, graph pane only): Add Node, Layout menu (Auto Layout + direction toggle), Minimap toggle, Keyboard Shortcuts.
+
 **Editor features**:
 - Scene/chapter tabs (`SceneTabBar`) — add, rename, reorder scenes.
 - Node palette (`NodePalette`) — popover with all addable node types.
 - Undo/redo (`useUndoableState`) — per-scene history; `reset(value)` clears history on scene switch.
 - Auto-layout (`applyTreeLayout`) — TB or LR direction, persisted as `layoutDirection`.
 - Find & replace (`FindReplacePanel`) — searches node content and edge labels across all scenes.
-- Variable manager (`VariableManagerPanel`) — define `*create` variables with type and default.
+- Variable manager (`VariableManagerPanel`) — define `*create` variables with type and default. Supports `inline` prop for embedding in `StoryMenuDrawer`.
 - Stats designer (`StatsDesigner`) — design the stats screen layout.
 - Achievements designer (`AchievementsDesigner`) — define achievements.
 - Subroutine manager (`SubroutineGroupManager`) — add/rename subroutines within a scene.
@@ -220,7 +227,7 @@ Students can write their own CYOA stories in the browser. Stories are persisted 
 
 **Image handling**: All uploads go through `compressImage()` in `imageUtils.ts` — resized to max 1024 px at 0.75 JPEG quality. On GitHub submission, re-compressed to 300 px / 0.5 quality to fit within the 65 536-char issue body limit.
 
-**Serialization** (`serializeStory.ts`): `serializeStory()` returns a `Map<sceneId, text>`. The startup scene always includes `*title`, `*author`, `*scene_list`, and all `*create` statements. Each scene is walked depth-first from its start node. Cycles use `*goto`. Subroutine bodies are appended after the main scene flow.
+**Serialization** (`serializeStory.ts`): `serializeStory()` returns a `Map<sceneId, text>`. The startup scene preamble (built by `serializeStartupPreamble` in `serializeFlow.ts`) emits `*title`, `*author`, `*scene_list`, `*achievement` declarations (before `*create` — ChoiceScript requires this ordering), `*create` globals, `*ifid`, and `*stat_chart`. Each scene is walked depth-first from its start node. Cycles use `*goto`. Subroutine bodies are appended after the main scene flow.
 
 **Submission** (`github.ts` in publishing_party): `fileGitHubIssue(title, body)` POSTs to the GitHub Issues API using `VITE_GITHUB_TOKEN`. Set this env var in `apps/publishing_party/.env.local` (never commit it). It is passed into the editor as the `onSubmitStory` prop on `MyStoryShell`.
 

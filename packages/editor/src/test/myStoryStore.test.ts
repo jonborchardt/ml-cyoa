@@ -88,23 +88,26 @@ describe('localStorage isolation', () => {
         localStorage.clear();
     });
 
-    it('createMyStory initializes scenes with a startup scene', async () => {
+    it('createMyStory initializes scenes with startup and trial scenes', async () => {
         const { createMyStory, getMyStory } = await import('../myStoryStore');
         const story = createMyStory();
         const fetched = getMyStory(story.id);
-        expect(fetched?.scenes).toHaveLength(1);
+        expect(fetched?.scenes).toHaveLength(2);
         expect(fetched?.scenes[0].id).toBe('startup');
-        expect(fetched?.sceneOrder).toEqual(['startup']);
+        expect(fetched?.scenes[1].id).toBe('trial');
+        expect(fetched?.sceneOrder).toEqual(['startup', 'trial']);
     });
 
-    it('createMyStory initializes seed variables (courage, has_key, player_name)', async () => {
+    it('createMyStory initializes seed variables (name, cleverness, bravery, score, has_badge)', async () => {
         const { createMyStory, getMyStory } = await import('../myStoryStore');
         const story = createMyStory();
         const fetched = getMyStory(story.id);
         const names = fetched?.variables.map(v => v.name) ?? [];
-        expect(names).toContain('courage');
-        expect(names).toContain('has_key');
-        expect(names).toContain('player_name');
+        expect(names).toContain('name');
+        expect(names).toContain('cleverness');
+        expect(names).toContain('bravery');
+        expect(names).toContain('score');
+        expect(names).toContain('has_badge');
     });
 });
 

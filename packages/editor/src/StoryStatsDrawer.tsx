@@ -113,22 +113,21 @@ function StatRow({ label, value }: { label: string; value: string | number }) {
 }
 
 interface Props {
-    open: boolean;
+    open?: boolean;
     story: MyStory;
-    onClose: () => void;
+    onClose?: () => void;
+    inline?: boolean;
 }
 
-export function StoryStatsDrawer({ open, story, onClose }: Props) {
+export function StoryStatsDrawer({ open, story, onClose, inline }: Props) {
     const stats = useMemo(() => computeStoryStats(story), [story]);
 
     const nodeTypeCounts = Object.entries(stats.nodesByType)
         .filter(([, v]) => v > 0)
         .sort(([a], [b]) => a.localeCompare(b));
 
-    return (
-        <Drawer anchor="right" open={open} onClose={onClose} PaperProps={{ sx: { width: 320, p: 2.5 } }}>
-            <Typography variant="h6" sx={{ mb: 2 }}>Story Statistics</Typography>
-
+    const content = (
+        <Box sx={inline ? { p: 1 } : {}}>
             <Typography variant="subtitle2" color="text.secondary" sx={{ mb: 0.5 }}>Overview</Typography>
             <StatRow label="Total nodes" value={stats.totalNodes} />
             <StatRow label="Total choices (edges)" value={stats.totalEdges} />
@@ -165,6 +164,15 @@ export function StoryStatsDrawer({ open, story, onClose }: Props) {
                     Word count includes prose passages and choice labels only. Read time estimated at 200 wpm and varies by path.
                 </Typography>
             </Box>
+        </Box>
+    );
+
+    if (inline) return content;
+
+    return (
+        <Drawer anchor="right" open={open} onClose={onClose} PaperProps={{ sx: { width: 320, p: 2.5 } }}>
+            <Typography variant="h6" sx={{ mb: 2 }}>Story Statistics</Typography>
+            {content}
         </Drawer>
     );
 }

@@ -169,7 +169,7 @@ describe('serializeAchievements', () => {
     it('emits visible *achievement declaration', () => {
         const story = makeStory({ achievements: [makeAchievement({ id: 'loyal_friend', title: 'Loyal Friend', points: 15, isVisible: true, shortDescription: 'You stood by your companion.' })] });
         const out = serializeStartupPreamble(story);
-        expect(out).toContain('*achievement loyal_friend title 15 "Loyal Friend" visible');
+        expect(out).toContain('*achievement loyal_friend visible 15 Loyal Friend');
         expect(out).toContain('  You stood by your companion.');
     });
 

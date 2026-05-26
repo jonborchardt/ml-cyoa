@@ -4,13 +4,16 @@ import { AchievementsDesigner } from './AchievementsDesigner';
 import type { Achievement } from './types';
 
 interface Props {
-    open: boolean;
-    onClose: () => void;
+    open?: boolean;
+    onClose?: () => void;
+    inline?: boolean;
     achievements: Achievement[];
     onChange: (achievements: Achievement[]) => void;
 }
 
-export function AchievementsDrawer({ open, onClose, achievements, onChange }: Props) {
+export function AchievementsDrawer({ open, onClose, inline, achievements, onChange }: Props) {
+    if (inline) return <AchievementsDesigner achievements={achievements} onChange={onChange} />;
+
     return (
         <Drawer anchor="right" open={open} onClose={onClose}
             PaperProps={{ sx: { width: 420, p: 2, display: 'flex', flexDirection: 'column', gap: 2 } }}>

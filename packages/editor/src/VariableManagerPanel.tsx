@@ -245,13 +245,14 @@ function VariableForm({ initial, existingNames, onSave, onCancel }: VariableForm
 }
 
 interface Props {
-    open: boolean;
+    open?: boolean;
     story: MyStory;
     onChange: (updated: MyStory) => void;
-    onClose: () => void;
+    onClose?: () => void;
+    inline?: boolean;
 }
 
-export function VariableManagerPanel({ open, story, onChange, onClose }: Props) {
+export function VariableManagerPanel({ open, story, onChange, onClose, inline }: Props) {
     const [tab, setTab] = useState(0);
     const [addOpen, setAddOpen] = useState(false);
     const [editingVar, setEditingVar] = useState<VariableDef | null>(null);
@@ -295,31 +296,21 @@ export function VariableManagerPanel({ open, story, onChange, onClose }: Props) 
         setRenameTarget(null);
     };
 
-    return (
+    const listContent = (
         <>
-            <Drawer
-                anchor="right"
-                open={open}
-                onClose={onClose}
-                PaperProps={{ sx: { width: 360 } }}>
-                <Box sx={{ display: 'flex', alignItems: 'center', px: 2, py: 1.5, borderBottom: 1, borderColor: 'divider' }}>
-                    <Typography variant="h6" sx={{ flex: 1 }}>Variables</Typography>
-                    <IconButton size="small" onClick={onClose}><CloseIcon /></IconButton>
-                </Box>
+            <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ borderBottom: 1, borderColor: 'divider' }}>
+                <Tab label="Global" />
+                <Tab label="Temp (scene-local)" />
+            </Tabs>
 
-                <Tabs value={tab} onChange={(_, v) => setTab(v)} sx={{ borderBottom: 1, borderColor: 'divider' }}>
-                    <Tab label="Global" />
-                    <Tab label="Temp (scene-local)" />
-                </Tabs>
-
-                <Box sx={{ flex: 1, overflowY: 'auto', p: 2 }}>
-                    {vars.length === 0 && (
-                        <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                            No {scopeFilter} variables yet.
-                        </Typography>
-                    )}
-                    <Stack spacing={1}>
-                        {vars.map(v => (
+            <Box sx={{ overflowY: 'auto', p: inline ? 1 : 2, flex: inline ? undefined : 1 }}>
+                {vars.length === 0 && (
+                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                        No {scopeFilter} variables yet.
+                    </Typography>
+                )}
+                <Stack spacing={1}>
+                    {vars.map(v => (
                             <Box
                                 key={v.name}
                                 sx={{
@@ -357,20 +348,20 @@ export function VariableManagerPanel({ open, story, onChange, onClose }: Props) 
                             </Box>
                         ))}
                     </Stack>
-                </Box>
+                <Button
+                    fullWidth
+                    variant="outlined"
+                    startIcon={<AddIcon />}
+                    onClick={() => setAddOpen(true)}
+                    sx={{ mt: 1.5 }}>
+                    Add Variable
+                </Button>
+            </Box>
+        </>
+    );
 
-                <Box sx={{ p: 2, borderTop: 1, borderColor: 'divider' }}>
-                    <Button
-                        fullWidth
-                        variant="outlined"
-                        startIcon={<AddIcon />}
-                        onClick={() => setAddOpen(true)}>
-                        Add Variable
-                    </Button>
-                </Box>
-            </Drawer>
-
-            {/* Add dialog */}
+    const dialogs = (
+        <>
             <Dialog open={addOpen} onClose={() => setAddOpen(false)} maxWidth="xs" fullWidth>
                 <DialogTitle>Add Variable</DialogTitle>
                 <DialogContent>
@@ -383,8 +374,6 @@ export function VariableManagerPanel({ open, story, onChange, onClose }: Props) 
                     </Box>
                 </DialogContent>
             </Dialog>
-
-            {/* Edit dialog */}
             <Dialog open={!!editingVar} onClose={() => setEditingVar(null)} maxWidth="xs" fullWidth>
                 <DialogTitle>Edit Variable</DialogTitle>
                 <DialogContent>
@@ -400,8 +389,6 @@ export function VariableManagerPanel({ open, story, onChange, onClose }: Props) 
                     </Box>
                 </DialogContent>
             </Dialog>
-
-            {/* Delete confirmation */}
             <Dialog open={!!deleteTarget} onClose={() => setDeleteTarget(null)}>
                 <DialogTitle>Delete Variable?</DialogTitle>
                 <DialogContent>
@@ -416,8 +403,6 @@ export function VariableManagerPanel({ open, story, onChange, onClose }: Props) 
                     </Button>
                 </DialogActions>
             </Dialog>
-
-            {/* Rename dialog */}
             <Dialog open={!!renameTarget} onClose={() => setRenameTarget(null)} maxWidth="xs" fullWidth>
                 <DialogTitle>Rename Variable</DialogTitle>
                 <DialogContent>
@@ -447,6 +432,21 @@ export function VariableManagerPanel({ open, story, onChange, onClose }: Props) 
                     </Button>
                 </DialogActions>
             </Dialog>
+        </>
+    );
+
+    if (inline) return <>{listContent}{dialogs}</>;
+
+    return (
+        <>
+            <Drawer anchor="right" open={open} onClose={onClose} PaperProps={{ sx: { width: 360 } }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', px: 2, py: 1.5, borderBottom: 1, borderColor: 'divider' }}>
+                    <Typography variant="h6" sx={{ flex: 1 }}>Variables</Typography>
+                    <IconButton size="small" onClick={onClose}><CloseIcon /></IconButton>
+                </Box>
+                {listContent}
+            </Drawer>
+            {dialogs}
         </>
     );
 }

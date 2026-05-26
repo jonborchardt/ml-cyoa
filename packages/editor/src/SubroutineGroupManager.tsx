@@ -156,15 +156,16 @@ function SubroutineRow({ sub, variables, achievements, onChange, onDelete }: Sub
 }
 
 interface Props {
-    open: boolean;
+    open?: boolean;
     subroutines: SubroutineDef[];
     variables: VariableDef[];
     achievements: Achievement[];
-    onClose: () => void;
+    onClose?: () => void;
+    inline?: boolean;
     onChange: (subroutines: SubroutineDef[]) => void;
 }
 
-export function SubroutineGroupManager({ open, subroutines, variables, achievements, onClose, onChange }: Props) {
+export function SubroutineGroupManager({ open, subroutines, variables, achievements, onClose, inline, onChange }: Props) {
     const [counter, setCounter] = useState(1);
 
     const handleAdd = () => {
@@ -179,6 +180,43 @@ export function SubroutineGroupManager({ open, subroutines, variables, achieveme
         onChange([...subroutines, newSub]);
     };
 
+    const content = (
+        <Box sx={inline ? { p: 1 } : { px: 2, py: 1.5, flex: 1, overflowY: 'auto' }}>
+            {!inline && (
+                <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
+                    Subroutines are reusable action sequences called via{' '}
+                    <code>*gosub</code>. Add a <strong>Call Subroutine</strong> node to the
+                    flow to invoke one.
+                </Typography>
+            )}
+            <Stack spacing={1.5}>
+                {subroutines.length === 0 && (
+                    <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
+                        No subroutines yet.
+                    </Typography>
+                )}
+                {subroutines.map((sub, i) => (
+                    <SubroutineRow
+                        key={sub.id}
+                        sub={sub}
+                        variables={variables}
+                        achievements={achievements}
+                        onChange={updated => {
+                            const next = subroutines.map((s, idx) => idx === i ? updated : s);
+                            onChange(next);
+                        }}
+                        onDelete={() => onChange(subroutines.filter((_, idx) => idx !== i))}
+                    />
+                ))}
+            </Stack>
+            <Button fullWidth startIcon={<AddIcon />} variant="outlined" onClick={handleAdd} sx={{ mt: 1.5 }}>
+                Add Subroutine
+            </Button>
+        </Box>
+    );
+
+    if (inline) return content;
+
     return (
         <Drawer anchor="right" open={open} onClose={onClose} PaperProps={{ sx: { width: { xs: '100%', sm: 400 } } }}>
             <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -186,41 +224,7 @@ export function SubroutineGroupManager({ open, subroutines, variables, achieveme
                     <Typography variant="h6" sx={{ flex: 1 }}>Subroutines</Typography>
                     <IconButton onClick={onClose}><CloseIcon /></IconButton>
                 </Stack>
-
-                <Box sx={{ px: 2, py: 1.5, flex: 1, overflowY: 'auto' }}>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        Subroutines are reusable action sequences called via{' '}
-                        <code>*gosub</code>. Add a <strong>Call Subroutine</strong> node to the
-                        flow to invoke one.
-                    </Typography>
-
-                    <Stack spacing={1.5}>
-                        {subroutines.length === 0 && (
-                            <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic' }}>
-                                No subroutines yet. Click &quot;Add Subroutine&quot; to create one.
-                            </Typography>
-                        )}
-                        {subroutines.map((sub, i) => (
-                            <SubroutineRow
-                                key={sub.id}
-                                sub={sub}
-                                variables={variables}
-                                achievements={achievements}
-                                onChange={updated => {
-                                    const next = subroutines.map((s, idx) => idx === i ? updated : s);
-                                    onChange(next);
-                                }}
-                                onDelete={() => onChange(subroutines.filter((_, idx) => idx !== i))}
-                            />
-                        ))}
-                    </Stack>
-                </Box>
-
-                <Box sx={{ px: 2, py: 1.5, borderTop: 1, borderColor: 'divider' }}>
-                    <Button fullWidth startIcon={<AddIcon />} variant="outlined" onClick={handleAdd}>
-                        Add Subroutine
-                    </Button>
-                </Box>
+                {content}
             </Box>
         </Drawer>
     );

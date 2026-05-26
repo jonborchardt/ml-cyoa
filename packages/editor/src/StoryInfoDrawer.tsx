@@ -7,8 +7,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import { compressImage } from './imageUtils';
 
 interface Props {
-    open: boolean;
-    onClose: () => void;
+    open?: boolean;
+    onClose?: () => void;
+    inline?: boolean;
     title: string;
     authorName: string;
     authorBio: string;
@@ -24,7 +25,7 @@ interface Props {
 }
 
 export function StoryInfoDrawer({
-    open, onClose,
+    open, onClose, inline,
     title, authorName, authorBio, authorPhoto, coverImage, ifid,
     onTitleChange, onAuthorNameChange, onAuthorBioChange,
     onAuthorPhotoChange, onCoverImageChange, onIfidChange,
@@ -44,6 +45,45 @@ export function StoryInfoDrawer({
         e.target.value = '';
     };
 
+    const content = (
+        <Stack spacing={2} sx={inline ? { p: 1 } : {}}>
+            <TextField label="Title" value={title} onChange={e => onTitleChange(e.target.value)} required size="small" fullWidth />
+            <TextField label="Author Name" value={authorName} onChange={e => onAuthorNameChange(e.target.value)} required size="small" fullWidth />
+            <TextField label="Author Bio (optional)" value={authorBio} onChange={e => onAuthorBioChange(e.target.value)} multiline rows={3} size="small" fullWidth />
+            <TextField label="IFID (optional)" value={ifid} onChange={e => onIfidChange(e.target.value)} size="small" fullWidth helperText="Interactive Fiction ID (*ifid)" />
+            <Box>
+                <Typography variant="caption" display="block" sx={{ mb: 0.5, color: 'text.secondary' }}>Author Photo</Typography>
+                <input type="file" accept=".png,.jpg,.jpeg" ref={photoInputRef} style={{ display: 'none' }} onChange={e => handleUpload(e, onAuthorPhotoChange)} />
+                {authorPhoto ? (
+                    <Box sx={{ position: 'relative', display: 'inline-block' }}>
+                        <img src={authorPhoto} alt="author" style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 4, display: 'block' }} />
+                        <IconButton size="small" onClick={() => onAuthorPhotoChange('')} sx={{ position: 'absolute', top: -8, right: -8, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', p: 0.25, '&:hover': { bgcolor: 'error.light', color: 'error.contrastText' } }}>
+                            <CloseIcon sx={{ fontSize: 12 }} />
+                        </IconButton>
+                    </Box>
+                ) : (
+                    <Button size="small" startIcon={<AddPhotoAlternateIcon />} onClick={() => photoInputRef.current?.click()}>Upload</Button>
+                )}
+            </Box>
+            <Box>
+                <Typography variant="caption" display="block" sx={{ mb: 0.5, color: 'text.secondary' }}>Cover Image</Typography>
+                <input type="file" accept=".png,.jpg,.jpeg" ref={coverInputRef} style={{ display: 'none' }} onChange={e => handleUpload(e, onCoverImageChange)} />
+                {coverImage ? (
+                    <Box sx={{ position: 'relative', display: 'inline-block' }}>
+                        <img src={coverImage} alt="cover" style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 4, display: 'block' }} />
+                        <IconButton size="small" onClick={() => onCoverImageChange('')} sx={{ position: 'absolute', top: -8, right: -8, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', p: 0.25, '&:hover': { bgcolor: 'error.light', color: 'error.contrastText' } }}>
+                            <CloseIcon sx={{ fontSize: 12 }} />
+                        </IconButton>
+                    </Box>
+                ) : (
+                    <Button size="small" startIcon={<AddPhotoAlternateIcon />} onClick={() => coverInputRef.current?.click()}>Upload</Button>
+                )}
+            </Box>
+        </Stack>
+    );
+
+    if (inline) return content;
+
     return (
         <Drawer anchor="right" open={open} onClose={onClose}
             PaperProps={{ sx: { width: 360, p: 2, display: 'flex', flexDirection: 'column', gap: 2, overflowY: 'auto' } }}>
@@ -51,40 +91,7 @@ export function StoryInfoDrawer({
                 <Typography variant="subtitle1" fontWeight={700}>Story Info</Typography>
                 <IconButton size="small" onClick={onClose}><CloseIcon /></IconButton>
             </Box>
-            <Stack spacing={2}>
-                <TextField label="Title" value={title} onChange={e => onTitleChange(e.target.value)} required size="small" fullWidth />
-                <TextField label="Author Name" value={authorName} onChange={e => onAuthorNameChange(e.target.value)} required size="small" fullWidth />
-                <TextField label="Author Bio (optional)" value={authorBio} onChange={e => onAuthorBioChange(e.target.value)} multiline rows={3} size="small" fullWidth />
-                <TextField label="IFID (optional)" value={ifid} onChange={e => onIfidChange(e.target.value)} size="small" fullWidth helperText="Interactive Fiction ID (*ifid)" />
-                <Box>
-                    <Typography variant="caption" display="block" sx={{ mb: 0.5, color: 'text.secondary' }}>Author Photo</Typography>
-                    <input type="file" accept=".png,.jpg,.jpeg" ref={photoInputRef} style={{ display: 'none' }} onChange={e => handleUpload(e, onAuthorPhotoChange)} />
-                    {authorPhoto ? (
-                        <Box sx={{ position: 'relative', display: 'inline-block' }}>
-                            <img src={authorPhoto} alt="author" style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 4, display: 'block' }} />
-                            <IconButton size="small" onClick={() => onAuthorPhotoChange('')} sx={{ position: 'absolute', top: -8, right: -8, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', p: 0.25, '&:hover': { bgcolor: 'error.light', color: 'error.contrastText' } }}>
-                                <CloseIcon sx={{ fontSize: 12 }} />
-                            </IconButton>
-                        </Box>
-                    ) : (
-                        <Button size="small" startIcon={<AddPhotoAlternateIcon />} onClick={() => photoInputRef.current?.click()}>Upload</Button>
-                    )}
-                </Box>
-                <Box>
-                    <Typography variant="caption" display="block" sx={{ mb: 0.5, color: 'text.secondary' }}>Cover Image</Typography>
-                    <input type="file" accept=".png,.jpg,.jpeg" ref={coverInputRef} style={{ display: 'none' }} onChange={e => handleUpload(e, onCoverImageChange)} />
-                    {coverImage ? (
-                        <Box sx={{ position: 'relative', display: 'inline-block' }}>
-                            <img src={coverImage} alt="cover" style={{ width: 64, height: 64, objectFit: 'cover', borderRadius: 4, display: 'block' }} />
-                            <IconButton size="small" onClick={() => onCoverImageChange('')} sx={{ position: 'absolute', top: -8, right: -8, bgcolor: 'background.paper', border: '1px solid', borderColor: 'divider', p: 0.25, '&:hover': { bgcolor: 'error.light', color: 'error.contrastText' } }}>
-                                <CloseIcon sx={{ fontSize: 12 }} />
-                            </IconButton>
-                        </Box>
-                    ) : (
-                        <Button size="small" startIcon={<AddPhotoAlternateIcon />} onClick={() => coverInputRef.current?.click()}>Upload</Button>
-                    )}
-                </Box>
-            </Stack>
+            {content}
         </Drawer>
     );
 }

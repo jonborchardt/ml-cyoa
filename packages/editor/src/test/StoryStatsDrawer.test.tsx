@@ -28,8 +28,8 @@ describe('computeStoryStats', () => {
     it('calculates total word count across all scenes', () => {
         const story = makeStory({
             scenes: [
-                makeScene({ id: 'scene1', nodes: [makePassageNode({ id: 'p1', data: { label: 'A', content: 'One two three.' } })] }),
-                makeScene({ id: 'scene2', nodes: [makePassageNode({ id: 'p2', data: { label: 'B', content: 'Four five.' } })] }),
+                makeScene({ id: 'scene1', nodes: [makePassageNode({ id: 'p1', data: { label: 'A', content: 'One two three.' } })], edges: [] }),
+                makeScene({ id: 'scene2', nodes: [makePassageNode({ id: 'p2', data: { label: 'B', content: 'Four five.' } })], edges: [] }),
             ],
             sceneOrder: ['scene1', 'scene2'],
         });
@@ -38,7 +38,7 @@ describe('computeStoryStats', () => {
 
     it('returns 0 words for a story with no content', () => {
         const story = makeStory({
-            scenes: [makeScene({ id: 'startup', nodes: [makeStartNode(), makeEndingNode()] })],
+            scenes: [makeScene({ id: 'startup', nodes: [makeStartNode(), makeEndingNode()], edges: [] })],
         });
         expect(computeStoryStats(story).totalWords).toBe(0);
     });
