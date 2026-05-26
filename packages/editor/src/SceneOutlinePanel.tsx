@@ -1,4 +1,4 @@
-﻿import { Box, Divider, IconButton, List, ListItem, ListItemButton, ListItemText, Paper, Tooltip, Typography } from '@mui/material';
+﻿import { Box, Divider, IconButton, List, ListItem, ListItemButton, ListItemText, Tooltip, Typography } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import LabelIcon from '@mui/icons-material/Label';
@@ -95,19 +95,7 @@ export function SceneOutlinePanel({ nodes, edges, onFocusNode, onClose }: Props)
     const items = buildOutline(nodes, edges);
 
     return (
-        <Paper
-            elevation={4}
-            sx={{
-                position: 'absolute',
-                top: 8,
-                left: 8,
-                zIndex: 10,
-                width: 220,
-                maxHeight: 'calc(100% - 16px)',
-                display: 'flex',
-                flexDirection: 'column',
-                overflow: 'hidden',
-            }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', px: 1.5, py: 0.75, borderBottom: 1, borderColor: 'divider', flexShrink: 0 }}>
                 <Typography variant="subtitle2" sx={{ flex: 1, fontSize: 12 }}>Scene Outline</Typography>
                 <Tooltip title="Close">
@@ -142,6 +130,6 @@ export function SceneOutlinePanel({ nodes, edges, onFocusNode, onClose }: Props)
                     ))}
                 </List>
             )}
-        </Paper>
+        </Box>
     );
 }

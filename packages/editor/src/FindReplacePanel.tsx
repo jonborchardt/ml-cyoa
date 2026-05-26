@@ -79,7 +79,7 @@ export function FindReplacePanel({ story, onSelectNode, onReplaceAll, onClose }:
     };
 
     return (
-        <Box sx={{ borderBottom: 1, borderColor: 'divider', bgcolor: 'background.paper', p: 1, flexShrink: 0 }}>
+        <Box sx={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden', p: 1.5 }}>
             <Stack direction="row" spacing={1} alignItems="center" sx={{ mb: 0.5 }}>
                 <TextField
                     label="Search"
@@ -132,7 +132,7 @@ export function FindReplacePanel({ story, onSelectNode, onReplaceAll, onClose }:
             )}
 
             {results.length > 0 && (
-                <List dense disablePadding sx={{ maxHeight: 200, overflowY: 'auto', mt: 0.5 }}>
+                <List dense disablePadding sx={{ flex: 1, overflowY: 'auto', mt: 0.5 }}>
                     {results.map((r, i) => (
                         <ListItem key={i} disablePadding>
                             <ListItemButton onClick={() => onSelectNode?.(r.sceneId, r.nodeId)} sx={{ py: 0.25, px: 1 }}>

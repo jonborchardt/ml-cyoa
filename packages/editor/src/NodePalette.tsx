@@ -1,5 +1,5 @@
 import {
-    Box, Button, Popover, Stack, Typography,
+    Box, Button, Drawer, Stack, Typography,
 } from '@mui/material';
 import type { NodeType } from './types';
 
@@ -29,48 +29,42 @@ const PALETTE: PaletteEntry[] = [
 ];
 
 interface Props {
-    anchorEl: HTMLElement | null;
+    open: boolean;
     onClose: () => void;
     onSelect: (type: NodeType) => void;
 }
 
-export function NodePalette({ anchorEl, onClose, onSelect }: Props) {
+export function NodePalette({ open, onClose, onSelect }: Props) {
     return (
-        <Popover
-            open={!!anchorEl}
-            anchorEl={anchorEl}
-            onClose={onClose}
-            anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
-            <Box sx={{ p: 1.5, width: 300 }}>
-                <Typography variant="subtitle2" sx={{ mb: 1, color: 'text.secondary' }}>
-                    Add a node
-                </Typography>
-                <Stack spacing={0.5}>
-                    {PALETTE.map(entry => (
-                        <Button
-                            key={entry.type}
-                            fullWidth
-                            onClick={() => { onSelect(entry.type); onClose(); }}
-                            sx={{
-                                justifyContent: 'flex-start',
-                                textTransform: 'none',
-                                px: 1.5,
-                                py: 0.75,
-                                borderLeft: `3px solid ${entry.color}`,
-                                borderRadius: '0 4px 4px 0',
-                                '&:hover': { bgcolor: 'action.hover' },
-                            }}>
-                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, width: '100%' }}>
-                                <span style={{ fontSize: 18, width: 24, textAlign: 'center', color: entry.color }}>{entry.icon}</span>
-                                <Box sx={{ textAlign: 'left' }}>
-                                    <Typography variant="body2" fontWeight={600}>{entry.label}</Typography>
-                                    <Typography variant="caption" color="text.secondary">{entry.description}</Typography>
-                                </Box>
+        <Drawer anchor="left" open={open} onClose={onClose} PaperProps={{ sx: { width: 300, p: 1.5 } }}>
+            <Typography variant="subtitle2" sx={{ mb: 1, color: 'text.secondary' }}>
+                Add a node
+            </Typography>
+            <Stack spacing={0.5}>
+                {PALETTE.map(entry => (
+                    <Button
+                        key={entry.type}
+                        fullWidth
+                        onClick={() => { onSelect(entry.type); onClose(); }}
+                        sx={{
+                            justifyContent: 'flex-start',
+                            textTransform: 'none',
+                            px: 1.5,
+                            py: 0.75,
+                            borderLeft: `3px solid ${entry.color}`,
+                            borderRadius: '0 4px 4px 0',
+                            '&:hover': { bgcolor: 'action.hover' },
+                        }}>
+                        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, width: '100%' }}>
+                            <span style={{ fontSize: 18, width: 24, textAlign: 'center', color: entry.color }}>{entry.icon}</span>
+                            <Box sx={{ textAlign: 'left' }}>
+                                <Typography variant="body2" fontWeight={600}>{entry.label}</Typography>
+                                <Typography variant="caption" color="text.secondary">{entry.description}</Typography>
                             </Box>
-                        </Button>
-                    ))}
-                </Stack>
-            </Box>
-        </Popover>
+                        </Box>
+                    </Button>
+                ))}
+            </Stack>
+        </Drawer>
     );
 }

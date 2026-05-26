@@ -568,7 +568,12 @@ function parseLabelless(lines: string[]): ParseResult {
     const startId = nextId();
     const nodeId = nextId();
     const trimmed = lines.map(l => l.trim()).filter(Boolean);
-    const prose = trimmed.filter(l => !l.startsWith('*')).join('\n');
+    const headerCmds = new Set(['title', 'author', 'scene_list', 'create', 'create_array',
+        'temp', 'temp_array', 'stat_chart', 'achievement', 'ifid']);
+    const prose = trimmed
+        .filter(l => !l.startsWith('*') || !headerCmds.has(l.slice(1).split(/\s+/)[0]))
+        .filter(l => !l.startsWith('*'))
+        .join('\n');
     const hasFinish = trimmed.some(l => /^\*(finish|ending|end_game)\b/.test(l));
 
     const nodes: Node<NodeData>[] = [

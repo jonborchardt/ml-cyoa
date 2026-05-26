@@ -2,7 +2,7 @@
 
 **Middle Level Choose Your Own Adventure.** A small collection of [ChoiceScript](https://www.choiceofgames.com/make-your-own-games/choicescript-intro/) games rendered as a Progressive Web App — plus a full in-browser story editor so students can write and submit their own.
 
-Built with Vite, TypeScript, React, MUI, and the official ChoiceScript engine (vendored into [src/apps/publishing_party/public/choicescript/](src/apps/publishing_party/public/choicescript/)).
+Built with Vite, TypeScript, React, MUI, and the official ChoiceScript engine (vendored into [apps/publishing_party/public/choicescript/](apps/publishing_party/public/choicescript/)).
 
 ## Getting started
 
@@ -33,8 +33,8 @@ All scripts run from the workspace root and delegate to the appropriate package.
 This is a **pnpm workspace monorepo** with two packages:
 
 ```
-src/packages/editor/          — @ml-cyoa/editor  (story editor library)
-src/apps/publishing_party/    — @ml-cyoa/publishing-party  (the website)
+packages/editor/          — @ml-cyoa/editor  (story editor library)
+apps/publishing_party/    — @ml-cyoa/publishing-party  (the website)
 ```
 
 To work on a package directly:
@@ -77,8 +77,8 @@ The home page has a **My Stories** section where anyone can write their own CYOA
 
 ## Adding a curated game
 
-1. Create `src/apps/publishing_party/src/games/<your-game-id>/startup.txt` (and any other scene files). Optionally add a square cover image.
-2. Register it in [src/apps/publishing_party/src/games/index.ts](src/apps/publishing_party/src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
+1. Create `apps/publishing_party/src/games/<your-game-id>/startup.txt` (and any other scene files). Optionally add a square cover image.
+2. Register it in [apps/publishing_party/src/games/index.ts](apps/publishing_party/src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
     ```ts
     {
         id: 'my-game',
@@ -95,11 +95,11 @@ The home page has a **My Stories** section where anyone can write their own CYOA
     ```
 3. The game becomes available at `/<base>/<your-game-id>` and appears on the home page, grouped by year.
 
-Scene files use the [ChoiceScript syntax](https://choicescriptdev.fandom.com/wiki/ChoiceScript_%E2%80%90_Wiki). The official engine in [src/apps/publishing_party/public/choicescript/](src/apps/publishing_party/public/choicescript/) interprets them, so all engine features (`*choice`, `*if`, `*set`, `*goto`, stats, save/load, etc.) work.
+Scene files use the [ChoiceScript syntax](https://choicescriptdev.fandom.com/wiki/ChoiceScript_%E2%80%90_Wiki). The official engine in [apps/publishing_party/public/choicescript/](apps/publishing_party/public/choicescript/) interprets them, so all engine features (`*choice`, `*if`, `*set`, `*goto`, stats, save/load, etc.) work.
 
 ## Deploying to GitHub Pages
 
-The site is configured for `https://jonborchardt.github.io/ml-cyoa/` (set in [src/apps/publishing_party/vite.config.ts](src/apps/publishing_party/vite.config.ts)). Clean URLs without `#` work via the standard [`404.html` SPA redirect trick](https://github.com/rafgraph/spa-github-pages).
+The site is configured for `https://jonborchardt.github.io/ml-cyoa/` (set in [apps/publishing_party/vite.config.ts](apps/publishing_party/vite.config.ts)). Clean URLs without `#` work via the standard [`404.html` SPA redirect trick](https://github.com/rafgraph/spa-github-pages).
 
 ```bash
 pnpm deploy
@@ -109,7 +109,7 @@ This builds the site and publishes `dist/` to the `gh-pages` branch using the [`
 
 ## PWA
 
-The app ships a [manifest](src/apps/publishing_party/public/manifest.webmanifest) and a [service worker](src/apps/publishing_party/public/sw.js) that precaches the app shell and engine, so it can launch full-screen from the home screen and continue working offline after the first visit. Bump `CACHE_VERSION` in `sw.js` when you ship changes that should invalidate the precache.
+The app ships a [manifest](apps/publishing_party/public/manifest.webmanifest) and a [service worker](apps/publishing_party/public/sw.js) that precaches the app shell and engine, so it can launch full-screen from the home screen and continue working offline after the first visit. Bump `CACHE_VERSION` in `sw.js` when you ship changes that should invalidate the precache.
 
 ## Stack
 

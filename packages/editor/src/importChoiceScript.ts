@@ -12,6 +12,17 @@ import type { MyStory, SceneDef } from './myStoryStore';
 import { migrateStory } from './myStoryStore';
 import type { VariableDef, Achievement, StatEntry } from './types';
 
+// ─── Startup-header strip ──────────────────────────────────────────────────
+
+function stripStartupHeader(text: string): string {
+    let result = text.replace(/^\*(?:title|author|ifid)\s+[^\n]*\n?/gm, '');
+    result = result.replace(/^\*scene_list[^\n]*\n(?:[ \t]+\S[^\n]*\n?)*/m, '');
+    result = result.replace(/^\*(?:create|create_array|temp|temp_array)\s+[^\n]*\n?/gm, '');
+    result = result.replace(/^\*stat_chart[^\n]*\n(?:[ \t]+\S[^\n]*\n?)*/m, '');
+    result = result.replace(/^\*achievement\s+[^\n]*\n(?:[ \t]+\S[^\n]*\n?)*/gm, '');
+    return result;
+}
+
 // ─── Startup-header extractors ─────────────────────────────────────────────
 
 function extractTitle(text: string): string {
@@ -163,7 +174,8 @@ export function importFromChoiceScript(files: Map<string, string>): MyStory {
         : fileIds;
 
     function parseSceneFile(id: string): SceneDef {
-        const text = files.get(id) ?? '';
+        const raw = files.get(id) ?? '';
+        const text = id === 'startup' ? stripStartupHeader(raw) : raw;
         const result = parseScene(text);
         const globalReuseMode = /^\*hide_reuse\b/m.test(text) ? 'hide'
             : /^\*disable_reuse\b/m.test(text) ? 'disable'
@@ -222,11 +234,14 @@ export async function importFromZip(bytes: Uint8Array): Promise<MyStory> {
         if (path.endsWith('.txt')) {
             const sceneId = path.replace(/\.txt$/, '').replace(/^.*\//, '');
             files.set(sceneId, strFromU8(data));
-        } else if (/^images\//i.test(path)) {
-            const filename = path.replace(/^images\//i, '');
-            const ext = (filename.split('.').pop() ?? 'jpg').toLowerCase();
-            const mime = ext === 'png' ? 'image/png' : 'image/jpeg';
-            images[filename] = `data:${mime};base64,${uint8ToBase64(data)}`;
+        } else {
+            const imgMatch = path.match(/(?:^|[/\\])images[/\\](.+)$/i);
+            if (imgMatch) {
+                const filename = imgMatch[1];
+                const ext = (filename.split('.').pop() ?? 'jpg').toLowerCase();
+                const mime = ext === 'png' ? 'image/png' : 'image/jpeg';
+                images[filename] = `data:${mime};base64,${uint8ToBase64(data)}`;
+            }
         }
     }
 

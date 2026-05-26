@@ -120,7 +120,7 @@ Routes: `/` → `HomePage`, `/:gameId` → `GameShell` (Story tab), `/:gameId/fl
 
 ## Cross-package imports
 
-The app's `vite.config.ts` aliases `@ml-cyoa/editor` directly to `src/packages/editor/src/index.ts` so no pre-build of the editor is needed during `pnpm dev` or `pnpm build`. All imports from the app into the editor use `@ml-cyoa/editor`, never relative paths.
+The app's `vite.config.ts` aliases `@ml-cyoa/editor` directly to `packages/editor/src/index.ts` so no pre-build of the editor is needed during `pnpm dev` or `pnpm build`. All imports from the app into the editor use `@ml-cyoa/editor`, never relative paths.
 
 ## In-game navigation
 
@@ -171,7 +171,7 @@ Students can write their own CYOA stories in the browser. Stories are persisted 
 
 `migrateStory()` handles upgrades: v1 (flat nodes/edges) → v2 (scenes array) → v3 (subroutines on each scene).
 
-**Node types** (all in `src/packages/editor/src/nodes/` and `NodeType` in `types.ts`):
+**Node types** (all in `packages/editor/src/nodes/` and `NodeType` in `types.ts`):
 
 | Type | Color | ChoiceScript |
 |---|---|---|
@@ -222,12 +222,12 @@ Students can write their own CYOA stories in the browser. Stories are persisted 
 
 **Serialization** (`serializeStory.ts`): `serializeStory()` returns a `Map<sceneId, text>`. The startup scene always includes `*title`, `*author`, `*scene_list`, and all `*create` statements. Each scene is walked depth-first from its start node. Cycles use `*goto`. Subroutine bodies are appended after the main scene flow.
 
-**Submission** (`github.ts` in publishing_party): `fileGitHubIssue(title, body)` POSTs to the GitHub Issues API using `VITE_GITHUB_TOKEN`. Set this env var in `src/apps/publishing_party/.env.local` (never commit it). It is passed into the editor as the `onSubmitStory` prop on `MyStoryShell`.
+**Submission** (`github.ts` in publishing_party): `fileGitHubIssue(title, body)` POSTs to the GitHub Issues API using `VITE_GITHUB_TOKEN`. Set this env var in `apps/publishing_party/.env.local` (never commit it). It is passed into the editor as the `onSubmitStory` prop on `MyStoryShell`.
 
 ## Adding a curated game
 
-1. Drop scene files at `src/apps/publishing_party/src/games/<id>/startup.txt` (and any additional `<scene>.txt`). Optionally add a square cover image.
-2. Add an entry to `games` in [src/apps/publishing_party/src/games/index.ts](src/apps/publishing_party/src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
+1. Drop scene files at `apps/publishing_party/src/games/<id>/startup.txt` (and any additional `<scene>.txt`). Optionally add a square cover image.
+2. Add an entry to `games` in [apps/publishing_party/src/games/index.ts](apps/publishing_party/src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
     ```ts
     {
         id: 'my-game',
@@ -253,7 +253,7 @@ pnpm test:watch        # watch mode
 pnpm test:coverage     # coverage report
 ```
 
-Vitest with `@testing-library/react`. Pool is set to `forks` (not `threads`) to avoid globals injection races with `globals: true`. Test files live in `src/packages/editor/src/test/`.
+Vitest with `@testing-library/react`. Pool is set to `forks` (not `threads`) to avoid globals injection races with `globals: true`. Test files live in `packages/editor/src/test/`.
 
 ## GitHub Pages deploy
 
@@ -264,8 +264,8 @@ Vitest with `@testing-library/react`. Pool is set to `forks` (not `threads`) to 
 
 ## PWA
 
-- [src/apps/publishing_party/public/manifest.webmanifest](src/apps/publishing_party/public/manifest.webmanifest) declares `display: fullscreen`, an SVG icon, and theme color.
-- [src/apps/publishing_party/public/sw.js](src/apps/publishing_party/public/sw.js) precaches the app shell + engine files. Network-first for HTML, cache-first for everything else. Bump `CACHE_VERSION` to invalidate.
+- [apps/publishing_party/public/manifest.webmanifest](apps/publishing_party/public/manifest.webmanifest) declares `display: fullscreen`, an SVG icon, and theme color.
+- [apps/publishing_party/public/sw.js](apps/publishing_party/public/sw.js) precaches the app shell + engine files. Network-first for HTML, cache-first for everything else. Bump `CACHE_VERSION` to invalidate.
 - The SW does **not** call `skipWaiting()` — activates on next navigation so active game sessions are never interrupted.
 - The SW is registered from `src/main.tsx` only in production builds.
 
