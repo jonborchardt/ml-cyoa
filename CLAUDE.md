@@ -1,9 +1,10 @@
 # ml-cyoa
 
-**Middle Level Choose Your Own Adventure.** A SPA + PWA hosting a small collection of [ChoiceScript](https://www.choiceofgames.com/make-your-own-games/choicescript-intro/) games. Built with Vite, TypeScript, React, MUI, and the official ChoiceScript engine.
+**Middle Level Choose Your Own Adventure.** A pnpm workspace monorepo hosting a small collection of [ChoiceScript](https://www.choiceofgames.com/make-your-own-games/choicescript-intro/) games as a SPA + PWA, plus a full in-browser story editor. Built with Vite, TypeScript, React, MUI, and the official ChoiceScript engine.
 
 ## Stack
 
+- **pnpm workspaces** — two packages: `@ml-cyoa/editor` and `@ml-cyoa/publishing-party`
 - **Vite** (v7) — build tool and dev server. `base` is `/ml-cyoa/` for GitHub Pages.
 - **TypeScript** (strict mode)
 - **React** 18
@@ -12,8 +13,8 @@
 - **React Flow** (`@xyflow/react`) — branching diagrams (read-only for curated games, editable for My Stories)
 - **Monaco Editor** (`@monaco-editor/react`) — code/split editor mode in My Stories
 - **fflate** — ZIP export of ChoiceScript files
-- **ChoiceScript engine** — vendored under [public/choicescript/](public/choicescript/) (BSD-2). NOT installed via npm; copied from [dfabulich/choicescript](https://github.com/dfabulich/choicescript) `web/`.
-- **Vitest** + `@testing-library/react` — unit/integration tests (pool: `forks`)
+- **ChoiceScript engine** — vendored under [apps/publishing_party/public/choicescript/](apps/publishing_party/public/choicescript/) (BSD-2). NOT installed via npm; copied from [dfabulich/choicescript](https://github.com/dfabulich/choicescript) `web/`.
+- **Vitest** + `@testing-library/react` — unit/integration tests (pool: `forks`), live in `@ml-cyoa/editor`
 - **gh-pages** — for deploys to the `gh-pages` branch.
 
 Varnish is intentionally NOT used.
@@ -21,104 +22,116 @@ Varnish is intentionally NOT used.
 ## Getting started
 
 ```bash
-npm install
-npm run dev      # http://localhost:5173/ml-cyoa/
-npm run build    # type-check + bundle
-npm run preview  # serve the production build locally
-npm run lint
-npm run lint:fix
-npm run test     # run tests once
-npm run test:watch
-npm run deploy   # build and publish dist/ to the gh-pages branch
+pnpm install
+pnpm dev         # http://localhost:5173/ml-cyoa/
+pnpm build       # build editor lib, then publishing_party app
+pnpm preview     # serve the production build locally
+pnpm lint
+pnpm test        # run tests once (editor package)
+pnpm test:watch
+pnpm deploy      # build and publish dist/ to the gh-pages branch
 ```
 
-## Project structure
+To work on a specific package:
+
+```bash
+pnpm --filter editor test:watch
+pnpm --filter publishing-party dev
+```
+
+## Workspace structure
 
 ```
-public/
-  choicescript/        — vendored ChoiceScript engine + host.html
-  manifest.webmanifest — PWA manifest
-  sw.js                — service worker (precache + offline)
-  404.html             — SPA-redirect shim for GitHub Pages
-  icon.svg             — app icon
-src/
-  main.tsx             — entry point; registers the service worker
-  App.tsx              — MUI ThemeProvider + BrowserRouter + routes
-  Layout.tsx           — thin flex-column shell wrapping <Outlet />
-  HomePage.tsx         — year-grouped card grid + My Stories section
-  GameShell.tsx        — resolves :gameId; owns tab state and lazy-mounts Story/Flow/Authors panels
-  GameTabHeader.tsx    — shared tab header (← Home · Story | Flow | Authors tabs)
-  CoverArt.tsx         — cover image with fallback icon
-  ChoiceScriptGame.tsx — mounts an iframe pointing at /choicescript/host.html and posts the game payload
-  FlowPanel.tsx        — read-only React Flow branching diagram (curated games, Flow tab)
-  AuthorsPanel.tsx     — alternating image/bio author grid (curated games, Authors tab)
-  parseGameFlow.ts     — parses ChoiceScript scenes into React Flow nodes + edges with tree layout
-  imageUtils.ts        — compressImage() helper (canvas resize + JPEG re-encode)
-  github.ts            — fileGitHubIssue() — posts a GitHub issue via VITE_GITHUB_TOKEN
-  types.ts             — shared TypeScript types (NodeType, VariableDef, StatEntry, Achievement, …)
-  myStoryStore.ts      — localStorage CRUD for MyStory records; migrateStory() handles v1→v3 upgrades
-  serializeStory.ts    — serializeStory(): MyStory → Map<sceneId, ChoiceScript text>
-  serializeFlow.ts     — legacy single-scene serializer (used by validateStory)
-  validateFlow.ts      — validateStory(): returns { errors, warnings, infos }
-  parseChoiceScript.ts — parseScene(text): ChoiceScript text → {nodes, edges, unsupportedSyntax}
-  importChoiceScript.ts — importChoiceScript(): map of scene text files → MyStory
-  exportStory.ts       — downloadZip() and downloadJson() — ZIP of .txt + JSON backup
-  MyStoryShell.tsx     — resolves :storyId; owns tab state and story sync for My Stories
-  MyStoryFlowPanel.tsx — main editor: graph canvas, toolbar, scene tabs, all panels
-  MyStoryAuthorsPanel.tsx — author preview panel for My Stories
-  MonacoEditor.tsx     — lazy-loaded Monaco wrapper with ChoiceScript syntax highlighting
-  NodePalette.tsx      — popover listing all addable node types
-  SceneTabBar.tsx      — tab strip for switching between scenes/chapters
-  NodeEditDialog.tsx   — prose + type editor for passage/ending/raw_code nodes
-  EdgeEditDialog.tsx   — choice-text editor for edges
-  ConditionEditDialog.tsx — *if / *elseif / *else editor
-  ActionEditDialog.tsx    — *set / *rand / *award_achievement action list editor
-  InputNodeEditDialog.tsx — *input_text / *input_number editor
-  SceneJumpEditDialog.tsx — *goto_scene / *gosub_scene editor
-  GosubCallEditDialog.tsx — *gosub editor (pick subroutine, pass params)
-  RawCodeEditDialog.tsx   — free-text ChoiceScript code block editor
-  RandomBranchEditDialog.tsx — random branch weight/label editor
-  VariableManagerPanel.tsx   — side panel to define global/temp variables
-  StatsDesigner.tsx       — side panel to design the stats screen (*stat_chart)
-  AchievementsDesigner.tsx — side panel to define achievements
-  SubroutineGroupManager.tsx — side panel to manage subroutines within a scene
-  ImportDialog.tsx        — import ChoiceScript ZIP or JSON backup
-  ExportMenu.tsx          — export-as-ZIP / export-as-JSON menu
-  FindReplacePanel.tsx    — find + replace across all scenes and edges
-  StoryStatsDrawer.tsx    — word count, node count, longest path stats drawer
-  KeyboardShortcutsHelp.tsx — keyboard shortcuts reference dialog
-  nodes/
-    ConditionNode.tsx      — *if / *elseif / *else branch node
-    ActionNode.tsx         — *set / *rand / award action node
-    FakeChoiceNode.tsx     — *fake_choice cosmetic choice node
-    InputNode.tsx          — *input_text / *input_number node
-    RandomBranchNode.tsx   — random branch node
-    PageBreakNode.tsx      — *page_break node
-    SceneJumpNode.tsx      — *goto_scene / *gosub_scene node
-    SceneLabelNode.tsx     — *label node (jump target within a scene)
-    CheckAchievementsNode.tsx — *check_achievements node
-    GosubCallNode.tsx      — *gosub subroutine-call node
-    SubroutineEntryNode.tsx — subroutine start node
-    SubroutineReturnNode.tsx — *return node
-    RawCodeNode.tsx        — verbatim ChoiceScript code passthrough node
-    CommentNode.tsx        — sticky-note annotation (not serialized)
-  games/
-    index.ts           — game registry (id, title, authors, year, sceneList, scenes, coverImage?)
-    <game-id>/*.txt    — ChoiceScript scene files (imported via Vite ?raw)
-    <game-id>/*.png    — optional cover/author images (imported as asset URLs)
+ml-cyoa/                              ← workspace root
+├── package.json                      ← delegates all scripts to packages
+├── pnpm-workspace.yaml               ← ["packages/*", "apps/*"]
+├── tsconfig.base.json                ← shared compiler options
+├── eslint.config.js                  ← shared ESLint flat config
+├── packages/
+│   └── editor/                       ← @ml-cyoa/editor
+│       ├── package.json
+│       ├── tsconfig.json
+│       ├── vite.config.ts            ← library-mode build + vitest config
+│       └── src/
+│           ├── index.ts              ← public API barrel
+│           ├── layout.ts             ← NodeData, NODE_W/H, applyTreeLayout
+│           ├── types.ts              ← shared types (NodeType, VariableDef, Game, …)
+│           ├── myStoryStore.ts
+│           ├── useUndoableState.ts
+│           ├── parseChoiceScript.ts
+│           ├── importChoiceScript.ts
+│           ├── serializeStory.ts
+│           ├── serializeFlow.ts
+│           ├── validateFlow.ts
+│           ├── exportStory.ts
+│           ├── imageUtils.ts
+│           ├── choicescriptLanguage.ts
+│           ├── MonacoEditor.tsx
+│           ├── GameTabHeader.tsx     ← shared nav header (used by both shells)
+│           ├── MyStoryShell.tsx
+│           ├── MyStoryFlowPanel.tsx
+│           ├── MyStoryAuthorsPanel.tsx
+│           ├── SceneOutlinePanel.tsx
+│           ├── … (all editor dialogs, panels, menus)
+│           ├── nodes/                ← React Flow node renderers
+│           └── test/                 ← setup, fixtures, all *.test.* files
+└── apps/
+    └── publishing_party/             ← @ml-cyoa/publishing-party
+        ├── package.json
+        ├── tsconfig.json
+        ├── vite.config.ts            ← app mode; base: '/ml-cyoa/'; alias @ml-cyoa/editor → editor src
+        ├── index.html
+        ├── public/
+        │   ├── choicescript/         ← vendored engine (unchanged)
+        │   ├── manifest.webmanifest
+        │   ├── sw.js
+        │   ├── 404.html
+        │   └── icon.svg
+        └── src/
+            ├── main.tsx
+            ├── App.tsx               ← wires MyStoryShell props (onSubmitStory, renderGamePreview)
+            ├── Layout.tsx
+            ├── HomePage.tsx
+            ├── GameShell.tsx
+            ├── ChoiceScriptGame.tsx
+            ├── CoverArt.tsx
+            ├── AuthorsPanel.tsx
+            ├── FlowPanel.tsx         ← read-only curated-game flow
+            ├── parseGameFlow.ts      ← curated-game parser (imports layout constants from editor)
+            ├── github.ts             ← fileGitHubIssue() via VITE_GITHUB_TOKEN
+            ├── vite-env.d.ts
+            └── games/
+                ├── index.ts          ← game registry; re-exports Game/Author from @ml-cyoa/editor
+                └── <game-id>/        ← *.txt scenes + cover/author images
 ```
 
 Routes: `/` → `HomePage`, `/:gameId` → `GameShell` (Story tab), `/:gameId/flow` → `GameShell` (Flow tab), `/:gameId/authors` → `GameShell` (Authors tab). `/my/:storyId` → `MyStoryShell` (Story tab), `/my/:storyId/flow` → `MyStoryShell` (Flow/Editor tab), `/my/:storyId/authors` → `MyStoryShell` (Authors tab).
 
+## Package boundaries
+
+`@ml-cyoa/editor` is a React + MUI component library. It has **no** dependency on the app — no `github.ts`, no `ChoiceScriptGame`, no curated game registry. Two props break the circular dependency:
+
+- **`onSubmitStory?: (title, body) => Promise<void>`** — passed from `App.tsx` as `fileGitHubIssue`. When undefined, the Submit button is hidden.
+- **`renderGamePreview?: RenderGamePreview`** — passed from `App.tsx` as a closure over `ChoiceScriptGame`. Used for the Story tab in `MyStoryShell` and the split-pane preview in `MyStoryFlowPanel`.
+
+`GameTabHeader` lives in the editor (not the app) because `MyStoryShell` renders it; `GameShell` imports it from `@ml-cyoa/editor`.
+
+`Game`, `Author`, `GameScene` types are defined in the editor's `types.ts` and re-exported by the app's `games/index.ts`.
+
+## Cross-package imports
+
+The app's `vite.config.ts` aliases `@ml-cyoa/editor` directly to `src/packages/editor/src/index.ts` so no pre-build of the editor is needed during `pnpm dev` or `pnpm build`. All imports from the app into the editor use `@ml-cyoa/editor`, never relative paths.
+
 ## In-game navigation
 
-Every game sub-page shares `GameTabHeader`, which renders a **← Home** button, the game title, and three tabs — **Story**, **Flow**, **Authors** — that navigate between `/:gameId`, `/:gameId/flow`, and `/:gameId/authors`. The active tab is derived from `useLocation().pathname`.
+Every game sub-page shares `GameTabHeader` (in `@ml-cyoa/editor`), which renders a **← Home** button, the game title, and three tabs — **Story**, **Flow**, **Authors** — that navigate between `/:gameId`, `/:gameId/flow`, and `/:gameId/authors`. The active tab is derived from `useLocation().pathname`.
 
 ## Story flow diagram (curated games)
 
 The **Flow** tab at `/:gameId/flow` shows a read-only top-down tree diagram of the game's branching structure, built at runtime from the bundled scene text.
 
-- `parseGameFlow.ts` walks each scene's raw text, tracking indentation to find `*choice` blocks and `#option` lines. It builds a `TreeNode` tree, then lays it out with a leaf-counting algorithm (leaves spaced left-to-right, parents centered over their children). Nodes are typed `start | passage | ending`.
+- `parseGameFlow.ts` (publishing_party) walks each scene's raw text, tracking indentation to find `*choice` blocks and `#option` lines. It builds a `TreeNode` tree, laid out with a leaf-counting algorithm.
+- Layout constants and the `applyTreeLayout` Sugiyama-style DAG layout used by the story editor live in the editor's `layout.ts` and are imported by `parseGameFlow.ts` via `@ml-cyoa/editor`.
 - `FlowPanel.tsx` renders the tree with `@xyflow/react`. Custom node components style each type: green for Start, blue-bordered for passages, amber for endings. A custom `FlowEdge` component places choice-text labels at 78% of the way toward the target node so sibling labels spread apart.
 - ChoiceScript commands recognised: `*choice`, `#option`, `*finish`, `*ending`, `*end_game`. Commands `*page_break`, `*image`, `*title`, `*author`, `*comment` are skipped. `*goto` / `*goto_scene` / `*if` are not parsed — they appear as narrative text in the node label.
 
@@ -158,7 +171,7 @@ Students can write their own CYOA stories in the browser. Stories are persisted 
 
 `migrateStory()` handles upgrades: v1 (flat nodes/edges) → v2 (scenes array) → v3 (subroutines on each scene).
 
-**Node types** (all in `src/nodes/` and `NodeType` in `types.ts`):
+**Node types** (all in `src/packages/editor/src/nodes/` and `NodeType` in `types.ts`):
 
 | Type | Color | ChoiceScript |
 |---|---|---|
@@ -203,18 +216,18 @@ Students can write their own CYOA stories in the browser. Stories are persisted 
 
 **Import / Export**:
 - `ExportMenu` — ZIP of `.txt` scene files + `images/` folder, or full JSON backup.
-- `ImportDialog` — import a ChoiceScript ZIP or JSON backup; ZIP import uses `importChoiceScript()` which calls `parseScene()` to rebuild the graph.
+- `ImportDialog` — import a ChoiceScript ZIP or JSON backup; ZIP import uses `importFromChoiceScript()` which calls `parseScene()` to rebuild the graph.
 
 **Image handling**: All uploads go through `compressImage()` in `imageUtils.ts` — resized to max 1024 px at 0.75 JPEG quality. On GitHub submission, re-compressed to 300 px / 0.5 quality to fit within the 65 536-char issue body limit.
 
 **Serialization** (`serializeStory.ts`): `serializeStory()` returns a `Map<sceneId, text>`. The startup scene always includes `*title`, `*author`, `*scene_list`, and all `*create` statements. Each scene is walked depth-first from its start node. Cycles use `*goto`. Subroutine bodies are appended after the main scene flow.
 
-**Submission** (`github.ts`): `fileGitHubIssue(title, body)` POSTs to the GitHub Issues API using `VITE_GITHUB_TOKEN`. Set this env var in `.env.local` (never commit it).
+**Submission** (`github.ts` in publishing_party): `fileGitHubIssue(title, body)` POSTs to the GitHub Issues API using `VITE_GITHUB_TOKEN`. Set this env var in `src/apps/publishing_party/.env.local` (never commit it). It is passed into the editor as the `onSubmitStory` prop on `MyStoryShell`.
 
 ## Adding a curated game
 
-1. Drop scene files at `src/games/<id>/startup.txt` (and any additional `<scene>.txt`). Optionally add a square cover image.
-2. Add an entry to `games` in [src/games/index.ts](src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
+1. Drop scene files at `src/apps/publishing_party/src/games/<id>/startup.txt` (and any additional `<scene>.txt`). Optionally add a square cover image.
+2. Add an entry to `games` in [src/apps/publishing_party/src/games/index.ts](src/apps/publishing_party/src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
     ```ts
     {
         id: 'my-game',
@@ -235,39 +248,41 @@ The `sceneList` order is what ChoiceScript's `SceneNavigator` uses to determine 
 ## Tests
 
 ```bash
-npm run test           # run once
-npm run test:watch     # watch mode
-npm run test:coverage  # coverage report
+pnpm test              # run once
+pnpm test:watch        # watch mode
+pnpm test:coverage     # coverage report
 ```
 
-Vitest with `@testing-library/react`. Pool is set to `forks` (not `threads`) to avoid globals injection races with `globals: true`. Test files live alongside their subjects (e.g. `serializeStory.test.ts`, `FindReplacePanel.test.tsx`).
+Vitest with `@testing-library/react`. Pool is set to `forks` (not `threads`) to avoid globals injection races with `globals: true`. Test files live in `src/packages/editor/src/test/`.
 
 ## GitHub Pages deploy
 
-- `vite.config.ts` sets `base = '/ml-cyoa/'`. Change it if you fork to a different repo name.
+- `vite.config.ts` in publishing_party sets `base = '/ml-cyoa/'`. Change it if you fork to a different repo name.
 - `BrowserRouter` uses `basename = import.meta.env.BASE_URL` (trailing slash stripped).
 - `public/404.html` + a small decoder snippet in `index.html` implement the [spa-github-pages](https://github.com/rafgraph/spa-github-pages) trick so deep links survive a hard refresh.
-- `npm run deploy` runs `vite build` then `gh-pages -d dist -t true`.
+- `pnpm deploy` builds the app and publishes `dist/` to the `gh-pages` branch via `gh-pages -d dist -t true`.
 
 ## PWA
 
-- [public/manifest.webmanifest](public/manifest.webmanifest) declares `display: fullscreen`, an SVG icon, and theme color.
-- [public/sw.js](public/sw.js) precaches the app shell + engine files. Network-first for HTML, cache-first for everything else. Bump `CACHE_VERSION` to invalidate.
+- [src/apps/publishing_party/public/manifest.webmanifest](src/apps/publishing_party/public/manifest.webmanifest) declares `display: fullscreen`, an SVG icon, and theme color.
+- [src/apps/publishing_party/public/sw.js](src/apps/publishing_party/public/sw.js) precaches the app shell + engine files. Network-first for HTML, cache-first for everything else. Bump `CACHE_VERSION` to invalidate.
 - The SW does **not** call `skipWaiting()` — activates on next navigation so active game sessions are never interrupted.
 - The SW is registered from `src/main.tsx` only in production builds.
 
 ## Notable conventions / gotchas
 
-- **Don't import the ChoiceScript engine from `src/`.** It runs only inside the iframe at `/choicescript/host.html`.
+- **Don't import the ChoiceScript engine from the editor package.** It runs only inside the iframe at `/choicescript/host.html`.
 - **Don't mount ChoiceScript outside the iframe.** Its CSS and globals conflict with MUI.
+- **Don't add imports from publishing_party into the editor package.** The editor must stay a self-contained library. App concerns (github.ts, ChoiceScriptGame) are injected via props.
 - **Scene files** can be edited freely; they trigger a Vite rebuild via `?raw` and are not exposed as fetchable URLs in `dist/`.
 - **`BrowserRouter`** requires GitHub Pages to serve the SPA on unknown paths — that's why `public/404.html` exists.
 - **Monaco** is lazy-loaded via `React.lazy` — the graph path never loads it.
 - **Monaco provider registration** is guarded with a `registered` flag so it only runs once per page load.
+- **No pre-build needed** — the publishing_party vite config aliases `@ml-cyoa/editor` directly to the editor's `src/index.ts`, so `pnpm dev` and `pnpm build` work without running `pnpm --filter editor build` first.
 
 ## ESLint
 
-Flat config ([eslint.config.js](eslint.config.js)) using stock recommended rule sets only:
+Flat config ([eslint.config.js](eslint.config.js)) at the workspace root, discovered by both packages via ancestor lookup:
 
 - `@eslint/js` recommended
 - `typescript-eslint` recommended

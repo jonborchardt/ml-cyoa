@@ -2,30 +2,47 @@
 
 **Middle Level Choose Your Own Adventure.** A small collection of [ChoiceScript](https://www.choiceofgames.com/make-your-own-games/choicescript-intro/) games rendered as a Progressive Web App — plus a full in-browser story editor so students can write and submit their own.
 
-Built with Vite, TypeScript, React, MUI, and the official ChoiceScript engine (vendored into [public/choicescript/](public/choicescript/)).
+Built with Vite, TypeScript, React, MUI, and the official ChoiceScript engine (vendored into [src/apps/publishing_party/public/choicescript/](src/apps/publishing_party/public/choicescript/)).
 
 ## Getting started
 
 ```bash
-npm install
-npm run dev
+pnpm install
+pnpm dev
 ```
 
 Open [http://localhost:5173/ml-cyoa/](http://localhost:5173/ml-cyoa/).
 
 ## Scripts
 
-| Command                | Description                                      |
-| ---------------------- | ------------------------------------------------ |
-| `npm run dev`          | Start dev server                                 |
-| `npm run build`        | Type-check and bundle                            |
-| `npm run preview`      | Serve production build locally                   |
-| `npm run lint`         | Run ESLint                                       |
-| `npm run lint:fix`     | Run ESLint with auto-fix                         |
-| `npm run test`         | Run test suite once                              |
-| `npm run test:watch`   | Run tests in watch mode                          |
-| `npm run test:coverage`| Coverage report                                  |
-| `npm run deploy`       | Build and push `dist/` to the `gh-pages` branch  |
+All scripts run from the workspace root and delegate to the appropriate package.
+
+| Command                 | Description                                      |
+| ----------------------- | ------------------------------------------------ |
+| `pnpm dev`              | Start dev server (publishing_party)              |
+| `pnpm build`            | Build editor library then publishing_party app   |
+| `pnpm preview`          | Serve production build locally                   |
+| `pnpm lint`             | Run ESLint across all packages                   |
+| `pnpm test`             | Run test suite once (editor package)             |
+| `pnpm test:watch`       | Run tests in watch mode                          |
+| `pnpm test:coverage`    | Coverage report                                  |
+| `pnpm deploy`           | Build and push `dist/` to the `gh-pages` branch  |
+
+## Workspace structure
+
+This is a **pnpm workspace monorepo** with two packages:
+
+```
+src/packages/editor/          — @ml-cyoa/editor  (story editor library)
+src/apps/publishing_party/    — @ml-cyoa/publishing-party  (the website)
+```
+
+To work on a package directly:
+
+```bash
+pnpm --filter editor test:watch
+pnpm --filter publishing-party dev
+```
 
 ## Reading a game
 
@@ -60,8 +77,8 @@ The home page has a **My Stories** section where anyone can write their own CYOA
 
 ## Adding a curated game
 
-1. Create `src/games/<your-game-id>/startup.txt` (and any other scene files). Optionally add a square cover image.
-2. Register it in [src/games/index.ts](src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
+1. Create `src/apps/publishing_party/src/games/<your-game-id>/startup.txt` (and any other scene files). Optionally add a square cover image.
+2. Register it in [src/apps/publishing_party/src/games/index.ts](src/apps/publishing_party/src/games/index.ts) using the `authors()`, `startup()`, and `cover()` helpers:
     ```ts
     {
         id: 'my-game',
@@ -78,29 +95,30 @@ The home page has a **My Stories** section where anyone can write their own CYOA
     ```
 3. The game becomes available at `/<base>/<your-game-id>` and appears on the home page, grouped by year.
 
-Scene files use the [ChoiceScript syntax](https://choicescriptdev.fandom.com/wiki/ChoiceScript_%E2%80%90_Wiki). The official engine in [public/choicescript/](public/choicescript/) interprets them, so all engine features (`*choice`, `*if`, `*set`, `*goto`, stats, save/load, etc.) work.
+Scene files use the [ChoiceScript syntax](https://choicescriptdev.fandom.com/wiki/ChoiceScript_%E2%80%90_Wiki). The official engine in [src/apps/publishing_party/public/choicescript/](src/apps/publishing_party/public/choicescript/) interprets them, so all engine features (`*choice`, `*if`, `*set`, `*goto`, stats, save/load, etc.) work.
 
 ## Deploying to GitHub Pages
 
-The site is configured for `https://jonborchardt.github.io/ml-cyoa/` (set in [vite.config.ts](vite.config.ts)). Clean URLs without `#` work via the standard [`404.html` SPA redirect trick](https://github.com/rafgraph/spa-github-pages).
+The site is configured for `https://jonborchardt.github.io/ml-cyoa/` (set in [src/apps/publishing_party/vite.config.ts](src/apps/publishing_party/vite.config.ts)). Clean URLs without `#` work via the standard [`404.html` SPA redirect trick](https://github.com/rafgraph/spa-github-pages).
 
 ```bash
-npm run deploy
+pnpm deploy
 ```
 
 This builds the site and publishes `dist/` to the `gh-pages` branch using the [`gh-pages`](https://www.npmjs.com/package/gh-pages) package. Enable GitHub Pages in repo settings → Pages → branch `gh-pages` → folder `/ (root)`.
 
 ## PWA
 
-The app ships a [manifest](public/manifest.webmanifest) and a [service worker](public/sw.js) that precaches the app shell and engine, so it can launch full-screen from the home screen and continue working offline after the first visit. Bump `CACHE_VERSION` in `public/sw.js` when you ship changes that should invalidate the precache.
+The app ships a [manifest](src/apps/publishing_party/public/manifest.webmanifest) and a [service worker](src/apps/publishing_party/public/sw.js) that precaches the app shell and engine, so it can launch full-screen from the home screen and continue working offline after the first visit. Bump `CACHE_VERSION` in `sw.js` when you ship changes that should invalidate the precache.
 
 ## Stack
 
+- **pnpm workspaces** — monorepo with `@ml-cyoa/editor` and `@ml-cyoa/publishing-party`
 - **Vite** (v7), **TypeScript** (strict), **React** 18, **React Router** v7 (browser routing)
 - **MUI** v7 (`@mui/material`, `@mui/icons-material`, `@emotion/react`, `@emotion/styled`)
 - **React Flow** (`@xyflow/react`) — story branching diagrams (read-only for curated games, editable for My Stories)
 - **Monaco Editor** (`@monaco-editor/react`) — code/split editor mode; lazy-loaded
 - **fflate** — ZIP export of ChoiceScript files
 - **ChoiceScript** engine — vendored from [dfabulich/choicescript](https://github.com/dfabulich/choicescript), BSD-2 licensed
-- **Vitest** + `@testing-library/react` — unit and integration tests
+- **Vitest** + `@testing-library/react` — unit and integration tests (in `@ml-cyoa/editor`)
 - Service worker + web app manifest for installability and offline play
