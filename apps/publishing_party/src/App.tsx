@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Layout } from './Layout';
 import { GameShell } from './GameShell';
 import { HomePage } from './HomePage';
+import { MyStoriesPage } from './MyStoriesPage';
 import { MyStoryShell } from '@ml-cyoa/editor';
 import type { RenderGamePreview } from '@ml-cyoa/editor';
 import { ChoiceScriptGame } from './ChoiceScriptGame';
@@ -41,6 +42,7 @@ export function App() {
                 <Routes>
                     <Route path="/" element={<Layout />}>
                         <Route index element={<HomePage />} />
+                        <Route path="mystories" element={<MyStoriesPage />} />
                         <Route path=":gameId" element={<GameShell />}>
                             <Route index element={null} />
                             <Route path="flow" element={null} />

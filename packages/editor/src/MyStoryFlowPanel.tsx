@@ -17,12 +17,12 @@ import CloseIcon from '@mui/icons-material/Close';
 import CodeIcon from '@mui/icons-material/Code';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import SendIcon from '@mui/icons-material/Send';
 import HubIcon from '@mui/icons-material/Hub';
 import MenuIcon from '@mui/icons-material/Menu';
 import RedoIcon from '@mui/icons-material/Redo';
 import SearchIcon from '@mui/icons-material/Search';
 import UndoIcon from '@mui/icons-material/Undo';
-import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import { useNavigate } from 'react-router-dom';
 import { updateMyStory, type MyStory, type SceneDef, type SubroutineDef } from './myStoryStore';
 import { applyTreeLayout, NODE_W } from './layout';
@@ -1023,18 +1023,12 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                             <PlayArrowIcon fontSize="small" />
                         </IconButton>
                     </Tooltip>
-                    <Tooltip title="Scene outline">
-                        <IconButton size="small" onClick={() => setOutlineOpen(o => !o)} color={outlineOpen ? 'primary' : 'default'}>
-                            <FormatListBulletedIcon fontSize="small" />
-                        </IconButton>
-                    </Tooltip>
-
                     <Box sx={{ flex: 1 }} />
 
                     <ExportMenu story={liveStory} currentSceneId={activeSceneId} />
                     {onSubmitStory && (
-                        <Button size="small" startIcon={<GitHubIcon />} onClick={() => setSubmitOpen(true)} sx={{ whiteSpace: 'nowrap' }}>
-                            Submit to GitHub
+                        <Button size="small" startIcon={<SendIcon />} onClick={() => setSubmitOpen(true)} sx={{ whiteSpace: 'nowrap' }}>
+                            Submit
                         </Button>
                     )}
                     {saving === 'saving' && <Typography variant="caption" color="text.secondary" sx={{ ml: 1 }}>Saving…</Typography>}
@@ -1083,6 +1077,8 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                                 showMinimap={showMinimap}
                                 onToggleMinimap={() => setShowMinimap(o => !o)}
                                 onOpenKeyboardShortcuts={() => setShortcutsOpen(true)}
+                                outlineOpen={outlineOpen}
+                                onToggleOutline={() => setOutlineOpen(o => !o)}
                             />
                             <ReactFlow
                                 nodes={nodes}

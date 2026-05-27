@@ -54,10 +54,13 @@ function validateGraph(nodes: Node<NodeData>[], edges: Edge[]): Pick<ValidationR
     }
 
     for (const node of nodes) {
+        if (node.type === 'comment') continue;
         if (!reachable.has(node.id)) {
             warnings.push(issue('UNREACHABLE_NODE', `Story Part "${node.data.label}" is unreachable from start`, node.id));
         }
     }
+
+    const nodeTypeById = new Map(nodes.map(n => [n.id, n.type]));
 
     const nodeOutCount = new Map<string, number>();
     const edgesBySource = new Map<string, Edge[]>();
@@ -69,13 +72,17 @@ function validateGraph(nodes: Node<NodeData>[], edges: Edge[]): Pick<ValidationR
 
     const warnedEmptyLabel = new Set<string>();
     for (const edge of edges) {
+        const sourceType = nodeTypeById.get(edge.source);
+        if (sourceType === 'condition' || sourceType === 'random_branch') continue;
         if ((nodeOutCount.get(edge.source) ?? 0) > 1 && !edge.label && !warnedEmptyLabel.has(edge.source)) {
             warnings.push(issue('EMPTY_CHOICE_LABEL', 'A choice has no label — it will default to "Continue"'));
             warnedEmptyLabel.add(edge.source);
         }
     }
 
-    for (const [, sourceEdges] of edgesBySource) {
+    for (const [sourceId, sourceEdges] of edgesBySource) {
+        const sourceType = nodeTypeById.get(sourceId);
+        if (sourceType === 'condition' || sourceType === 'random_branch') continue;
         const seen = new Set<string>();
         const warned = new Set<string>();
         for (const edge of sourceEdges) {

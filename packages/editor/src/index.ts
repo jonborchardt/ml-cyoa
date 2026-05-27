@@ -25,6 +25,8 @@ export { downloadAsZip, downloadAsBackupJson, exportAsZip, exportAsBackupJson, g
 export { parseScene } from './parseChoiceScript';
 export { importFromChoiceScript, importFromBackupJson } from './importChoiceScript';
 export { applyTreeLayout, NODE_W, NODE_H } from './layout';
+export { computeStoryStats } from './StoryStatsDrawer';
+export type { StoryStats } from './StoryStatsDrawer';
 
 // Store
 export { getMyStory, listMyStories, saveMyStory, updateMyStory, deleteMyStory, migrateStory, createMyStory } from './myStoryStore';

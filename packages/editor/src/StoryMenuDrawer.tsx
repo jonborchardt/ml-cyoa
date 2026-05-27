@@ -5,6 +5,13 @@ import {
 } from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import DataArrayIcon from '@mui/icons-material/DataArray';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
+import AccountTreeOutlinedIcon from '@mui/icons-material/AccountTreeOutlined';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import QueryStatsIcon from '@mui/icons-material/QueryStats';
 import { StoryInfoDrawer } from './StoryInfoDrawer';
 import { VariableManagerPanel } from './VariableManagerPanel';
 import { StatsDrawer } from './StatsDrawer';
@@ -68,14 +75,14 @@ export function StoryMenuDrawer({
 }: StoryMenuDrawerProps) {
     return (
         <Drawer anchor="left" open={open} onClose={onClose} PaperProps={{ sx: { width: 380, overflowX: 'hidden' } }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', px: 2, py: 1.5, borderBottom: 1, borderColor: 'divider', flexShrink: 0 }}>
-                <Typography variant="subtitle1" sx={{ fontWeight: 600, flex: 1 }}>Story Menu</Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', px: 2, py: 1.5, borderBottom: 1, borderColor: 'divider', flexShrink: 0, justifyContent: 'flex-end' }}>
                 <IconButton size="small" onClick={onClose}><CloseIcon fontSize="small" /></IconButton>
             </Box>
 
             <Box sx={{ overflowY: 'auto', flex: 1 }}>
                 <Accordion disableGutters elevation={0} square sx={itemSx}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <InfoOutlinedIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} />
                         <Typography variant="body2">Story Info</Typography>
                     </AccordionSummary>
                     <AccordionDetails sx={{ p: 0, pl: 1 }}>
@@ -92,6 +99,7 @@ export function StoryMenuDrawer({
 
                 <Accordion disableGutters elevation={0} square sx={itemSx}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <DataArrayIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} />
                         <Typography variant="body2">Variables</Typography>
                         <CountChip count={variables.length} />
                     </AccordionSummary>
@@ -102,6 +110,7 @@ export function StoryMenuDrawer({
 
                 <Accordion disableGutters elevation={0} square sx={itemSx}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <BarChartIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} />
                         <Typography variant="body2">Stats</Typography>
                         <CountChip count={statChart.length} />
                     </AccordionSummary>
@@ -112,6 +121,7 @@ export function StoryMenuDrawer({
 
                 <Accordion disableGutters elevation={0} square sx={itemSx}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <EmojiEventsOutlinedIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} />
                         <Typography variant="body2">Achievements</Typography>
                         <CountChip count={achievements.length} />
                     </AccordionSummary>
@@ -122,6 +132,7 @@ export function StoryMenuDrawer({
 
                 <Accordion disableGutters elevation={0} square sx={itemSx}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <AccountTreeOutlinedIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} />
                         <Typography variant="body2">Subroutines</Typography>
                         <CountChip count={subroutines.length} />
                     </AccordionSummary>
@@ -138,6 +149,7 @@ export function StoryMenuDrawer({
 
                 <Accordion disableGutters elevation={0} square sx={itemSx}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <ArticleOutlinedIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} />
                         <Typography variant="body2">Scene</Typography>
                     </AccordionSummary>
                     <AccordionDetails>
@@ -159,6 +171,7 @@ export function StoryMenuDrawer({
 
                 <Accordion disableGutters elevation={0} square sx={itemSx}>
                     <AccordionSummary expandIcon={<ExpandMoreIcon />}>
+                        <QueryStatsIcon fontSize="small" sx={{ mr: 1, color: 'text.secondary' }} />
                         <Typography variant="body2">Story Statistics</Typography>
                     </AccordionSummary>
                     <AccordionDetails sx={{ p: 0 }}>

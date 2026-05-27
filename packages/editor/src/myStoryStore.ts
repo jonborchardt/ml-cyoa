@@ -249,7 +249,7 @@ function makeSeedStartup(): SceneDef {
             data: {} as EdgeData },
         { id: 'e-wel-brave',  source: 'passage-welcome', target: 'action-brave',
             label: 'Mingle with applicants',
-            data: { reuseMode: 'disable' } as EdgeData },
+            data: {} as EdgeData },
 
         // Both stat boosts rejoin the gosub
         { id: 'e-clever-gsb', source: 'action-clever', target: 'gosub-greet' },
@@ -385,7 +385,7 @@ function makeSeedTrial(): SceneDef {
             data: {} as EdgeData },
         { id: 'te-intro-study', source: 'trial-intro', target: 'trial-study',
             label: 'Study it carefully',
-            data: { condition: 'cleverness > 30', reuseMode: 'disable' } as EdgeData },
+            data: { condition: 'cleverness > 30' } as EdgeData },
 
         // Both approaches → score condition
         { id: 'te-rush-cond',  source: 'trial-rush',  target: 'trial-cond' },

@@ -79,7 +79,7 @@ export function MyStoryShell({ onSubmitStory, renderGamePreview }: MyStoryShellP
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-            <GameTabHeader game={gameAdapter} basePath={`/my/${story.id}`} />
+            <GameTabHeader game={gameAdapter} basePath={`/my/${story.id}`} homePath="/mystories" />
 
             <Box sx={{ flex: 1, minHeight: 0, flexDirection: 'column', display: tabValue === 0 ? 'flex' : 'none' }}>
                 {renderGamePreview

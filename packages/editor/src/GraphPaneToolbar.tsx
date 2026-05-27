@@ -3,8 +3,9 @@ import { Box, Button, IconButton, Menu, MenuItem, Tooltip, Typography } from '@m
 import AccountTreeIcon from '@mui/icons-material/AccountTree';
 import AddIcon from '@mui/icons-material/Add';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import HelpOutlineIcon from '@mui/icons-material/HelpOutline';
-import MapIcon from '@mui/icons-material/Map';
+import PictureInPictureIcon from '@mui/icons-material/PictureInPicture';
 
 interface GraphPaneToolbarProps {
     onAddNode: () => void;
@@ -14,11 +15,14 @@ interface GraphPaneToolbarProps {
     showMinimap: boolean;
     onToggleMinimap: () => void;
     onOpenKeyboardShortcuts: () => void;
+    outlineOpen: boolean;
+    onToggleOutline: () => void;
 }
 
 export function GraphPaneToolbar({
     onAddNode, onAutoLayout, onToggleLayoutDir,
     layoutDirection, showMinimap, onToggleMinimap, onOpenKeyboardShortcuts,
+    outlineOpen, onToggleOutline,
 }: GraphPaneToolbarProps) {
     const [layoutMenuAnchor, setLayoutMenuAnchor] = useState<HTMLElement | null>(null);
 
@@ -36,8 +40,8 @@ export function GraphPaneToolbar({
                 Add Node
             </Button>
             <Button size="small" startIcon={<AccountTreeIcon />} endIcon={<ExpandMoreIcon />}
-                    onClick={e => setLayoutMenuAnchor(e.currentTarget)}>
-                Layout
+                    onClick={e => setLayoutMenuAnchor(e.currentTarget)}
+                    sx={{ '& .MuiButton-startIcon': { mr: 0 }, '& .MuiButton-endIcon': { ml: 0 } }}>
             </Button>
             <Menu anchorEl={layoutMenuAnchor} open={Boolean(layoutMenuAnchor)}
                   onClose={() => setLayoutMenuAnchor(null)}>
@@ -50,7 +54,12 @@ export function GraphPaneToolbar({
             </Menu>
             <Tooltip title={showMinimap ? 'Hide minimap' : 'Show minimap'}>
                 <IconButton size="small" onClick={onToggleMinimap} color={showMinimap ? 'primary' : 'default'}>
-                    <MapIcon fontSize="small" />
+                    <PictureInPictureIcon fontSize="small" />
+                </IconButton>
+            </Tooltip>
+            <Tooltip title="Scene outline">
+                <IconButton size="small" onClick={onToggleOutline} color={outlineOpen ? 'primary' : 'default'}>
+                    <FormatListBulletedIcon fontSize="small" />
                 </IconButton>
             </Tooltip>
             <Tooltip title="Keyboard shortcuts (?)">

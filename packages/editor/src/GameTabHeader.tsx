@@ -6,9 +6,10 @@ import type { Game } from './types';
 interface Props {
     game: Game;
     basePath?: string;
+    homePath?: string;
 }
 
-export function GameTabHeader({ game, basePath }: Props) {
+export function GameTabHeader({ game, basePath, homePath = '/' }: Props) {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
@@ -29,7 +30,7 @@ export function GameTabHeader({ game, basePath }: Props) {
             }}>
             <Button
                 component={Link}
-                to="/"
+                to={homePath}
                 startIcon={<ArrowBackIcon />}
                 size="small"
                 sx={{ flexShrink: 0, mr: 1 }}>
