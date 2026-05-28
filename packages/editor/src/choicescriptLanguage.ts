@@ -185,7 +185,7 @@ export function getLabelCompletions(story: MyStory, sceneId: string): Array<{ la
 
 export function registerCompletionProvider(monaco: typeof Monaco, getStory: () => MyStory | null, getSceneId?: () => string) {
     return monaco.languages.registerCompletionItemProvider(CS_LANG_ID, {
-        triggerCharacters: ['*', '$', '@', ' '],
+        triggerCharacters: ['*', '$', '@'],
         provideCompletionItems(model, position) {
             const line = model.getLineContent(position.lineNumber);
             const beforeCursor = line.slice(0, position.column - 1);
