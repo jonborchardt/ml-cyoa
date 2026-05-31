@@ -1,0 +1,49 @@
+{
+  "name": "@ml-cyoa/editor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/editor.js",
+  "types": "./dist/index.d.ts",
+  "exports": { ".": { "import": "./dist/editor.js", "types": "./dist/index.d.ts" } },
+  "scripts": {
+    "build":      "tsc -p tsconfig.json && vite build",
+    "lint":       "eslint src",
+    "lint:fix":   "eslint src --fix",
+    "test":       "vitest run",
+    "test:watch": "vitest",
+    "test:coverage": "vitest run --coverage"
+  },
+  "peerDependencies": {
+    "@emotion/react":         "^11",
+    "@emotion/styled":        "^11",
+    "@monaco-editor/react":   "^4",
+    "@mui/icons-material":    "^7",
+    "@mui/material":          "^7",
+    "@xyflow/react":          "^12",
+    "react":                  "^18",
+    "react-dom":              "^18",
+    "react-router-dom":       "^7"
+  },
+  "dependencies": {
+    "fflate": "^0.8.3"
+  },
+  "devDependencies": {
+    "@eslint/js":                  "^9.39.4",
+    "@testing-library/jest-dom":   "^6.9.1",
+    "@testing-library/react":      "^16.3.2",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/react":                "^18.3.1",
+    "@types/react-dom":            "^18.3.1",
+    "@vitejs/plugin-react":        "^5.1.1",
+    "@vitest/coverage-v8":         "^4.1.7",
+    "eslint":                      "^9.39.4",
+    "eslint-plugin-react":         "^7.37.5",
+    "eslint-plugin-react-hooks":   "^7.1.1",
+    "jsdom":                       "^29.1.1",
+    "typescript":                  "^5.5.3",
+    "typescript-eslint":           "^8.59.3",
+    "vite":                        "^7.2.6",
+    "vitest":                      "^4.1.7"
+  }
+}

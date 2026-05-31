@@ -1,0 +1,10 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.tsbuildinfo",
+    "paths": {
+      "@ml-cyoa/editor": ["../../packages/editor/src/index.ts"]
+    }
+  },
+  "include": ["src", "../../packages/editor/src/index.ts"]
+}

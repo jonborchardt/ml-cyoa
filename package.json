@@ -1,39 +1,27 @@
 {
-    "name": "ml-cyoa",
-    "version": "0.1.0",
+    "name": "ml-cyoa-workspace",
     "private": true,
     "type": "module",
+    "packageManager": "pnpm@10.32.0",
     "scripts": {
-        "dev": "vite",
-        "build": "tsc -b && vite build",
-        "preview": "vite preview",
-        "lint": "eslint src",
-        "lint:fix": "eslint src --fix",
-        "deploy": "npm run build && gh-pages -d dist -t true"
-    },
-    "dependencies": {
-        "@emotion/react": "^11.11.3",
-        "@emotion/styled": "^11.11.0",
-        "@mui/icons-material": "^7.0.0",
-        "@mui/material": "^7.0.0",
-        "@xyflow/react": "^12.10.2",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
-        "react-router-dom": "^7.15.1"
+        "preinstall": "npx only-allow pnpm",
+        "dev":          "pnpm --filter publishing-party dev",
+        "build":        "pnpm --filter editor build && pnpm --filter publishing-party build",
+        "preview":      "pnpm --filter publishing-party preview",
+        "deploy":       "pnpm --filter publishing-party deploy",
+        "lint":         "pnpm -r lint",
+        "lint:fix":     "pnpm -r lint:fix",
+        "test":         "pnpm -r test",
+        "test:watch":   "pnpm --filter editor test:watch",
+        "test:coverage": "pnpm --filter editor test:coverage"
     },
     "devDependencies": {
-        "@eslint/js": "^9.39.4",
-        "@types/react": "^18.3.1",
-        "@types/react-dom": "^18.3.1",
-        "@vitejs/plugin-react": "^5.1.1",
-        "eslint": "^9.39.4",
-        "eslint-plugin-react": "^7.37.5",
+        "@eslint/js":               "^9.39.4",
+        "eslint-plugin-react":      "^7.37.5",
         "eslint-plugin-react-hooks": "^7.1.1",
-        "gh-pages": "^6.1.1",
-        "playwright": "^1.60.0",
-        "prettier": "^3.8.3",
-        "typescript": "^5.5.3",
-        "typescript-eslint": "^8.59.3",
-        "vite": "^7.2.6"
+        "typescript-eslint":        "^8.59.3"
+    },
+    "pnpm": {
+        "onlyBuiltDependencies": ["esbuild"]
     }
 }
