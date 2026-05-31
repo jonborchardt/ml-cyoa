@@ -16,7 +16,15 @@ export default tseslint.config(
     },
     {
         plugins: { 'react-hooks': reactHooks },
-        rules: reactHooks.configs.recommended.rules,
+        rules: {
+            ...reactHooks.configs.recommended.rules,
+            // Project uses React 18 without the React Compiler; ref mutations inside
+            // callbacks are an intentional and correct pattern here.
+            'react-hooks/immutability': 'off',
+            // React Compiler's memoization preservation analysis is overly conservative
+            // about useState setters inside useCallback; these are stable refs.
+            'react-hooks/preserve-manual-memoization': 'off',
+        },
     },
     {
         ignores: ['**/dist/**', '**/node_modules/**', '**/public/choicescript/**'],

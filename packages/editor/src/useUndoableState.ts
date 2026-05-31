@@ -55,6 +55,10 @@ export interface UndoableState<T> {
     redo: () => void;
     canUndo: boolean;
     canRedo: boolean;
+    /** Returns the state that would result from calling undo(), or null if nothing to undo. */
+    peekUndo: () => T | null;
+    /** Returns the state that would result from calling redo(), or null if nothing to redo. */
+    peekRedo: () => T | null;
 }
 
 export function useUndoableState<T>(initialState: T): UndoableState<T> {
@@ -67,6 +71,8 @@ export function useUndoableState<T>(initialState: T): UndoableState<T> {
     const reset = useCallback((value: T) => dispatch({ type: 'RESET', payload: value }), []);
     const undo = useCallback(() => dispatch({ type: 'UNDO' }), []);
     const redo = useCallback(() => dispatch({ type: 'REDO' }), []);
+    const peekUndo = useCallback(() => past.length > 0 ? past[past.length - 1] : null, [past]);
+    const peekRedo = useCallback(() => future.length > 0 ? future[0] : null, [future]);
 
-    return { state: present, set, reset, undo, redo, canUndo: past.length > 0, canRedo: future.length > 0 };
+    return { state: present, set, reset, undo, redo, canUndo: past.length > 0, canRedo: future.length > 0, peekUndo, peekRedo };
 }

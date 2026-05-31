@@ -16,7 +16,7 @@
 import type { Node, Edge } from '@xyflow/react';
 import type { NodeData } from './layout';
 import { applyTreeLayout } from './layout';
-import type { ConditionConfig, ActionItem, SceneJumpData } from './types';
+import type { ConditionConfig, ActionItem, SceneJumpData, RandomBranchEntry } from './types';
 
 // ─── Helpers ───────────────────────────────────────────────────────────────
 
@@ -46,6 +46,8 @@ export interface ParseResult {
     nodes: Node<NodeData>[];
     edges: Edge[];
     unsupportedSyntax: boolean;
+    /** Maps parsed node ID (e.g. "p_3") → the *label name in the code (e.g. "node_n-1002"). */
+    nodeLabelMap: Map<string, string>;
 }
 
 /**
@@ -107,6 +109,8 @@ export function parseScene(text: string): ParseResult {
 
     // Label → node-id map (populated as we create nodes)
     const labelToNodeId = new Map<string, string>();
+    // node-id → label name (for surgical code patches)
+    const nodeIdToLabel = new Map<string, string>();
 
     // Deferred edges: {sourceId, targetLabel, edgeData}
     interface PendingEdge {
@@ -135,7 +139,7 @@ export function parseScene(text: string): ParseResult {
         const secLines = lines.slice(sec.lineStart + 1, sec.lineEnd);
         const nodeId = nextId();
         labelToNodeId.set(sec.name, nodeId);
-
+        nodeIdToLabel.set(nodeId, sec.name);
         const result = parseSection(sec.name, secLines, nodeId, pendingEdges, sectionList);
         nodes.push(result.node);
         edges.push(...result.edges);
@@ -173,7 +177,7 @@ export function parseScene(text: string): ParseResult {
     });
 
     const laidOut = applyTreeLayout(nodes, dedupedEdges);
-    return { nodes: laidOut, edges: dedupedEdges, unsupportedSyntax: hasUnsupported };
+    return { nodes: laidOut, edges: dedupedEdges, unsupportedSyntax: hasUnsupported, nodeLabelMap: nodeIdToLabel };
 }
 
 // ─── Parse a section into a node ──────────────────────────────────────────
@@ -237,6 +241,8 @@ function parseSection(
     if (hasUnknownCmd) {
         unsupported = true;
         const rawContent = lines.filter(l => l.trim() !== '').join('\n');
+        const nextSec = findNextSection(allSections, labelName);
+        if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
         return {
             node: {
                 id: nodeId,
@@ -251,11 +257,15 @@ function parseSection(
 
     // ── page_break ──
     if (hasPageBreak && !hasChoice && !hasIf) {
+        const nextSec = findNextSection(allSections, labelName);
+        if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
         return { node: makeNode(nodeId, 'page_break', 'Page Break', ''), edges, unsupported: false };
     }
 
     // ── delay_break ──
     if (hasDelayBreak && !hasChoice && !hasIf) {
+        const nextSec = findNextSection(allSections, labelName);
+        if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
         return { node: makeNode(nodeId, 'delay_break', 'Delay Break', ''), edges, unsupported: false };
     }
 
@@ -270,6 +280,8 @@ function parseSection(
         node.data.imageFile = imageFile;
         node.data.imageAlign = imageAlign;
         node.data.imageAlt = imageAlt;
+        const nextSec = findNextSection(allSections, labelName);
+        if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
         return { node, edges, unsupported: false };
     }
 
@@ -294,7 +306,31 @@ function parseSection(
 
     // ── check_achievements ──
     if (hasCheckAchievements) {
+        const nextSec = findNextSection(allSections, labelName);
+        if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
         return { node: makeNode(nodeId, 'check_achievements', 'Check Achievements', ''), edges, unsupported: false };
+    }
+
+    // ── input node: *input_text or *input_number (solo, with optional prompt) ──
+    const pureInputLine = trimmed.find(l => /^\*(input_text|input_number)\b/.test(l));
+    const otherActionLines = trimmed.filter(l => /^\*(set|rand|delete)\b/.test(l));
+    if (pureInputLine && otherActionLines.length === 0 && !hasChoice && !hasIf) {
+        const parts = pureInputLine.split(/\s+/);
+        const inputType = parts[0] === '*input_text' ? 'text' : 'number';
+        const variable = parts[1] ?? '';
+        const min = inputType === 'number' ? Number(parts[2] ?? 0) : undefined;
+        const max = inputType === 'number' ? Number(parts[3] ?? 100) : undefined;
+        const node = makeNode(nodeId, 'input', labelDisplay || variable || 'Input', proseText);
+        node.data.inputConfig = { prompt: proseText, variable, inputType, ...(min !== undefined ? { min } : {}), ...(max !== undefined ? { max } : {}) };
+        const gotoLine = trimmed.find(l => /^\*goto\s+/.test(l));
+        if (gotoLine) {
+            const tgt = gotoLine.split(/\s+/)[1];
+            if (tgt) pendingEdges.push({ sourceId: nodeId, targetLabel: tgt });
+        } else {
+            const nextSec = findNextSection(allSections, labelName);
+            if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
+        }
+        return { node, edges, unsupported: false };
     }
 
     // ── action node: *set, *rand, *input_* ──
@@ -302,7 +338,46 @@ function parseSection(
         const actions = parseActions(trimmed);
         const node = makeNode(nodeId, 'action', 'Actions', proseText);
         node.data.actions = actions;
+        // Prefer an explicit *goto over sequential fall-through (critical for choice branches
+        // whose continuation is emitted as a *goto by serializeFlow when the target was already visited).
+        const gotoLine = trimmed.find(l => /^\*goto\s+/.test(l));
+        if (gotoLine) {
+            const tgt = gotoLine.split(/\s+/)[1];
+            if (tgt) pendingEdges.push({ sourceId: nodeId, targetLabel: tgt });
+        } else {
+            const nextSec = findNextSection(allSections, labelName);
+            if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
+        }
         return { node, edges, unsupported: false };
+    }
+
+    // ── random_branch: *rand _branch_N 1 M + *if _branch_N = i  *goto ... ──
+    // This is the exact pattern serializeFlow emits for random_branch nodes.
+    // Must be detected before the generic *if condition check below.
+    const randBranchLine = trimmed.find(l => /^\*rand\s+_branch_\d+\s+1\s+\d+/.test(l));
+    if (randBranchLine && !hasChoice) {
+        const vm = randBranchLine.match(/^\*rand\s+(_branch_\d+)\s+1\s+(\d+)/);
+        if (vm) {
+            const varName = vm[1];
+            const branchCount = parseInt(vm[2], 10);
+            const childTargets: string[] = [];
+            let valid = true;
+            for (let i = 1; i <= branchCount; i++) {
+                const ifIdx = trimmed.findIndex(l => new RegExp(`^\\*if\\s+${varName}\\s*=\\s*${i}$`).test(l));
+                if (ifIdx < 0) { valid = false; break; }
+                const gotoMatch = trimmed[ifIdx + 1]?.match(/^\*goto\s+(\S+)/);
+                if (!gotoMatch) { valid = false; break; }
+                childTargets.push(gotoMatch[1]);
+            }
+            if (valid && childTargets.length > 0) {
+                const node = makeNode(nodeId, 'random_branch', labelName, '');
+                node.data.randomBranches = childTargets.map(() => ({ label: '' })) as RandomBranchEntry[];
+                childTargets.forEach((target, i) => {
+                    pendingEdges.push({ sourceId: nodeId, targetLabel: target, sourceHandle: `branch-${i}` });
+                });
+                return { node, edges, unsupported: false };
+            }
+        }
     }
 
     // ── condition node: *if/*else ──
@@ -337,11 +412,14 @@ function parseSection(
         const node = makeNode(nodeId, 'gosub', `gosub ${subroutineId}`, '');
         node.data.subroutineId = subroutineId;
         node.data.params = params;
-        // gosub falls through; find continuation via *goto
+        // gosub falls through; find continuation via explicit *goto or sequential next section
         const gotoLine = trimmed.find(l => /^\*goto\s+/.test(l) && !l.includes('gosub'));
         if (gotoLine) {
             const targetLabel = gotoLine.split(/\s+/)[1];
             if (targetLabel) pendingEdges.push({ sourceId: nodeId, targetLabel });
+        } else {
+            const nextSec = findNextSection(allSections, labelName);
+            if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name });
         }
         return { node, edges, unsupported: false };
     }
@@ -350,6 +428,12 @@ function parseSection(
     if (hasFakeChoice) {
         const node = makeNode(nodeId, 'fake_choice', labelDisplay, proseText);
         const fakeEdges = parseChoiceEdges(lines, nodeId, pendingEdges);
+        // The node that follows the *fake_choice block (the merge target) appears as the
+        // next section at the same indent rather than inside any option body.  Connect it
+        // with a dedicated 'continuation' handle so serializeFlow can distinguish it from
+        // real option edges.
+        const nextSec = findNextSection(allSections, labelName);
+        if (nextSec) pendingEdges.push({ sourceId: nodeId, targetLabel: nextSec.name, sourceHandle: 'continuation' });
         return { node, edges: fakeEdges, unsupported: false };
     }
 
@@ -558,8 +642,10 @@ function makeNode(id: string, type: string, label: string, content: string): Nod
 function findNextSection(allSections: Section[], currentName: string): Section | null {
     const idx = allSections.findIndex(s => s.name === currentName);
     if (idx < 0 || idx + 1 >= allSections.length) return null;
+    const currentInd = allSections[idx].ind;
     for (let i = idx + 1; i < allSections.length; i++) {
-        if (allSections[i].ind === 0) return allSections[i];
+        if (allSections[i].ind === currentInd) return allSections[i];
+        if (allSections[i].ind < currentInd) return null;
     }
     return null;
 }
@@ -581,7 +667,7 @@ function parseLabelless(lines: string[]): ParseResult {
         { id: nodeId, type: hasFinish ? 'ending' : 'passage', position: { x: 200, y: 200 }, data: { label: prose ? trunc(prose) : 'Passage', content: prose } },
     ];
     const edges: Edge[] = [{ id: `e_start`, source: startId, target: nodeId }];
-    return { nodes, edges, unsupportedSyntax: false };
+    return { nodes, edges, unsupportedSyntax: false, nodeLabelMap: new Map() };
 }
 
 // Commands that the parser recognises (won't trigger raw_code fallback)

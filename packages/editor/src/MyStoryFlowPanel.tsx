@@ -5,7 +5,7 @@
 } from '@xyflow/react';
 import type {
     NodeProps, EdgeProps, Node, Edge, Connection,
-    NodeChange, EdgeChange, ReactFlowInstance,
+    NodeChange, EdgeChange, ReactFlowInstance, Viewport,
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 import { createContext, useCallback, useContext, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
@@ -16,7 +16,6 @@ import {
 import CloseIcon from '@mui/icons-material/Close';
 import CodeIcon from '@mui/icons-material/Code';
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import SendIcon from '@mui/icons-material/Send';
 import HubIcon from '@mui/icons-material/Hub';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -59,7 +58,11 @@ import { MonacoEditor } from './MonacoEditor';
 import { RawCodeEditDialog } from './RawCodeEditDialog';
 import { RawCodeNode } from './nodes/RawCodeNode';
 import { parseScene } from './parseChoiceScript';
-import { serializeFlow } from './serializeFlow';
+import {
+    patchNodeContent, patchEdgeLabel,
+    appendNodeBlock, appendChoiceOption,
+    removeNodeBlock, removeChoiceOption,
+} from './patchCode';
 import { ExportMenu } from './ExportMenu';
 import { FindReplacePanel } from './FindReplacePanel';
 import { KeyboardShortcutsHelp } from './KeyboardShortcutsHelp';
@@ -71,6 +74,37 @@ import type { VariableDef, NodeType, EdgeData, SceneJumpData, StatEntry, Achieve
 
 type PanelId = 'graph' | 'code' | 'story';
 type ActivePanels = Record<PanelId, boolean>;
+
+const ACTIVE_PANELS_KEY = 'ml-cyoa-active-panels';
+const DEFAULT_PANELS: ActivePanels = { graph: true, code: false, story: false };
+const MINIMAP_KEY = 'ml-cyoa-show-minimap';
+const VIEWPORT_KEY = 'ml-cyoa-viewport';
+
+function viewportStorageKey(storyId: string, sceneId: string) {
+    return `${VIEWPORT_KEY}-${storyId}-${sceneId}`;
+}
+
+function loadViewport(storyId: string, sceneId: string): Viewport | null {
+    try {
+        const raw = localStorage.getItem(viewportStorageKey(storyId, sceneId));
+        return raw ? (JSON.parse(raw) as Viewport) : null;
+    } catch {
+        return null;
+    }
+}
+
+function loadActivePanels(): ActivePanels {
+    try {
+        const raw = localStorage.getItem(ACTIVE_PANELS_KEY);
+        if (!raw) return DEFAULT_PANELS;
+        const parsed = JSON.parse(raw) as Partial<ActivePanels>;
+        const merged = { ...DEFAULT_PANELS, ...parsed };
+        if (!merged.graph && !merged.code && !merged.story) return DEFAULT_PANELS;
+        return merged;
+    } catch {
+        return DEFAULT_PANELS;
+    }
+}
 
 // ─── Context for edge click ───────────────────────────────────────────────
 
@@ -187,6 +221,7 @@ const defaultEdgeOptions = { type: 'flow' };
 interface GraphSnapshot {
     nodes: Node<NodeData>[];
     edges: Edge[];
+    codeText: string;
 }
 
 // ─── Submit dialog ────────────────────────────────────────────────────────
@@ -309,9 +344,14 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     const graph = useUndoableState<GraphSnapshot>({
         nodes: initialScene?.nodes ?? [],
         edges: initialScene?.edges ?? [],
+        codeText: '',
     });
     const { nodes, edges } = graph.state;
-    const setGraph = useCallback((n: Node<NodeData>[], e: Edge[]) => graph.set({ nodes: n, edges: e }), [graph]);
+    const setGraph = useCallback((n: Node<NodeData>[], e: Edge[]) => {
+        editingPaneRef.current = 'graph';
+        setCodeIsAuthority(false);
+        graph.set({ nodes: n, edges: e, codeText: codeTextRef.current });
+    }, [graph]);
 
     const [activeSceneId, setActiveSceneId] = useState(initialSceneId);
 
@@ -344,13 +384,21 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     const [pendingConnection, setPendingConnection] = useState<Connection | null>(null);
     const [connectionLabel, setConnectionLabel] = useState('');
     const [submitOpen, setSubmitOpen] = useState(false);
-    const [activePanels, setActivePanels] = useState<ActivePanels>({ graph: true, code: false, story: false });
+    const [activePanels, setActivePanels] = useState<ActivePanels>(loadActivePanels);
     const [codeText, setCodeText] = useState('');
     const [unsupportedBanner, setUnsupportedBanner] = useState(false);
+    // codeIsAuthority: true while user is typing in the code pane (graph is read-only preview).
+    // Cleared by Ctrl+S (successful parse), closing the code pane, or any graph interaction.
+    const [codeIsAuthority, setCodeIsAuthority] = useState(false);
+    // Separate flag so the overlay can show a different message when code has syntax errors.
+    const [codeHasSyntaxErrors, setCodeHasSyntaxErrors] = useState(false);
     const [storyPreviewKey, setStoryPreviewKey] = useState(0);
     const [storyPreviewScenes, setStoryPreviewScenes] = useState<Record<string, string>>({});
     // Power UX state
-    const [showMinimap, setShowMinimap] = useState(true);
+    const [showMinimap, setShowMinimap] = useState(() => {
+        const raw = localStorage.getItem(MINIMAP_KEY);
+        return raw === null ? true : raw === 'true';
+    });
     const [findOpen, setFindOpen] = useState(false);
     const [shortcutsOpen, setShortcutsOpen] = useState(false);
     const [pendingBulkDelete, setPendingBulkDelete] = useState<string[] | null>(null);
@@ -360,6 +408,8 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     const uidRef = useRef(1000);
     const rfInstanceRef = useRef<ReactFlowInstance<Node<NodeData>, Edge> | null>(null);
     const savingResetRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+    // nodeId → *label name in code; populated after every successful parse
+    const codeLabelMapRef = useRef<Map<string, string>>(new Map());
 
     const storyId = story.id;
     const onStoryChangeRef = useRef(onStoryChange);
@@ -374,12 +424,15 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     const sceneGlobalReuseModeRef = useRef(sceneGlobalReuseMode);
     // Tracks the last code text pushed TO Monaco from the graph (to suppress echo back)
     const codeFromGraphRef = useRef('');
-    // Set to true when applyCodeToGraph triggers a graph change; suppresses graph→code echo
-    const graphUpdatedFromCodeRef = useRef(false);
     // Debounce timer for code→graph parse
     const codeUpdateTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
     // Track current codeText without stale closure issues
     const codeTextRef = useRef(codeText);
+    // Tracks which pane the user is actively editing; prevents round-trip corruption in effects.
+    // Keep in sync with codeIsAuthority state (state drives UI, ref drives effects).
+    const editingPaneRef = useRef<'graph' | 'code'>('graph');
+    // Set by applyCodeToGraph so handleCodeSave can read the result without double-parsing.
+    const lastParseSucceededRef = useRef(false);
 
     useLayoutEffect(() => {
         onStoryChangeRef.current = onStoryChange;
@@ -393,6 +446,31 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         sceneGlobalReuseModeRef.current = sceneGlobalReuseMode;
         codeTextRef.current = codeText;
     });
+
+    useEffect(() => {
+        localStorage.setItem(ACTIVE_PANELS_KEY, JSON.stringify(activePanels));
+    }, [activePanels]);
+
+    useEffect(() => {
+        localStorage.setItem(MINIMAP_KEY, String(showMinimap));
+    }, [showMinimap]);
+
+    // Restore saved viewport (or fitView) after every scene switch, including initial mount.
+    useEffect(() => {
+        const id = setTimeout(() => {
+            const saved = loadViewport(storyId, activeSceneId);
+            if (saved) {
+                rfInstanceRef.current?.setViewport(saved);
+            } else {
+                rfInstanceRef.current?.fitView({ padding: 0.2 });
+            }
+        }, 0);
+        return () => clearTimeout(id);
+    }, [storyId, activeSceneId]);
+
+    const handleViewportMoveEnd = useCallback((_: unknown, vp: Viewport) => {
+        localStorage.setItem(viewportStorageKey(storyId, activeSceneIdRef.current), JSON.stringify(vp));
+    }, [storyId]);
 
     const buildUpdatedScenes = useCallback((n: Node<NodeData>[], e: Edge[], sceneId: string, subs?: SubroutineDef[]) => {
         const grm = sceneGlobalReuseModeRef.current;
@@ -449,20 +527,49 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [title, authorName, authorBio, authorPhoto, coverImage, ifid, storyId]);
 
-    // ─── Graph → Code live sync ─────────────────────────────────────────────
-    // Skip when the graph change itself came from code→graph (applyCodeToGraph sets the flag).
-    useEffect(() => {
-        if (!activePanels.code) return;
-        if (graphUpdatedFromCodeRef.current) {
-            graphUpdatedFromCodeRef.current = false;
-            return;
-        }
-        const serialized = serializeFlow(nodes, edges, undefined);
-        codeFromGraphRef.current = serialized;
-        setCodeText(serialized);
-    }, [nodes, edges, activePanels.code]);
-
     const prevStoryPanelRef = useRef(false);
+    const prevCodePanelRef = useRef(false);
+
+    // ─── Code pane open / close ─────────────────────────────────────────────
+    // Open: initialize codeText from the current graph state and parse to populate codeLabelMapRef.
+    // Close: flush any pending debounce and apply final code→graph parse if user was editing.
+    useEffect(() => {
+        const wasOpen = prevCodePanelRef.current;
+        const isOpen = activePanels.code;
+        prevCodePanelRef.current = isOpen;
+
+        if (!wasOpen && isOpen) {
+            // Initialize code pane with the current serialized scene
+            const text = serializeStory(liveStoryRef.current).get(activeSceneIdRef.current) ?? '';
+            codeFromGraphRef.current = text;
+            setCodeText(text);
+            codeTextRef.current = text;
+            editingPaneRef.current = 'graph';
+            setCodeIsAuthority(false);
+            setCodeHasSyntaxErrors(false);
+            // Parse to populate codeLabelMapRef so surgical patches work immediately
+            const result = parseScene(text);
+            codeLabelMapRef.current = result.nodeLabelMap;
+        }
+
+        if (wasOpen && !isOpen) {
+            if (codeUpdateTimerRef.current) {
+                clearTimeout(codeUpdateTimerRef.current);
+                codeUpdateTimerRef.current = null;
+            }
+            if (editingPaneRef.current === 'code') {
+                const parsed = parseScene(codeTextRef.current);
+                if (parsed.nodes.length > 0) {
+                    // setGraphRef calls setGraph which clears codeIsAuthority and sets editingPaneRef
+                    setGraphRef.current(parsed.nodes as Node<NodeData>[], parsed.edges);
+                } else {
+                    editingPaneRef.current = 'graph';
+                }
+            }
+            setCodeIsAuthority(false);
+            setCodeHasSyntaxErrors(false);
+        }
+    }, [activePanels.code]);
 
     // ─── Keyboard shortcuts ─────────────────────────────────────────────────
 
@@ -471,22 +578,41 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
             const active = document.activeElement;
             const isTyping = active instanceof HTMLInputElement
                 || active instanceof HTMLTextAreaElement
-                || !!(active as HTMLElement)?.isContentEditable;
+                || !!(active as HTMLElement)?.isContentEditable
+                || !!(active as HTMLElement)?.closest?.('.monaco-editor');
 
             const ctrl = e.metaKey || e.ctrlKey;
             const curNodes = nodesRef.current;
             const curEdges = edgesRef.current;
             const setG = setGraphRef.current;
 
-            // Undo / Redo
+            // Undo / Redo (also restore codeText snapshot when code pane is open)
             if (ctrl && e.key === 'z' && !e.shiftKey) {
                 e.preventDefault();
-                if (graph.canUndo) graph.undo();
+                if (graph.canUndo) {
+                    const prev = graph.peekUndo();
+                    if (activePanelsRef.current.code && prev?.codeText !== undefined) {
+                        setCodeText(prev.codeText);
+                        codeTextRef.current = prev.codeText;
+                        codeFromGraphRef.current = prev.codeText;
+                        codeLabelMapRef.current = parseScene(prev.codeText).nodeLabelMap;
+                    }
+                    graph.undo();
+                }
                 return;
             }
             if (ctrl && (e.key === 'y' || (e.key === 'z' && e.shiftKey))) {
                 e.preventDefault();
-                if (graph.canRedo) graph.redo();
+                if (graph.canRedo) {
+                    const next = graph.peekRedo();
+                    if (activePanelsRef.current.code && next?.codeText !== undefined) {
+                        setCodeText(next.codeText);
+                        codeTextRef.current = next.codeText;
+                        codeFromGraphRef.current = next.codeText;
+                        codeLabelMapRef.current = parseScene(next.codeText).nodeLabelMap;
+                    }
+                    graph.redo();
+                }
                 return;
             }
 
@@ -597,6 +723,11 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         ifid: ifid || undefined,
     }), [story, activeSceneId, nodes, edges, subroutines, sceneGlobalReuseMode, images, variables, statChart, achievements, title, authorName, authorBio, authorPhoto, coverImage, ifid]);
 
+    // Keep a ref so the graph→code sync effect can always read the latest serialization
+    // without adding liveStory to its dependency array (which would cause unwanted re-runs).
+    const liveStoryRef = useRef(liveStory);
+    useLayoutEffect(() => { liveStoryRef.current = liveStory; });
+
     const { errors: liveErrors, warnings: liveWarnings } = useMemo(() => validateStory(liveStory), [liveStory]);
 
     // ─── Story pane: immediate refresh on first open ────────────────────────
@@ -636,9 +767,11 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         // If code pane is open, sync latest code text → graph before saving
         if (activePanelsRef.current.code) {
             const parsed = parseScene(codeTextRef.current);
-            currentNodes = parsed.nodes as Node<NodeData>[];
-            currentEdges = parsed.edges;
-            graph.set({ nodes: currentNodes, edges: currentEdges });
+            if (parsed.nodes.length > 0) {
+                currentNodes = parsed.nodes as Node<NodeData>[];
+                currentEdges = parsed.edges;
+                graph.set({ nodes: currentNodes, edges: currentEdges, codeText: codeTextRef.current });
+            }
         }
 
         const updatedScenes = buildUpdatedScenes(currentNodes, currentEdges, activeSceneId, subroutines);
@@ -648,12 +781,16 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         setActiveSceneId(sceneId);
         setSubroutines(newScene.subroutines ?? []);
         setSceneGlobalReuseMode(newScene.globalReuseMode);
-        graph.reset({ nodes: newScene.nodes, edges: newScene.edges });
+        graph.reset({ nodes: newScene.nodes, edges: newScene.edges, codeText: '' });
         isFirstGraphRender.current = true;
+        editingPaneRef.current = 'graph';
+        setCodeIsAuthority(false);
+        setCodeHasSyntaxErrors(false);
 
-        // Update code editor to show new scene's content
+        // Update code editor to show new scene's content (include preamble for startup scene)
         if (activePanelsRef.current.code) {
-            const newText = serializeFlow(newScene.nodes as Node<NodeData>[], newScene.edges, undefined);
+            const tempStory = { ...storyRef.current, scenes: updatedScenes };
+            const newText = serializeStory(tempStory).get(sceneId) ?? '';
             codeFromGraphRef.current = newText;
             setCodeText(newText);
         }
@@ -675,7 +812,7 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         completeSave({ scenes: updatedScenes, sceneOrder: updatedOrder });
         setActiveSceneId(id);
         setSubroutines([]);
-        graph.reset({ nodes: newScene.nodes, edges: newScene.edges });
+        graph.reset({ nodes: newScene.nodes, edges: newScene.edges, codeText: '' });
         isFirstGraphRender.current = true;
     };
 
@@ -689,7 +826,7 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
             if (fallback) {
                 setActiveSceneId(fallback.id);
                 setSubroutines(fallback.subroutines ?? []);
-                graph.reset({ nodes: fallback.nodes, edges: fallback.edges });
+                graph.reset({ nodes: fallback.nodes, edges: fallback.edges, codeText: '' });
                 isFirstGraphRender.current = true;
             }
         }
@@ -717,10 +854,15 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
 
     const applyCodeToGraph = useCallback((text: string) => {
         const result = parseScene(text);
+        const succeeded = result.nodes.length > 0;
+        lastParseSucceededRef.current = succeeded;
+        setCodeHasSyntaxErrors(!succeeded);
+        if (!succeeded) return; // leave the last valid graph intact
         setUnsupportedBanner(result.unsupportedSyntax);
-        graphUpdatedFromCodeRef.current = true;
-        setGraph(result.nodes as Node<NodeData>[], result.edges);
-    }, [setGraph]);
+        codeLabelMapRef.current = result.nodeLabelMap;
+        // Use graph.set directly — setGraph would incorrectly clear codeIsAuthority
+        graph.set({ nodes: result.nodes as Node<NodeData>[], edges: result.edges, codeText: text });
+    }, [graph]);
 
     const togglePanel = useCallback((panel: PanelId) => {
         setActivePanels(prev => {
@@ -730,11 +872,13 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         });
     }, []);
 
-    // Code → Graph: debounced live sync; skip if text came from the graph (loop guard)
+    // Code → Graph: debounced live sync; skip if text came from the graph (loop guard).
+    // Always runs debounce even when graph pane hidden, so codeHasSyntaxErrors stays current.
     const handleCodeChange = useCallback((text: string) => {
         setCodeText(text);
         codeTextRef.current = text;
-        if (!activePanelsRef.current.graph) return;
+        editingPaneRef.current = 'code';
+        setCodeIsAuthority(true);     // graph becomes read-only preview until Ctrl+S or pane close
         if (text === codeFromGraphRef.current) return;
         if (codeUpdateTimerRef.current) clearTimeout(codeUpdateTimerRef.current);
         codeUpdateTimerRef.current = setTimeout(() => {
@@ -743,12 +887,18 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         }, 600);
     }, [applyCodeToGraph]);
 
-    // Ctrl+S in Monaco: immediate apply (flush debounce)
+    // Ctrl+S in Monaco: commit immediately. If parse succeeds, unlock the graph.
     const handleCodeSave = useCallback((text: string) => {
         if (codeUpdateTimerRef.current) { clearTimeout(codeUpdateTimerRef.current); codeUpdateTimerRef.current = null; }
         codeFromGraphRef.current = text;
         setCodeText(text);
         applyCodeToGraph(text);
+        // applyCodeToGraph sets lastParseSucceededRef synchronously before returning
+        if (lastParseSucceededRef.current) {
+            editingPaneRef.current = 'graph';
+            setCodeIsAuthority(false);
+        }
+        // If parse failed, codeIsAuthority stays true and graph stays blocked
     }, [applyCodeToGraph]);
 
     // ─── Find & replace ─────────────────────────────────────────────────────
@@ -784,7 +934,7 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                 const next = applyNodeChanges(rest, nodes) as Node<NodeData>[];
                 const hasStructural = rest.some(c => c.type !== 'position' && c.type !== 'select' && c.type !== 'dimensions');
                 if (hasStructural) setGraph(next, edges);
-                else graph.set({ nodes: next, edges });
+                else graph.set({ nodes: next, edges, codeText: codeTextRef.current });
             }
             return;
         }
@@ -792,12 +942,16 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         const next = applyNodeChanges(changes, nodes) as Node<NodeData>[];
         const hasStructural = changes.some(c => c.type !== 'position' && c.type !== 'select' && c.type !== 'dimensions');
         if (hasStructural) setGraph(next, edges);
-        else graph.set({ nodes: next, edges });
+        else {
+            // Position/dimension/selection changes are visual only — don't touch code
+            graph.set({ nodes: next, edges, codeText: codeTextRef.current });
+        }
     }, [nodes, edges, graph, setGraph]);
 
     const onEdgesChange = useCallback((changes: EdgeChange[]) => {
         const next = applyEdgeChanges(changes, edges);
-        graph.set({ nodes, edges: next });
+        editingPaneRef.current = 'graph';
+        graph.set({ nodes, edges: next, codeText: codeTextRef.current });
     }, [nodes, edges, graph]);
 
     const onConnect = useCallback((connection: Connection) => {
@@ -813,8 +967,40 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
         setConnectionLabel('');
     }, [nodes, edges]);
 
+    // ─── Surgical patch helper ─────────────────────────────────────────────
+    // Apply patched code text: update Monaco, parse to get new graph, push one undo entry.
+    const applyPatch = useCallback((patched: string) => {
+        setCodeText(patched);
+        codeTextRef.current = patched;
+        codeFromGraphRef.current = patched; // prevents handleCodeChange from treating this as user input
+        applyCodeToGraph(patched);
+    }, [applyCodeToGraph]);
+
     const confirmConnection = () => {
         if (!pendingConnection?.source || !pendingConnection?.target) return;
+
+        if (activePanelsRef.current.code) {
+            const sourceLabelName = codeLabelMapRef.current.get(pendingConnection.source);
+            const targetLabelName = codeLabelMapRef.current.get(pendingConnection.target);
+            if (sourceLabelName && targetLabelName) {
+                const existingEdges = edgesRef.current.filter(e => e.source === pendingConnection.source);
+                const existingEdge = existingEdges[0];
+                const existingOptionText = existingEdge ? ((existingEdge.label as string) || 'Continue') : undefined;
+                const existingTargetLabel = existingEdge ? codeLabelMapRef.current.get(existingEdge.target) : undefined;
+                const patched = appendChoiceOption(
+                    codeTextRef.current,
+                    sourceLabelName,
+                    connectionLabel || 'Continue',
+                    targetLabelName,
+                    existingOptionText,
+                    existingTargetLabel,
+                );
+                applyPatch(patched);
+                setPendingConnection(null);
+                return;
+            }
+        }
+
         const newEdge: Edge = {
             id: `e-${uidRef.current++}`,
             source: pendingConnection.source!,
@@ -858,22 +1044,40 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     }, []);
 
     const handleNodeSave = (nodeId: string, updates: Partial<NodeData & { nodeType: string } & SceneJumpData>) => {
+        const { nodeType, content, targetScene, targetLabel, jumpType, ...rest } = updates;
+        const node = nodes.find(n => n.id === nodeId);
+        if (!node) return;
+        const newContent = content !== undefined ? content : (node.data.content as string);
+        const newLabel = newContent
+            ? newContent.replace(/\s+/g, ' ').trim().slice(0, 58)
+            : (node.data.label as string);
+
+        // Surgical patch: only for plain content edits when code pane is open
+        if (activePanelsRef.current.code && content !== undefined && !nodeType && targetScene === undefined) {
+            const labelName = codeLabelMapRef.current.get(nodeId);
+            if (labelName) {
+                applyPatch(patchNodeContent(codeTextRef.current, labelName, newContent));
+                return;
+            }
+        }
+
         const next = nodes.map(n => {
             if (n.id !== nodeId) return n;
-            const { nodeType, content, targetScene, targetLabel, jumpType, ...rest } = updates;
-            const newType = nodeType ?? n.type;
-            const newContent = content !== undefined ? content : (n.data.content as string);
-            const label = newContent
-                ? (newContent as string).replace(/\s+/g, ' ').trim().slice(0, 58)
-                : (n.data.label as string);
             const sceneJumpFields = (targetScene !== undefined || targetLabel !== undefined || jumpType !== undefined)
                 ? { targetScene, targetLabel, jumpType } : {};
-            return { ...n, type: newType, data: { ...n.data, ...rest, content: newContent, label, ...sceneJumpFields } };
+            return { ...n, type: nodeType ?? n.type, data: { ...n.data, ...rest, content: newContent, label: newLabel, ...sceneJumpFields } };
         });
         setGraph(next, edges);
     };
 
     const handleNodeDelete = (nodeId: string) => {
+        if (activePanelsRef.current.code) {
+            const labelName = codeLabelMapRef.current.get(nodeId);
+            if (labelName) {
+                applyPatch(removeNodeBlock(codeTextRef.current, labelName));
+                return;
+            }
+        }
         setGraph(
             nodes.filter(n => n.id !== nodeId),
             edges.filter(e => e.source !== nodeId && e.target !== nodeId),
@@ -886,11 +1090,33 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     };
 
     const handleEdgeSave = (edgeId: string, label: string, data: EdgeData) => {
+        if (activePanelsRef.current.code) {
+            const edge = edges.find(e => e.id === edgeId);
+            if (edge) {
+                const sourceLabelName = codeLabelMapRef.current.get(edge.source);
+                const oldOptionText = (edge.label as string) || 'Continue';
+                if (sourceLabelName) {
+                    applyPatch(patchEdgeLabel(codeTextRef.current, sourceLabelName, oldOptionText, label || 'Continue'));
+                    return;
+                }
+            }
+        }
         const next = edges.map(e => e.id === edgeId ? { ...e, label: label || undefined, data } : e);
         setGraph(nodes, next);
     };
 
     const handleEdgeDelete = (edgeId: string) => {
+        if (activePanelsRef.current.code) {
+            const edge = edges.find(e => e.id === edgeId);
+            if (edge) {
+                const sourceLabelName = codeLabelMapRef.current.get(edge.source);
+                const optionText = (edge.label as string) || 'Continue';
+                if (sourceLabelName) {
+                    applyPatch(removeChoiceOption(codeTextRef.current, sourceLabelName, optionText));
+                    return;
+                }
+            }
+        }
         setGraph(nodes, edges.filter(e => e.id !== edgeId));
     };
 
@@ -920,6 +1146,14 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
 
     const handleAddNode = (type: NodeType) => {
         const id = `n-${uidRef.current++}`;
+
+        if (activePanelsRef.current.code) {
+            const labelName = `node_${id}`;
+            const content = '';
+            applyPatch(appendNodeBlock(codeTextRef.current, labelName, type as string, content));
+            return;
+        }
+
         const newNode: Node<NodeData> = {
             id,
             type,
@@ -960,6 +1194,18 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
     const handleConfirmBulkDelete = () => {
         if (!pendingBulkDelete) return;
         const ids = new Set(pendingBulkDelete);
+
+        if (activePanelsRef.current.code) {
+            let patched = codeTextRef.current;
+            for (const nodeId of pendingBulkDelete) {
+                const labelName = codeLabelMapRef.current.get(nodeId);
+                if (labelName) patched = removeNodeBlock(patched, labelName);
+            }
+            applyPatch(patched);
+            setPendingBulkDelete(null);
+            return;
+        }
+
         setGraph(nodes.filter(n => !ids.has(n.id)), edges.filter(e => !ids.has(e.source) && !ids.has(e.target)));
         setPendingBulkDelete(null);
     };
@@ -1086,7 +1332,6 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                                 nodeTypes={nodeTypes}
                                 edgeTypes={edgeTypes}
                                 defaultEdgeOptions={defaultEdgeOptions}
-                                fitView fitViewOptions={{ padding: 0.2 }}
                                 nodesDraggable nodesConnectable elementsSelectable
                                 snapToGrid snapGrid={[20, 20]}
                                 onNodesChange={onNodesChange}
@@ -1094,7 +1339,9 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                                 onConnect={onConnect}
                                 onNodeClick={onNodeClick}
                                 onInit={inst => { rfInstanceRef.current = inst; }}
-                                panOnScroll>
+                                onMoveEnd={handleViewportMoveEnd}
+                                panOnScroll
+                                panActivationKeyCode={null}>
                                 <Background />
                                 <Controls showInteractive={false} />
                                 {showMinimap && (
@@ -1118,6 +1365,20 @@ export function MyStoryFlowPanel({ story, onStoryChange, onSubmitStory, renderGa
                                     />
                                 )}
                             </ReactFlow>
+                            {codeIsAuthority && activePanels.code && (
+                                <Box sx={{
+                                    position: 'absolute', inset: 0, zIndex: 10,
+                                    bgcolor: codeHasSyntaxErrors ? 'rgba(180,0,0,0.35)' : 'rgba(0,0,0,0.25)',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                                    cursor: 'not-allowed',
+                                }}>
+                                    <Typography variant="body2" sx={{ color: '#fff', bgcolor: 'rgba(0,0,0,0.65)', px: 2, py: 1, borderRadius: 1, userSelect: 'none' }}>
+                                        {codeHasSyntaxErrors
+                                            ? 'Fix the code errors to edit the graph'
+                                            : 'Press Ctrl+S or close the code pane to edit the graph'}
+                                    </Typography>
+                                </Box>
+                            )}
                         </Box>
                     )}
 

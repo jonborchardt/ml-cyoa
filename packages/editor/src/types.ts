@@ -132,6 +132,7 @@ export interface Game {
     sceneList: string[];
     scenes: GameScene;
     coverImage?: string;
+    hidden?: boolean;
 }
 
 // ─── Edge data ─────────────────────────────────────────────────────────────

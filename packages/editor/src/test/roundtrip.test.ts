@@ -323,6 +323,35 @@ describe('structural preservation via serialize → parse', () => {
         expect(jumpNode?.data.jumpType).toBe('transfer');
     });
 
+    it('random_branch: re-parsed graph has random_branch node with correct branch edges', () => {
+        const start = makeStartNode();
+        const rand: Node<NodeData> = {
+            id: 'rnd1', type: 'random_branch', position: { x: 0, y: 0 },
+            data: { label: 'Puzzle', content: '', randomBranches: [{ label: 'Gear' }, { label: 'Cipher' }] },
+        };
+        const p1 = makePassageNode({ id: 'gear', data: { label: 'Gear', content: 'Gears.' } });
+        const p2 = makePassageNode({ id: 'cipher', data: { label: 'Cipher', content: 'Cipher.' } });
+        const e1 = makeEndingNode({ id: 'end1', data: { label: 'End', content: '' } });
+        const text = serializeFlow(
+            [start, rand, p1, p2, e1],
+            [
+                makeEdge('start', 'rnd1'),
+                { id: 'rb0', source: 'rnd1', target: 'gear',   sourceHandle: 'branch-0' },
+                { id: 'rb1', source: 'rnd1', target: 'cipher', sourceHandle: 'branch-1' },
+                makeEdge('gear',   'end1', 'Solve it'),
+                makeEdge('cipher', 'end1', 'Solve it'),
+            ],
+        );
+        const { nodes: reparsed, edges: reparsedEdges } = parseScene(text);
+        const randNode = reparsed.find(n => n.type === 'random_branch');
+        expect(randNode).toBeDefined();
+        // Must NOT be parsed as a condition (which would trigger the validation error)
+        expect(reparsed.find(n => n.type === 'condition')).toBeUndefined();
+        // Both branch-N edges must be present
+        expect(reparsedEdges.find(e => e.source === randNode?.id && e.sourceHandle === 'branch-0')).toBeDefined();
+        expect(reparsedEdges.find(e => e.source === randNode?.id && e.sourceHandle === 'branch-1')).toBeDefined();
+    });
+
     it('scene_jump subroutine: re-parsed node has jumpType subroutine and correct targetLabel', () => {
         const start = makeStartNode();
         const jump = makeSceneJumpNode(

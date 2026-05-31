@@ -326,7 +326,10 @@ export function serializeFlow(nodes: Node<NodeData>[], edges: Edge[], story?: Pi
             if (content) for (const l of content.split('\n')) lines.push(`${pad}${l}`);
             lines.push(`${pad}*fake_choice`);
             const targets = new Set<string>();
-            for (const { edge, target } of children) {
+            // 'continuation' edges are the post-block merge target, not option branches.
+            const optionEdges = children.filter(c => c.edge.sourceHandle !== 'continuation');
+            const contEdge = children.find(c => c.edge.sourceHandle === 'continuation');
+            for (const { edge, target } of optionEdges) {
                 targets.add(target);
                 const label = (edge.label as string) || 'Continue';
                 lines.push(`${pad}  #${label}`);
@@ -335,8 +338,9 @@ export function serializeFlow(nodes: Node<NodeData>[], edges: Edge[], story?: Pi
                     for (const l of branchContent.split('\n')) lines.push(`${pad}    ${l}`);
                 }
             }
-            // Continue with common merge target (first unique target)
-            if (targets.size > 0) serialize([...targets][0], indent);
+            // Continue with explicit continuation edge, or fall back to first unique option target.
+            const contTarget = contEdge?.target ?? ([...targets][0] as string | undefined);
+            if (contTarget) serialize(contTarget, indent);
             return;
         }
 
