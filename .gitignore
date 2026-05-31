@@ -7,7 +7,6 @@ dist/
 emails/
 
 # Claude Code / Spec-kit
-.claude
 CLAUDE.local.md
 specs/
 plans/
