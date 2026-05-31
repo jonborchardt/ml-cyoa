@@ -28,7 +28,7 @@ jobs:
       - run: pnpm build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: apps/publishing_party/dist
 
   deploy:
     needs: build

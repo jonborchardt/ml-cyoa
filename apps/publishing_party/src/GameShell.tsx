@@ -1,12 +1,13 @@
-import { useCallback, useState } from 'react';
+import { lazy, Suspense, useCallback, useState } from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button, CircularProgress, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { gamesById } from './games';
 import { GameTabHeader } from '@ml-cyoa/editor';
 import { ChoiceScriptGame } from './ChoiceScriptGame';
-import { FlowPanel } from './FlowPanel';
 import { AuthorsPanel } from './AuthorsPanel';
+
+const FlowPanel = lazy(() => import('./FlowPanel').then(m => ({ default: m.FlowPanel })));
 
 export function GameShell() {
     const { gameId } = useParams<{ gameId: string }>();
@@ -50,7 +51,9 @@ export function GameShell() {
 
             {tabsVisited.has(2) && (
                 <Box sx={{ flex: 1, minHeight: 0, display: tabValue === 2 ? 'flex' : 'none', flexDirection: 'column' }}>
-                    <FlowPanel game={game} choiceHistory={choiceHistory} />
+                    <Suspense fallback={<Box sx={{ display: 'flex', justifyContent: 'center', pt: 8 }}><CircularProgress /></Box>}>
+                        <FlowPanel game={game} choiceHistory={choiceHistory} />
+                    </Suspense>
                 </Box>
             )}
         </Box>

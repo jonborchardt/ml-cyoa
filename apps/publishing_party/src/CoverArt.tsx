@@ -31,6 +31,7 @@ export function CoverArt({ src, title, width = '100%', borderRadius = 0, aspectR
                     component="img"
                     src={src}
                     alt={title}
+                    loading="lazy"
                     sx={{ width: '100%', height: '100%', objectFit: 'cover' }}
                 />
             ) : (
