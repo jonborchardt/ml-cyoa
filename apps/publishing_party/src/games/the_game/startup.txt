@@ -1,24 +1,6 @@
 *title The Game
 *author James, Neill, Margaret & Naomi
 
-By
-
-BEWARE and WARNING!
-
-This book is different from other books.
-
-The mid-level at Spruce Street School worked in teams of
-three and four to create these stories. Each team
-imagined the theme of their story and crafted
-the beginning together. But the different
-middles and multiples endings are the
-work of each individual team
-member.
-
-In this story YOU, and you alone will encounter dangers,
-choices, and peril, as that is part of the genre of Choose
-Your Own Adventure, otherwise known as CYOA!
-
 You and your friend, Bill, are on an airplane headed to New York City for the summer before your final year of middle school. All of sudden, your plane is hit by a U.F.O.! You crash land on the island of Hawai’i with no way back to the mainland. You need to get home, quick, and find out what hit your plane! Good luck!
 
 *label page1

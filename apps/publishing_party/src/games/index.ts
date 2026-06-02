@@ -222,7 +222,12 @@ export const games: Game[] = [
   {
     id: 'lost_in_africa',
     title: 'Lost in Africa',
-    authors: authors('lost_in_africa', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('lost_in_africa', [
+      { name: 'Dallas', bio: '' },
+      { name: 'Josie', bio: '' },
+      { name: 'Lucia', bio: '' },
+      { name: 'Uma', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('lost_in_africa') },
@@ -231,7 +236,11 @@ export const games: Game[] = [
   {
     id: 'the_tunnle_of_time',
     title: 'The Tunnel of Time',
-    authors: authors('the_tunnle_of_time', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('the_tunnle_of_time', [
+      { name: 'Calen', bio: '' },
+      { name: 'Camille', bio: '' },
+      { name: 'Marcus', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('the_tunnle_of_time') },
@@ -240,7 +249,12 @@ export const games: Game[] = [
   {
     id: 'the_dragon_king_of_the_goodness_tree',
     title: 'The Dragon King of the Goodness Tree',
-    authors: authors('the_dragon_king_of_the_goodness_tree', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('the_dragon_king_of_the_goodness_tree', [
+      { name: 'Cecilia', bio: '' },
+      { name: 'Clara', bio: '' },
+      { name: 'David', bio: '' },
+      { name: 'William', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('the_dragon_king_of_the_goodness_tree') },
@@ -249,7 +263,12 @@ export const games: Game[] = [
   {
     id: 'the_maze',
     title: 'The Maze',
-    authors: authors('the_maze', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('the_maze', [
+      { name: 'Severn', bio: '' },
+      { name: 'Michael', bio: '' },
+      { name: 'Avery', bio: '' },
+      { name: 'Max S.', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('the_maze') },
@@ -258,7 +277,11 @@ export const games: Game[] = [
   {
     id: 'adventures_of_agent_rex',
     title: 'Adventures of Agent Rex',
-    authors: authors('adventures_of_agent_rex', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('adventures_of_agent_rex', [
+      { name: 'Sophie', bio: '' },
+      { name: 'Mia', bio: '' },
+      { name: 'Max', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('adventures_of_agent_rex') },
@@ -267,7 +290,11 @@ export const games: Game[] = [
   {
     id: 'death_gears',
     title: 'Death Gears',
-    authors: authors('death_gears', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('death_gears', [
+      { name: 'Addi B.', bio: '' },
+      { name: 'Nathaniel', bio: '' },
+      { name: 'Neby', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('death_gears') },
@@ -276,7 +303,11 @@ export const games: Game[] = [
   {
     id: 'jedi_escape',
     title: 'Jedi Escape',
-    authors: authors('jedi_escape', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('jedi_escape', [
+      { name: 'Evan', bio: '' },
+      { name: 'Jaxon', bio: '' },
+      { name: 'Lucas', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('jedi_escape') },
@@ -285,7 +316,11 @@ export const games: Game[] = [
   {
     id: 'mansion_mystery',
     title: 'Mansion Mystery',
-    authors: authors('mansion_mystery', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('mansion_mystery', [
+      { name: 'Eloise', bio: '' },
+      { name: 'Evelyn', bio: '' },
+      { name: 'Luke', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('mansion_mystery') },
@@ -294,7 +329,13 @@ export const games: Game[] = [
   {
     id: 'missing_parents_at_sea',
     title: 'Missing Parents at Sea',
-    authors: authors('missing_parents_at_sea', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('missing_parents_at_sea', [
+      { name: 'Ben', bio: '' },
+      { name: 'Elisha', bio: '' },
+      { name: 'Henry', bio: '' },
+      { name: 'Mc', bio: '' },
+      { name: 'Mayuko', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('missing_parents_at_sea') },
@@ -303,7 +344,11 @@ export const games: Game[] = [
   {
     id: 'portals',
     title: 'Portals',
-    authors: authors('portals', [{ name: 'Anonymous', bio: '' }]),
+    authors: authors('portals', [
+      { name: 'Declan', bio: '' },
+      { name: 'Henry C.', bio: '' },
+      { name: 'Sam', bio: '' },
+    ]),
     year: '2018-2019',
     sceneList: ['startup'],
     scenes: { startup: startup('portals') },

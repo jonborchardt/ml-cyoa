@@ -16,7 +16,8 @@ function groupByYear(gs: typeof games): [string, typeof games][] {
 const SPINE_W = 10; // px — thickness of the book spine
 
 function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
-  const authorLine = g.authors.map((a) => a.name).join(', ');
+  const names = g.authors.map((a) => a.name);
+  const authorLine = names.length < 2 ? names[0] ?? '' : `${names.slice(0, -1).join(', ')} & ${names[names.length - 1]}`;
   return (
     // Perspective container
     <Box sx={{ perspective: '3000px', cursor: 'pointer' }} onClick={onClick}>
@@ -178,10 +179,16 @@ function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
                   src={g.coverImage}
                   alt={g.title}
                   loading="lazy"
-                  sx={{ width: '100%' }}
+                  sx={{
+                    width: '100%',
+                    maxHeight: '100%',
+                    objectFit: 'contain'
+                  }}
                 />
               ) : (
-                <Box sx={{ width: '100%', height: '100%', bgcolor: '#e0d8c4' }} />
+                <Box
+                  sx={{ width: '100%', height: '100%', bgcolor: '#e0d8c4' }}
+                />
               )}
             </Box>
           </Box>

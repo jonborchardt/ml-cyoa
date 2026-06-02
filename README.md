@@ -125,12 +125,8 @@ The app ships a [manifest](apps/publishing_party/public/manifest.webmanifest) an
 
 
 
-
+look in each book for additional images
 look into correct intros
-update claude and readme
-get correct authors
-look in each book for additiona images
 ensure logic is correct
-add fake iamges?
-image width in actual story is wrong
-test actual story content
+add fake images?
+update claude and readme

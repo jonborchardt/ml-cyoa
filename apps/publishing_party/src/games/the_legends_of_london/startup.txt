@@ -1,22 +1,6 @@
 *title The Legends of London
 *author Ellie, Rue, Harry & Bella
 
-BEWARE and WARNING!
-
-This book is different from other books.
-
-The mid-level at Spruce Street School worked in teams of
-three and four to create these stories. Each team
-imagined the theme of their story and crafted
-the beginning together. But the different
-middles and multiples endings are the
-work of each individual team
-member.
-
-In this story YOU, and you alone will encounter dangers,
-choices, and peril, as that is part of the genre of Choose
-Your Own Adventure, otherwise known as CYOA!
-
 You are a marshmallow spy. Humans are trying to take over your home. You need to stop the humans from eating your family and friends. Only you can save them from the dangers the humans behold. Good Luck!
 
 *label page1
