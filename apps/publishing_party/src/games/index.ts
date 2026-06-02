@@ -230,7 +230,7 @@ export const games: Game[] = [
   },
   {
     id: 'the_tunnle_of_time',
-    title: 'The Tunnle of Time',
+    title: 'The Tunnel of Time',
     authors: authors('the_tunnle_of_time', [{ name: 'Anonymous', bio: '' }]),
     year: '2018-2019',
     sceneList: ['startup'],
