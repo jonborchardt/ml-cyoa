@@ -288,6 +288,26 @@ Vitest with `@testing-library/react`. Pool is set to `forks` (not `threads`) to 
 - **Monaco provider registration** is guarded with a `registered` flag so it only runs once per page load.
 - **No pre-build needed** — the publishing_party vite config aliases `@ml-cyoa/editor` directly to the editor's `src/index.ts`, so `pnpm dev` and `pnpm build` work without running `pnpm --filter editor build` first.
 
+## Student illustration panels
+
+Student artwork scans live under `apps/publishing_party/public/images/<game-id>/` as `imageN.png` (or `.jpg`). Each scan is a 2×2 grid of four panels. The crop script at [apps/publishing_party/public/images/crop_images.py](apps/publishing_party/public/images/crop_images.py) slices each source image into `imageN_1.png` … `imageN_4.png`.
+
+**Running the cropper** (requires Python + Pillow):
+```bash
+# clean old crops first, then run
+find apps/publishing_party/public/images -name "image*_*.png" -delete
+python apps/publishing_party/public/images/crop_images.py
+```
+
+**Crop coordinates** (`CROPS_PNG` and `CROPS_JPG` in the script, PIL `(left, top, right, bottom)`):
+
+| | top-left | top-right | bottom-left | bottom-right |
+|---|---|---|---|---|
+| PNG | `(21, 154, 307, 422)` | `(310, 154, 596, 422)` | `(21, 431, 307, 700)` | `(310, 431, 596, 700)` |
+| JPG | `(21, 175, 318, 446)` | `(319, 175, 615, 446)` | `(21, 466, 319, 737)` | `(337, 466, 620, 737)` |
+
+JPGs have their own coordinate set (different scan resolution) — do not derive them from the PNG values. Use the `/crop-game-images` skill to adjust coordinates and rerun.
+
 ## ESLint
 
 Flat config ([eslint.config.js](eslint.config.js)) at the workspace root, discovered by both packages via ancestor lookup:
