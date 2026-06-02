@@ -11,6 +11,8 @@ You have returned from a mission on the Forest Moon of Endor and now you are at 
     *goto page3
   #go to the archives to hide,.
     *goto page4
+  #run for your life,.
+    *goto page5
 
 *label page2
 You decide to tell the head master. When you are there, you see that it is too late to help so you run back to the archives. At the archives you see that the clones are gone. You research the things that you saw before. They look like a dome sitting on three legs. You research for hours, and finally you find what you think is its weakness. Should you fight the aliens or stay in the archives where it is safe.

@@ -47,6 +47,8 @@ You fall asleep and have a vison. There is a mermaid.  She tells you that she ne
 *choice
   #save the mermaid,.
     *goto page3
+  #go home,.
+    *goto page8
 
 *label page8
 You decide to save the mermaid. You begin your quest. You start swimming. You swim for two hours. Then you see a jellyfish.  You think it will be easy to swim past it, so you go around and look up. You see an army of jellyfish! You touch one of them, and it glows pink and moves aside. You get an idea! You begin touching the heads of all the jellyfish. They glow red, orange, yellow, green, blue, and even purple! They move aside, making a path for you to swim through. You keep swimming. An hour has passed. You are exhausted and hungry. Suddenly you see a clam and open it to taste the most delicious meal you have ever had.  After a delightful feast of clams, you find two pods of dolphins. You all become friends, and they help you swim to rescue your mom from the palace. You find your mom and set her free. The two of you say goodbye to the dolphins and decide to go home. You arrive at the shore and return to being humans. You see your dad, and you all embrace in a loving hug.

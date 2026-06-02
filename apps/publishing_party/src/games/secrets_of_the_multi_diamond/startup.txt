@@ -169,6 +169,8 @@ THE zzzzzttt END
 *finish
 
 *label page24
+If you did not jump and chose to stay in the moai's hand. Three minutes later, the moai brings you to a forest. You see something shiny. It's the multi-diamond! The moai lets you down, and you run over to grab the diamond. You have succeeded!
+
 *finish
 
 *label page25
