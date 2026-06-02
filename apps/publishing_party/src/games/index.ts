@@ -117,7 +117,7 @@ export const games: Game[] = [
   },
   {
     id: 'mermaid_adventure',
-    title: 'Mermaid Adventure',
+    title: 'Mermaid Kingdom',
     authors: authors('mermaid_adventure', [
       {
         name: 'Ada',
@@ -289,7 +289,7 @@ export const games: Game[] = [
   },
   {
     id: 'death_gears',
-    title: 'Death Gears',
+    title: 'The Adventures of Courageous Vs. Death Gears',
     authors: authors('death_gears', [
       { name: 'Addi B.', bio: '' },
       { name: 'Nathaniel', bio: '' },
@@ -328,7 +328,7 @@ export const games: Game[] = [
   },
   {
     id: 'missing_parents_at_sea',
-    title: 'Missing Parents at Sea',
+    title: 'Orphans on the Run',
     authors: authors('missing_parents_at_sea', [
       { name: 'Ben', bio: '' },
       { name: 'Elisha', bio: '' },
@@ -343,7 +343,7 @@ export const games: Game[] = [
   },
   {
     id: 'portals',
-    title: 'Portals',
+    title: 'The Cracked Universe',
     authors: authors('portals', [
       { name: 'Declan', bio: '' },
       { name: 'Henry C.', bio: '' },

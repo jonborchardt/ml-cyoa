@@ -107,7 +107,7 @@ ml-cyoa/                              ← workspace root
                 └── <game-id>/        ← *.txt scenes + cover/author images
 ```
 
-Routes: `/` → `HomePage`, `/:gameId` → `GameShell` (Story tab), `/:gameId/flow` → `GameShell` (Flow tab), `/:gameId/authors` → `GameShell` (Authors tab). `/my/:storyId` → `MyStoryShell` (Story tab), `/my/:storyId/flow` → `MyStoryShell` (Flow/Editor tab), `/my/:storyId/authors` → `MyStoryShell` (Authors tab).
+Routes: `/` → `HomePage`, `/mystories` → `MyStoriesPage` (My Stories list; only reachable via `?alpha` on the home page), `/:gameId` → `GameShell` (Story tab), `/:gameId/flow` → `GameShell` (Flow tab), `/:gameId/authors` → `GameShell` (Authors tab). `/my/:storyId` → `MyStoryShell` (Story tab), `/my/:storyId/flow` → `MyStoryShell` (Flow/Editor tab), `/my/:storyId/authors` → `MyStoryShell` (Authors tab).
 
 ## Package boundaries
 
@@ -246,9 +246,10 @@ Students can write their own CYOA stories in the browser. Stories are persisted 
         sceneList: ['startup'],
         scenes: { startup: startup('my-game') },
         coverImage: cover('my-game'),   // undefined if no cover.png
+        // hidden: true,               // omit to show publicly; set true for example/unlisted games
     }
     ```
-3. The game appears on the home page (grouped by year) and is reachable at `/<id>`.
+3. The game appears on the home page (grouped by year) and is reachable at `/<id>`. Set `hidden: true` to make a game accessible by URL but excluded from the home page listing.
 
 The `sceneList` order is what ChoiceScript's `SceneNavigator` uses to determine which scene follows which when a scene ends without an explicit `*goto_scene`.
 

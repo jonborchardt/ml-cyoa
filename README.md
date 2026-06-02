@@ -54,7 +54,7 @@ Each game has three tabs — **Story**, **Flow**, and **Authors** — accessible
 
 ## Writing a story (My Stories)
 
-The home page has a **My Stories** section where anyone can write their own CYOA. Stories are saved locally in the browser (localStorage).
+The **My Stories** editor is hidden by default. Add `?alpha` to the home page URL to reveal the **My Stories** button, which links to `/mystories`. Stories are saved locally in the browser (localStorage).
 
 - Click **Write a Story** to create a new story and open the editor.
 - The **Flow** tab of a My Story is a full story editor with three modes:
@@ -91,6 +91,7 @@ The home page has a **My Stories** section where anyone can write their own CYOA
         sceneList: ['startup'],          // order matters: scenes flow in order
         scenes: { startup: startup('my-game') },
         coverImage: cover('my-game'),    // undefined if no cover.png
+        hidden: true,                    // omit to show on home page; set true for example/hidden games
     },
     ```
 3. The game becomes available at `/<base>/<your-game-id>` and appears on the home page, grouped by year.
@@ -122,8 +123,3 @@ The app ships a [manifest](apps/publishing_party/public/manifest.webmanifest) an
 - **ChoiceScript** engine — vendored from [dfabulich/choicescript](https://github.com/dfabulich/choicescript), BSD-2 licensed
 - **Vitest** + `@testing-library/react` — unit and integration tests (in `@ml-cyoa/editor`)
 - Service worker + web app manifest for installability and offline play
-
-
-look in each book for additional images
-ensure logic is correct
-update claude and readme

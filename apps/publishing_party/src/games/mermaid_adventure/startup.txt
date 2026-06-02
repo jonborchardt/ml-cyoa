@@ -1,4 +1,4 @@
-*title Mermaid Adventure
+*title Mermaid Kingdom
 *author Ada, Inara & Willow
 
 *label page1

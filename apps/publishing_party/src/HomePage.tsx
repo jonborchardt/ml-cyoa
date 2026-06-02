@@ -131,7 +131,7 @@ function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
                 sx={{
                   fontFamily: 'Georgia, "Times New Roman", serif',
                   fontWeight: 900,
-                  fontSize: '0.95rem',
+                  fontSize: g.title.length > 28 ? '0.74rem' : g.title.length > 20 ? '0.82rem' : '0.95rem',
                   textAlign: 'center',
                   textTransform: 'uppercase',
                   px: 0.5,
