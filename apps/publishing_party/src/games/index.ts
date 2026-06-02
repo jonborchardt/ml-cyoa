@@ -315,7 +315,7 @@ export const games: Game[] = [
   },
   {
     id: 'mansion_mystery',
-    title: 'Mansion Mystery',
+    title: 'Murder at the Mansion',
     authors: authors('mansion_mystery', [
       { name: 'Eloise', bio: '' },
       { name: 'Evelyn', bio: '' },

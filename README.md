@@ -124,9 +124,6 @@ The app ships a [manifest](apps/publishing_party/public/manifest.webmanifest) an
 - Service worker + web app manifest for installability and offline play
 
 
-
 look in each book for additional images
-look into correct intros
 ensure logic is correct
-add fake images?
 update claude and readme

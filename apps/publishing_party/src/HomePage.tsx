@@ -239,13 +239,13 @@ export function HomePage() {
       </Typography>
       <Typography
         variant="body1"
-        sx={{ lineHeight: 1.8, mb: 2, fontSize: '0.75rem' }}
+        sx={{ lineHeight: 1.8, mb: 2 }}
       >
-        This book is different from other books.
+        These books are different from other books.
       </Typography>
       <Typography
         variant="body1"
-        sx={{ lineHeight: 1.8, mb: 2, fontSize: '0.92rem' }}
+        sx={{ lineHeight: 1.8, mb: 2 }}
       >
         The mid-level at Spruce Street School worked in teams of three and four
         to create these stories. Each team imagined the theme of their story and
@@ -254,9 +254,9 @@ export function HomePage() {
       </Typography>
       <Typography
         variant="body1"
-        sx={{ lineHeight: 1.8, mb: 5, fontSize: '1.08rem' }}
+        sx={{ lineHeight: 1.8, mb: 5 }}
       >
-        In this story YOU, and you alone will encounter dangers, choices, and
+        In these stories YOU, and you alone will encounter dangers, choices, and
         peril, as that is part of the genre of Choose Your Own Adventure,
         otherwise known as CYOA!
       </Typography>
