@@ -1115,9 +1115,13 @@ function printOptions(groups, options, callback) {
     })
   });
 
-  var useRealForm = false;
-  if (useRealForm) {
-    printButton("Next", form, false);
+  if (groups.length === 1) {
+    form.addEventListener('click', function(e) {
+      var t = e.target;
+      if (t.tagName === 'INPUT' && t.type === 'radio') {
+        setTimeout(function() { safeCall(null, function() { form.onsubmit(); }); }, 0);
+      }
+    });
   } else {
     printButton("Next", main, false, function() {
       form.onsubmit();
@@ -3439,7 +3443,7 @@ function loadPreferences() {
       window.slidingEnabled = preferredSliding !== false && preferredSliding !== "false";
     });
   } else {
-    window.animateEnabled = true;
+    window.animateEnabled = false;
   }
   if (typeof document.body.style.animationName === "undefined") {
     if (typeof document.body.style.webkitAnimationName === "undefined") {

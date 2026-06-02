@@ -23,27 +23,27 @@ You decide to investigate. You walk in and suddenly you hear wind blowing in you
 You start yawning and put your head down. It turns out that you were so nervous, you did not sleep the night before, so you are exhausted.  Next thing you know, you are fast asleep. Five hours later, you finally wake up. It is midnight. You take out your flashlight from your tool belt and start looking in the darkness. The only light is from your flashlight. You see a cave. Do you go in the cave or look for the portal?
 
 *choice
-  #go into the cave,.
+  #go into the cave.
     *goto page6
-  #try to find the portal,.
+  #try to find the portal.
     *goto page9
 
 *label page4
 You get an idea to climb a tree to get a better look of the area, so you grab onto a big oak tree and start to climb. Once you get to the top, you look around and see some smoke coming from a nearby area. You think it might be your team making food over a fire, so you start climbing down the tree. When you reach ground, you start running toward the smoke. When you reach the area with the smoke, you see non-other than your team. They give you a warm welcome and fill you in on everything that happened. Somehow you had traveled back to the time of the dinosaurs. Then you eat some dinner and go to bed in a tent your team lent you. The next day you wake up to a munching of leaves. You creep out to find your teammates sitting by a fire. Then you see a dinosaur. Your team mates tell you that the dinosaur is a plant eater and won’t harm humans. Then you offer to look for the portal. your team agrees and you leave your team at the fire. You start walking. You look around. All you see are trees. Then you see a bluish device in one of the trees. You start walking toward the tree and you start to climb. When you reach the top, you pick up the device and it disappears and in its place is a grappling hook. You decide to put it in your pocket. Then you think that you should show your team but you really want to keep looking for the portal.
 
 *choice
-  #keep looking for the portal,.
+  #keep looking for the portal.
     *goto page7
-  #show your team the hook,.
+  #show your team the hook.
     *goto page10
 
 *label page5
 You decide to hike around. You go into the woods, and you see a velociraptor in front of you! Do you attack the velociraptor or run and hide? You choose.
 
 *choice
-  #attack the velociraptor,.
+  #attack the velociraptor.
     *goto page8
-  #run and hide,.
+  #run and hide.
     *goto page11
 
 *label page6
@@ -55,9 +55,9 @@ You go in the cave. You her a roar and take out your gun. You point it in the ai
 You decide to keep looking for the portal, so you start walking in a direction that seems to have once been a path. You start to smell smoke. You start running in the direction of the smoke. You reach a camp site where some food is cooking over a fire. Then you realize that these people could help you find a way home. You look over and see spear lying on the ground. You realize that these people may not be the best people to help you.
 
 *choice
-  #trust the strangers,.
+  #trust the strangers.
     *goto page16
-  #turn back,.
+  #turn back.
     *goto page14
 
 *label page8
@@ -78,18 +78,18 @@ You decide to start looking for the portal. You hear a weird sound, “mmmm, cra
 You decide to run back and show your team the hook. You start running back to your team. When you get there, your team tells you that the hook is a power up. Your team also tells you that they found the portal!! You and your team need to get to a lake because that’s where the portal is. Your friend hands you a map. Since you’re the leader, you have to lead your team to the portal. When you think about leading your team, you realize that you’re not ready to lead your team, but the team is depending on you. You could ask a fellow team member to do it instead.
 
 *choice
-  #lead,.
+  #lead.
     *goto page15
-  #let someone else lead,.
+  #let someone else lead.
     *goto page17
 
 *label page11
 You chose to run and hide. You hide behind a tree, and the tree starts shaking and it springs up. You think, “That’s odd.” You grab onto a branch. The tree starts jumping and springs you into the air. The tree starts to orbit around the Earth. Should you jump off in North America or maybe India is a better choice?
 
 *choice
-  #jump off in North America,.
+  #jump off in North America.
     *goto page20
-  #jump off in India,.
+  #jump off in India.
     *goto page21
 
 *label page12
@@ -111,9 +111,9 @@ You think it’s best to turn back, so you start walking back the way you came. 
 You push away the thought that you’re not ready to lead, and you start walking in the direction the map tells you. When you reach the lake, your friend tells you that the portal is under water, so you take a deep breath and jump in the water. You look around, and you see your team- mates swimming toward a big black hole. Suddenly, you see one of your teammates getting pushed away by strong current.
 
 *choice
-  #try and help your teammate,.
+  #try and help your teammate.
     *goto page18
-  #let your teammate perish and save yourself,.
+  #let your teammate perish and save yourself.
     *goto page19
 
 *label page16

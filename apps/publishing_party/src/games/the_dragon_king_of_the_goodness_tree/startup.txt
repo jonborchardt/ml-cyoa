@@ -78,6 +78,8 @@ You choose H. You walk and walk till you reach light. You enter a bright clearin
 *label page11
 You chose to stay and fight the dragon. Violently whipping his tail toward you, the dragon roars again, unsheathes his claws, and takes a vicious swipe at you. Still roaring he lunges at you, preparing to strike. Knowing you cannot defeat him, you run away in search of the gem. This is one of the only things that will save you. There are other things guarding the Goodness tree apart from Uncolorgon. You must find the gem. It’s your only hope. Scrabbling here and there, you search around in the branches, running around looking under rocks, finally you find it. It was firmly lodged into between two rocks as Uncolorgon had accidently moved it there while attacking you. Quickly touching the gem, you are teleported back to your home village. Congratulations on escaping! But the bad news is, you know as long Uncolorgon lives, he will guard the Goodness tree and you will never get it.
 
+*image ../images/the_dragon_king_of_the_goodness_tree/swordGuy.png center
+
 *finish
 
 *label page12

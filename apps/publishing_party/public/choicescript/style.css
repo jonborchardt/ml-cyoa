@@ -291,6 +291,10 @@ input[type="radio"], input[type="checkbox"] {
   margin-right: 1ch;
 }
 
+.choice input[type="radio"] {
+  display: none;
+}
+
 .saveGame>label {
   display:block;
 }

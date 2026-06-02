@@ -4,16 +4,20 @@
 *label page1
 You’re on your bed playing video games when you hear your mom shout, “Come downstairs. I need your help!” You sigh, then go downstairs. “Go to the store and get some pizza,” your mom says and gives you $20.00. You head to the store. You look at the pizza and start to drool. You grab the pizza and go to the checkout stand, still salivating. Just as you begin to leave, everything goes slow-mo, and three portals appear. The first portal looks like a slimy hamster's mouth. The second portal looks like a galaxy. The third portal looks like a fuzzy cat head.
 
+*image ../images/portals/image3_4.png center
+
 *choice
-  #go through the hamster portal,.
+  #go through the hamster portal.
     *goto page5
-  #go through the galaxy portal,.
+  #go through the galaxy portal.
     *goto page7
-  #go through the cat portal,.
+  #go through the cat portal.
     *goto page9
 
 *label page2
 You choose to go to the castle in the sky. You hop on Meowio. Meowio then jumps up to the castle in the sky. Meowio lands in front of the castle in the sky. SpongeBob Cat Pants and Cat-trick are guarding it. You stand close to Meowio, and they let you in. “Meow,” says Meowio. You smile. In the castle, you see some car keys. You pick them up and keep walking. Eventually, you find a red car. You look around to see if anyone is watching. You hop in the car. There are so many buttons; you have no idea what does what. So, you HIT THE FIRST BUTTON YOU SEE. You start to go forward. You don’t know how to stop. You drive through a wall and of the kingdom in the sky.
+
+*image ../images/portals/image1_3.png center
 
 *finish
 
@@ -30,10 +34,12 @@ You start fighting. An alien grabs you and shoves you in his mouth.
 *label page5
 You go through the cat portal. It is wet and fuzzy. It smells like cat food. Then, everything is black with a blinding light! You come out of a cat's mouth, “Ahhhhh,” you scream. It is a… cat kingdom. The kingdom is made out of wet cat food. “Wow,” you exclaim. You’re in awe of the kingdom. “Meow.” You look down. You see a strange cat. It seems like Mario or Meowio. “Meow,” says Meowio. It appears to be licking the pizza you got at the market. You hand the pizza to Meowio. Suddenly Meowio grows to giant size. “MEOW,” Meowio says. All of a sudden, the cat runs off. You chase the cat up a mountain, look out and see two castles. One is in the sky. One is in the forest. Looking out, you feel hungry. “Meow!” says Meowio, handing you some cat food. You eat it, but it tastes like BARF. You look back at the two castles.
 
+*image ../images/portals/image3_2.png center
+
 *choice
-  #go to the castle in the sky,.
+  #go to the castle in the sky.
     *goto page2
-  #go to the castle in the forest,.
+  #go to the castle in the forest.
     *goto page6
 
 *label page6
@@ -45,9 +51,9 @@ You start running towards the kingdom in the forest. You begin to get tired. You
 After you go through the hamster portal, you come out in a desert. You start to walk. After a bit you see a figure. You can’t tell what it is.
 
 *choice
-  #hide,.
+  #hide.
     *goto page3
-  #call for help,.
+  #call for help.
     *goto page8
 
 *label page8
@@ -59,9 +65,9 @@ You call for help. “Help!” You run towards them. They drag you to prison. Yo
 THE NEXT THING YOU KNOW, you`re floating in space. You wonder for a minute, then start for the nearest planet. In an hour or two, you reach it. You land on the rocky surface. You start walking. You see the light. It looks like a flying saucer. Before you can get to it, a monster jumps in front of you.
 
 *choice
-  #fight,.
+  #fight.
     *goto page4
-  #run,.
+  #run.
     *goto page10
 
 *label page10

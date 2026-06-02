@@ -5,22 +5,24 @@
 You and your friends, Lilac and Charles from the orphanage decide to try and find your missing parents at sea. You could search for them by way of boat, which makes the most sense because they went missing on a boat years ago. You could also take a plane, searching in the area in the carribbean sea where they were last known to be headed. What makes the most sense?
 
 *choice
-  #take a boat,.
+  #take a boat.
     *goto page3
-  #take a plane,.
+  #take a plane.
     *goto page6
 
 *label page2
 You decide to go through the sand. This way, you will not be seen. So you and your friends go one by one into the hot, dry, and airless sand. As the sand fills your ears, nose, and clothes, you are holding your breath. At least you do not have sand in your mouth… yet. You know you might die. Finally, you can not stand it any longer. You kick your feet up in the air. That was IT! The mermaids and sharks, especially the ginormous Kracken, notice your feet. You have to act fast. You think of two ideas: hide under the sand or run for your life with your friends.
 
 *choice
-  #hide under the sand,.
+  #hide under the sand.
     *goto page8
-  #run for your life with your friends,.
+  #run for your life with your friends.
     *goto page12
 
 *label page3
 You and your friends sail on a boat to the far-off island your parents were last known to visit. You drift for six days and six nights until you finally reach an island. There is a palace that is guarded by SHARKS and MAN EATING MERMAIDS. They’re licking their lips; they look hungry. You need a plan before they spot you, and fast. You think very hard. “Aaha,” you say. You have a couple of ideas. Which one should you choose to keep yourself alive?
+
+*image ../images/missing_parents_at_sea/image1_3.png center
 
 *choice
   #try to land the boat and hide in the sand.
@@ -32,16 +34,16 @@ You and your friends sail on a boat to the far-off island your parents were last
 You decide to jump out of the plane with a parachute. You try to catch the wind so you can control where you land. You’re not sure what is best. Should you go for the land or should you hit the water and swim to the shore? You’re a pretty good swimmer.
 
 *choice
-  #go for land,.
+  #go for land.
     *goto page10
-  #land in the water and swim to the shore,.
+  #land in the water and swim to the shore.
     *goto page14
 
 *label page5
 You and your friends jump in the warm salty sea. The mermaids and sharks are immediately alerted by your presence. You swim down, down, down until you can bear it no more. You kick to the surface for air, and somehow, you have reached the island. Unfortunately, there is one more guard to pass—the dreaded Kraken. You must act FAST, so you hide behind the underwater palace wall and peek around the corner. Now you must decide?
 
 *choice
-  #hide with the mermaids,.
+  #hide with the mermaids.
     *goto page9
   #do you try to get to shore and make a run for it.
     *goto page13
@@ -50,7 +52,7 @@ You and your friends jump in the warm salty sea. The mermaids and sharks are imm
 You decide to take a plane. Everything is going fine until you hear a beeping noise. You look at the cockpit panel, seeing the plane is almost out of gas. It is about to crash. Where are the parachutes? The pilot told you, but you’re not sure. You could look for one. If you found it, which you probably would, it would be much safer to jump out when you’re over land. Or should you just get out of the plane, take a risk and jump without a parachute. You’ll probably land in that pond down there. Maybe you should try and land the plane.
 
 *choice
-  #jump without a parachute, and try to land in the water,.
+  #jump without a parachute, and try to land in the water.
     *goto page7
   #do you try to find the parachute.
     *goto page4
@@ -69,10 +71,14 @@ You decide not to use a parachute. Instead, you get ready to jump. You're terrif
 *label page8
 You decide to hide back under the sand. Too late… the Kracken is hurling its 100 tentacles at the sand, frantically searching for your body! Luckily, you are a fast runner; however, running in thick, hot sand is tough. The Kracken, on the other hand, is in the fresh air, and everything is easy for him! The Kracken prances on the sand, touching every grain of sand in his reach, just in time for him to grab your ankle. When he lifts you, you realize you were not the only person who could not stay under the sand. Your friends were all trapped in one of the monstrous Kracken’s tentacles. The Kracken puts you, Lilac, and Charles in a cage, and the journey ends here. You know you are trapped.
 
+*image ../images/missing_parents_at_sea/image1_4.png center
+
 *finish
 
 *label page9
 You hide behind the mermaid and hold onto it lightly so it can’t feel you. Then, you swim to the other side of the water. There is an entrance that the guards have forgotten. You climb up the side, slip onto the ceiling, and jump down quietly. But unfortunately, you don’t land silently. The guards hear and catch you. They put you in prison for the rest of your days. page3image34832592
+
+*image ../images/missing_parents_at_sea/image2_4.png center
 
 *finish
 
@@ -83,6 +89,8 @@ You decided to go for land. You cross to an abandoned house. The door is locked.
 
 *label page11
 You go into the forest and see some fruit a few feet away. Then you hear a sound. You look down and realize it's a snake, so you pull out your pocket knife. But you're too late. It bites you right on the leg. You feel a sudden pain. You fall to your death.
+
+*image ../images/missing_parents_at_sea/image1_1.png center
 
 *finish
 
@@ -108,5 +116,7 @@ You decide to stay in the clearing. You start looking for some type of food. Aft
 
 *label page16
 You decide to try and land the plane and survive the plane crash. But you shouldn't be too happy because you are now stuck on the island. You need to find a way out. Suddenly, you see a cave and an abandoned shack. You try to open the door to the shack, but it’s locked. It needs a key to open it. So you decide to look in the cave for a key. So you go into the cave. The cave has bones too. But then you see something shiny. You realize it’s the key. You pick it up and take it to the shack. You open the shack door and see a table with bread and a boat in the distance. You suddenly remember you have to save your parents. So you steal the boat and look for the water. After two hours of searching, you finally find the sea. You put your boat in the water and get in. After a while, you see an island and recognize it as your hometown. You land on the island and catch a taxi. You ask for a ride back to your house. And you and your friends live happily ever after.
+
+*image ../images/missing_parents_at_sea/image1_2.png center
 
 *finish

@@ -5,34 +5,34 @@
 You wake up with your dog, Shapeshifter, licking your face. Shapeshifter leaps off your bed. You put on some clothes and feed some cereal to Shapeshifter and your hamster, Imposter. Then you play video games until it’s time to go to school.  After school, you walk home. As you’re walking, you hear a, “Snap!” You turn around and see a light. You run towards it, forgetting everything except for that light ahead. Suddenly, everything goes black. You wake up in a dark cold place. You see something floating toward you. “AAAAAAAAAAH,” you scream. It’s a ghost. “Calm down,” the ghost says,” “You have been sent here by your father.” “I don’t have a father,” you say. “You know? Haaades?” the ghost says. You gasp, “Where am I!?!” “You are in the Underworld,” he answers. “You are one of the only humans who possesses the power to destroy the gods’ relics and save them from their prison. You must go to Troy immediately.” You’re very confused, and want to learn more. But you also feel compelled to go to Troy.
 
 *choice
-  #stay in the Underworld to learn more,.
+  #stay in the Underworld to learn more.
     *goto page3
-  #travel straight to Troy,.
+  #travel straight to Troy.
     *goto page6
 
 *label page2
 You decide to explore the other ship. You see a shadow and demand, “Show yourself.” It’s Perseus, a kid from school. You ask him, “What are you doing here?” “I’m trying to free the gods. What are you doing here?” You tell him your story. When you finish, he says, “I had a similar thing happen.” He explains, “A light appeared, I ran towards it, and then, right when I reached it, I passed out. The next thing I knew, I was on a mountain! A strange man came and said his name was Hermes. He told me I was the son of Zeus, and that evil monsters had imprisoned the gods.” You tell Perseus the ghost told you that you were the son of Hades! Perseus says, “We better get going. The ghost told me the Sword of Hades is somewhere on the island of Troy.” When you reach Troy, you see the light. The ghost and Hermes appear. They explain that the sword is in a cave to the east. They walk away, disappearing into the light. You and Perseus search for the Sword and find the cave. You enter and see a capsule of red and green energy surrounding the Sword. You grab it and feel the power pulse. Just then, a monster appears. You swing and hit it with the sword. The beast disintegrates into dust. Hermes says, “You’re coming with me” The next thing you know, you’re in a cell. You see another person is in the cell with you. There is a thunderbolt resting outside the cell. Zeus! You swing your sword, break the bars to free him, and give him his thunderbolt. Zeus thanks you and says, “I will help you defeat the monsters.” You are teleported to another cell; you’re with a man who looks like half fish this time. It’s Poseidon. You break the bars and free him. He says, “I will help you to fight the monsters.” You get teleported to another cell holding Hades. You break the bars and give him the helmet. “Forgive me, my son. I’m sorry I wasn't there. I will help you defeat the monsters.” Finally, you get teleported to the Parthenon, where you see two giant monsters. The gods stare at you, then turn and say, “Oh boy. Gaia and Typhon. You know we’re going to need a battle plan.”
 
 *choice
-  #attack both Gaia and Typhon,.
+  #attack both Gaia and Typhon.
     *goto page8
-  #attack individually,.
+  #attack individually.
     *goto page12
 
 *label page3
 The ghost tells you more about Athens, that monsters have imprisoned the gods and that you are 1 of the only people who can free the Gods, he explains, you will need a powerful weapon called the sword of hades that can destroy the relics of hades Poseidon and Zeus. The sword of hades rests on the island of troy. You are ready to go to Athens. The ghost raises his hand, and then everything goes black. The next thing you know, you are on the ground wearing battle gear. You have a sword. You’re wearing a helmet. You get up and look around. The area feels different and colder—you're in Athens. You need to go to Troy. You know that you will need to sail there to get to Troy. You look around to see if there is a ship. You spot a boat and run towards it. You think that throws sailing lessens pad. It's a rare big ship. It probably could hold 100 people. You get on board. The vessel’s wood feels smooth and rough. You start sailing to troy. after a well you find a map to troy. You realize that this vessel was a war ship. Just then you hear a noise and see another boat. Should you keep sailing straight to Troy or should you explore, and try to find out who is on the other boat.
 
 *choice
-  #hop onboard the other ship,.
+  #hop onboard the other ship.
     *goto page2
-  #travel straight to Troy,.
+  #travel straight to Troy.
     *goto page5
 
 *label page4
 You want to go to get that weapon. “Where is that weapon,” you ask Perseus. “So you know about the gods being trapped… ”  Perseus trails off as a new voice comes in. “Outside of their cages are a bunch of sparkly rocks. The gods' relics are in them. If you destroy one, you will get one of their relics. You need Hades’s helmet, Poseidon’s trident, and Zeus’s thunderbolt. You need all of the gods’ relics to free them from the cells.” It was Hermes speaking. And for the second time today, everything goes all black. “What? Where are we?” Perseus asks. “In Troy,” you answer. To your surprise, nothing is destroyed. You guess that you had arrived before the Trojan War took place. You find a cave with an odd glow. You and Perseus walk into it and see a sword. You quickly grab it, and then you run outside and see a door. You go up to a villager and ask, “What’s that door?” “Oh, that leads to the monster's headquarters.” You run inside. There were so many monsters. You hide behind a big rock. You see a sparkly stone unguarded by a beast and two guarded rocks. You go to the one with no monsters but are instantly seen. You’ve been caught!
 
 *choice
-  #run,.
+  #run.
     *goto page10
   #fight.
     *goto page14
@@ -50,18 +50,18 @@ You decide to sail straight to Troy to find the weapon: Hades’ sword. You are 
 You decide to go Troy, and you get out of there as fast as you can. But as you run away, you realize you’re in battle armor. You hop on a boat and sail for days until you see another boat.  You recognize the person on it as your friend, Perseus. You know him from school. “Perseus, is that you?” you ask. “Yes,” Perseus answers. “Why are you here?” you ask. “I don’t know? I tripped on a curb, and then I ended up here,” answers Perseus.  “What about you? Why are you here?!” “Basically, the same,” you say. You think about where you woke up, and you think that if you did not run towards that light, you would not be here. You think about where you woke up in the underworld, where your dad, Hades used to live. Now he’s living in a prison. “Wait. Where did you wake up?” You ask. “I woke up on a tall mountain where this weird person told me a bunch mumbo-jumbo about the gods being trapped in a prison and their relics.” You gasp. “Wait. Does that mean you’re the son of Zeus?” “Oh yeah. He also said something about that.” And then he said something about a weapon that would help us destroy their relics and that things would be pretty hard to destroy.” You are now feeling confused.  You feel compelled to find that weapon, but you also want to save your dad, Hades.
 
 *choice
-  #go in search of the weapon,.
+  #go in search of the weapon.
     *goto page4
-  #travel straight to Troy, in search of your dad,.
+  #travel straight to Troy, in search of your dad.
     *goto page7
 
 *label page7
 You’re at Troy. People are staring at you, and Perseus looks like he’s about to attack you. A man asks you where you are from. All of a sudden, an explosion rips through Troy. The man yells at you, “Stay here!” like he's serious. Then he runs towards the explosion.  People start screaming. What should you do?
 
 *choice
-  #decided to run away,.
+  #decided to run away.
     *goto page11
-  #decided to stay, put,.
+  #decided to stay, put.
     *goto page15
 
 *label page8

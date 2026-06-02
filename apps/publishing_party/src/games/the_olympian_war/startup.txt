@@ -4,6 +4,8 @@
 *label page1
 You wake up with your dog, Shapeshifter, licking your face. Shapeshifter leaps off your bed. You put on some clothes and feed Shapeshifter and your hamster, Imposter, some cereal, and then play video games until it’s time to go to school.  After school, you walk home. As you’re walking, you hear a “Snap!” You turn around and see a light. You run towards it, forgetting everything except for that light ahead. Suddenly, everything goes black. You wake up in a dark, cold place. You see something floating toward you. “AAAAAAAAAAH,” you scream. It’s a ghost. “Calm down,” the ghost says,” You have been sent by your father.” “I don’t have a father,” you say.  “You know? Haaades?” the ghost says. You gasp, “Where am I!?!” you ask. “You are in the Underworld,” he answers. “You are one of the only humans who possesses the power to destroy the gods’ relics and save them from their prison. Go to Troy immediately.” You’re very confused, and you want to learn more. But also, you feel compelled to go to Troy.
 
+*image ../images/the_olympian_war/image4_3.png center
+
 *choice
   #Stay on board, believing you can find the weapon.
     *goto page2
@@ -24,6 +26,8 @@ You stayed on board. You want to go get that weapon. “Where is that weapon?”
 *label page3
 You decide to sail straight to Troy to find the weapon: Hades’ sword. You are looking for a sword with a green-and-gold handle. Above the handle, there is a skull with wings like fire. The blade is red with green symbols. You know the sword is hidden in a sea cave in Greece. You have never been to Greece before, but you know where it is on a map, so you have a good idea where in the world you are. You land on a Greek island. You know Greece has a lot of islands with caves, so the chances that the first cave you see has the sword are not good. You decide to look for a cave anyway. You sail around the island you’re at. You see a cave! You have no clues about the island where Hades’ sword is supposed to be. You have no clues about the cave either. You think that you should just start searching, but the cave looks small. You can’t take your boat in the cave, so you’d have to swim, but you don’t know how to swim! You could put the life vest on.
 
+*image ../images/the_olympian_war/image5_1.png center
+
 *choice
   #Put the life vest on and go into the cave.
     *goto page6
@@ -37,6 +41,8 @@ You decide to go to Troy, and you get out of there as fast as you can. But as yo
 
 *label page5
 You traveled to Troy to find your dad. When you arrive in Troy, people are staring at you. Perseus looks like he’s about to attack you. A man asks you where you are from. All of a sudden, an explosion rips through Troy. The man yells at you, “Stay here!” like he's serious. Then he runs towards the explosion. People start screaming. What should you do?
+
+*image ../images/the_olympian_war/image4_1.png center
 
 *choice
   #Run away.
