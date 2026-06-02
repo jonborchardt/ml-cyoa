@@ -126,9 +126,7 @@ The app ships a [manifest](apps/publishing_party/public/manifest.webmanifest) an
 
 
 
-there is a number in some adventures, 1 show it propertly on cover
-    2 use it for dates 
-look into correct intor
+look into correct intros
 update claude and readme
 get correct authors
 look in each book for additiona images

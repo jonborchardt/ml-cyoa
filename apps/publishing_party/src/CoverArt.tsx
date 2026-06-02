@@ -32,7 +32,8 @@ export function CoverArt({ src, title, width = '100%', borderRadius = 0, aspectR
                     src={src}
                     alt={title}
                     loading="lazy"
-                    sx={{ width: '100%'}}
+                    sx={{ width: '100%',maxHeight:'100%',
+    objectFit: 'contain' }}
                 />
             ) : (
                 <AutoStoriesIcon sx={{ fontSize: 52, color: 'grey.300' }} />

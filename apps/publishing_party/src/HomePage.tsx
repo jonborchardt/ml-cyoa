@@ -13,8 +13,6 @@ function groupByYear(gs: typeof games): [string, typeof games][] {
   return [...map.entries()].sort(([a], [b]) => b.localeCompare(a));
 }
 
-const CYOA_BANNER = `${import.meta.env.BASE_URL}cyoa.png`;
-
 const SPINE_W = 10; // px — thickness of the book spine
 
 function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
@@ -26,7 +24,7 @@ function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
       <Box
         sx={{
           position: 'relative',
-          aspectRatio: '3 / 4',
+          aspectRatio: '2 / 3',
           borderRadius: '2px 4px 4px 2px',
           transformStyle: 'preserve-3d',
           transition: 'transform 0.5s, box-shadow 0.5s',
@@ -81,7 +79,7 @@ function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
               inset: 0,
               borderRadius: '0 3px 3px 0',
               boxShadow: 'inset 4px 0 10px rgba(0,0,0,0.1)',
-              bgcolor: 'white',
+              bgcolor: '#f0ead8',
               overflow: 'hidden',
               display: 'flex',
               flexDirection: 'column',
@@ -91,52 +89,87 @@ function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
             {/* Red banner */}
             <Box
               sx={{
-                bgcolor: '#d00',
-                mx: 1.5,
-                mt: 1.5,
+                bgcolor: '#cc0000',
+                mx: 1,
+                mt: 1,
                 borderRadius: '50px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 py: 0.4,
-                px: 1,
                 flexShrink: 0,
               }}
             >
-              <Box
-                component="img"
-                src={CYOA_BANNER}
-                alt="Choose Your Own"
-                sx={{ height: 10, objectFit: 'contain', filter: 'brightness(0) invert(1)' }}
-              />
+              <Typography
+                sx={{
+                  fontFamily: 'Arial Narrow, Arial, sans-serif',
+                  fontWeight: 700,
+                  fontSize: '0.42rem',
+                  color: '#e0d8c4',
+                  letterSpacing: '0.12em',
+                  textTransform: 'uppercase',
+                  lineHeight: 1,
+                }}
+              >
+                Choose Your Own Adventure
+              </Typography>
             </Box>
 
-            {/* Title */}
-            <Typography
+            {/* Title — large, uppercase, dark maroon, ruled above and below */}
+            <Box
               sx={{
-                fontFamily: '"Times New Roman", Times, serif',
-                fontWeight: 900,
-                fontSize: '0.9rem',
-                textAlign: 'center',
-                px: 1,
-                pt: 0.75,
-                lineHeight: 1.2,
-                color: '#111',
+                borderTop: '1.5px solid #5a1a1a',
+                borderBottom: '1.5px solid #5a1a1a',
+                mx: 1,
+                mt: 0.5,
+                py: 0.4,
+                flexShrink: 0,
               }}
             >
-              {g.title}
+              <Typography
+                sx={{
+                  fontFamily: 'Georgia, "Times New Roman", serif',
+                  fontWeight: 900,
+                  fontSize: '0.95rem',
+                  textAlign: 'center',
+                  textTransform: 'uppercase',
+                  px: 0.5,
+                  lineHeight: 1.15,
+                  color: '#5a1a1a',
+                  letterSpacing: '0.02em',
+                }}
+              >
+                {g.title}
+              </Typography>
+            </Box>
+
+            {/* Author — just below title */}
+            <Typography
+              sx={{
+                fontFamily: 'Georgia, "Times New Roman", serif',
+                fontSize: '0.52rem',
+                textAlign: 'center',
+                color: '#5a1a1a',
+                pt: 0.3,
+                pb: 0.5,
+                flexShrink: 0,
+              }}
+            >
+              by {authorLine}
             </Typography>
 
-            {/* Cover image */}
+            {/* Cover image — large, framed, fills remaining space */}
             <Box
               sx={{
                 flex: 1,
+                minHeight: 0,
+                mx: 0.75,
+                mb: 0.75,
+                borderRadius: '3px',
+                overflow: 'hidden',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                px: 1.5,
-                py: 0.75,
-                minHeight: 0,
               }}
             >
               {g.coverImage ? (
@@ -145,27 +178,11 @@ function GameCard({ g, onClick }: { g: Game; onClick: () => void }) {
                   src={g.coverImage}
                   alt={g.title}
                   loading="lazy"
-                  sx={{ maxWidth: '85%', maxHeight: '100%', objectFit: 'contain', borderRadius: 2 }}
+                  sx={{ width: '100%' }}
                 />
               ) : (
-                <Box sx={{ width: '85%', aspectRatio: '1/1', borderRadius: 2, bgcolor: 'grey.100' }} />
+                <Box sx={{ width: '100%', height: '100%', bgcolor: '#e0d8c4' }} />
               )}
-            </Box>
-
-            {/* Authors */}
-            <Box sx={{ textAlign: 'center', pb: 1.25, px: 1, flexShrink: 0 }}>
-              <Typography
-                sx={{
-                  fontFamily: '"Times New Roman", Times, serif',
-                  fontSize: '0.62rem',
-                  color: '#333',
-                  lineHeight: 1.4,
-                }}
-              >
-                By
-                <br />
-                {authorLine}
-              </Typography>
             </Box>
           </Box>
         </Box>
