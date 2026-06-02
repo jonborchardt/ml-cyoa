@@ -122,3 +122,17 @@ The app ships a [manifest](apps/publishing_party/public/manifest.webmanifest) an
 - **ChoiceScript** engine — vendored from [dfabulich/choicescript](https://github.com/dfabulich/choicescript), BSD-2 licensed
 - **Vitest** + `@testing-library/react` — unit and integration tests (in `@ml-cyoa/editor`)
 - Service worker + web app manifest for installability and offline play
+
+
+
+
+there is a number in some adventures, 1 show it propertly on cover
+    2 use it for dates 
+look into correct intor
+update claude and readme
+get correct authors
+look in each book for additiona images
+ensure logic is correct
+add fake iamges?
+image width in actual story is wrong
+test actual story content
