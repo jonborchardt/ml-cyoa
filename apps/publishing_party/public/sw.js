@@ -4,7 +4,7 @@
 // - Cache-first for everything else (engine JS/CSS, JS bundles, fonts, etc.).
 // Bump CACHE_VERSION to invalidate the precache on the next visit.
 
-const CACHE_VERSION = 'ml-cyoa-v2';
+const CACHE_VERSION = 'ml-cyoa-v3';
 const PRECACHE_URLS = [
     './',
     'index.html',
