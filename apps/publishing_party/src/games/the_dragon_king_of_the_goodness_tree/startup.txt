@@ -1,0 +1,91 @@
+*title The Dragon King of the Goodness Tree
+*author Anonymous
+
+*label page1
+There is a drinking well you go to everyday, but today, something seems different. You are super thirsty, so you decide to take a sip from the well, and you start feeling strange. The water seems to be telling you to go to the Goodness Tree. You have heard the legend many times, but today you start to get the feeling that the legends are true. The legends state that a secretly talented person will be chosen to go and search for the Goodness Tree. It is said that there is an extremely dangerous maze guarding The Goodness Tree, which is nearly impossible to complete. One wrong turn could lead to disaster. You decide to go search for the Goodness Tree. You have at your disposal an enchanted sword from your grandfather, a pickaxe, a flower that gives you unlimited supplies, and a box of medical supplies. You do not have a backpack nor do you have time to get one. You can only carry one item. What should you choose? The medical supplies, the sword, the flower, or the pickaxe?
+
+*choice
+  #Choose the medical supplies.
+    *goto page2
+  #Choose the sword.
+    *goto page3
+  #Choose the flower.
+    *goto page4
+  #Choose the pickaxe.
+    *goto page5
+
+*label page2
+You decide to take the medical kit. You pick it up, and set off. You walk and walk till you can hardly move your feet. You sit down on a nearby rock to rest. You set down your medical kit and close your eyes. You hear the sound of birds chirping in the trees. You also hear a scuttling noise and you look up just in time to see a squirrel running to your medical kit! The squirrel picks up your medical kit with its teeth and scurries away, you dash after the squirrel. It sticks out its tongue and says “you can’t catch me! “Finally, you grab the medical kit and dash away. You run and run as fast as you can until you bump into a wall. You look up and realize you bumped into a giant cave. The cave has two narrow tunnels covered with vines. Each entrance has a single letter on the rock. One with a D and one with a H.
+
+*choice
+  #Think D means delightful and H means horrible.
+    *goto page6
+  #Think H means happy and D means disaster.
+    *goto page10
+
+*label page3
+You chose the sword. As you pick up the sword you notice some runes winding their way around the hilt. But you have to go soon as well. You pick up the sword and go on. Soon you see a large boulder blocking your way. On the boulder you see a large ore. You decided to mine the ore from the boulder. Soon, you see the flaw in your plan. You don’t have a pick axe, but you notice a skeleton with a pick axe in its hand. You grab the pick axe and raise it above your head. You have a queer feeling, like danger in near. Once on top of the boulder, you hit the ore once and the boulder forms a stone beast. It roars once and falls to the ground as the ore had broke when you hit it. You fall off, but land on your feet. The stone beast turns black and explodes in a cloud of purple mist. About two seconds later, the mist clears. You see a gem so beautiful you go to it, pick it up and are instantly teleported to the top of the Goodness Tree. Suddenly, flames leap up all around you. Suddenly, a very loud and deafening roar pierces the night sky. Fear floods your body. Then a dragon falls out of the sky, landing on its feet. You know its Uncolorgon the Black. A very dangerous dragon told of in tales. Your mind races wildly. What to do? Continue searching for the gem, running away, or stay and fight?
+
+*choice
+  #Run away and continue searching for the gem.
+    *goto page7
+  #Stay and fight Uncolorgon the Black.
+    *goto page11
+
+*label page4
+You decide to take the flower, knowing it gives you unlimited supplies. You set off to find the dreaded cave, but the trail is very long. You turn the other direction, but there is something in your way. It appears to be a three-foot slug with a red horn, which appears to be leading poison. It slithers toward you, leaving a coat of slug slime behind. It then leaves, but the foamy trail of slime is still there. Which way do you go?
+
+*choice
+  #Go through the puddle of syrupy mucus.
+    *goto page8
+  #Take the long path.
+    *goto page12
+
+*label page5
+You choose the pick axe and have now left the village. You see a rainbow ant on the ground and you touch it. You enter in the rainbow ant dimension. You are walking through the forest of nightmares. Legend says that the forest of nightmares has monsters called nightmares. You step on a secret, hidden pressure plate that teleports you on top of the building dungeon. You pull out your pick axe and sword when you see demons running to battle you. You defeat the first demon. The next demon spawning cater-killars, a killing caterpillar. The next demon is spawning giant Pac-Mans. There are more demons that look like cater-killers. Nightmares show up and you battle until you destroy all of them. You leave the dungeon and you see two paths. The first path is dark, and you hear dinosaur noises. The second path you hear dragon noises. Which one do you choose?
+
+*choice
+  #Take the first path with dinosaur noises.
+    *goto page9
+  #Take the second path with dragon noises.
+    *goto page13
+
+*label page6
+You choose D. You walk and walk till you reach light. You hear a roar and look up just in time to see a giant dragon dash behind a giant rock. You look at your feet and see a sword lying there so you pick it up and take a step forward and slash the dragon. He moves aside and behind him you see a tree! Could it be? Uh OH! That is the badness tree whose leaves are made of stinky socks and bark is made of sliced rotten potato’s. The dragon charges toward you and you scream as you run away. D did mean disaster!
+
+*finish
+
+*label page7
+You chose to run and search for the gem. You avoid his attacks, running away. You continue looking for the gem, but soon you know it’s not there so you have to fight. You grab your sword and return to the dragon and attack. You manage to avoid all of Uncolorgon the Black’s attacks. Suddenly, a bright light his Uncolorgon on the head and he falls, but is not dead. You point the sword at his head. He knows he is beaten. He flies off. You know you have the Goodness tree!
+
+*finish
+
+*label page8
+You decided to go through the puddle of mucus, but before you made it halfway, you tripped, falling onto the syrupy phlegm. You try to get up, but the slime is strong and gluey. You try to roll out, but it just makes you turn into a slimy cocoon. The goo soon dries up, but there’s no chance of escaping. “Help!” you shout. But nobody shouts back. Soon, a small boy spots you. He quickly runs away, coming back with two doctors. The doctors carry you into the ambulance. They drive to the hospital where they brake the cocoon. “It appears she has inhaled the smell of the Vikleo’s smile. It has damaged the arm quite severely, so she won’t be able to move her hand as well as she used to,” said a doctor. “Wait! What is tha--?” The doctor finds the flower, which is inside a small dried mucus ball. “Oh.” He says. “It’s just a flower,” as he throws it in the trash. “W—rooo...” you say weakly, suddenly fainting.
+
+*finish
+
+*label page9
+You choose the first path. As you’re walking, you find a really big tree. You think to yourself, “It must be the Goodness Tree!” You climb the staircase to the top of the tree. But what you don’t know is that there is a Dragon King hiding in the clouds. The Dragon King spits fire flame and acid. He is very dangerous. You do your very best to avoid his deadly attack. You hide under an emerald leaf so the Dragon King thinks that you fell deep down and died. As the dragon goes down to check on you, you sneak up and start mining uranium and titanium. You use a crafting table to make an ultimate pick axe, so you can mine faster. You make a miner’s dream. You put all the titanium, uranium, iron, emeralds, diamonds, and Redstone in your adventure back pack. You use the titanium and uranium to craft the ultimate sword, ultimate armor and ultimate shovel to protect you from the dragon. You climb out of the Goodness Tree and walk down the staircase. You fight the dragon with your sword and slay the Dragon King.
+
+*finish
+
+*label page10
+You choose H. You walk and walk till you reach light. You enter a bright clearing. In the middle is a dragon. A fierce fire breathing dragon. At your feet you see a sword. You take a step forward and slash the dragon with your sword. The dragon roars with anger and fly’s away. Behind where the dragon was standing is a tree! Not just any tree, the goodness tree! With its leaves made of emeralds and bark made of gold. H did mean happy!
+
+*finish
+
+*label page11
+You chose to stay and fight the dragon. Violently whipping his tail toward you, the dragon roars again, unsheathes his claws, and takes a vicious swipe at you. Still roaring he lunges at you, preparing to strike. Knowing you cannot defeat him, you run away in search of the gem. This is one of the only things that will save you. There are other things guarding the Goodness tree apart from Uncolorgon. You must find the gem. It’s your only hope. Scrabbling here and there, you search around in the branches, running around looking under rocks, finally you find it. It was firmly lodged into between two rocks as Uncolorgon had accidently moved it there while attacking you. Quickly touching the gem, you are teleported back to your home village. Congratulations on escaping! But the bad news is, you know as long Uncolorgon lives, he will guard the Goodness tree and you will never get it.
+
+*finish
+
+*label page12
+You are a bit afraid, so you take the long pat. You suddenly bump into something that appears invisible. It turns visible, and it looks like a Giant Lizard. It is offering a ride, and you decide to take it. You climb on, an it speeds off like a rocket. It goes so fast everything is a blur. You catch a small glimpse of tiny men with skull heads. Some of them ran after you, but their stubby little bodies tripped. The lizard dives underground, coming up once again in a large cave. The lizard goes through a door, into a room with 5 Golden Dragon statues circling nothing else than… The Goodness Tree! You could hardly believe your eyes. Your quest was complete! Or was it? Then, the Golden Dragon statues starts to move. They shoot rats from their mouths. You quickly get past them, picking a sapphire from The Goodness Tree. The sapphire explodes red light all over the cave. When the light clears, the statues were seen as chunks of gold. You run to The Goodness Tree and grab the gold, emerald, sapphires, ore, and amber, the tree has to offer. You hurry back to the village, showing everybody the things you got. You give a little to every single person in the village. Your quest is complete, and your very happy about it.
+
+*finish
+
+*label page13
+You choose the second path. You find Mobzilla protecting the deaf tree. Mobzilla is climbing up on other big trees. You notice that he crawls inside of one of the trees. After a while. Mobzilla crawls out of the tree and scares you and starts attacking you. You run away and sneak around. Then you climb up and then you hit the jackpot. Then you make a Mobzilla battle axe, a red diamond sword, a ruby sword and an obsidian sword and leave the dimension. You touch the ant and go back home.
+
+*finish

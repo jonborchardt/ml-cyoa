@@ -1,0 +1,75 @@
+*title Jedi Escape
+*author Anonymous
+
+*label page1
+You have returned from a mission on the Forest Moon of Endor and now you are at the Jedi Temple on Coruscant. You go to the Jedi Council to tell them about your mission. Your master says, “We were just going to investigate Endor, then suddenly from the sky something sped towards us in the Ewok Village. When it hit the ground, big humanoids come out with spears. They started to burn and destroy the Ewok Village. We had to get the creatures into the pod.” The council member says, “Go to the archives”. “But...” “Just go,” You walk to the archives. At the archives you see halacrons for the past years. Suddenly, the wall breaks down and creatures with three legs and a dome shaped head and clones come into the archives! Should you warn the Head Master? Fight the clones? Hide in the archives, or run away?
+
+*choice
+  #warn the head master,.
+    *goto page2
+  #fight the clones,.
+    *goto page3
+  #go to the archives to hide,.
+    *goto page4
+
+*label page2
+You decide to tell the head master. When you are there, you see that it is too late to help so you run back to the archives. At the archives you see that the clones are gone. You research the things that you saw before. They look like a dome sitting on three legs. You research for hours, and finally you find what you think is its weakness. Should you fight the aliens or stay in the archives where it is safe.
+
+*choice
+  #fight the aliens,.
+    *goto page6
+  #stay in the archives where it is safe.
+    *goto page10
+
+*label page3
+You decide run in to battle and fight the aliens. You hold off the clones for two hours. Then you hear a laser and see red on the floor. It is your own blood. You feel sleepy, and close your eyes. For. One. Last. Time.
+
+*finish
+
+*label page4
+You decide to run to the archives. When you hear voices. You follow the voices and see three kids Bob, Joe, and James Jr. They tell you there is a Speeder that you can take but need help driving. You wonder about the other kids, and if they need help. You decide to take Bob, Joe, and James Jr. to the Speeder right now, or you decide find the other kids who need help in the temple.
+
+*choice
+  #go to the Speeder,.
+    *goto page7
+  #find the other kids,.
+    *goto page8
+
+*label page5
+Quick, run! It is every man for himself! You and some other Jedi duck through the nine feet tall legs of the machines. You run through the corridor but clones block. the corridors leading to the exit. You can only go two places. One, you can go back to the archives, or, two, you can go to the council chamber.
+
+*choice
+  #go back to the archives,.
+    *goto page9
+  #go to the council chambers,.
+    *goto page11
+
+*label page6
+You decide to fight the aliens. You have heard that the creature’s eye is its weakness. When you draw your lightsaber to stab it in the eye, a long, thin red laser shoots your heart. You realize you have misread the book. You feel a little sleepy and close your eyes...for the last time.
+
+*finish
+
+*label page7
+You chose to take the Speeder. You slash a clone trooper in half as you dodge and deflect every single bullet from the clone troopers. You escape with Bob, Joe and James Jr. Now several years have passed, and you still have guild and depression over not being able to save all of the kids—Padawans.
+
+*finish
+
+*label page8
+You decided to look for all of the other children. You have successfully saved all of the children from the Jedi Temple. The band of children help you all escape into the Speeder. You and all the children were terrified. You land on a cargo ship going to a crate that will drop on the forest moon of Endor. It is now years later. You’ve been training the Padawans for years, ensuring the Jedi survival for the future.
+
+*finish
+
+*label page9
+You try to go to the council chamber. You run there, but the machines are there too! One of the machines turns to you and points a strange apparatus at you! A blinding light comes out and everything goes black. What happened?
+
+*finish
+
+*label page10
+You decide to stay in the archives where it is safe. 11 hours later, all the Martians are gone. It is safe now. Congratulations.
+
+*finish
+
+*label page11
+Get to the archives! It is your only hope! You expect to see the defense in pieces. But actually, the machines are the ones in pieces! The attack has been held off! Success!
+
+*finish

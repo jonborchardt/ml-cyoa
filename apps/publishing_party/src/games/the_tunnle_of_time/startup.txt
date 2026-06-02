@@ -1,0 +1,112 @@
+*title The Tunnle of Time
+*author Anonymous
+
+*label page1
+Your class is studying World War II (WWII). While looking at a WWII book        you keep noticing a big scruffy, sandy brown dog. “Hey,” you whisper to your friend, Jimmy. You show him the picture of the dog. “Cute dog,” he says, then he goes back to working. Maybe Jimmy is right. It is just a couple pictures of a dog. Nothing too weird, right? Suddenly, the bell rings. “Lunchtime!” your teacher shouts. You put the book away and run to catchup with your friends. Your little siblings, Thomas and Tessa, are waiting for you. They are nine-year-old twins. “Come sit with us,” they say. Instead, you go to sit with your friends. Later that day, on your way home from school, you see a dog that looks exactly like the one in the WWII books.
+
+*choice
+  #Go up to the dog and say, “Hi!”.
+    *goto page2
+  #Run home and tell your family.
+    *goto page3
+  #Follow the dog, making sure it does not see you.
+    *goto page4
+
+*label page2
+You decide to go up to the dog. You walk up to the dog, and you put your hand out for the dog to sniff. He sniffs it, looks at you, and then starts running. You decide to follow him. You have to run hard to catch up with the dog, but you catch up with him. You keep following the dog, and you get to a tunnel. The tunnel looks dark, but you can see a faint light at the end. You don’t like the dark and just thinking about going in freaks you out. Should you follow the dog into the tunnel? Or should you just forget it and go home?
+
+*choice
+  #Forget it and just go home.
+    *goto page5
+  #Follow the dog into the scary tunnel.
+    *goto page8
+
+*label page3
+You choose to run home. You tell your family that you read a book that had a dog in almost every page. Your mom says, “What, just what do you mean?” you say “there was a book that I read that had a do in almost every page and while I was coming home I saw the same dog! So I ran home.” Your mom says, “Okay?” then you go to your room and play video games. Later your mom tells you to clean the basement so you go and clean up the basement. While cleaning you find a WWII book. Your read the books and suddenly get teleported to Japan 1945.  Do You try to find your way home or explore the city?
+
+*choice
+  #Find your way home.
+    *goto page6
+  #Explore the city.
+    *goto page9
+
+*label page4
+You choose to follow the dog because he knows where the tunnel is. Your job is to not let the dog see you because the dog will get distracted and not take you to the tunnel. After five or ten minutes of walking through the woods, the dog leads you to a tunnel. You go into the tunnel. Suddenly you are in Japan. In Japan you see American soldiers. Do you explore the city? Or do you talk to the soldiers?
+
+*choice
+  #Explore the city.
+    *goto page7
+  #Talk to the soldiers.
+    *goto page10
+
+*label page5
+You decide to go home, and thinking to yourself, “It’s just a scruffy mutt.” You keep studying WWII with your class and ignore the pictures of the dog.
+
+*finish
+
+*label page6
+You choose to find your way home. You decide to go to a library because you think that if you find a book about Washington, it will teleport you back home. Once at the library you can’t find any books written in English. You’re stuck in 1945 Japan forever.
+
+*finish
+
+*label page7
+You decide to explore the city. You walk down the street and you see someone. You can’t tell who it is but they look familiar. You follow them because maybe they will turn around and you will see their face and recognize them. You feel a little bit nervous being in an unfamiliar country. You try not to lose them. You have no idea where they are going. Suddenly he turns around and you see his face. It’s Jimmy!!! You say, “Hello!” You feel less nervous now, because you know who it is and you’re not alone. You ask Jimmy, “Do you want to go back to my house in Washington state?” He says, “Yes!”
+
+*finish
+
+*label page8
+You decide to go in the tunnel. Suddenly, you are transported back in time to 1945, Japan. WWII is raging. “Cool,” you say to yourself. “I can get some info for my report and then go home.” That’s when you realize you don’t know how to get home! Should you go right towards the city? Or left towards the forest?
+
+*choice
+  #Walk toward the city.
+    *goto page11
+  #Walk towards the forest.
+    *goto page13
+
+*label page9
+You choose to explore the city. You go around turns until you see an American patrol. You run up to them and ask them where a safe place to go is. They tell you about their bunker and give you directions. You follow the directions to the bunker and go inside it. When you get into the bunker you see your friend Jimmy who also got teleported to 1945 Japan.
+
+*finish
+
+*label page10
+You talk to the soldiers. You say, “HI!” They look a little confused and they say, “What are you doing?” You feel nervous because you have no idea why the tunnel led you to Japan. The soldiers are having a meeting. You interrupted the meeting and they are a little bit mad. The soldiers think you heard some of their plans. They say, “How did you get here?” You say, I went through a tunnel and transported to this meeting.” Then, you run away because they look angry. As you are running you see a creek. You try to jump to the other end of the creek, but you trip and fall into the creek. You get rushed to the hospital, you wake up with a broken leg. You say, “I wonder if that dog ever saw me following him?”
+
+*finish
+
+*label page11
+You decide to go towards the city. You ask some people information, but you get lost in the bustling city. You try to get out, but it is too late. You are lost forever.
+
+*finish
+
+*label page12
+You decide to press the button. You grab the map and press it and suddenly the ground your standing on goes down into a secret weapons room. There are all kinds of dangerous weapons, there are cannons and guns, grenades and dynamite and bombs. You grab some grenades and dynamite and run. Once you’re out of the building you pull the map out of your pocket. After many hours you find the planes. You hide in the bushes until every soldier is gone then you go out and put the dynamite and the grenades in the planes. The dog looks at you, you hand him a grenade and he grabs it in his mouth and puts it in the biggest plane. You run and hide in the bushes then you hear a big explosion.  You hear a Japanese soldier tell his boss about the explosion. You follow the dog to the closest town and fall asleep. The next day Japan announces their surrender, you feel as if you have completed your mission and you think the dog agrees.  Soon you see a portal, should you just go or should you bring the dog with you?
+
+*choice
+  #Just go.
+    *goto page14
+  #Bring the dog with you.
+    *goto page16
+
+*label page13
+You decide to go towards the forest, you saw the dog go that way. As you walk you notice a small hut you decide to go in so you go up and knock on the door. A man wearing a US army outfit opens the door he takes a quick look at you and lets you in. When you walk in there are lots of other people wearing US military     uniforms. You look around there is a ton of military gear all around, there’s a couple of little cots on the floor and an old raggedy couch. There are a few men wearing US military uniforms sitting on the couch chatting. “President Truman wants to drop atomic bombs to end the war” they say to each other. “Are you the messenger boy they sent us?” they ask “yes” you answer even though you’re not. “Great!” they say excitedly and hand you an envelope, “please deliver it to the address on the front.” They whisper you nod and walk out the door. Once you get out of the woods you look at the address on the envelope. You remember learning about this address at school, it’s a Japanese military building! You start running. Once you get there you sneak in, it is empty except for what looks like a map of where all their planes and cannons are hidden. Next to a picture of huge planes the caption under the picture says, “our secret weapon, without these we would have to surrender.” Awesome, you say. Then you notice a button on the wall. Should you press it or would it be better not to?
+
+*choice
+  #Press the button.
+    *goto page12
+  #Do not press the button.
+    *goto page15
+
+*label page14
+You decide to leave the dog. You get an A+ on your report but regret not bringing the dog.
+
+*finish
+
+*label page15
+You decide not to. Suddenly a man appears holding a gun. The man looks at you suddenly he fires his gun and everything goes black.
+
+*finish
+
+*label page16
+You decide to bring the dog. You smile and pick him up then you hop through the portal. Your parents let you keep him, and you name him Buddy. You get an A+ on your report and love coming home to your very own dog!
+
+*finish

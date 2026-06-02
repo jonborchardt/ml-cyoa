@@ -1,0 +1,228 @@
+*title Secrets of the Multi Diamond
+*author Oliver, Stella, Calvin, Asher
+
+By
+
+BEWARE and WARNING!
+
+This book is different from other books.
+
+The mid-level at Spruce Street School worked in teams of
+three and four to create these stories. Each team
+imagined the theme of their story and crafted
+the beginning together. But the different
+middles and multiples endings are the
+work of each individual team
+member.
+
+In this story YOU, and you alone will encounter dangers,
+choices, and peril, as that is part of the genre of Choose
+Your Own Adventure, otherwise known as CYOA!
+
+You have been in college for three years. After a time, you built a super computer and have picked up some weird radioactive waves coming from two different locations. Many people have tried to investigate. Only one person has come back to tell of dangers beyond imaginable. He also told of diamonds that could stop the rifts from eating the world. To save the world, you will need one emerald, one ruby, and at least one multi-diamond. Along the way you will meet ninja kitties, mythical creatures, and much, much more. Good luck!
+
+*label page1
+One day you go to your dorm room where inside is your one-of-a-kind super computer. You check the little thing that shows seismic waves and see a huge seismic spike. You instantly rush to your tracker to see where the spikes are coming from. You see that the places they are strongest are an abandoned tech lab in the Sahara Desert and a deserted island in the middle of the Pacific Ocean. If your calculations are correct, these waves are caused by rips in the space time continuum, which you know will eat the earth.
+
+*goto page2
+
+*label page2
+But you have a plan that could stop them. You need one multi diamond, which can only be found in the rips, one ruby, one emerald, and one lapis. These stones will stop the rips in the space time continuum from eating the world. Oh! And you know a lot about this because you study physics in college. You email your friends, Lily and Brian. Brian studies chemistry, and Lily studies writing and stuff. You ask them to come with you. They instantly respond with, “YES!” The rips are coming from an abandoned tech lab in the Sahara Desert and in the middle of the Pacific Ocean on a deserted island. You and your friends need to decide which location to investigate first.
+
+*choice
+  #Go to the deserted island in the Pacific Ocean.
+    *goto page3
+  #Go to the tech lab in the Sahara Desert.
+    *goto page4
+
+*label page3
+You choose to go to the island. First you need to buy a plane ticket. You book a flight on a private jet. Once on the island, you set up your tracker and follow the waves until you find where they are strongest. You look up and see a cave with ominous blue and red glowing waves floating out. Suddenly, you notice your tracker is on the fritz. BOOM! Your tracker was picking up too much radiation and exploded. You, Lily and Brian head in...it’s worse than you feared. “There are two rips!” you exclaim. “This is bad.” One looks like a crack, while the other looks like an oval. “That’s just great!” Lily cries. Which opening will you choose...
+
+*choice
+  #Choose the crack like rip.
+    *goto page5
+  #Choose the oval rip.
+    *goto page8
+
+*label page4
+You choose to try to get to the abandoned tech lab in the Sahara Desert. “Let’s go,” you tell Lily and Brian. “Wait. I know where the abandoned lab is located in the desert,” you say. “Where?” says Lily. You check your GPS. “Oh no! “What happened?” Lily asks. “We’ve lost the signal,” you say. “Now what are you going to do?”
+
+*choice
+  #Wait for the signal.
+    *goto page6
+  #Risk it, and go to the desert without a GPS.
+    *goto page7
+
+*label page5
+You went through the portal that looked like a crack like rip. You look at Lily. You shriek. She looks like this. You’ve read about them in stories. “It's a nightmare kitty corn!” Brian screams. You look at yourself. You're an albino Star-mare-corn. Brian is a Jim; (he doesn’t know he really doesn’t know [he he]). You see a weird thing lingering in the darkness.
+
+*choice
+  #Keep going.
+    *goto page9
+  #Check out the weird thing.
+    *goto page28
+
+*label page6
+You choose to wait and fix the GPS. Five minute later, the GPS signal comes back on. You, Lily and Brian go to the car and start to drive. Five hours later, you arrive at the abandoned lab, and inside are a bunch of buttons! All of them are different colors: red, blue, yellow and green. Lily tells you to press the red one, but Brian tells you to press the blue one. You think for a second before pressing the red button. Two portals arrive. One leading to the ninja forest and another leading to Easter Island.
+
+*choice
+  #Go to the ninja forest.
+    *goto page11
+  #Go to Easter Island.
+    *goto page12
+
+*label page7
+You chose to go to the Sahara Desert without waiting for the GPS signal. Lily and Brian get in the car. Five hours later...you get to the Sahara Desert. You get out of the car. You, Lily, and Brian start walking. Three hours later, Lily asks for a snack. you realize that you don’t have food or water!
+
+*finish
+
+*label page8
+“Let’s go through the nicer looking oval portal,’’ you say. You, Brian, and Lily jump in the portal. “OOF!’’ You shout as you hit the ground. That’s when you notice your shorter than usual...’’AAAHHH!!!!!’’ Lily screams you look up and see that she has transformed into a panda with wings. “What am I?!’’ She shrieks. Then she looks at you and shrieks again. You look down and see that you have tiny paws ‘’WHAT THE WHAT?!!’’ You shout. You look around... ‘’Uuuuhhhh where’s Brian?” Lily looks up, ‘’Um, I think Brian was teleported to a different part of this place,’’ she says. ‘’What now?’’
+
+*choice
+  #Go looking for Brian.
+    *goto page10
+  #Continue on your original mission.
+    *goto page14
+
+*label page9
+You keep on going. You fly over a river, Brian, Lily and You start eating raw fish. (No one knows why.) You try to catch one. You miss. You try to punch the fish, but instead of punching it you shoot a laser beam but it has an odd resemblance of a star.
+
+*choice
+  #Keep going.
+    *goto page17
+  #Practice shooting the laser.
+    *goto page21
+
+*label page10
+“Let’s go find Brian.“ You say. “Let’s go!” You look up “uuuhh,” “What?” Lily asks. “I kind of have no idea where in this strange world where Brian is.” After um… let’s just say an hour, you both decide that Brian went west. “West is his favorite direction, right?” So, you both start heading west. PING!! “What in the name of Mr. hamburger was that??!” You shout so loud it made a flock of birds fly away. Then you see a single quill in a tree next to you. “Hhmm… there’s some sort of package attached to it.”
+
+*choice
+  #Open the package.
+    *goto page19
+  #Don’t open it.
+    *goto page22
+
+*label page11
+You enter the ninja forest. You, Lily and Brian start to walk around. All of a sudden you hear Brian yell, “Help!” You and Lily run over to Brian, but when you get there, he is gone! You and Lily walk around looking for him. All of a sudden you and Lily are grabbed and pulled up to the tree above you. In the tree there’s a giant tree house. Inside there’s a man covered ninja black ninja suit. His cat is in a ninja suit too. You ask him what his name is but he doesn’t answer. You ask him where Brian is. He points up. You see Brian hanging from the ceiling with his mouth covered in duct tape. You tell him to release Brian. Then he takes his black mask off. You see a Japanese man with a long mustache staring at you. He talks, saying, “I will let your friend go if you give me the multi-diamond.” You huddle up with Lily, but you’re not talking about the multi-diamond. You’re talking about how to get Brian free. You tell Lily to untie Brian while you talk to the ninja master in his kitchen. So, you take him into the kitchen and start talking, meanwhile Lily is untying Brian. You see Lily give you a thumbs up and then they jump out the tree. Then you jump and you start running and the ninja can’t catch you. You think you lost him and you did, so you start walking. Then you see somebody you want to say something to them but he maybe dangerous. You could just run but maybe he’s helpful.
+
+*choice
+  #Run.
+    *goto page15
+  #Talk to the man.
+    *goto page25
+
+*label page12
+You choose to go to Easter Island. You step out of the portal. You take another step. You see a moai and you think it’s trying to crush you! You start to run. It starts chasing you. You see a cave and you duck inside. You realize that Lily and Brian aren’t following you! The moai grabs you out of the cave. You then see Lily and Brian in the other hand of the moai. You think about jumping from the moai’s hand.
+
+*choice
+  #Jump.
+    *goto page16
+  #Don’t jump.
+    *goto page24
+
+*label page13
+You go through the door that says useless junk. The sign on the door was absolutely correct. It was full of junk like old couches and chairs and some weird kinds of machine guns. But then a sparkle caught your eye but you decide to ignore it. Brian then sees the sparkle and he says, “What dis?” Lili goes over and she realizes that it is the multi diamond. You save the world. You get teleported back into cave and you put the multi diamond in the holder and you take your boat back home.
+
+*finish
+
+*label page14
+’Brian will be fine.’’ You say hopefully. ‘’I hope your right. ‘’Lily says. You begin walking down a path that you found. After a while Lily starts sighing...’’Huhh...’’ ‘’Why the long face?’’ You ask. ‘’I miss Brian,’’ she says. ‘’WHO CARES?!!’’ you say. ‘’Me, I care,’’ Lily says.  ZZZTT!! ‘’What in the name of stir-fried chicken was that!!!!!???’’ You look up and see (the same thing) Lily shooting lasers out of its backside at you! “Take cover,” Lily yells. She’s hiding behind a tree. Great now what.
+
+*choice
+  #Take cover from the strange thing.
+    *goto page20
+  #Stay and fight.
+    *goto page23
+
+*label page15
+You decide to run! You start to run as fast as you can but you’re not looking where you’re going and run right into a lake. You slowly start to sink but you get back to the surface but you see something coming forward. It’s a giant alligator! It’s getting closer and you can’t get away and it bites you.
+
+*finish
+
+*label page16
+You have chosen to jump out of the moai’s hand. You jump. You start falling. You fall faster and faster. Suddenly, you hit the ground and never wake up again.
+
+*finish
+
+*label page17
+You decide to keep on going something is coming toward you, it's a Thundercorn; its angry... ZZzztt, “ow!”, you say as you are fried to a crisp.
+
+*finish
+
+*label page18
+You go through the weapons room door and it was right, there are weapons everywhere. Guns, landmines, and dynamite fill up the room. You hear a creak from behind you, something just opened the door. You, Lily, and Brian turn around and you see it, and you scream. It is a rouge cyber glider. It sets light dynamite on the ground and it flies away before you have time to defuse it. It explodes and everyone dies.
+
+*finish
+
+*label page19
+“Let’s open it.” You say confidently. You begin to open the package when a glint from inside the package almost blinds you. “THE MULTI DIAMOND!!” You yell. “Lets save the world!” you look up “bingo!” Pointing to a swirly hole in the ground. “WEEEE!!” You shout as you jump through. You land back in the cave. “Brian is that you?” Brian was sitting in the cave napping. “Oh, hi guys.” While Lily scolds him, you put the multi diamond into a slot that you notice above the cave. “SUCCESS” You yell as the portal closes “We did it!”
+
+*finish
+
+*label page20
+You jump behind the tree. “What’s burning?” Then you realize the tree you’re hiding behind is on fire. “HOT, HOT, HOT!!!” You yell, “OOOOoooowww” and you were never heard from again
+
+*finish
+
+*label page21
+You decide to practice the laser.  You look up and that there’s a castle. You go in (duh), but wait...you hear rumbling. Lily sees an angry mob of nightmare cats and possessed hats. (It’s not supposed to be a rhyme) “Oh my gawd” says Brian. Then you see a door that you should probably run in. You run in the door and there’s a hallway with a few possesses hat guards.  It’s a good thing you practiced your lasers. Lily takes out a spear and she throws it at one of them. Brian shoots fire at them. You shoot your laser and you defeat the guards. You see two doors. One of them says weapon room and one of them says useless junk.  Which should go in through?
+
+*choice
+  #Go through the door that says useless junk.
+    *goto page13
+  #Go through the door that says weapon room.
+    *goto page18
+
+*label page22
+‘’This feels fishy.’’ You say. You and Lily keep walking along the path, BEEP BEEP, BEEP BEEP! ’’We failed!’’ I set an alarm for when the world was eaten and it just went off!’’ ‘’Which means that were trapped here. FOREVER!!’’
+
+*finish
+
+*label page23
+‘’I’ll stay and fight!’’ You yell. ‘’Well then, I’ll fight to!!’’ You both run out onto the road and raise your fists ‘’Come at us!’’ You yell. ‘’Wait that thing has lasers!’’ Lily yells.
+
+THE zzzzzttt END
+
+*finish
+
+*label page24
+*finish
+
+*label page25
+You have decided to talk to him. First, you ask the man to come out from behind the tree. He comes out and you ask him what his name is. He says, “Dr. Kortex but you can call me Jim. I’ve been watching over you In my glass orb. You and your friend are trying to find the multi diamond and I know where it is. I have a map but if you want this map, I need a favor.  Show me where the ninja is.” “We know where the ninja is. Just keep going that way and then look up and you will see a big tree house and he’s in there.” “Thank you,” says Jim. “Here’s the map and a sack of food for your journey. Oh and here is this mirror so you can call me if you need help.” “Wait, how do I call you?” you ask Jim. “Just say Jim three times.” “Okay, thanks Jim.” Jim starts to walk away. “Wait! This map makes no sense.” Lily looks at the map. “You’re holding it upside down,” Lily tells you. “Ohhhh.” “You know what, I think I will do the mad reading,” Lily tells you. A little but later, you arrive at a tree with a button on it. You want to press the button but it could be a trap.
+
+*choice
+  #Press the button.
+    *goto page26
+  #Don’t press the button.
+    *goto page27
+
+*label page26
+You press the button and a door opens to the inside of the tree. You step in and start to fall, it’s a trap! There’s nothing under you! You’ve been falling for one hour! You bump your head and hit the bottom of the hollow tree. A rock falls on you, and you die.
+
+*finish
+
+*label page27
+You, Lily, and Brian start to walk back to the portal to go home. Then you see something glowing by some ricks. You pick it up and it’s the multi diamond! You did it! You saved everyone from the two reefs!
+
+*finish
+
+*label page28
+You check it out (duh). “Uh, I’ll stay back and play my Game Boy,” says Brian. “Oh...well...no. No games,” Lily says. “FINE!” says Brian. He starts playing anyway. It’s coming. You and Lily fight it. It takes an hour, but you win (duh) (yay). Brian’s Game Boy dies. You see a castle in the distance. It explodes!
+
+*choice
+  #Stay where you are.
+    *goto page29
+  #Run.
+    *goto page30
+
+*label page29
+You decided to stay. You explode.
+
+*finish
+
+*label page30
+You keep going. You run...fast!! You look up (even though you shouldn’t). To your amazement, there is a Cyber Glider, and it is carrying the multi-diamond!! It drops it in your hand!! You get teleported to the cave, and you save the world.
+
+*finish

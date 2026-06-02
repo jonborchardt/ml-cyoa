@@ -1,0 +1,70 @@
+*title Portals
+*author Anonymous
+
+*label page1
+You’re on your bed playing video games when you hear your mom shout, “Come downstairs. I need your help!” You sigh, then go downstairs. “Go to the store and get some pizza,” your mom says and gives you $20.00. You head to the store. You look at the pizza and start to drool. You grab the pizza and go to the checkout stand, still salivating. Just as you begin to leave, everything goes slow-mo, and three portals appear. The first portal looks like a slimy hamster's mouth. The second portal looks like a galaxy. The third portal looks like a fuzzy cat head.
+
+*choice
+  #go through the hamster portal,.
+    *goto page5
+  #go through the galaxy portal,.
+    *goto page7
+  #go through the cat portal,.
+    *goto page9
+
+*label page2
+You choose to go to the castle in the sky. You hop on Meowio. Meowio then jumps up to the castle in the sky. Meowio lands in front of the castle in the sky. SpongeBob Cat Pants and Cat-trick are guarding it. You stand close to Meowio, and they let you in. “Meow,” says Meowio. You smile. In the castle, you see some car keys. You pick them up and keep walking. Eventually, you find a red car. You look around to see if anyone is watching. You hop in the car. There are so many buttons; you have no idea what does what. So, you HIT THE FIRST BUTTON YOU SEE. You start to go forward. You don’t know how to stop. You drive through a wall and of the kingdom in the sky.
+
+*finish
+
+*label page3
+You hide. They don’t notice you. They pass. You see that they’re hamsters. You don’t trust them. You get out of your hiding spot. You walk for a while. You eventually find a forest. You go into the woods. You see a camp. It appears to be abandoned. You see a crate. You see what’s in the crate. You find a note. There’s a portal machine on the top floor of the hamster king’s castle. You see the castle. You head to the castle. You eventually reach the castle. You see a hamster. You take its armor and put it on as a disguise. The hamsters at the gate think you’re a hamster. They open the gate. You go to the top floor. There are hamster guards at the door to the room with the portal machine. They let you in because they thought you were a hamster because of your disguise. You use the portal machine. Suddenly, you are transported to your bed. You forgot everything that happened that day.
+
+*finish
+
+*label page4
+You start fighting. An alien grabs you and shoves you in his mouth.
+
+*finish
+
+*label page5
+You go through the cat portal. It is wet and fuzzy. It smells like cat food. Then, everything is black with a blinding light! You come out of a cat's mouth, “Ahhhhh,” you scream. It is a… cat kingdom. The kingdom is made out of wet cat food. “Wow,” you exclaim. You’re in awe of the kingdom. “Meow.” You look down. You see a strange cat. It seems like Mario or Meowio. “Meow,” says Meowio. It appears to be licking the pizza you got at the market. You hand the pizza to Meowio. Suddenly Meowio grows to giant size. “MEOW,” Meowio says. All of a sudden, the cat runs off. You chase the cat up a mountain, look out and see two castles. One is in the sky. One is in the forest. Looking out, you feel hungry. “Meow!” says Meowio, handing you some cat food. You eat it, but it tastes like BARF. You look back at the two castles.
+
+*choice
+  #go to the castle in the sky,.
+    *goto page2
+  #go to the castle in the forest,.
+    *goto page6
+
+*label page6
+You start running towards the kingdom in the forest. You begin to get tired. You don’t know how much time has gone by. You wake up to flashing lights. “Where am I?” you wonder. You see some kitty doctors and ask, “What happened?” you ask. “We found you on the ground in the forest,” the doctors answer. “What year is it?” you ask. “It’s the year 9999. Dogs rule the world.” You are hungry. You see something on a shelf by your bed. It says Back to Earth on it, so you eat it. Then, everything goes black, and you wake up on your bed with your TV still on.
+
+*finish
+
+*label page7
+After you go through the hamster portal, you come out in a desert. You start to walk. After a bit you see a figure. You can’t tell what it is.
+
+*choice
+  #hide,.
+    *goto page3
+  #call for help,.
+    *goto page8
+
+*label page8
+You call for help. “Help!” You run towards them. They drag you to prison. You’re stuck there forever.
+
+*finish
+
+*label page9
+THE NEXT THING YOU KNOW, you`re floating in space. You wonder for a minute, then start for the nearest planet. In an hour or two, you reach it. You land on the rocky surface. You start walking. You see the light. It looks like a flying saucer. Before you can get to it, a monster jumps in front of you.
+
+*choice
+  #fight,.
+    *goto page4
+  #run,.
+    *goto page10
+
+*label page10
+You start running and find the flying saucer. You get in. You find aliens. They give you food and water and take you home.
+
+*finish

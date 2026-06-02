@@ -1,0 +1,168 @@
+*title The Quest for the Pearl of Water
+*author Audrey, Asne, Vivian, Judah
+
+BEWARE and WARNING!
+
+This book is different from other books.
+
+The mid-level at Spruce Street School worked in teams of
+three and four to create these stories. Each team
+imagined the theme of their story and crafted
+the beginning together. But the different
+middles and multiples endings are the
+work of each individual team
+member.
+
+In this story YOU, and you alone will encounter dangers,
+choices, and peril, as that is part of the genre of Choose
+Your Own Adventure, otherwise known as CYOA!
+
+You are going to a dinner party with only people who are vegetarians. A mean waiter puts chicken in the salad, turning everyone into chickens; everyone...but you. You brought your own salad. It is up to you to find the pearl of water or all hope of everyone turning back into themselves is lost forever! Good Luck!
+
+*label page1
+You hear the phone ring and see your mom pick up the phone. She nods her head and says, “I am sorry but I can’t come tonight, but my daughter will be there.” After she hangs up, you ask, “Who was that?” She replies, “Just the restaurant calling to confirm my reservation that I made two months ago. Is it alright if you go with my friends instead of me? Roxy, our chicken is sick, and I need to take care of her. I’m sure my friends will take good care of you.” “Sure, I can go,” you reply. “But I need to make my own salad because Arthur told me he got food poisoning from their salads.” You head to the restaurant and see that near the entrance there is a man holding a sign saying, “Tickets for tonight’s game!” He looks at you and whispers, “Hey, you need some tickets for the Storm Game tonight?” Do you give him nothing and walk inside? Do you give him the salad that you made, and say, “You look hungry. Eat this.” Or do you buy the tickets for $10?
+
+*choice
+  #Walk straight into the restaurant.
+    *goto page2
+  #Give him your salad.
+    *goto page3
+  #Buy the tickets for $10.
+    *goto page4
+
+*label page2
+You ignore the man and head inside the restaurant. You eat the salad that you made and you’re glad because you don’t turn into a chicken. If you ordered a salad from the restaurant you would have turned into a chicken like your friends.  Wait this has happened before and you know how to turn your friends back. You need to go find the pearl of water. Do you decide to go find the pearl of water or do you stay at the restaurant?
+
+*choice
+  #Go find the pearl of water.
+    *goto page5
+  #Stay.
+    *goto page8
+
+*label page3
+You give him the salad you made and he smiles at you, saying, “Thank you.” You nod to him and head into the restaurant.  You spot your mom’s friends at the back of the room, and you wave to them. Once you get to the table, they ask you what you would like to eat. Do you order the salad or the steak?
+
+*choice
+  #Order the salad.
+    *goto page6
+  #Order the steak.
+    *goto page9
+
+*label page4
+You give him $10 then walk inside and spot your friends at the back of the room. As you make your way towards them, you are very grateful that you did not give your salad away. The food safety rating says the restaurant needs to improve. You sit down with your friends and when all your food gets there you all start eating and talking. Suddenly, instead of talking you hear, “BOK.” You turn your head and see that your friends are turning into chickens! You call the waiter over and ask him, “What is happening?” He says, “I put some magic chicken which turned them into chickens. To turn them back into people, you need to go to Machu Picchu. On the tallest peak there is a secret tunnel that leads to a series of mazes and puzzles that will lead you to the Pearl of Water. But other people want it too so you have to be careful. You have a time limit of 10 days.”
+
+*goto page7
+
+*label page5
+You decide to go find the pearl of water. You call 911 and say, “I need your help.” And he says, “ok, the pearl of water is in Machu Picchu, at the top of a very tall mountain.” You head over to Machu Piccu and start hiking. You hike your way up and there are a few obstacles. You made it to the fifth obstacle, when you trip and you get back up and keep going. You make it to the entrance of mountain and head in. You start to go in the maze, it’s smooth so far and you come across a rocky area. You start to go in the rocky part and you almost trip but thankfully you didn’t. You find the pearl of water. You head back to the restaurant and break the pearl of water. Magic starts coming out and a few minutes later, everyone is back to normal.
+
+*finish
+
+*label page6
+You order the salad. You are starving, and you are going to eat it, but you see something weird and it smells a little fishy.
+
+*choice
+  #Eat it.
+    *goto page11
+  #Don’t eat it.
+    *goto page15
+
+*label page7
+You leave for Machu-Picchu straight away. When you get to Machu-Picchu there are three ways to get to the tallest peak: by hiking up the mountain, by bike, or by helicopter.
+
+*choice
+  #Hike.
+    *goto page10
+  #Bike.
+    *goto page13
+  #Take a helicopter.
+    *goto page14
+
+*label page8
+You decide to stay at the restaurant. The chef asks you, “Why are you not a chicken?” You say, “Because I brought my own salad.” “Ok,” says the chef. The chef turns around and heads back into the kitchen. He comes back with a frying pan and whaps you in the head. Everything goes black.
+
+*finish
+
+*label page9
+You order the steak. You the chicken in everyone’s salad. You try to tell them but it’s too late. They ear the salad and they turn into chickens. You talk to the waiter and he says, “you have to go to Machu Picchu in order to save your friends. “So, you head to Machu Picchu. You head to a nearby village. You take a shortcut through the village and you see in the village, markets, houses, and people working, and people selling plants. You see a man, and he gives you beans and says, “These are magic beans.”
+
+*choice
+  #Take the beans.
+    *goto page21
+  #Don’t take the beans.
+    *goto page16
+
+*label page10
+You decide to hike to the peak, so you start to hike. After a few hours of hiking, you come to a place in the trail right next to a cliff. You lean over to see what is down there, but you lose your footing and fall. You brake all of your bones and die.
+
+*finish
+
+*label page11
+You chose to eat it. You take a little bit of salad on your fork, you smell it one more time, but then you hear screaming. “What is happening to me?!” You hear a woman say. Your best friend, Emily turns into a chicken! Everyone is turning into a chicken! “now I know what it is, it’s chicken!” You thought. You run the fastest you can back home. You turn on your computer and search for “Turned into chickens”. It came up, Machu Picchu and the pearl of water. You order a flight and it’s in two hours.
+
+*goto page20
+
+*label page12
+You choose to take the gift. You take the gift and say, “thank you!” You go back to your seat and open your gift. It’s a necklace. It is purple and shiny. On the back it says 13258RP9. You take your computer out and search for 13258RP9. It comes up, “magic necklace.” You click on it and read it to yourself. “It’s a magic necklace that can turn your friends back into humans, if they turn into chickens. You have to wear the necklace and say, ‘turn chickens into humans’.” You take your Orca card and you go to the bus stop. You are waiting for the bus to come. You take the bus to the restaurant. In the restaurant, there are a lot of chickens. You put on the necklace and say, “turn chickens into humans.” You can only see purple shine. Everyone turns back into humans! “You did it! It was so uncomfortable,” Emily says. You are a hero!
+
+*finish
+
+*label page13
+You decide to use a mountain bike and get to the top in no time. When you get to the top, you move the rocks that the waiter instructed you to move, and reveal the secret passage. You walk inside. After a while, you come to a crossroads. There are three choices. You hear wailing coming from the left path, you hear party sounds coming from the path straight in front of you. And the one to the right is dark with sounds like a dog crying.
+
+*choice
+  #Go toward the wailing.
+    *goto page17
+  #Go toward the party.
+    *goto page18
+  #Go toward the crying dog.
+    *goto page19
+
+*label page14
+You chose to take a helicopter. You get on, and after a few minutes you here the engine sputtering. The pilot yells, “BRACE YOURSELF!” You do, but it makes no difference. You crash and die.
+
+*finish
+
+*label page15
+You choose to not eat it. You leave the salad at the table. Then you best friend, Emily takes a bit of her salad. Something weird is happening with her. She turns into a chicken! Everyone is turning into chickens! You run the fastest you can back home. You turn on your computer and search for “turned into chickens!” It comes up, Machu Picchu and the pearl of water. You order a flight to Machu Picchu and it’s in 2 hours.
+
+*goto page20
+
+*label page16
+You don’t take the beans and keep walking, you see something. It’s a portal and you decide to go in. You see the pearl and you grab it. You go through the portal again and end up back at the restaurant. Your friends holding the pearl and turn back to normal.
+
+*finish
+
+*label page17
+You walk down the tunnel to the left; the sound of wailing gets louder and louder. Until the tunnel abruptly opens into a huge cave. You step inside and you are thrusted upwards into a cage where you spend the rest of your life.
+
+*finish
+
+*label page18
+You chose to go down the path straight ahead, which has the sounds of a party, at the end. there you see that it was indeed a party. You join in, someone recommends that you try a strange fruit. You do and it tastes amazing. All you ever want to do is eat this fruit, and it is all you ever do. Forever.
+
+*finish
+
+*label page19
+You go down the passage to the right with the sound like a dog crying. When you get to the end of the tunnel you have to stop suddenly because you see the wide pit you cannot see the bottom of it only now do you see the only way forward is to jump because the walls of the tunnel are pushing in on you. You run and jump into the pit and land on a trampoline, but it disappears as soon as you are safely to the ground. You feel a pain in your arm. You look at your arm and see. A message is tattooed on your arm. It says that you have to get a rod which will act like a key to the chamber of the pearl of water you follow your map on your arm and soon you find a maze it takes you a minute to realize that you have a copy of the maze on your arm so after a few hours. You get to a long room with a pool of murky water in the middle. At the end of the pool there are 3 things. A glove encrusted with jewels, another glove with 6 jewels of all different colors and in the middle an iron rod wreathed in flames. You take a step towards the things but instead they seem five feet farther away than they were before. You decide to walk to the end closer to you and when you look at the water you see. Only the reflection of the rod. The reflections of the two gloves reflections are where they should be you look at the reflection it is glowing. You reach in to the water and pull out the rod of FIRE! You return to the room and lock the rod into place in the stone door and you slip in side at the end of the room is the pearl of water you take it and heal your friends.
+
+*finish
+
+*label page20
+You have to hurry to the airport. You go on the bus. At the airport, you meet an old man. “I have a gift for you,” The man says. “Why are you giving it to me?” You ask.” I felt you were the right person,” He says. “Umm…thank you,” You say. Do you take the gift or not?
+
+*choice
+  #Take the gift.
+    *goto page12
+  #Don’t take the gift.
+    *goto page22
+
+*label page21
+You take the beans and you keep going. You drop them on the ground and the beans turn into a cage. You’re trapped and you can’t breathe. You die.
+
+*finish
+
+*label page22
+You choose to not take the gift. “no thank you,” you say. You go back to your seat and wait. The plane comes and you are going onto the plane. The flight is 7 hours long. Some hours later you get lunch. “This is salad and soup,” the woman says. “Thank you,” you reply. It was chowder. You taste the chowder and it’s delicious! The you taste the salad. Then you see chicken in the salad! Your turn into a chicken!
+
+*finish
