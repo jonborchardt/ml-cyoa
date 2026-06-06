@@ -1,0 +1,149 @@
+*title The Final Lap
+*author Anonymous
+
+*label page1
+You are Ulis Hamilton, an elite Formula One driver for Mercedes. You live in Bavaria, Germany, and you have been practicing for this moment for twenty-two years. You have been racing in Formula One for 10 years, and you are one of the few people in the world who can drive an F1 car at this level.
+The final Grand Prix of the championship, Nuremberg, Germany, is about to begin. The whole world is watching on TV. Your Mercedes team is counting on you to win the championship, but Ferrari is already looking like they have race-winning pace. Red Bull, the reigning champions, are also in the fight, and they are desperate to beat you.
+Your life goal has been to win the Grand Prix and get the paycheck. You are a world-famous driver, but you are getting tired of racing. Still, you think to yourself, It is just this one more time.
+A message comes in over the intercom.
+“Drivers, get ready to race.”
+You climb into your F1 car. It is sleek and dark blue with orange trim. Your pit crew checks everything one last time.
+“The car has new tires,” your pit crew says. “It is fueled up and ready to go. The race starts in five minutes.”
+Across the track, you notice the Ferrari team having trouble starting their engine. They try once. Then they try again. If they try too many times, they could damage the engine before the race even begins.
+Then the intercom crackles again.
+
+*finish
+
+*label page2
+“The race is delayed by one hour.”
+You sit in your car, waiting. Ferrari is still working on their engine. Red Bull looks ready. Your Mercedes team stands around you, hoping this final race can still be yours.
+You have who knows how long before the race begins. What do you do?
+
+*choice
+  #Stay in your car, focus, and wait for the race to start.
+    *goto page10
+  #Go straight to the race.
+    *goto page6
+  #Throw in the towel and retire.
+    *goto page8
+
+*label page3
+You decide to send it.
+As you go up, you feel your car shaking. Suddenly, air hits the bottom of your car, and you take off like a plane. You fly into a barrier and die.
+
+*finish
+
+*label page4
+You trust the note. You arrive at the café just in time. You see Mr. Money and the other racers. Ferrari comes up and shakes your hand.
+Mr. Money says the pit crew wants a rematch with you and Ferrari.
+Once the two of you are lined up, the rematch starts. You and Ferrari are mostly neck and neck when your car suddenly accelerates rapidly.
+You pass Ferrari and win the rematch.
+After the race, you get a text that says, “Claim the trophy, not the paycheck.”
+
+*choice
+  #Trust the text.
+    *goto page12
+  #Ignore the text and claim the paycheck anyway.
+    *goto page14
+
+*label page5
+You decide to steal 1st place. You grip the steering wheel, put your car in neutral, and rev to 200,000 RPM. Then you throw your car into gear.
+Red Bull is just ahead of you, and you try to pass. Your team shouts through the radio, “Don’t try and pass! It’s too dangerous!” You push too hard. Your front wheel hits Red Bull’s wheel, and you slide out. Ferrari accidentally hits you and you fly up into the air. You accidentally push the shifter into Neutral and your nitrous catches on fire. It sets your whole car on fire.
+Sometime later, you find out the results of the race from your hospital bed. Red Bull won.
+
+*finish
+
+*label page6
+You go straight to the race. As you line up on the starting grid, you notice Ferrari is having trouble starting their engine. Their car makes a grinding sound, and the Ferrari pit crew rushes around the car.
+Then the lights go out. The race starts.
+You launch forward, and Red Bull stays close behind you. Ferrari falls back because their engine is still having problems.
+After a while, you come to the dangerous part of the Nürburgring: the Pflanzgarten jump. Your car is going 200 miles per hour. The track looks narrow, and your hands grip the steering wheel.
+Your pit crew says through the radio, “Be careful! Red Bull is right behind you!”
+You have to decide fast. If you send it, you might win the race, but you could crash. If you slow down, you might stay safe, but Red Bull could pass you.
+
+*choice
+  #Send it.
+    *goto page3
+  #Slow down.
+    *goto page7
+
+*label page7
+You decide to slow down.
+After you make the turn, you send it on the straightaway and win first place!
+After the race, you take the paycheck. Once you settle in, one of the pit crew workers motions for you to walk into the control room.
+Once you walk in, you see Mr. Money. He hands you the keys to a DS Survolt and tells you to take some practice laps.
+It takes you a minute to find the start button.
+When you get to the straightaway, it is pedal to the metal.
+100. 101. 102. Aaand brake.
+You drive the masterpiece into the pits.
+You look for Mr. Money, your boss. Instead, you find a note.
+“Come to the Ristretto Café at 9 p.m. sharp.”
+
+*choice
+  #Trust the note.
+    *goto page4
+  #Ignore the note.
+    *goto page13
+
+*label page8
+You go to tell your boss, Mr. Money, that you are retiring.
+He is pretty mad, but understands! Besides, you’ve had a long successful career as a famous F1 driver.
+Your boss would like to know why now, though.
+You say to your boss, “I have been working for over ten years. This job is so hard on my body, and besides, with Ferrari’s engine trouble, this race is already getting canceled.
+He nods his head for okay.
+So, you say your goodbyes, walk out of your boss’s room, and say bye to your friends, too.
+Now you are free.
+
+*choice
+  #Move;.
+    *goto page9
+
+*label page9
+You walk to your car to go to your house. You do not drive just yet. You start thinking about your move, but where will you go?
+You could stay in the city, or move to the country.
+You start your car and drive home, ready to make a decision that will shape the rest of your life.
+No matter where you go, you know you’ll be happy.
+
+*finish
+
+*label page10
+You waited for the race to begin, and now you are in 1st place on the first turn of the track when you hear a loud boom. Ferrari’s engine starts smoking. Suddenly, one of Ferrari’s wheels slides and hits Red Bull’s car.
+You try to stay calm so you don’t crash and can take advantage of the ten-second stop.
+BUT RED BULL USED THE MUSHROOM!
+Red Bull steals 1st place.
+
+*choice
+  #Steal 1st place.
+    *goto page5
+  #Stay in 2nd place.
+    *goto page11
+
+*label page11
+You decide to stay in 2nd place for now.
+You do not want to crash, so you try to hit Red Bull’s wheel. You start to shred Red Bull’s wheel. Now they are only moving at 66 miles per hour.
+You push the pedal to the metal and move into 1st place!
+Your team says through the radio, “This is the last lap!”
+You pass the Red Bull car again. They try to make it to the pit, but the driver gives up because he is pissed off. You see him cursing at you through his window.
+You zoom past the finish line, and the crowd goes wild!
+You win the Grand Prix!
+
+*finish
+
+*label page12
+You trust the text message. You win the rematch and take the trophy.
+Sometime later, Ferrari comes up to you and buys the trophy from you for three million dollars.
+You buy your own private island and live there happily ever after.
+
+*finish
+
+*label page13
+You ignore the note. At the next race, Ferrari pits you at the Pflanzgarten jump. Then the McLaren sees his chance to pass.
+Suddenly, your car swerves and he rear-ends you. You fly into the barrier, and you die.
+
+*finish
+
+*label page14
+You ignore the text and take your paycheck.
+It is not much, but it lets you live a humble life until you retire.
+
+*finish
