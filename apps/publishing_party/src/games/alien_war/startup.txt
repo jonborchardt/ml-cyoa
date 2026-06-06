@@ -1,5 +1,11 @@
-*title Alien War
-*author Anonymous
+*title The Battle for Humanity
+*author David, Desmond & Max
+
+In this story, a UFO crashes into the Statue of Liberty, and your choices could lead to triumph, disaster, or death. Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You are walking to high school. You sit on a bench to look at the view. The sun is shining. The birds are chirping. Nothing could possibly go wrong.
@@ -13,12 +19,12 @@ The second flyer says, Negotiate with the aliens. Get sucked up into the tractor
 The third flyer says, Fight with the superheroes to destroy the UFOs! You need to make a decision.
 
 *choice
-  #Try to destroy the mothership.
+  #Stay and fight with the superheroes.
     *goto page5
   #Board the mothership to negotiate.
     *goto page7
-  #Stay and fight with the superheroes.
-    *goto page9
+  #Try to destroy the mothership.
+    *goto page7
 
 *label page2
 Elastic Man stretches into a slingshot by raising his arms above his head as his neck gets longer. Then his head gets wider on his long neck, and it looks like a T. He grabs his ears and stretches some of his body into an arm. He grabs you and puts you on his nose.
@@ -33,7 +39,7 @@ You go to the Alien Olympics. You go in, enter an arena, and the first game is c
 *finish
 
 *label page4
-You decided to tell the captain about the air lock malfunction. You start the long walk to the captain. You start running. You do not know why you are running.
+You decide to tell the captain about the airlock malfunction. You start the long walk to the captain. You start running. You do not know why you are running.
 Suddenly, you slip and fall. It’s nothing. You pick yourself up, dust yourself off, and keep walking.
 You see the captain and say, “The air lock is opening!!!”
 The captain runs and pushes a large green button. The flashing stops.
@@ -43,7 +49,7 @@ When you get on the spaceship, you fasten your seatbelt and fly away as heroes.
 *finish
 
 *label page5
-You decide to stay on Earth. After all, there is a city FULL of superheroes. So you think, and then you yell, “OHH, SUPERHEROES!”
+You decide to stay on Earth to fight with the superheroes. After all, there is a city FULL of superheroes. So you think, and then you yell, “OHH, SUPERHEROES!”
 You hope that a superhero will hear you, and one does. It’s Elastic Man!
 You think, Nice, Elastic Man is here!
 Suddenly, a bunch of aliens come and attack you! Elastic Man punches one of the aliens. You punch one. That happens over and over and over and over again until you’ve punched all of the aliens.
@@ -64,6 +70,8 @@ Elastic Man says, “Do we do it now?”
 You say, “Yeah, we can do it now.”
 You both charge. Then Elastic Man gets up and smashes them all.
 
+*image ../images/alien_war/image7.png center
+
 *finish
 
 *label page7
@@ -74,6 +82,8 @@ You get sucked into a beam. For a second, everything is blurry. The next thing y
 When the big metal door opens, you see a whole parade. The aliens are celebrating because you are the first human to set foot on their planet. Frank says, “Go explore.”
 On the left path, you see what looks like the Olympics, but alien style. On the right path, you see a variety of stores.
 You need to make a decision.
+
+*image ../images/alien_war/image5.png center
 
 *choice
   #Go down the left path to see the alien Olympics.
@@ -95,7 +105,7 @@ The mothership explodes in the sky. You steer your small ship away from the blas
 *finish
 
 *label page9
-You run to the spaceship as fast as you can. When you get there, someone says, “Welcome, Robert.”
+You run as fast as you can to the spaceship so you can get to the mothership. When you get there, someone says, “Welcome, Robert.”
 It’s your friend Nate from school!
 “I am so glad to see you,” you say.
 “Get in fast. The doors are closing,” says Nate.
@@ -119,5 +129,7 @@ You hear Nate saying, “How do you plan to get in the mother ship?”
 “We will figure something out,” says the captain.
 You keep walking. You see the airlock up ahead. It’s opening!!
 Suddenly, you’re sucked into the black void of space, never to be seen again.
+
+*image ../images/alien_war/image4.png center
 
 *finish

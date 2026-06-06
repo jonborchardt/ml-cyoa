@@ -1,5 +1,11 @@
 *title The Great Metal Heist
-*author Anonymous
+*author Cole, Tor I. & and Wren
+
+In this story, you visit the rich part of town for a special trip to the Museum of Artifacts. When something important goes missing, you have to decide whether to leave or follow a suspicious clue.
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 Now your story begins.
@@ -48,6 +54,8 @@ You’re now safe, for now.
 *label page4
 The next day you hear a call. You decide to pick it up. There are two men on the phone. They say, “An Artifact got stolen, and we didn’t have enough time to stop the thief.” You sigh. The world has ended!
 
+*image ../images/the_great_metal_heist/image6.png center
+
 *finish
 
 *label page5
@@ -83,6 +91,8 @@ As you walk to the police station, you encounter a strange man walking towards y
 You say, “What’s in your pocket?”
 “Nothing,” The man says. And then… He pulls out a razor-sharp bayonet, threatening you. You realize it’s a robber! What do you do now?
 
+*image ../images/the_great_metal_heist/image4.png center
+
 *choice
   #Decide to run to the police station.
     *goto page3
@@ -111,8 +121,6 @@ You go outside your house and see the museum. Then you see a man wearing all bla
 Outside of the museum, you see two men fighting. It seems like they are fighting because something got stolen. You can hear just a little bit of what they are talking about.
 One person is talking about something that got stolen. The other person is listening. You think it is the museum's manager.
 
-You decide to go
-
 *choice
-  #Home.
+  #You decide to go home.
     *goto page4

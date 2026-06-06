@@ -1,5 +1,11 @@
-*title Crazy Summer
-*author Anonymous
+*title My Crazy Summer at My Grandparents
+*author Emerson, Harrison & Ivan
+
+Watch out! This story has different endings. You are in control of what happens. You are at your grandparents’ house. Then, you fall into a hole!! How do you find your way out?! Good Luck! 
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 Every summer, you begin your summer break with a visit to your grandparents’ house. You just finished 6th grade, your first year of middle school, and you are excited to share your first-year experience with them.
@@ -46,6 +52,8 @@ You go where he tells you to go. You see an opening and get out safely.
 As soon as you get out, you start running again. You get to safety, but it is not over just yet. You soon see more people fighting.
 Finally, you get to safety and teleport back into your time.
 
+*image ../images/crazy_summer/image6.png center
+
 *finish
 
 *label page5
@@ -62,13 +70,10 @@ You tell them everything.
 *finish
 
 *label page6
-After your stay at your grandparents’ house, you press the garage remote.
-Nothing happens.
-You are confused, so you press it again. Suddenly, a trap door opens!
-You have never seen it before. You try to call for help, but your screams go unanswered.
-Then you see three portals in front of you.
-Which one do you choose?
-Quickly! They are closing!
+You go through the left portal.
+You are on the Titanic, but you see fireworks.
+You wonder what they mean.
+What do you do?
 
 *choice
   #Believe the fireworks mean trouble and run for the lifeboat.
@@ -98,7 +103,7 @@ You start running immediately. After running for a while, you see an opening to 
 *choice
   #Decide to go into the sewers.
     *goto page4
-  #Decide not to go into the sewers.
+  #Decide NOT to go into the sewers.
     *goto page9
 
 *label page9
@@ -114,7 +119,7 @@ You ask someone where you are, and they say, “The grand opening of Disneyland!
 Then the doors open, and you go in.
 You see Minnie, so you go over to her. You say hi, and you tell her everything that happened. After you finish, you tell her that you need to get home.
 She says she will help you. She is going to take you to Mickey.
-So you walk and walk. Then this cute little puppy comes up to you and Minnie. She is whining.
+So, you walk and walk. Then this cute little puppy comes up to you and Minnie. She is whining.
 “What should we do, Minnie?” you ask.
 “I do not know,” Minnie says.
 “Well, we are going to Mickey,” you say. “Maybe he can help?”
@@ -122,11 +127,13 @@ Finally, you get there, and Minnie tells Mickey everything about the dog.
 “I will take a look,” Mickey says. “Hmmm. Hmmm. Oh. I think she has a splinter. I can take it out. And done!”
 Now Minnie tells Mickey everything else.
 Mickey does not know what to do, so Minnie asks you, “Where do you live?”
-You say that you are at your grandparents’ house, and you do not know where you live.
+You say you are staying at your grandparents’ house and do not know where you live.
 “What does your grandparents’ house look like?” Minnie asks.
 “Well, it is all blue,” you say.
 
-*finish
+*image ../images/crazy_summer/image7.png center
+
+*goto page11
 
 *label page11
 Minnie looks on her map.

@@ -1,5 +1,11 @@
 *title Dimension Walker
-*author Anonymous
+*author Nia, River & Tor S.
+
+In this story, you get a magical talking budgie and discover that your evil wizard parents are trying to explode the sun. Choose a portal, find the key, and save Manhattan before it is too late. Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You wake up. It is a sunny summer day in Manhattan. Everything is normal, except it is your birthday. Your wish finally comes true. After six months of asking, you finally get a budgie.
@@ -16,7 +22,7 @@ To your surprise, it can talk.
 You point to a cracked picture frame of you and two people you do not recognize.
 “You are almost to find out, but we do not have much time. Your parents are about to explode the sun and make the earth freeze.”
 
-*finish
+*goto page2
 
 *label page2
 Suddenly, you are in a white void, all white everywhere, except for four brightly glowing portals: one blue, one green, and one silver. The blue one smells of spa salt, the green one smells of fruit, and the silver one smells of fresh air.
@@ -64,6 +70,8 @@ You throw the key. It hits the wall, then the ceiling, and lands on the defuse!
 “Nooooo!” your parents yell.
 You teleport back to Manhattan with a bright smile on your face.
 No one knows it, but you just saved them all.
+
+*image ../images/dimension_walker/image6.png center
 
 *finish
 
@@ -157,6 +165,8 @@ The octopus starts crawling closer and closer. You try to stay calm, but then yo
 Before you can get up, the octopus attacks.
 It grabs you with its five legs and scrapes you to the bone.
 
+*image ../images/dimension_walker/image3.png center
+
 *finish
 
 *label page11
@@ -167,6 +177,8 @@ You take a bite.
 You look behind you.
 “I’m da king of da BLEPLES, and YOU took my cheeseburger, so pay!!”
 He grabs you tight and throws you in a dungeon.
+
+*image ../images/dimension_walker/image8.png center
 
 *finish
 

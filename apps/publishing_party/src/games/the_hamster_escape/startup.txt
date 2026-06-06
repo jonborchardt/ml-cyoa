@@ -1,5 +1,11 @@
 *title The Hamster Escape
-*author Anonymous
+*author Charlie, Ellis & Lily B.
+
+You are a hamster in a hamster cage. Your owner accidentally left the cage door open one day, and you decided to find your hamster family. You know there are predators out there. Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You are a tiny hamster living in a cage in your owner’s bedroom. Your cage has a squeaky wheel, a water bottle, a pile of wood shavings, and a little purple hamster ball. Every morning, your owner gives you crunchy food and a few sunflower seeds. You like your cage, but you miss your hamster family.
@@ -76,8 +82,10 @@ The other is a shoe on the ground.
 Then the danger gets closer. The snakes are coming toward you.
 You have to choose quickly.
 
+*image ../images/the_hamster_escape/image6.png center
+
 *choice
-  #Hide in the shoe can.
+  #Hide in the shoe.
     *goto page2
   #Keep running across the room.
     *goto page6
@@ -111,6 +119,8 @@ Then a female black-capped chickadee swoops down from an old red cedar.
 You say, “I am looking for my parents.”
 “I can help you,” she says.
 
+*image ../images/the_hamster_escape/image4.png center
+
 *choice
   #Accept the chickadee’s help.
     *goto page4
@@ -139,8 +149,10 @@ There was a big storm, and it knocked out the power. They had to use their hamst
 They started walking around the house in the dark and accidentally separated into two rooms.
 
 *choice
-  #Have to fix the flashlight.
+  #If you have to fix the flashlight.
     *goto page3
+  #If not.
+    *goto page10
 
 *label page10
 You choose to keep walking.

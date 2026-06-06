@@ -1,5 +1,12 @@
 *title AI Disaster
-*author Anonymous
+*author Ben, Lily S. & Nolan
+
+In this story, you are a brand-new CIA agent in Seattle, and your first mission may be your most important. AI robots are threatening to take over the city, and it is up to you to help save Seattle’s future. After each section, you will have to make a choice. Choose carefully. Your
+decisions matter. One wrong move could be your last, for the future is powerful.
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You wake up to a huge BOOM outside your window. You jump out of bed and race to see what happened. Hovering over Seattle is a massive spaceship, dark and silent against the morning sky. You squint, trying to see through its glowing windows, but you cannot tell who—or what—is inside.
@@ -15,11 +22,10 @@ Then your mind grew heavy, and your thoughts became fuzzy.
 That is the last thing you remember before the loud BOOM!
 Then you remember one more thing. Your partner had said something bad was going to happen, and you think you are the one who has to save it. You do not know how you know that, but the feeling will not go away.
 
-*finish
+*goto page2
 
 *label page2
 You could go to the CIA headquarters. You could try to find out what is in the spaceship. Or you could go outside and look for other humans.
-
 *choice
   #Decide to try to find out what is in the spaceship.
     *goto page6
@@ -40,9 +46,9 @@ Then, without you noticing, AI robots sneak into your house. That is the last an
 *finish
 
 *label page4
-You have no time to waste, so you begin working quickly, running around without a real plan. Because you are rushing, you miss the room where the AI weapons are stored.
+You have no time to waste, so you begin working quickly, running around without a real plan. Because you are rushing, you miss the room where the AI weapons are stored. 
 Then you stumble upon the room! You found it! Now to find the right weapon. You enter the room, excited to find something to save the world. As you cross the threshold, you suddenly fall, feeling yourself tumble, down, down, down. You look up to see only blackness and a faint light. Your screams go unanswered.
-The AI robots have won.
+The AI robots have won. 
 Seattle is doomed.
 
 *finish
@@ -56,10 +62,14 @@ You get hit.
 That is the last thing you remember.
 You die all alone.
 
+*image ../images/ai_disaster/image6.png center
+
 *finish
 
 *label page6
 You decide to find out what is in the spaceship. But you cannot find out how. After a few minutes of thought, you decide to get the newspaper, thinking it will tell you. After you get the newspaper from outside, you start reading it. You notice there aren’t any advertisements! There is just a huge black spaceship with the words A.I. Breakout on it. But that’s it. But the spaceship looks familiar. It’s the spaceship from this morning! You look at the time; you’ve been looking at the newspaper for an hour! There is no time to waste! You immediately start brainstorming ideas of how you could find out what is in the spaceship! After an hour or two of thinking, you come up with two ways to find out what’s in the spaceship. You could look it up on the internet. Or you could go outside and look at the spaceship.
+
+*image ../images/ai_disaster/image7.png center
 
 *choice
   #Decide to look it up on the internet.
@@ -110,7 +120,7 @@ A robot is walking toward the orb. It does not see you yet, but it is taking the
 
 *choice
   #Would rather stay inside and hide.
-    *goto page4
+    *goto page5
   #Would rather go check out what happened.
     *goto page11
 

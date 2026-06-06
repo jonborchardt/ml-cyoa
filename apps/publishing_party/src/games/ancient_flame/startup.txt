@@ -1,5 +1,11 @@
 *title Ancient Flame
-*author Anonymous
+*author Aylin, Calla & Heran
+
+In this story, you are Xavier Arrow, a warrior trying to find the Ancient Flame and save the lost spirits in your village. Your choices decide whether you prepare for the quest, run from danger, or search the forest for the flame. Good luck
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You live in an old village that is home to lost souls. Long ago, some of them were trapped in the ancient flame by an unknown creature of the woods.
@@ -18,7 +24,7 @@ Now you have to choose what to do first.
     *goto page11
 
 *label page2
-You get up and knock the monster off of you. You equip your sword and slash at the monster’s eye.
+You get up and knock the monster off of you. You grab your sword and slash at the monster’s eye.
 The monster makes a deafening ROARRRRRR!!!!!!!!!!!!!
 Then it jumps at you.
 You dodge its attack, and the monster starts growing bigger. Its mouth opens into a big circle. You can see rows of razor-sharp teeth inside. On its muzzle, there is a big, sharp horn. It grows big, powerful wings that blow wind so hard they knock trees down.
@@ -31,6 +37,8 @@ You open the box and see a magic sphere. You look at it more carefully. It is th
 No, it will not help you on your quest.
 You completed it!
 That means no more monsters!
+
+*image ../images/ancient_flame/image6.png center
 
 *finish
 
@@ -45,6 +53,8 @@ Inside, there is the flame!
 You go out of the room, out of the cave, and back into the forest. The journey home is easy. When you get back to the village, you give the flame to the Queen.
 “Thank you, Xavier,” she says. “You saved the village!”
 The spirits come back, and the village is restored.
+
+*image ../images/ancient_flame/image3.png center
 
 *finish
 
@@ -95,7 +105,7 @@ It is big and hairy, with very sharp teeth. The monster glares right at you and 
     *goto page7
 
 *label page7
-Since you are covered in slobber, you use it to slide out from under the monster.
+You run for your life and escape the monster, only to find yourself facing it after stopping to rest. Since it's morning, the hungry monster wants breakfast, and you are the first thing it sees. Drool is dripping from its mouth all over you. It is standing on you, trying to pin you down. You are covered in slobber; you use it to slide out from under the monster.
 The monster tilts its head, confused. It pats its claws on the leaf-and-twig bed, making sure you did not just turn invisible. It frowns. Then it turns its head and looks back.
 It walks slowly toward you.
 Then it stops.
@@ -107,7 +117,7 @@ You look at the monster angrily and say, “Why would I want to help you? You wa
 Then the monster starts to look very sad.
 “I have been lonely for a long time,” it says. “And you also abandoned me.”
 Then it lunges at you.
-You run as fast as you can, your legs aching with pain. The monster moves toward you. Then it catches you. You cannot escape.
+You run as fast as you can, your legs aching. The monster moves toward you. Then it catches you. You cannot escape.
 
 *finish
 
@@ -127,7 +137,7 @@ This guy does not have patience, you think.
 You do not get it. Why would the queen tell a stranger?
 “Well, I do not know…” you say.
 
-*finish
+*goto page9
 
 *label page9
 “I’ll give you a deal,” the figure says. “You find the flame, and I will use it for you.”
@@ -150,20 +160,20 @@ When you get home, you eat a delicious snack of apples and cheese.
 You decide to read a book about the flame. It says, “No one has ever found the flame before.”
 You sigh and say to yourself, “Oh well. I didn’t find the flame today. My village is still in danger.”
 You cross out the paragraph in the book and write in its place:
-Xavier Arrow didn’t find the flame yet, but will try again another day.
+Xavier Arrow hasn’t found the flame yet but will try another day.
 
 *finish
 
 *label page11
 You choose to run straight to the forest to find the Ancient Flame.
 You walk and walk until you hear a loud rumble and get really scared. You figure out it is your belly. So you find a tuna sandwich in your pocket. You decide to eat half of it and go on.
-So you keep walking until you hear something rustle in the bushes!
-So you peek behind the bush and find a black-and-white tail. You are very curious about what it is, so you put the sandwich right behind it and hide by a tree.
+You keep walking until you hear something rustle in the bushes!
+You peek behind the bush and find a black-and-white tail. You are very curious about what it is, so you put the sandwich right behind it and hide by a tree.
 You wait a little while, and then the dog comes sneaking out. You catch it. It is a bit dirty from running around in the forest a lot. So, you find a lake to bathe it in.
 You do not have a scrub, so you use a leaf.
 After that, it howls, hurt. It has got a splinter on its paw! So, you snatch it out with your hand.
 After that, you decide to keep it as your pet. You also decide to name it Virginia, thinking that is a good name for a dog.
-So you walk along with your dog until you find a fork in the road!
+You walk along with your dog until you find a fork in the road!
 You are not sure which way to go. On one end, you see a flash of light. On the other end, you see darkness. Your dog is trying to take you toward the darkness, but you want to go to the flashing light.
 
 *choice
@@ -174,7 +184,7 @@ You are not sure which way to go. On one end, you see a flash of light. On the o
 
 *label page12
 You choose to go to the dark path.
-So, you keep walking along the dark path to find the flame. It’s so dark you can’t see anything, so you accidentally run into the bad guys you met a long time ago. Virginia barks at them.
+You keep walking along the dark path to find the flame. It’s so dark you can’t see anything, so you accidentally run into the bad guys you met a long time ago. Virginia barks at them.
 You ask, “What the heck are you guys doing here?”
 “Well, we’re trying to get the flame, of course.”
 “Wait,” you say, “you know where the flame is?”
@@ -189,11 +199,11 @@ Virginia comes back with a stick in her mouth. You still have a bit of time, so 
 And then the bad guys come back with a really sharp stick.
 So, you guys have the fight. After a while, the stick stabs you right in the chest. It hurts so much you can’t fight anymore.
 
-*finish
+*goto page13
 
 *label page13
-So, you walk past the bad guys, past the sandwich, and make it back to the village.
-“So did you get it?” the queen asks.
+You walk past the bad guys, past the sandwich, and make it back to the village.
+“So, did you get it?” the queen asks.
 You say, “I did not make it.”
 And you walk back to your house.
 You’re very tired, so you take a nap.

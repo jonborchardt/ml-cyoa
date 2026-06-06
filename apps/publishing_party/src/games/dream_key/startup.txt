@@ -1,5 +1,11 @@
-*title Dream Key
-*author Anonymous
+*title The Search for the Dream Key
+*author Kyaihla, Michaela & William
+
+In this story, you are an agile spy trapped in the monster world after a monster steals the Dream Key. You must explore dangerous places, find the key, and unlock the Dream Gate before your choices lead you into danger. Good Luck.
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You are an agile spy who solves mysteries with magic powers. You can move quickly, sneak through tight spaces, and escape danger. One day, a monster pulls you through a portal and into the monster dimension.
@@ -53,7 +59,7 @@ You decided to follow the unicorn. You will have good luck if you do this! The u
 *finish
 
 *label page7
-You chose to go to the valley. Something magical is thrown at you.
+You chose to go to the valley. A pixie appears and starts throwing flowers at you. They look magical.
 Suddenly, it hits a squirrel, and the squirrel falls over. You look behind you and see a hole. You cannot see the end.
 You have to decide what to do quickly.
 
@@ -71,6 +77,8 @@ You grab it.
 You see a gate and use the key. It opens, and you go through.
 It takes you back home.
 A mystery solved.
+
+*image ../images/dream_key/image5.png center
 
 *finish
 
@@ -94,5 +102,7 @@ You rush back to the spot where you came from. Then you unlock the Dream Gate.
 The gate opens, and you find yourself in the same place you were right before you got sucked up.
 You look down before you step down.
 And you live happily ever after.
+
+*image ../images/dream_key/image7.png center
 
 *finish

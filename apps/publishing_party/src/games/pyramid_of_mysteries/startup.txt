@@ -1,21 +1,33 @@
-*title Pyramid of Mysteries
-*author Anonymous
+*title The Pyramid of Mysteries
+*author Alaya, Liam & Miles
+
+This book is different from other books. In this story, you are an adventurer and a detective trying to find a hidden treasure deep inside the Pyramid of Mysteries. You know the treasure is extremely valuable. You could sell it for thousands, maybe even millions, of dollars. Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You have finally found the Pyramid of Mysteries. It stands in the middle of a hidden jungle, covered in vines and shadows. The story starts outside the pyramid’s doors, but the adventure starts when you see a sign that reads:
+*line_break
+*line_break
 “The treasure inside is old and rare.
+*line_break 
 You can go in, if you dare.
+*line_break
 If you get stuck, then take a breath,
+*line_break
 Or you could find yourself at the doors of death.”
-You are determined to get to the treasure and impress your friends. The big challenge is that there are lots of puzzles and traps, and you do not know where the treasure is hidden. You decide to go in, but you stop when you come upon your first puzzle.
-In front of you are three stone paths. One path has a glowing key carved above it. One path has a shining jewel carved above it. One path has a dusty box carved above it. You know each path could lead you closer to the treasure, or straight into danger.
+*line_break
+*line_break
+You are determined to get to the treasure and impress your friends. The big challenge is that there are lots of puzzles and traps, and you do not know where the treasure is hidden. You decide to go in, but you stop when you notice an open jar with a key inside. As soon as you touch the key, a deep horn blasts through the pyramid, shaking dust from the ceiling.
 
 *choice
-  #Choose the path with the dusty box.
+  #Run.
     *goto page5
-  #Choose the path with the shining jewel.
+  #Try to disable the alarm.
     *goto page7
-  #Choose the path with the glowing key.
+  #Wait it out to see if the alarm will stop.
     *goto page9
 
 *label page2
@@ -34,7 +46,7 @@ You see the faint glow of the treasure one last time before you fall into the la
 *finish
 
 *label page4
-You pick the key up.
+You pick the key up again.
 Amazingly, the alarm does not go off!
 You dramatically turn to the locked door. You know what you have to do.
 You rush to the door and put the key in the lock.
@@ -48,7 +60,7 @@ Inside, you see the treasure.
 *finish
 
 *label page5
-You run down the path with the dusty box, trying to escape, but you trip over a tripwire. Suddenly, the room erupts in flames! You glance behind you and notice a long, long hallway. You take one last look at the golden, shiny key and sprint down the hallway! You take a left and stop right in your tracks. There is a giant pool of water with deadly alligators swimming in it! You notice a brick in the wall that is a little looser than the others…you decide to pull at it, and a path over the water forms right before your eyes! The fire is spreading quickly, so you keep running. You take a right, and you cannot believe what you are seeing! You found the treasure! But the room seems too big to fit a single treasure chest! ”I have found it!” you announce. “I have finally found it!” You announce again, but even louder. You pick up the chest and grin. But as you turn to leave, the door slams shut behind you! “WHO GOES THERE!?!?” You grab a rusty sword from the chest. The voice is deep, almost GODLY. “Ugh! Pull yourself together, Rico!” Suddenly, your body freezes. You hold back a million cries for help because you know that nobody would hear you anyway. But then, an idea sparks up in your head! You grip your sword, pull back, and woosh! It whirls through the air as fast as a lightning bolt! The sword goes straight through the mummy’s heart, and the mummy falls to the floor with a thud. Suddenly, a blinding flash of light erupts outward! The mummy is gone! But there is no time for celebration.
+You run, trying to escape, but you trip over a tripwire. Suddenly, the room erupts in flames! You glance behind you and notice a long, long hallway. You take one last look at the golden, shiny key and sprint down the hallway! You take a left and stop right in your tracks. There is a giant pool of water with deadly alligators swimming in it! You notice a brick in the wall that is a little looser than the others…you decide to pull at it, and a path over the water forms right before your eyes! The fire is spreading quickly, so you keep running. You take a right, and you cannot believe what you are seeing! You found the treasure! But the room seems too big to fit a single treasure chest! ”I have found it!” you announce. “I have finally found it!” You announce again, but even louder. You pick up the chest and grin. But as you turn to leave, the door slams shut behind you! “WHO GOES THERE!?!?” You grab a rusty sword from the chest. The voice is deep, almost GODLY. “Ugh! Pull yourself together, Rico!” Suddenly, your body freezes. You hold back a million cries for help because you know that nobody would hear you anyway. But then, an idea sparks up in your head! You grip your sword, pull back, and woosh! It whirls through the air as fast as a lightning bolt! The sword goes straight through the mummy’s heart, and the mummy falls to the floor with a thud. Suddenly, a blinding flash of light erupts outward! The mummy is gone! But there is no time for celebration.
 
 *choice
   #Finish off the mummy.
@@ -67,7 +79,9 @@ Nobody hears from you again.
 *finish
 
 *label page7
-You try to find the shining jewel by ripping out the alarm wire. It’s harder than you think, and it takes a long time, but eventually it stops. Soon, you find a hallway with lots of spider webs. It’s hard work clearing them, but soon, you find a rope and a bridge hanging over a giant pit of lava. What do you do?
+You try to rip out the alarm wire. It’s harder than you think, and it takes a long time, but eventually it stops. Soon, you find a hallway with lots of spider webs. It’s hard work clearing them, but soon, you find a rope and a bridge hanging over a giant pit of lava. What do you do?
+
+*image ../images/pyramid_of_mysteries/image4.png center
 
 *choice
   #Take the bridge.
@@ -81,13 +95,14 @@ You chose to take the rope, even though you think it might be slippery. You swin
 *finish
 
 *label page9
-You drop the key in fear. It goes back into the jar, even though you are already a mile away.
+You stay with the key. When the alarm sounds, you drop the key in fear. The second you let go of it, the alarm stops. Then you notice the key is back inside the jar, even though you were far away when you dropped it.
 “Interesting,” you think.
-The second you let go of the key, the alarm stops.
 Wait… is that a locked door?
 Yes! It is!
 You are about to pick the key back up when you stop.
-“If the key can go back in the jar from a mile away, then if I set off the alarm again, I might get exterminated,” you say out loud to yourself.
+“If the key ended up back in the jar from so far away, then if I set off the alarm again, I might get exterminated,” you say out loud to yourself.
+
+*image ../images/pyramid_of_mysteries/image3.png center
 
 *choice
   #Pick up the key and try to unlock the door.
@@ -96,7 +111,7 @@ You are about to pick the key back up when you stop.
     *goto page10
 
 *label page10
-You leave. At least, you think so.
+You decided to look for another way out and leave. At least, you think so.
 When you turn around to leave, the door is gone!
 You look for the door, but you cannot find it anywhere. You search the walls, the floor, and even the ceiling. Nothing works.
 You really, really do not want to pick the key back up, so you wait.
@@ -106,7 +121,7 @@ And wait.
 And wait.
 When you finally finish waiting, the door is still not there.
 You give up.
-Wait… is that Abraham Lincoln?
+Wait… is that, Abraham Lincoln?
 No. You are so tired that you are hallucinating.
 You wait forever.
 

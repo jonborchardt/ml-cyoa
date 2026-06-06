@@ -41,7 +41,7 @@ export function GameTabHeader({ game, basePath, homePath = '/' }: Props) {
                 onChange={(_e, v: number) => navigate(paths[v])}
                 sx={{ minHeight: 48 }}>
                 <Tab label="Story" value={0} sx={{ minHeight: 48, py: 0 }} />
-                <Tab label="Authors" value={1} sx={{ minHeight: 48, py: 0 }} />
+                <Tab label="Authors" value={1} sx={{ minHeight: 48, py: 0, display: 'none' }} />
                 <Tab label="Flow" value={2} sx={{ minHeight: 48, py: 0 }} />
             </Tabs>
         </Box>

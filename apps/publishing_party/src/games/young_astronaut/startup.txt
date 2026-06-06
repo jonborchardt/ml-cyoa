@@ -1,5 +1,11 @@
 *title Young Astronaut
-*author Anonymous
+*author Bo, Kai B. & Webb
+
+You are in a rocket ship and are running out of air. You are lost in outer space. You need to save three astronauts who got lost, too. You need to go to a planet to get more food and fuel so you can go save the astronauts. Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 One morning, you wake up and hear the birds chirping. Suddenly, your alarm starts to ring.
@@ -80,6 +86,8 @@ You take your last breath.
 
 *label page7
 You fly down to the blue planet with trees. You walk on a path that has lots of berries that you have never seen before. You come to a giant sleeping snake. You could climb over the snake, but it's super scary. You want to take the shortest path, and the woods are scary. You do not want to be with the snake any longer.
+
+*image ../images/young_astronaut/image5.png center
 
 *choice
   #Climb the snake.

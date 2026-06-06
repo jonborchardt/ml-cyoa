@@ -275,7 +275,7 @@ export const games: Game[] = [
   },
   {
     id: 'crazy_summer',
-    title: 'Crazy Summer',
+    title: 'My Crazy Summer at My Grandparents',
     authors: authors('crazy_summer', [
       { name: 'Emerson', bio: '' },
       { name: 'Harrison', bio: '' },
@@ -288,7 +288,7 @@ export const games: Game[] = [
   },
   {
     id: 'pyramid_of_mysteries',
-    title: 'Pyramid of Mysteries',
+    title: 'The Pyramid of Mysteries',
     authors: authors('pyramid_of_mysteries', [
       { name: 'Alaya', bio: '' },
       { name: 'Liam', bio: '' },
@@ -314,7 +314,7 @@ export const games: Game[] = [
   },
   {
     id: 'your_life_takes_a_turn',
-    title: 'Your Life Takes a Turn',
+    title: 'Your Whole Life Took a Turn',
     authors: authors('your_life_takes_a_turn', [
       { name: 'Arlo', bio: '' },
       { name: 'Dade', bio: '' },
@@ -327,9 +327,7 @@ export const games: Game[] = [
   {
     id: 'ai_disaster',
     title: 'AI Disaster',
-    authors: authors('ai_disaster', [
-      { name: 'Nolan', bio: '' },
-    ]),
+    authors: authors('ai_disaster', [{ name: 'Nolan', bio: '' }]),
     year: '2025-2026',
     sceneList: ['startup'],
     scenes: { startup: startup('ai_disaster') },
@@ -376,7 +374,7 @@ export const games: Game[] = [
   },
   {
     id: 'alien_war',
-    title: 'Alien War',
+    title: 'The Battle for Humanity',
     authors: authors('alien_war', [
       { name: 'David', bio: '' },
       { name: 'Desmond', bio: '' },
@@ -428,7 +426,7 @@ export const games: Game[] = [
   },
   {
     id: 'dream_key',
-    title: 'Dream Key',
+    title: 'The Search for the Dream Key',
     authors: authors('dream_key', [
       { name: 'Kyaihla', bio: '' },
       { name: 'Michaela', bio: '' },

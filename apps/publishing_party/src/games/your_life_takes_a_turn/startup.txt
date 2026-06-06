@@ -1,5 +1,12 @@
-*title Your Life Takes a Turn
-*author Anonymous
+*title Your Whole Life Took a Turn
+*author Arlo & Dade
+
+In this story, you must choose between two dreams: football and F1 racing. Your choices decide which path your future takes.
+Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You have worked hard your whole life to get to the University of Oregon for football. Your dream is to become an NFL player someday, and every practice feels like one more step toward that goal. But football is not your only passion. You have also always loved cars, engines, and mechanics. Your older brother, Steve, became an F1 driver after a long career working for Mercedes-Benz, and you respect him greatly. You have gone to many of his races, and they are always exciting. Sometimes you wonder whether racing could be your path, too.
@@ -8,7 +15,9 @@ Hey, bro. Audi is getting introduced to F1. They need drivers. Come. I can hook 
 You think to yourself, F1! Audi! I could finally be an F1 driver.
 Then your coach shouts to you across the field, “Hey! Wait up!” You run back to him and say, “Yes, Coach. What’s up?” He tells you that an NFL scout was at the last game and wants you in the next NFL training camp.
 
-*finish
+*image ../images/your_life_takes_a_turn/image6.png center
+
+*goto page2
 
 *label page2
 “The camp starts tomorrow,” your coach says. “If you want this chance, you need to leave tonight.”
@@ -63,7 +72,7 @@ You are shocked- w-w-what? He died! “I'm so sorry. We didn't have time to save
 You think to yourself, “This is a dream. Dream. Dream. Dream!”
 When it gets dark, you sneak quietly out of your room through the corridor to Steve's room. He is not there. You start to panic!
 
-*finish
+*goto page6
 
 *label page6
 Then you hear footsteps right behind you. You turn around. IT’S STEVE!!! You're so happy to see him. “I thought you were dead!” you scream.
@@ -101,7 +110,7 @@ You get in line and wait. Now it is your turn.
 You run 30 miles per hour.
 Now you do the catching practice. It starts at 5:30, and it is only 5:15, so you get something to eat. You buy a slice of pizza for four dollars. You eat your pizza, go down the stairs, and open the door to the field.
 
-*finish
+*goto page8
 
 *label page8
 You get in line again. The trainer gives everyone the instructions.
@@ -127,10 +136,10 @@ You have to decide fast.
 *label page9
 You and Steve try to crawl past the guards.
 Suddenly, “Ah ha!” one of the guards shouts. “Security!”
-You think to yourself, There is no way I am getting out of here alive if I stick with Steve. He is my brother, but I know that he can figure it out on his own. We have got to split up.
+You think to yourself, there is no way I am getting out of here alive if I stick with Steve. He is my brother, but I know that he can figure it out on his own. We have got to split up.
 You decide to hide in a narrow side tunnel until the guards stop looking for you.
 After some time has passed, you notice they have started watching TikTok and are no longer searching for you.
-You think, This is a good time to go find Steve!
+You think, this is a good time to go find Steve!
 You sneak quietly past the guards and crawl in the tunnel for several hours.
 You think to yourself, I am hungry.
 You crawl a few more minutes until you see a bright light up ahead. You crawl toward it and reach into your pack for the screwdriver, but you cannot find it.
@@ -140,6 +149,8 @@ You cannot believe your eyes. Steve’s car is parked in the driveway of the hos
 “Trying to escape, obviously,” you say.
 “Let’s go get some burgers! I’m starving!”
 And you lived happily ever after.
+
+*image ../images/your_life_takes_a_turn/image5.png center
 
 *finish
 
