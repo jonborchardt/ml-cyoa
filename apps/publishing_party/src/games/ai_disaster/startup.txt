@@ -1,31 +1,31 @@
 *title AI Disaster
 *author Ben, Lily S. & Nolan
 
-In this story, you are a brand-new CIA agent in Seattle, and your first mission may be your most important. AI robots are threatening to take over the city, and it is up to you to help save Seattle’s future. After each section, you will have to make a choice. Choose carefully. Your
-decisions matter. One wrong move could be your last, for the future is powerful.
+In this story, you are a brand-new CIA agent in Seattle, and your first mission may be your most important. AI robots are threatening to take over the city, and it is up to you to help save Seattle’s future. After each section, you will have to make a choice. Choose carefully. Your[n/]
+decisions matter. One wrong move could be your last, for the future is powerful.[n/]
 
 *choice
   #I'm Ready.
     *goto page1
 
 *label page1
-You wake up to a huge BOOM outside your window. You jump out of bed and race to see what happened. Hovering over Seattle is a massive spaceship, dark and silent against the morning sky. You squint, trying to see through its glowing windows, but you cannot tell who—or what—is inside.
-The town is in chaos. People are running down the sidewalks, pointing up at the sky and shouting into their phones. Car alarms blare. Somewhere nearby, a dog barks and will not stop.
-Did I just see a spaceship? you think to yourself.
-Then another thought hits you.
-Wait. I am a CIA agent. I should be the one to help fix this.
-Your heart pounds as you stare back at the spaceship. Suddenly, a memory flashes through your mind.
-Yesterday was your very first day as a CIA agent. You were standing in the lobby, talking with your new partner.
-“Our boss said that something bad is going to happen, and one of us will have to save it,” your partner said.
-Then your mind grew heavy, and your thoughts became fuzzy.
-“I think I need to go home,” you told your partner.
-That is the last thing you remember before the loud BOOM!
-Then you remember one more thing. Your partner had said something bad was going to happen, and you think you are the one who has to save it. You do not know how you know that, but the feeling will not go away.
+You wake up to a huge BOOM outside your window. You jump out of bed and race to see what happened. Hovering over Seattle is a massive spaceship, dark and silent against the morning sky. You squint, trying to see through its glowing windows, but you cannot tell who—or what—is inside.[n/]
+The town is in chaos. People are running down the sidewalks, pointing up at the sky and shouting into their phones. Car alarms blare. Somewhere nearby, a dog barks and will not stop.[n/]
+Did I just see a spaceship? you think to yourself.[n/]
+Then another thought hits you.[n/]
+Wait. I am a CIA agent. I should be the one to help fix this.[n/]
+Your heart pounds as you stare back at the spaceship. Suddenly, a memory flashes through your mind.[n/]
+Yesterday was your very first day as a CIA agent. You were standing in the lobby, talking with your new partner.[n/]
+“Our boss said that something bad is going to happen, and one of us will have to save it,” your partner said.[n/]
+Then your mind grew heavy, and your thoughts became fuzzy.[n/]
+“I think I need to go home,” you told your partner.[n/]
+That is the last thing you remember before the loud BOOM![n/]
+Then you remember one more thing. Your partner had said something bad was going to happen, and you think you are the one who has to save it. You do not know how you know that, but the feeling will not go away.[n/]
 
 *goto page2
 
 *label page2
-You could go to the CIA headquarters. You could try to find out what is in the spaceship. Or you could go outside and look for other humans.
+You could go to the CIA headquarters. You could try to find out what is in the spaceship. Or you could go outside and look for other humans.[n/]
 *choice
   #Decide to try to find out what is in the spaceship.
     *goto page6
@@ -35,39 +35,39 @@ You could go to the CIA headquarters. You could try to find out what is in the s
     *goto page10
 
 *label page3
-You decide to look on the Internet.
-And it turns out that the thing in the spaceship is a brand-new iPhone with a blood-red phone case.
-Next to the phone is a button labeled PUSH ME, but you do not push it. You just keep reading about the phone. In the paragraph, you read more about the iPhone. It says that there are AI robots working for the iPhone.
-After reading the paragraph about the iPhone, you look at the button one more time. It makes you think that if you push it, it will tell you more about the iPhone.
-After some time thinking, you decide to push the button.
-Nothing happens.
-Then, without you noticing, AI robots sneak into your house. That is the last anyone hears from you, because it turns out that the button lets the iPhone track you.
+You decide to look on the Internet.[n/]
+And it turns out that the thing in the spaceship is a brand-new iPhone with a blood-red phone case.[n/]
+Next to the phone is a button labeled PUSH ME, but you do not push it. You just keep reading about the phone. In the paragraph, you read more about the iPhone. It says that there are AI robots working for the iPhone.[n/]
+After reading the paragraph about the iPhone, you look at the button one more time. It makes you think that if you push it, it will tell you more about the iPhone.[n/]
+After some time thinking, you decide to push the button.[n/]
+Nothing happens.[n/]
+Then, without you noticing, AI robots sneak into your house. That is the last anyone hears from you, because it turns out that the button lets the iPhone track you.[n/]
 
 *finish
 
 *label page4
-You have no time to waste, so you begin working quickly, running around without a real plan. Because you are rushing, you miss the room where the AI weapons are stored. 
-Then you stumble upon the room! You found it! Now to find the right weapon. You enter the room, excited to find something to save the world. As you cross the threshold, you suddenly fall, feeling yourself tumble, down, down, down. You look up to see only blackness and a faint light. Your screams go unanswered.
-The AI robots have won. 
-Seattle is doomed.
+You have no time to waste, so you begin working quickly, running around without a real plan. Because you are rushing, you miss the room where the AI weapons are stored. [n/]
+Then you stumble upon the room! You found it! Now to find the right weapon. You enter the room, excited to find something to save the world. As you cross the threshold, you suddenly fall, feeling yourself tumble, down, down, down. You look up to see only blackness and a faint light. Your screams go unanswered.[n/]
+The AI robots have won. [n/]
+Seattle is doomed.[n/]
 
 *finish
 
 *label page5
-You decide to stay inside and hide.
-You look outside and see a robot, so you duck down where it cannot see you. For a moment, you think you are safe.
-Then the robot spots you.
-It comes inside, but it does not see where you are hiding. Instead, it takes the orb. You hear a crackling noise. The robot lifts its metal arm and shoots.
-You get hit.
-That is the last thing you remember.
-You die all alone.
+You decide to stay inside and hide.[n/]
+You look outside and see a robot, so you duck down where it cannot see you. For a moment, you think you are safe.[n/]
+Then the robot spots you.[n/]
+It comes inside, but it does not see where you are hiding. Instead, it takes the orb. You hear a crackling noise. The robot lifts its metal arm and shoots.[n/]
+You get hit.[n/]
+That is the last thing you remember.[n/]
+You die all alone.[n/]
 
 *image ../images/ai_disaster/image6.png center
 
 *finish
 
 *label page6
-You decide to find out what is in the spaceship. But you cannot find out how. After a few minutes of thought, you decide to get the newspaper, thinking it will tell you. After you get the newspaper from outside, you start reading it. You notice there aren’t any advertisements! There is just a huge black spaceship with the words A.I. Breakout on it. But that’s it. But the spaceship looks familiar. It’s the spaceship from this morning! You look at the time; you’ve been looking at the newspaper for an hour! There is no time to waste! You immediately start brainstorming ideas of how you could find out what is in the spaceship! After an hour or two of thinking, you come up with two ways to find out what’s in the spaceship. You could look it up on the internet. Or you could go outside and look at the spaceship.
+You decide to find out what is in the spaceship. But you cannot find out how. After a few minutes of thought, you decide to get the newspaper, thinking it will tell you. After you get the newspaper from outside, you start reading it. You notice there aren’t any advertisements! There is just a huge black spaceship with the words A.I. Breakout on it. But that’s it. But the spaceship looks familiar. It’s the spaceship from this morning! You look at the time; you’ve been looking at the newspaper for an hour! There is no time to waste! You immediately start brainstorming ideas of how you could find out what is in the spaceship! After an hour or two of thinking, you come up with two ways to find out what’s in the spaceship. You could look it up on the internet. Or you could go outside and look at the spaceship.[n/]
 
 *image ../images/ai_disaster/image7.png center
 
@@ -78,16 +78,16 @@ You decide to find out what is in the spaceship. But you cannot find out how. Af
     *goto page7
 
 *label page7
-You decide to go outside and look at the spaceship. You go outside and hide behind an old pine tree nearby. From there, you can see that the thing in the spaceship was a computer! That seemed to be guarded by a ton of A.I. robots! Then you decide to look at the sky because looking at the computer made your eyes hurt. The sky was very gloomy and gray. But forget about that right now; you have to focus on the computer. You start thinking of ways to get rid of the computer. Then you think that since it is a computer, smashing it will kill it. Suddenly, you hear the computer say, “I want all the humans dead so I can finally take over Earth.” “Yes, your majesty,” responds one of the robots. Then you think to yourself, if I throw a pine cone, the robots will think it is a human. And you do you throw a pine cone that was on the ground next to you. Surprisingly, the robots go to see what it is! Leaving the computer alone. While the robots are gone, you pick up a sharp stick next to you. Then you sneak up behind the computer and whack it with the stick! And the computer breaks, the robots disappear, and the spaceship is gone.
+You decide to go outside and look at the spaceship. You go outside and hide behind an old pine tree nearby. From there, you can see that the thing in the spaceship was a computer! That seemed to be guarded by a ton of A.I. robots! Then you decide to look at the sky because looking at the computer made your eyes hurt. The sky was very gloomy and gray. But forget about that right now; you have to focus on the computer. You start thinking of ways to get rid of the computer. Then you think that since it is a computer, smashing it will kill it. Suddenly, you hear the computer say, “I want all the humans dead so I can finally take over Earth.” “Yes, your majesty,” responds one of the robots. Then you think to yourself, if I throw a pine cone, the robots will think it is a human. And you do you throw a pine cone that was on the ground next to you. Surprisingly, the robots go to see what it is! Leaving the computer alone. While the robots are gone, you pick up a sharp stick next to you. Then you sneak up behind the computer and whack it with the stick! And the computer breaks, the robots disappear, and the spaceship is gone.[n/]
 
 *finish
 
 *label page8
-You decide to sneak into the C.I.A. headquarters’ lab. When you get to where the lab is supposed to be, it is gone.
-Then you walk to the middle of the field, and you see a metal door in the ground. You look more closely and see an engraving on the door:
-C.I.A. LAB
-You go into the lab, and you see so much stuff. There is a new game system and a 65-inch TV. You are tempted to go play, but you say to yourself, “No! I can’t be distracted. I have a lot of work to do to defeat these AI robots.”
-You should get to work quickly before the AI robots find you. But maybe this is more complicated than you think. You usually rush. This situation may be the time to slow down.
+You decide to sneak into the C.I.A. headquarters’ lab. When you get to where the lab is supposed to be, it is gone.[n/]
+Then you walk to the middle of the field, and you see a metal door in the ground. You look more closely and see an engraving on the door:[n/]
+C.I.A. LAB[n/]
+You go into the lab, and you see so much stuff. There is a new game system and a 65-inch TV. You are tempted to go play, but you say to yourself, “No! I can’t be distracted. I have a lot of work to do to defeat these AI robots.”[n/]
+You should get to work quickly before the AI robots find you. But maybe this is more complicated than you think. You usually rush. This situation may be the time to slow down.[n/]
 
 *choice
   #Choose to rush through the lab.
@@ -96,27 +96,27 @@ You should get to work quickly before the AI robots find you. But maybe this is 
     *goto page9
 
 *label page9
-Before you go on, you look around the lab. You are still incredibly tempted to play those games. Nobody has ever seen these games before!
-You choose to continue slowly and carefully, and you stay on task. You start moving slowly through the lab and see a large room full of anti-AI tech gear.
-You enter the big room and see a USB locked inside a glass case. The note says:
-THIS WILL DEFEAT AI THE MOMENT YOU PUT IT IN A COMPUTER.
-There is a large red button labeled OPEN CASE. You push it, and it opens the case.
-You spot a nearby computer that you can use. You load the USB and wait. You see an upload bar that seems to be taking forever.
-Finally! It completes the upload, and instantaneously, you hear multiple explosions from every direction.
-You did it. You defeated AI!
+Before you go on, you look around the lab. You are still incredibly tempted to play those games. Nobody has ever seen these games before![n/]
+You choose to continue slowly and carefully, and you stay on task. You start moving slowly through the lab and see a large room full of anti-AI tech gear.[n/]
+You enter the big room and see a USB locked inside a glass case. The note says:[n/]
+THIS WILL DEFEAT AI THE MOMENT YOU PUT IT IN A COMPUTER.[n/]
+There is a large red button labeled OPEN CASE. You push it, and it opens the case.[n/]
+You spot a nearby computer that you can use. You load the USB and wait. You see an upload bar that seems to be taking forever.[n/]
+Finally! It completes the upload, and instantaneously, you hear multiple explosions from every direction.[n/]
+You did it. You defeated AI![n/]
 
 *finish
 
 *label page10
-You decide to run outside and search for people.
-When you run outside, you notice things are burning. You see a guy holding something, so you decide to get a closer look.
-He is not moving for some strange reason. He looks frozen.
-The orb is small and glowing. It is shaking violently. You hear a crackling noise. You are confused.
-You reach for the orb because you are curious about what this strange thing is.
-As soon as you touch it, it blasts you backward. It sends you flying back to your home, and somehow, you land safely.
-When you look outside again, the orb is still there, floating ominously.
-“Wait! Oh, no!” you say.
-A robot is walking toward the orb. It does not see you yet, but it is taking the orb.
+You decide to run outside and search for people.[n/]
+When you run outside, you notice things are burning. You see a guy holding something, so you decide to get a closer look.[n/]
+He is not moving for some strange reason. He looks frozen.[n/]
+The orb is small and glowing. It is shaking violently. You hear a crackling noise. You are confused.[n/]
+You reach for the orb because you are curious about what this strange thing is.[n/]
+As soon as you touch it, it blasts you backward. It sends you flying back to your home, and somehow, you land safely.[n/]
+When you look outside again, the orb is still there, floating ominously.[n/]
+“Wait! Oh, no!” you say.[n/]
+A robot is walking toward the orb. It does not see you yet, but it is taking the orb.[n/]
 
 *choice
   #Would rather stay inside and hide.
@@ -125,11 +125,11 @@ A robot is walking toward the orb. It does not see you yet, but it is taking the
     *goto page11
 
 *label page11
-You decide to go check out what happened.
-When you look outside, you see a robot. The robot is trying to take the orb.
-The second the robot touches the orb, it starts melting. Then you realize the orb has powers.
-All around you, the frozen people start moving again.
-The robots are gone, and your mission is done.
-The world is saved.
+You decide to go check out what happened.[n/]
+When you look outside, you see a robot. The robot is trying to take the orb.[n/]
+The second the robot touches the orb, it starts melting. Then you realize the orb has powers.[n/]
+All around you, the frozen people start moving again.[n/]
+The robots are gone, and your mission is done.[n/]
+The world is saved.[n/]
 
 *finish

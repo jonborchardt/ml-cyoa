@@ -2,7 +2,7 @@
 *author Ada, Inara & Willow
 
 *label page1
-You go into the kelp forest. You hear the honk of a boat. You decide to investigate. As you wander through the kelp forest, you wonder what is on the other side. You see thousands of caged mermaids, including Scarlett! Suddenly something charges at you! You dodge it just in time! You realize it’s a mermaid hunter! Suddenly the hunter yelps and swims away! Your Mercat and Merdog bit the hunter! As the hunter swims away, he drops something. You swim down to pick it up. It’s a key. You unlock the mermaid cages. “Thank you, daughter,” Scarlett says. “I’m your daughter?” you say. “Yes,” Scarlet says. “And, you are a princess.” “Can I stay with you?” you ask. “Of course,” Scarlet says. You head back to the kingdom.
+You go into the kelp forest. You hear the honk of a boat. You decide to investigate. As you wander through the kelp forest, you wonder what is on the other side. You see thousands of caged mermaids, including Scarlett! Suddenly something charges at you! You dodge it just in time! You realize it’s a mermaid hunter! Suddenly the hunter yelps and swims away! Your Mercat and Merdog bit the hunter! As the hunter swims away, he drops something. You swim down to pick it up. It’s a key. You unlock the mermaid cages. “Thank you, daughter,” Scarlett says. “I’m your daughter?” you say. “Yes,” Scarlet says. “And, you are a princess.” “Can I stay with you?” you ask. “Of course,” Scarlet says. You head back to the kingdom.[n/]
 
 *image ../images/mermaid_adventure/image2_3.png center
 
@@ -15,24 +15,24 @@ You go into the kelp forest. You hear the honk of a boat. You decide to investig
     *goto page9
 
 *label page2
-You go into the kelp forest. You hear the honk of a boat. You decide to investigate. As you wander through the kelp forest, you wonder what is on the other side. You see thousands of caged mermaids, including Scarlett! Suddenly something charges at you! You dodge it just in time! You realize it’s a mermaid hunter! Suddenly the hunter yelps and swims away! Your Mercat and Merdog bit the hunter! As the hunter swims away, he drops something. You swim down to pick it up. It’s a key. You unlock the mermaid cages. “Thank you, daughter,” Scarlett says. “I’m your daughter?” you say. “Yes,” Scarlet says. “And, you are a princess.” “Can I stay with you?” you ask. “Of course,” Scarlet says. You head back to the kingdom.
+You go into the kelp forest. You hear the honk of a boat. You decide to investigate. As you wander through the kelp forest, you wonder what is on the other side. You see thousands of caged mermaids, including Scarlett! Suddenly something charges at you! You dodge it just in time! You realize it’s a mermaid hunter! Suddenly the hunter yelps and swims away! Your Mercat and Merdog bit the hunter! As the hunter swims away, he drops something. You swim down to pick it up. It’s a key. You unlock the mermaid cages. “Thank you, daughter,” Scarlett says. “I’m your daughter?” you say. “Yes,” Scarlet says. “And, you are a princess.” “Can I stay with you?” you ask. “Of course,” Scarlet says. You head back to the kingdom.[n/]
 
 *image ../images/mermaid_adventure/image2_1.png center
 
 *finish
 
 *label page3
-You decide to go home. You swim to the shore. Your tail turns back into legs.  Your dad sees you. You walk home with him and eat your dinner and then you go to bed and die of boredom.
+You decide to go home. You swim to the shore. Your tail turns back into legs.  Your dad sees you. You walk home with him and eat your dinner and then you go to bed and die of boredom.[n/]
 
 *finish
 
 *label page4
-You go to find help. On the way, you see another mermaid and ask for help. “Hi, can you help me?” you say. Sure, I can help. What’s wrong with your powers?” “I never knew I had powers,” you think. And then you believe that your dad has been keeping secrets from you all this time. You think about the mermaid, the powers, and maybe, just maybe, your mom is a mermaid who lives under the sea, and your dad’s a human. When you touch the water, you turn into a mermaid… so you think your mom has to be a mermaid. You ask the mermaid her name, “Hey, what’s your name?” And she says, “Psyche. And how about you?” “Oh, my name? My name is Maria.” “Cute name,” says Psyche. “Thank you,” you say. “So should we go save Merdog and Mercat now?” you ask. “I think that sounds great,” says Psyche. So, you and Psyche set off to save Merdog and Mercat. When you get there, you try to figure out your power. Psyche tries to see if her ability works. Finally, you figure out your power. It is lava and water control. So, you use your lava power to open the Merdog and Mercat trap gate. And it works! And everyone was delighted.
+You go to find help. On the way, you see another mermaid and ask for help. “Hi, can you help me?” you say. Sure, I can help. What’s wrong with your powers?” “I never knew I had powers,” you think. And then you believe that your dad has been keeping secrets from you all this time. You think about the mermaid, the powers, and maybe, just maybe, your mom is a mermaid who lives under the sea, and your dad’s a human. When you touch the water, you turn into a mermaid… so you think your mom has to be a mermaid. You ask the mermaid her name, “Hey, what’s your name?” And she says, “Psyche. And how about you?” “Oh, my name? My name is Maria.” “Cute name,” says Psyche. “Thank you,” you say. “So should we go save Merdog and Mercat now?” you ask. “I think that sounds great,” says Psyche. So, you and Psyche set off to save Merdog and Mercat. When you get there, you try to figure out your power. Psyche tries to see if her ability works. Finally, you figure out your power. It is lava and water control. So, you use your lava power to open the Merdog and Mercat trap gate. And it works! And everyone was delighted.[n/]
 
 *finish
 
 *label page5
-You follow the sparkles. You see that they lead to a mermaid kingdom, but you don’t see any mermaids. You are about to turn around and leave when you hear a voice. The voice is coming from a frightened mermaid. “Who are you?” she says. “I’m Scarlet.” “I’m Maria,” you say. “I need your help,” Scarlet says, “Mermaid hunters have hunted all the mermaids.”  “Are there any mermaids left?” you ask. “Only these two,” Scarlett says, revealing a Mercat and Merdog. You hear Scarlett scream! You turn around, and Scarlett is gone. You want to get out of the kingdom as quickly as possible! You see a kelp forest. It looks pretty safe, and there might be something on the other side. On the other hand, if you stay here and investigate, you might be able to find and help Scarlett.
+You follow the sparkles. You see that they lead to a mermaid kingdom, but you don’t see any mermaids. You are about to turn around and leave when you hear a voice. The voice is coming from a frightened mermaid. “Who are you?” she says. “I’m Scarlet.” “I’m Maria,” you say. “I need your help,” Scarlet says, “Mermaid hunters have hunted all the mermaids.”  “Are there any mermaids left?” you ask. “Only these two,” Scarlett says, revealing a Mercat and Merdog. You hear Scarlett scream! You turn around, and Scarlett is gone. You want to get out of the kingdom as quickly as possible! You see a kelp forest. It looks pretty safe, and there might be something on the other side. On the other hand, if you stay here and investigate, you might be able to find and help Scarlett.[n/]
 
 *image ../images/mermaid_adventure/image1_2.png center
 
@@ -43,12 +43,12 @@ You follow the sparkles. You see that they lead to a mermaid kingdom, but you do
     *goto page6
 
 *label page6
-You choose to stay in the kingdom. You are wandering around when you hear a noise. Your Mercat and Merdog are whimpering. You turn around, but you’re too late. A mermaid hunter catches you and your pets. “Let me go!” you yell. “Never,” the hunter says, “I will not let you go.” Then he drew a sword...
+You choose to stay in the kingdom. You are wandering around when you hear a noise. Your Mercat and Merdog are whimpering. You turn around, but you’re too late. A mermaid hunter catches you and your pets. “Let me go!” you yell. “Never,” the hunter says, “I will not let you go.” Then he drew a sword...[n/]
 
 *finish
 
 *label page7
-You fall asleep and have a vison. There is a mermaid.  She tells you that she needs your help.  You wake up and you are a mermaid. You her a voice, your dad is calling you home.
+You fall asleep and have a vison. There is a mermaid.  She tells you that she needs your help.  You wake up and you are a mermaid. You her a voice, your dad is calling you home.[n/]
 
 *image ../images/mermaid_adventure/image2_4.png center
 
@@ -59,14 +59,14 @@ You fall asleep and have a vison. There is a mermaid.  She tells you that she ne
     *goto page8
 
 *label page8
-You decide to save the mermaid. You begin your quest. You start swimming. You swim for two hours. Then you see a jellyfish.  You think it will be easy to swim past it, so you go around and look up. You see an army of jellyfish! You touch one of them, and it glows pink and moves aside. You get an idea! You begin touching the heads of all the jellyfish. They glow red, orange, yellow, green, blue, and even purple! They move aside, making a path for you to swim through. You keep swimming. An hour has passed. You are exhausted and hungry. Suddenly you see a clam and open it to taste the most delicious meal you have ever had.  After a delightful feast of clams, you find two pods of dolphins. You all become friends, and they help you swim to rescue your mom from the palace. You find your mom and set her free. The two of you say goodbye to the dolphins and decide to go home. You arrive at the shore and return to being humans. You see your dad, and you all embrace in a loving hug.
+You decide to save the mermaid. You begin your quest. You start swimming. You swim for two hours. Then you see a jellyfish.  You think it will be easy to swim past it, so you go around and look up. You see an army of jellyfish! You touch one of them, and it glows pink and moves aside. You get an idea! You begin touching the heads of all the jellyfish. They glow red, orange, yellow, green, blue, and even purple! They move aside, making a path for you to swim through. You keep swimming. An hour has passed. You are exhausted and hungry. Suddenly you see a clam and open it to taste the most delicious meal you have ever had.  After a delightful feast of clams, you find two pods of dolphins. You all become friends, and they help you swim to rescue your mom from the palace. You find your mom and set her free. The two of you say goodbye to the dolphins and decide to go home. You arrive at the shore and return to being humans. You see your dad, and you all embrace in a loving hug.[n/]
 
 *image ../images/mermaid_adventure/image2_2.png center
 
 *finish
 
 *label page9
-You finally figure out why your dad would never let you go near or touch the water. You’re a mermaid! You’re speechless. Then you’re excited. You go on an adventure. You hear a voice that says, “Help, help.” So, you go to investigate. And you see a trapped Merdog and Mercat.
+You finally figure out why your dad would never let you go near or touch the water. You’re a mermaid! You’re speechless. Then you’re excited. You go on an adventure. You hear a voice that says, “Help, help.” So, you go to investigate. And you see a trapped Merdog and Mercat.[n/]
 
 *choice
   #go to find help.
@@ -75,7 +75,7 @@ You finally figure out why your dad would never let you go near or touch the wat
     *goto page10
 
 *label page10
-You don’t find help. But you see something glowing. And that glowing thing tells you, you have power. You try and try to figure out your power. Then you finally figure it out. So, you go to save the Mercat and Merdog. But there’s a twist. When you free them, you get locked in there. But you try to use your power again, but the Merdog made the gate, and it would not work because mermaid power doesn’t work against Mercat and Merdog powers. You have to wait until you see someone who can break you out... You hope you are not stuck in there forever.
+You don’t find help. But you see something glowing. And that glowing thing tells you, you have power. You try and try to figure out your power. Then you finally figure it out. So, you go to save the Mercat and Merdog. But there’s a twist. When you free them, you get locked in there. But you try to use your power again, but the Merdog made the gate, and it would not work because mermaid power doesn’t work against Mercat and Merdog powers. You have to wait until you see someone who can break you out... You hope you are not stuck in there forever.[n/]
 
 *image ../images/mermaid_adventure/image1_3.png center
 

@@ -1,10 +1,10 @@
 *title The Legends of London
 *author Ellie, Rue, Harry & Bella
 
-You are a marshmallow spy. Humans are trying to take over your home. You need to stop the humans from eating your family and friends. Only you can save them from the dangers the humans behold. Good Luck!
+You are a marshmallow spy. Humans are trying to take over your home. You need to stop the humans from eating your family and friends. Only you can save them from the dangers the humans behold. Good Luck![n/]
 
 *label page1
-It was a normal day in London. Normal for a marshmallow like you...in London. You live in a marshmallow city that was built long ago by ancient marsh-ins. Anyway, you decided to go on a walk. Suddenly! You hear a scream, “HELP!” You run to the call and ask, “What’s happening miss?” She replies, "What do you mean, what’s happening!? My baby is stuck in a flaming building!” “It must be the Humans again” you reply.  The lady, mom of the baby, turns to you and asks if you can help. “I think we should call the police,” you say. “But they won’t get here in time!” the mom cries. Should you call the police for help? Or just jump in to save the baby?
+It was a normal day in London. Normal for a marshmallow like you...in London. You live in a marshmallow city that was built long ago by ancient marsh-ins. Anyway, you decided to go on a walk. Suddenly! You hear a scream, “HELP!” You run to the call and ask, “What’s happening miss?” She replies, "What do you mean, what’s happening!? My baby is stuck in a flaming building!” “It must be the Humans again” you reply.  The lady, mom of the baby, turns to you and asks if you can help. “I think we should call the police,” you say. “But they won’t get here in time!” the mom cries. Should you call the police for help? Or just jump in to save the baby?[n/]
 
 *choice
   #Call the police.
@@ -13,7 +13,7 @@ It was a normal day in London. Normal for a marshmallow like you...in London. Yo
     *goto page3
 
 *label page2
-You call the police. The police say, “We are on the way.” You wait for 15 minutes, but the police don’t arrive.  You call again to see where they are. Off in the distance, you think you see a firetruck driving by. Should you try to wave down the firetruck? Or go into the building to save the baby yourself?
+You call the police. The police say, “We are on the way.” You wait for 15 minutes, but the police don’t arrive.  You call again to see where they are. Off in the distance, you think you see a firetruck driving by. Should you try to wave down the firetruck? Or go into the building to save the baby yourself?[n/]
 
 *choice
   #Wave down the firetruck.
@@ -22,7 +22,7 @@ You call the police. The police say, “We are on the way.” You wait for 15 mi
     *goto page6
 
 *label page3
-You choose to save the baby! You start to climb the building. Suddenly, flaming bricks start to fall. People start to scream! The baby’s mom is watching you from the ground and is afraid. She starts to shiver and yells, “Do you see my bubba?!” You hear a faint cry. You assume it’s the baby. the baby starts to cry louder. You figure out where the sound is coming from. You find the baby just in time. Finally, the police get there. Good thing you found the baby! You take the baby down to its mom, and she is very happy to see her baby again. “Thank you so much,” she says to you. “I have money, and I want to pay you.” You think, “I wonder how much money she wants to give me?” You ask, “Who are you anyway?” The mom says, “I am your new boss, Ms. Jones.” Should you believe her or just take the money and run?
+You choose to save the baby! You start to climb the building. Suddenly, flaming bricks start to fall. People start to scream! The baby’s mom is watching you from the ground and is afraid. She starts to shiver and yells, “Do you see my bubba?!” You hear a faint cry. You assume it’s the baby. the baby starts to cry louder. You figure out where the sound is coming from. You find the baby just in time. Finally, the police get there. Good thing you found the baby! You take the baby down to its mom, and she is very happy to see her baby again. “Thank you so much,” she says to you. “I have money, and I want to pay you.” You think, “I wonder how much money she wants to give me?” You ask, “Who are you anyway?” The mom says, “I am your new boss, Ms. Jones.” Should you believe her or just take the money and run?[n/]
 
 *choice
   #Take the money.
@@ -31,7 +31,7 @@ You choose to save the baby! You start to climb the building. Suddenly, flaming 
     *goto page8
 
 *label page4
-You wave the fire truck down. One of firemen gets out of the truck and says,” what is wrong? He looks at the building you say… The baby is stuck in the flaming building! The firemen ask you to help them save the baby. You say yes. You go in to the fire truck and climb the ladder “it is too short”, you say. You get your grappling hook, you shoot it up in the air and it hooks on. You climb up and you keep climbing. Hear a snap….
+You wave the fire truck down. One of firemen gets out of the truck and says,” what is wrong? He looks at the building you say… The baby is stuck in the flaming building! The firemen ask you to help them save the baby. You say yes. You go in to the fire truck and climb the ladder “it is too short”, you say. You get your grappling hook, you shoot it up in the air and it hooks on. You climb up and you keep climbing. Hear a snap….[n/]
 
 *choice
   #Keep climbing.
@@ -40,7 +40,7 @@ You wave the fire truck down. One of firemen gets out of the truck and says,” 
     *goto page15
 
 *label page5
-You decide to take the money! You take the money and you also notice that your boss isn’t wearing her favorite orange headband. You realize that the woman isn’t your boss at all. She is crime mama and her buba is crime buba! They are National Criminals in marshmallow history! You run away and call the army. You call the police. You think the army needs you but there are too many criminals on the loose! What do you choose?
+You decide to take the money! You take the money and you also notice that your boss isn’t wearing her favorite orange headband. You realize that the woman isn’t your boss at all. She is crime mama and her buba is crime buba! They are National Criminals in marshmallow history! You run away and call the army. You call the police. You think the army needs you but there are too many criminals on the loose! What do you choose?[n/]
 
 *choice
   #Talk to the police.
@@ -49,7 +49,7 @@ You decide to take the money! You take the money and you also notice that your b
     *goto page10
 
 *label page6
-You choose to save the baby, and you go in the building.  You run inside the building, and you find the baby. Then you run out of the building with the baby. Suddenly, the lady is gone. “Where is she?!? I have her baby!” You see some footprints and a car. Do you choose to go in the car or follow the footprints?
+You choose to save the baby, and you go in the building.  You run inside the building, and you find the baby. Then you run out of the building with the baby. Suddenly, the lady is gone. “Where is she?!? I have her baby!” You see some footprints and a car. Do you choose to go in the car or follow the footprints?[n/]
 
 *choice
   #Follow the footprints.
@@ -58,14 +58,14 @@ You choose to save the baby, and you go in the building.  You run inside the bui
     *goto page14
 
 *label page7
-Meanwhile, you talk to the police, good choice! In the end, the Humans move to the bad lands and the marshmallows lives in peace once again!
+Meanwhile, you talk to the police, good choice! In the end, the Humans move to the bad lands and the marshmallows lives in peace once again![n/]
 
-P.S. you retired 5 years later and have 2 children.
+P.S. you retired 5 years later and have 2 children.[n/]
 
 *finish
 
 *label page8
-The lady says, “There is something on your feet.” You look down but there is nothing on your feet. Since you are a spy, you look at the lady more closely. You realize it is your boss. You want to know why is your boss here. You realize it’s actually crime momma! You run away. You see a car, and guess what, the car’s engine is running. You jump in the car. You speed away. But crime momma follows you in her speeding car. Lucky you, the car you “borrowed” is faster than crime momma’s car! Even though your car is faster than crime momma’s car, crime momma finds a way to capture you. Her car has gadgets, lots of gadgets. Such as a laser that can zap your car wheel and slow you down. After she zaps your wheel, she catches you and ties you up to a pole. You think, “How am I going to get away and at the same time capture crime momma?” So, you decide to escape and make a booby trap. Lucky you, you have a knife in your pocket. You grab your knife but you can only cut one rope. But that rope was the one that was trapping your arm. You cut all the ropes and you flee. You design a booby trap that can catch crime momma, but you could get severely injured if you use it. So, you either put the trap on a pole or you can just leave it on the ground.
+The lady says, “There is something on your feet.” You look down but there is nothing on your feet. Since you are a spy, you look at the lady more closely. You realize it is your boss. You want to know why is your boss here. You realize it’s actually crime momma! You run away. You see a car, and guess what, the car’s engine is running. You jump in the car. You speed away. But crime momma follows you in her speeding car. Lucky you, the car you “borrowed” is faster than crime momma’s car! Even though your car is faster than crime momma’s car, crime momma finds a way to capture you. Her car has gadgets, lots of gadgets. Such as a laser that can zap your car wheel and slow you down. After she zaps your wheel, she catches you and ties you up to a pole. You think, “How am I going to get away and at the same time capture crime momma?” So, you decide to escape and make a booby trap. Lucky you, you have a knife in your pocket. You grab your knife but you can only cut one rope. But that rope was the one that was trapping your arm. You cut all the ropes and you flee. You design a booby trap that can catch crime momma, but you could get severely injured if you use it. So, you either put the trap on a pole or you can just leave it on the ground.[n/]
 
 *choice
   #Put the trap on a pole.
@@ -74,36 +74,36 @@ The lady says, “There is something on your feet.” You look down but there is
     *goto page11
 
 *label page9
-You choose the pole. You set a net on the ground and a brick at the top of a pole, you tie a rope to the net and the other end to a brick. You lay a piece of wood on the ground to make crime momma trip and fall which will make the brick fall and the net go up, capturing crime momma in the net. Yay! Mission accomplished
+You choose the pole. You set a net on the ground and a brick at the top of a pole, you tie a rope to the net and the other end to a brick. You lay a piece of wood on the ground to make crime momma trip and fall which will make the brick fall and the net go up, capturing crime momma in the net. Yay! Mission accomplished[n/]
 
 *finish
 
 *label page10
-You choose to help the army. The army attacks straight ahead. The Humans gobble the army up and the Humans reach the marshmallow city! You get eaten by the Humans!
+You choose to help the army. The army attacks straight ahead. The Humans gobble the army up and the Humans reach the marshmallow city! You get eaten by the Humans![n/]
 
 *finish
 
 *label page11
-You choose to lay the net on the ground and you will be in a tree nearby. You find crime momma and she starts to chase you. You run over to the net and jump in the tree but crime momma sees the net. The branch you are on snaps and you are high in the tree. You fall down and break your leg. You get rushed to the hospital.
+You choose to lay the net on the ground and you will be in a tree nearby. You find crime momma and she starts to chase you. You run over to the net and jump in the tree but crime momma sees the net. The branch you are on snaps and you are high in the tree. You fall down and break your leg. You get rushed to the hospital.[n/]
 
 *finish
 
 *label page12
-You choose to follow the footprints into a forest. SUDDENLY! You see drops of crumbs. You follow the drops of crumbs into a cave. You want to go in, but you see a pretty bird. “Hi,” the bird says. You get scared. “Follow me,” the bird says. You follow the bird. The bird takes you to a tree. “There is nothing here,” you say. “There are. Just wait,” says the bird. You wait 30 minutes, and you hear nothing. You wait longer, then you hear weeping in the tree. You climb towards the weeping sound, and you see the lady perched on the highest branch of the tree. You ask, “Why did you run away?” “I didn’t. My clone made me run away,” says the lady. “You have a clone?” you ask. “Yes, I have a clone.” “Can you please get down from the tree branch?” you ask. “NO! I’m scared,” the lady says. “Why?” you ask. “Because my clone will catch me and chase me away, that is why.” “Ok, just come down. You are safe,” you say. “NO, I AM NOT getting down from this tree!” You decided to climb the tree to the top. You ask the lady to take her baby, and she does, thanking you. “Hi,” the bird says to you. “AAAH!” the lady screams. “Why is that bird talking? That is just creepy!” You tell the lady you are getting out of the tree and to watch out. You jump out of the tree, and then the lady jumps out of the tree. You both jump 50 feet, which is amazing. But remember, we are marshmallows so we can jump pretty high. And, after all, I saved the baby’s life.
+You choose to follow the footprints into a forest. SUDDENLY! You see drops of crumbs. You follow the drops of crumbs into a cave. You want to go in, but you see a pretty bird. “Hi,” the bird says. You get scared. “Follow me,” the bird says. You follow the bird. The bird takes you to a tree. “There is nothing here,” you say. “There are. Just wait,” says the bird. You wait 30 minutes, and you hear nothing. You wait longer, then you hear weeping in the tree. You climb towards the weeping sound, and you see the lady perched on the highest branch of the tree. You ask, “Why did you run away?” “I didn’t. My clone made me run away,” says the lady. “You have a clone?” you ask. “Yes, I have a clone.” “Can you please get down from the tree branch?” you ask. “NO! I’m scared,” the lady says. “Why?” you ask. “Because my clone will catch me and chase me away, that is why.” “Ok, just come down. You are safe,” you say. “NO, I AM NOT getting down from this tree!” You decided to climb the tree to the top. You ask the lady to take her baby, and she does, thanking you. “Hi,” the bird says to you. “AAAH!” the lady screams. “Why is that bird talking? That is just creepy!” You tell the lady you are getting out of the tree and to watch out. You jump out of the tree, and then the lady jumps out of the tree. You both jump 50 feet, which is amazing. But remember, we are marshmallows so we can jump pretty high. And, after all, I saved the baby’s life.[n/]
 
 *finish
 
 *label page13
-You keep climbing you hear a snap again and again “oh on oh on” you say. You start to fall 10 stories, 9 stories, 8 stories you count each story. Last you are at story number 1, you hit the ground thud. You hear everybody talking around you. You see black.
+You keep climbing you hear a snap again and again “oh on oh on” you say. You start to fall 10 stories, 9 stories, 8 stories you count each story. Last you are at story number 1, you hit the ground thud. You hear everybody talking around you. You see black.[n/]
 
 *finish
 
 *label page14
-You choose to drive the car. You get in the car with the baby, and you take your phone out of your pocket to find your destination. You drive by a house, and suddenly you see wheel tracks. You get out of the car and follow the wheel tracks into the house. You walk into the house, and you see the lady. You say, “Here is your baby.” The lady growls and answers you, “Can I please have my baby?” You blink, and when you open your eyes the lady is gone. You search for the lady again. Suddenly, the doors shut very loudly. You just stand there waiting. Then you see a key, “But I need to find the lady,” you say to yourself. You run away with the key and the baby, and get in the car. You drive home, and figure, “I’ll wrap it in a blanket and it will go to sleep. Babies are always sleepy,” you say to yourself. For now, yare safe at your house. You go in the kitchen to get a cup of coffee and then into the living room. You and the baby fall asleep on the couch.
+You choose to drive the car. You get in the car with the baby, and you take your phone out of your pocket to find your destination. You drive by a house, and suddenly you see wheel tracks. You get out of the car and follow the wheel tracks into the house. You walk into the house, and you see the lady. You say, “Here is your baby.” The lady growls and answers you, “Can I please have my baby?” You blink, and when you open your eyes the lady is gone. You search for the lady again. Suddenly, the doors shut very loudly. You just stand there waiting. Then you see a key, “But I need to find the lady,” you say to yourself. You run away with the key and the baby, and get in the car. You drive home, and figure, “I’ll wrap it in a blanket and it will go to sleep. Babies are always sleepy,” you say to yourself. For now, yare safe at your house. You go in the kitchen to get a cup of coffee and then into the living room. You and the baby fall asleep on the couch.[n/]
 
 *finish
 
 *label page15
-You start climbing down. Everybody on the street down there is ready to catch you. You feel scared. You stare at everybody. You hear a snap. You keep climbing down. You hear another snap. You start to fall. You count as you fall. 1 story, 2 story, 3 story, you keep falling. Suddenly you hit the ground. You close your eyes for the last time….
+You start climbing down. Everybody on the street down there is ready to catch you. You feel scared. You stare at everybody. You hear a snap. You keep climbing down. You hear another snap. You start to fall. You count as you fall. 1 story, 2 story, 3 story, you keep falling. Suddenly you hit the ground. You close your eyes for the last time….[n/]
 
 *finish

@@ -2,7 +2,7 @@
 *author Severn, Michael, Avery & Max S.
 
 *label page1
-You are on an airplane to San Diego, California with your uncle and cousins. You and your cousins plan to look for artifacts like bones, gems or minerals for your school projects, especially the science fair ones. Even though your cousins are so annoying, you will all be going to the same middle school in the new year, and you have always enjoyed searching for ancient things together. You arrive at the hotel and put your stuff down in your room. Your cousins ask you if you want to go out to search for artifacts, and you say, “Sure!” Now you find yourself being drug around by your cousins, who lead you to a big, humongous hill with a house sitting on the top. It is a rickety old house, worn down, and smells like a litter box with dirty socks in it. Your annoying cousins, you like to call them, dare you to go into the house.
+You are on an airplane to San Diego, California with your uncle and cousins. You and your cousins plan to look for artifacts like bones, gems or minerals for your school projects, especially the science fair ones. Even though your cousins are so annoying, you will all be going to the same middle school in the new year, and you have always enjoyed searching for ancient things together. You arrive at the hotel and put your stuff down in your room. Your cousins ask you if you want to go out to search for artifacts, and you say, “Sure!” Now you find yourself being drug around by your cousins, who lead you to a big, humongous hill with a house sitting on the top. It is a rickety old house, worn down, and smells like a litter box with dirty socks in it. Your annoying cousins, you like to call them, dare you to go into the house.[n/]
 
 *choice
   #Accept the dare.
@@ -15,7 +15,7 @@ You are on an airplane to San Diego, California with your uncle and cousins. You
     *goto page5
 
 *label page2
-You accept the dare. You look over to your cousins, one smiles and the other glares. You open the door, take one last look at your cousins and then close the door. You see a hole trembling at the edge. You lose your balance trip and fall in to the hole suddenly. You open your eyes and look around. You see rows and rows of flowers and leaves everything you see is unbelievable. You gasp, you see dinosaurs some are pokey, some are big, some are even as small as a chicken! Then you feel this drop. A small elevator like lift drops; you fall on your leg. Your leg is hurt so bad you can’t even move suddenly you realize that the elevator like lift is about to crash on you! You start to cry, you can’t move there’s a stick right next to so you grab it “gasp” then you move using the stick like a cane! You see two doors one has a 1 on it the other has a 2.
+You accept the dare. You look over to your cousins, one smiles and the other glares. You open the door, take one last look at your cousins and then close the door. You see a hole trembling at the edge. You lose your balance trip and fall in to the hole suddenly. You open your eyes and look around. You see rows and rows of flowers and leaves everything you see is unbelievable. You gasp, you see dinosaurs some are pokey, some are big, some are even as small as a chicken! Then you feel this drop. A small elevator like lift drops; you fall on your leg. Your leg is hurt so bad you can’t even move suddenly you realize that the elevator like lift is about to crash on you! You start to cry, you can’t move there’s a stick right next to so you grab it “gasp” then you move using the stick like a cane! You see two doors one has a 1 on it the other has a 2.[n/]
 
 *choice
   #Choose door 1.
@@ -24,7 +24,7 @@ You accept the dare. You look over to your cousins, one smiles and the other gla
     *goto page10
 
 *label page3
-You say ‘’no.’’ you walk away and something grabs your shoulder. You turn around and your cousins say, “well you’re going in anyway.’’ And they push you in. The door closes and locks and you see an elevator-like-lift you get on it. The lift drops you, then you get up and you see two doors. One has a one on it and the other has a two on it Do you choose door one or door two?
+You say ‘’no.’’ you walk away and something grabs your shoulder. You turn around and your cousins say, “well you’re going in anyway.’’ And they push you in. The door closes and locks and you see an elevator-like-lift you get on it. The lift drops you, then you get up and you see two doors. One has a one on it and the other has a two on it Do you choose door one or door two?[n/]
 
 *choice
   #Choose door 1.
@@ -33,7 +33,7 @@ You say ‘’no.’’ you walk away and something grabs your shoulder. You tur
     *goto page10
 
 *label page4
-You choose to run away from your cousins. When you start running your cousins grab your arm and shove you into the house. You fall into a hole and you find yourself in a maze. You start exploring the maze. You see a big bridge and you say to yourself, “that doesn’t look steady at all.” Do you choose to back or go over the bridge?
+You choose to run away from your cousins. When you start running your cousins grab your arm and shove you into the house. You fall into a hole and you find yourself in a maze. You start exploring the maze. You see a big bridge and you say to yourself, “that doesn’t look steady at all.” Do you choose to back or go over the bridge?[n/]
 
 *choice
   #Go back.
@@ -42,7 +42,7 @@ You choose to run away from your cousins. When you start running your cousins gr
     *goto page12
 
 *label page5
-You choose to turn the dare around and dare them to go in the house because you want to get back home first. You say “why don’t you go in the house, if you know what’s in there?” Your eyes pop out all the way because they accept the dare. Your cousins look in and they breath really hard. You ask, “what is in that house?” they say “you don’t want to know.” And they run away, you’re done with your cousins. You try to sneak back on the airplane because you want to get home first. But you get caught and you go to prison. In prison you have a headache. They give you Motrin but you don’t know you are allergic to Motrin. Sadly, you get very sick. Meanwhile your cousins manage to get on the plane. Should you try to break out of jail and catch them or stay in jail and get better?
+You choose to turn the dare around and dare them to go in the house because you want to get back home first. You say “why don’t you go in the house, if you know what’s in there?” Your eyes pop out all the way because they accept the dare. Your cousins look in and they breath really hard. You ask, “what is in that house?” they say “you don’t want to know.” And they run away, you’re done with your cousins. You try to sneak back on the airplane because you want to get home first. But you get caught and you go to prison. In prison you have a headache. They give you Motrin but you don’t know you are allergic to Motrin. Sadly, you get very sick. Meanwhile your cousins manage to get on the plane. Should you try to break out of jail and catch them or stay in jail and get better?[n/]
 
 *choice
   #Break out of jail.
@@ -51,27 +51,27 @@ You choose to turn the dare around and dare them to go in the house because you 
     *goto page13
 
 *label page6
-You go to door 1 and open it. You see a long row of lights and dark spots and it looks as if the whole world is in front of you. You see lava and a bridge, you stumble up ahead. You hear an animal like screech. You turn around and you see a velociraptor coming at you. He looks angry and you realize that you’re in his territory. He opens his mouth and everything goes black.
+You go to door 1 and open it. You see a long row of lights and dark spots and it looks as if the whole world is in front of you. You see lava and a bridge, you stumble up ahead. You hear an animal like screech. You turn around and you see a velociraptor coming at you. He looks angry and you realize that you’re in his territory. He opens his mouth and everything goes black.[n/]
 
 *finish
 
 *label page7
-You start running and the tiger catches up to you and the tiger attacks you and the tiger eats you.
+You start running and the tiger catches up to you and the tiger attacks you and the tiger eats you.[n/]
 
 *finish
 
 *label page8
-You turn back on the bridge and you start running. Suddenly, a rock crashes on your leg. Your leg is broken and bruised, you limp and fall in to the burning red-hot lava. You start to shrivel up and burn.
+You turn back on the bridge and you start running. Suddenly, a rock crashes on your leg. Your leg is broken and bruised, you limp and fall in to the burning red-hot lava. You start to shrivel up and burn.[n/]
 
 *finish
 
 *label page9
-You choose to break out of jail. You break out but the problem is that you miss the plane. But you catch another one. You beat your cousins and you go home and have blueberry pie.
+You choose to break out of jail. You break out but the problem is that you miss the plane. But you catch another one. You beat your cousins and you go home and have blueberry pie.[n/]
 
 *finish
 
 *label page10
-You go in door two. The door closes and locks its self. You see a spear and you pick it up, then you see a tiger and it looks like it’s going to attack. You are a little scared. Do you try to run or do you try to scare the tiger away?
+You go in door two. The door closes and locks its self. You see a spear and you pick it up, then you see a tiger and it looks like it’s going to attack. You are a little scared. Do you try to run or do you try to scare the tiger away?[n/]
 
 *choice
   #Run.
@@ -80,12 +80,12 @@ You go in door two. The door closes and locks its self. You see a spear and you 
     *goto page15
 
 *label page11
-You grab the rope and you start climbing on the rope and the rope breaks and you fall in the quicksand and you drown and die
+You grab the rope and you start climbing on the rope and the rope breaks and you fall in the quicksand and you drown and die[n/]
 
 *finish
 
 *label page12
-You choose to run over the bridge. You make it safely over the bridge. You hear a crackling noise like something breaking. You see the bridge falling, lava splashes up, and rocks are falling from the ceiling. You start running for your life and you trip and fall on the ground. Do you decide to stay on the ground or get up and start running?
+You choose to run over the bridge. You make it safely over the bridge. You hear a crackling noise like something breaking. You see the bridge falling, lava splashes up, and rocks are falling from the ceiling. You start running for your life and you trip and fall on the ground. Do you decide to stay on the ground or get up and start running?[n/]
 
 *choice
   #Stay on the ground.
@@ -94,17 +94,17 @@ You choose to run over the bridge. You make it safely over the bridge. You hear 
     *goto page16
 
 *label page13
-You choose to stay in jail but the guards who give you food are actually zombies. They attack you and start fighting you. You get hurt and die.
+You choose to stay in jail but the guards who give you food are actually zombies. They attack you and start fighting you. You get hurt and die.[n/]
 
 *finish
 
 *label page14
-You decide to stay on the ground and the bridge is falling behind you. You fall onto a platform and you get out of the maze safely.
+You decide to stay on the ground and the bridge is falling behind you. You fall onto a platform and you get out of the maze safely.[n/]
 
 *finish
 
 *label page15
-You stand there with the spear ready to attack and the tiger runs away. You see a portal appear from the wall. You go in the portal because there is no other place to go and you see the diamond on a big stand IN A PUDDLE OF QUICK SAND! You see a rope going across the room and a log that you could set on quick sand. You need to choose the rope or the log.
+You stand there with the spear ready to attack and the tiger runs away. You see a portal appear from the wall. You go in the portal because there is no other place to go and you see the diamond on a big stand IN A PUDDLE OF QUICK SAND! You see a rope going across the room and a log that you could set on quick sand. You need to choose the rope or the log.[n/]
 
 *choice
   #Choose the rope.
@@ -113,11 +113,11 @@ You stand there with the spear ready to attack and the tiger runs away. You see 
     *goto page17
 
 *label page16
-You get back up and start running. Lava splashes up from the lava pool that is under you. The lava hits the rocks and the falling rocks nearly hit you. The bubbling lava splashes up and covers the bridge that’s in front of you. You’re trapped. The bridge starts burning and falling apart. You start falling into the lava.
+You get back up and start running. Lava splashes up from the lava pool that is under you. The lava hits the rocks and the falling rocks nearly hit you. The bubbling lava splashes up and covers the bridge that’s in front of you. You’re trapped. The bridge starts burning and falling apart. You start falling into the lava.[n/]
 
 *finish
 
 *label page17
-You set the log on the quick sand you’re going across the quick sand and the log wobbles and you make it to the diamond! You grab the diamond, then stand on the stand that the diamond was on. Then, there is a rope above you. You climb with the diamond in hour hand. The diamond stand lowers quickly, so you go quick, then you see the bright clean air. You find your rude cousins outside standing in front of you. You lie to your cousins and say, “I did not get the gem.” They ask, “Well, how did you get out of the maze?” You say, “There was a gem in the quicksand and a rope. I could not get the gem but I made it out alive. Then you get your stuff and go to the airport with your unkind cousins and you get back home showing the gem to your parents. And you also show it at your school project. You live happily ever after.
+You set the log on the quick sand you’re going across the quick sand and the log wobbles and you make it to the diamond! You grab the diamond, then stand on the stand that the diamond was on. Then, there is a rope above you. You climb with the diamond in hour hand. The diamond stand lowers quickly, so you go quick, then you see the bright clean air. You find your rude cousins outside standing in front of you. You lie to your cousins and say, “I did not get the gem.” They ask, “Well, how did you get out of the maze?” You say, “There was a gem in the quicksand and a rope. I could not get the gem but I made it out alive. Then you get your stuff and go to the airport with your unkind cousins and you get back home showing the gem to your parents. And you also show it at your school project. You live happily ever after.[n/]
 
 *finish

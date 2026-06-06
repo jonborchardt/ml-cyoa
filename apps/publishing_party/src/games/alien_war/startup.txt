@@ -1,22 +1,22 @@
 *title The Battle for Humanity
 *author David, Desmond & Max
 
-In this story, a UFO crashes into the Statue of Liberty, and your choices could lead to triumph, disaster, or death. Good luck!
+In this story, a UFO crashes into the Statue of Liberty, and your choices could lead to triumph, disaster, or death. Good luck![n/]
 
 *choice
   #I'm Ready.
     *goto page1
 
 *label page1
-You are walking to high school. You sit on a bench to look at the view. The sun is shining. The birds are chirping. Nothing could possibly go wrong.
-“Hi, Robert,” your neighbor says.
-“Hi,” you say back.
-Suddenly, from out of the blue, you hear a loud noise. A UFO crashes into the Statue of Liberty. Rubble rains down on you, trapping your leg. You cannot see anything. People are running around, screaming and yelling.
-You try pulling on your leg, and to your credit, it works. Your leg breaks free. You get up and take in your surroundings.
-The Statue of Liberty is surrounded by smoke and broken pieces of stone. UFOs zoom across the sky. Then you notice a bunch of flyers flying around in the air. You grab three of them.
-The first flyer says, Come help blow up the mothership!
-The second flyer says, Negotiate with the aliens. Get sucked up into the tractor beam and board the mothership!
-The third flyer says, Fight with the superheroes to destroy the UFOs! You need to make a decision.
+You are walking to high school. You sit on a bench to look at the view. The sun is shining. The birds are chirping. Nothing could possibly go wrong.[n/]
+“Hi, Robert,” your neighbor says.[n/]
+“Hi,” you say back.[n/]
+Suddenly, from out of the blue, you hear a loud noise. A UFO crashes into the Statue of Liberty. Rubble rains down on you, trapping your leg. You cannot see anything. People are running around, screaming and yelling.[n/]
+You try pulling on your leg, and to your credit, it works. Your leg breaks free. You get up and take in your surroundings.[n/]
+The Statue of Liberty is surrounded by smoke and broken pieces of stone. UFOs zoom across the sky. Then you notice a bunch of flyers flying around in the air. You grab three of them.[n/]
+The first flyer says, Come help blow up the mothership![n/]
+The second flyer says, Negotiate with the aliens. Get sucked up into the tractor beam and board the mothership![n/]
+The third flyer says, Fight with the superheroes to destroy the UFOs! You need to make a decision.[n/]
 
 *choice
   #Stay and fight with the superheroes.
@@ -27,35 +27,35 @@ The third flyer says, Fight with the superheroes to destroy the UFOs! You need t
     *goto page7
 
 *label page2
-Elastic Man stretches into a slingshot by raising his arms above his head as his neck gets longer. Then his head gets wider on his long neck, and it looks like a T. He grabs his ears and stretches some of his body into an arm. He grabs you and puts you on his nose.
-Then his head rears back like a slingshot band and fires you across the ocean.
-But an alien in the target system sees you. It locks onto you and fires. You do not see it coming, so you die.
+Elastic Man stretches into a slingshot by raising his arms above his head as his neck gets longer. Then his head gets wider on his long neck, and it looks like a T. He grabs his ears and stretches some of his body into an arm. He grabs you and puts you on his nose.[n/]
+Then his head rears back like a slingshot band and fires you across the ocean.[n/]
+But an alien in the target system sees you. It locks onto you and fires. You do not see it coming, so you die.[n/]
 
 *finish
 
 *label page3
-You go to the Alien Olympics. You go in, enter an arena, and the first game is called Slap War. All the aliens target you, and you die
+You go to the Alien Olympics. You go in, enter an arena, and the first game is called Slap War. All the aliens target you, and you die[n/]
 
 *finish
 
 *label page4
-You decide to tell the captain about the airlock malfunction. You start the long walk to the captain. You start running. You do not know why you are running.
-Suddenly, you slip and fall. It’s nothing. You pick yourself up, dust yourself off, and keep walking.
-You see the captain and say, “The air lock is opening!!!”
-The captain runs and pushes a large green button. The flashing stops.
-You return to the control panel and dock the ship with the mother ship. You run onto the mother ship and find a large red button. You press it and run.
-When you get on the spaceship, you fasten your seatbelt and fly away as heroes.
+You decide to tell the captain about the airlock malfunction. You start the long walk to the captain. You start running. You do not know why you are running.[n/]
+Suddenly, you slip and fall. It’s nothing. You pick yourself up, dust yourself off, and keep walking.[n/]
+You see the captain and say, “The air lock is opening!!!”[n/]
+The captain runs and pushes a large green button. The flashing stops.[n/]
+You return to the control panel and dock the ship with the mother ship. You run onto the mother ship and find a large red button. You press it and run.[n/]
+When you get on the spaceship, you fasten your seatbelt and fly away as heroes.[n/]
 
 *finish
 
 *label page5
-You decide to stay on Earth to fight with the superheroes. After all, there is a city FULL of superheroes. So you think, and then you yell, “OHH, SUPERHEROES!”
-You hope that a superhero will hear you, and one does. It’s Elastic Man!
-You think, Nice, Elastic Man is here!
-Suddenly, a bunch of aliens come and attack you! Elastic Man punches one of the aliens. You punch one. That happens over and over and over and over again until you’ve punched all of the aliens.
-Then you realize how quiet it is.
-Too quiet.
-Suddenly, an alien hops down off a building, but Elastic Man sees it and PUNCHES it!!!!!!!!!!!!!!!!!! Then he asks, “What do we do now?”
+You decide to stay on Earth to fight with the superheroes. After all, there is a city FULL of superheroes. So you think, and then you yell, “OHH, SUPERHEROES!”[n/]
+You hope that a superhero will hear you, and one does. It’s Elastic Man![n/]
+You think, Nice, Elastic Man is here![n/]
+Suddenly, a bunch of aliens come and attack you! Elastic Man punches one of the aliens. You punch one. That happens over and over and over and over again until you’ve punched all of the aliens.[n/]
+Then you realize how quiet it is.[n/]
+Too quiet.[n/]
+Suddenly, an alien hops down off a building, but Elastic Man sees it and PUNCHES it!!!!!!!!!!!!!!!!!! Then he asks, “What do we do now?”[n/]
 
 *choice
   #Ask Elastic Man to get you out of here.
@@ -64,24 +64,24 @@ Suddenly, an alien hops down off a building, but Elastic Man sees it and PUNCHES
     *goto page6
 
 *label page6
-You think running won’t solve the problem, so you ask Elastic Man to help you fight the aliens.
-Just then, an alien ship drops 10,000-foot soldiers, 1,000 tanks, and 100 mechs.
-Elastic Man says, “Do we do it now?”
-You say, “Yeah, we can do it now.”
-You both charge. Then Elastic Man gets up and smashes them all.
+You think running won’t solve the problem, so you ask Elastic Man to help you fight the aliens.[n/]
+Just then, an alien ship drops 10,000-foot soldiers, 1,000 tanks, and 100 mechs.[n/]
+Elastic Man says, “Do we do it now?”[n/]
+You say, “Yeah, we can do it now.”[n/]
+You both charge. Then Elastic Man gets up and smashes them all.[n/]
 
 *image ../images/alien_war/image7.png center
 
 *finish
 
 *label page7
-You get sucked into a beam. For a second, everything is blurry. The next thing you know, you are in space. It is completely silent. Then you see a bunch of aliens. One alien is bigger than all the others. You think he must be the general alien. He is speaking a language you do not understand. The general alien notices that you do not understand him. He puts a device in your ear. Then you can hear his voice. It is very deep.
-“What is your name?” the general asks.
-“My name is Robert,” you say. All the aliens seem confused.
-“Okay,” the general says. “I am going to call you Conner. My name is Frank.” Frank says that the ship is landing. While you are waiting, you look around and find out that you are on the mothership because there is a plate on the wall that says Mothership One.
-When the big metal door opens, you see a whole parade. The aliens are celebrating because you are the first human to set foot on their planet. Frank says, “Go explore.”
-On the left path, you see what looks like the Olympics, but alien style. On the right path, you see a variety of stores.
-You need to make a decision.
+You get sucked into a beam. For a second, everything is blurry. The next thing you know, you are in space. It is completely silent. Then you see a bunch of aliens. One alien is bigger than all the others. You think he must be the general alien. He is speaking a language you do not understand. The general alien notices that you do not understand him. He puts a device in your ear. Then you can hear his voice. It is very deep.[n/]
+“What is your name?” the general asks.[n/]
+“My name is Robert,” you say. All the aliens seem confused.[n/]
+“Okay,” the general says. “I am going to call you Conner. My name is Frank.” Frank says that the ship is landing. While you are waiting, you look around and find out that you are on the mothership because there is a plate on the wall that says Mothership One.[n/]
+When the big metal door opens, you see a whole parade. The aliens are celebrating because you are the first human to set foot on their planet. Frank says, “Go explore.”[n/]
+On the left path, you see what looks like the Olympics, but alien style. On the right path, you see a variety of stores.[n/]
+You need to make a decision.[n/]
 
 *image ../images/alien_war/image5.png center
 
@@ -92,30 +92,30 @@ You need to make a decision.
     *goto page8
 
 *label page8
-You go right. One alien calls you over.
-You walk up to the alien, and the alien gives you a small ship.
-“I have always wanted to meet a human,” the alien says. “To honor you, I want you to have this ship.”
-You take the ship for a test drive. At first, you feel nervous, but then you realize you are actually pretty good at flying it.
-Then you get an idea.
-You fly over to a fireworks shop. Since you are the first human on the planet, the aliens give you fireworks for free. You load them into your small ship and fly back toward the mothership.
-You aim carefully, light the fireworks, and shoot them straight at the mothership.
-BOOM!
-The mothership explodes in the sky. You steer your small ship away from the blast and leave the alien planet behind.
+You go right. One alien calls you over.[n/]
+You walk up to the alien, and the alien gives you a small ship.[n/]
+“I have always wanted to meet a human,” the alien says. “To honor you, I want you to have this ship.”[n/]
+You take the ship for a test drive. At first, you feel nervous, but then you realize you are actually pretty good at flying it.[n/]
+Then you get an idea.[n/]
+You fly over to a fireworks shop. Since you are the first human on the planet, the aliens give you fireworks for free. You load them into your small ship and fly back toward the mothership.[n/]
+You aim carefully, light the fireworks, and shoot them straight at the mothership.[n/]
+BOOM![n/]
+The mothership explodes in the sky. You steer your small ship away from the blast and leave the alien planet behind.[n/]
 
 *finish
 
 *label page9
-You run as fast as you can to the spaceship so you can get to the mothership. When you get there, someone says, “Welcome, Robert.”
-It’s your friend Nate from school!
-“I am so glad to see you,” you say.
-“Get in fast. The doors are closing,” says Nate.
-When you were outside the ship, it was cool. But when you get inside, it takes your breath away. The seats are made of gold!!! And the table and the beds and even the bathrooms! All the gold makes everything glisten in the morning light.
-“Pretty cool, huh?” says Nate. “You should sit down. We’re about to take off.”
-Sure enough, the captain starts counting.
-“10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0!”
-You barely have enough time to fasten your seatbelt. And the ship takes off super-fast. It’s so much force that you’re pushed against your seat!
-5 minutes later, you can see the mother ship. It’s so massive it blocks out the sun!!! You knew the mother ship was big, but not this big! It’s the size of 80,000 school buses!!!!!!
-You’re distracted by a bright flashing light on the big control panel. It says, “Airlock opening.”
+You run as fast as you can to the spaceship so you can get to the mothership. When you get there, someone says, “Welcome, Robert.”[n/]
+It’s your friend Nate from school![n/]
+“I am so glad to see you,” you say.[n/]
+“Get in fast. The doors are closing,” says Nate.[n/]
+When you were outside the ship, it was cool. But when you get inside, it takes your breath away. The seats are made of gold!!! And the table and the beds and even the bathrooms! All the gold makes everything glisten in the morning light.[n/]
+“Pretty cool, huh?” says Nate. “You should sit down. We’re about to take off.”[n/]
+Sure enough, the captain starts counting.[n/]
+“10, 9, 8, 7, 6, 5, 4, 3, 2, 1, 0!”[n/]
+You barely have enough time to fasten your seatbelt. And the ship takes off super-fast. It’s so much force that you’re pushed against your seat![n/]
+5 minutes later, you can see the mother ship. It’s so massive it blocks out the sun!!! You knew the mother ship was big, but not this big! It’s the size of 80,000 school buses!!!!!![n/]
+You’re distracted by a bright flashing light on the big control panel. It says, “Airlock opening.”[n/]
 
 *choice
   #Tell the captain.
@@ -124,11 +124,11 @@ You’re distracted by a bright flashing light on the big control panel. It says
     *goto page10
 
 *label page10
-You go to the airlock to see what the problem is. You hear yelling. You stop and listen.
-You hear Nate saying, “How do you plan to get in the mother ship?”
-“We will figure something out,” says the captain.
-You keep walking. You see the airlock up ahead. It’s opening!!
-Suddenly, you’re sucked into the black void of space, never to be seen again.
+You go to the airlock to see what the problem is. You hear yelling. You stop and listen.[n/]
+You hear Nate saying, “How do you plan to get in the mother ship?”[n/]
+“We will figure something out,” says the captain.[n/]
+You keep walking. You see the airlock up ahead. It’s opening!![n/]
+Suddenly, you’re sucked into the black void of space, never to be seen again.[n/]
 
 *image ../images/alien_war/image4.png center
 

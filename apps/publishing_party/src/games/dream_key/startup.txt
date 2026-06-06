@@ -1,18 +1,18 @@
 *title The Search for the Dream Key
 *author Kyaihla, Michaela & William
 
-In this story, you are an agile spy trapped in the monster world after a monster steals the Dream Key. You must explore dangerous places, find the key, and unlock the Dream Gate before your choices lead you into danger. Good Luck.
+In this story, you are an agile spy trapped in the monster world after a monster steals the Dream Key. You must explore dangerous places, find the key, and unlock the Dream Gate before your choices lead you into danger. Good Luck.[n/]
 
 *choice
   #I'm Ready.
     *goto page1
 
 *label page1
-You are an agile spy who solves mysteries with magic powers. You can move quickly, sneak through tight spaces, and escape danger. One day, a monster pulls you through a portal and into the monster dimension.
-There are two dimensions: the human world and the monster world. Portals connect the two worlds, and the Dream Key unlocks the Dream Gate between them.
-But now you are trapped.
-The monster who pulled you into the monster world has stolen the Dream Key, so you cannot get back home. Your goal is to find the monster, get the Dream Key back, and unlock the Dream Gate before it is too late.
-The monster dimension is full of monsters, portals, and strange places. Some choices may lead you to danger. Some choices may lead you to a happy ever after. You look around and see three possible paths.
+You are an agile spy who solves mysteries with magic powers. You can move quickly, sneak through tight spaces, and escape danger. One day, a monster pulls you through a portal and into the monster dimension.[n/]
+There are two dimensions: the human world and the monster world. Portals connect the two worlds, and the Dream Key unlocks the Dream Gate between them.[n/]
+But now you are trapped.[n/]
+The monster who pulled you into the monster world has stolen the Dream Key, so you cannot get back home. Your goal is to find the monster, get the Dream Key back, and unlock the Dream Gate before it is too late.[n/]
+The monster dimension is full of monsters, portals, and strange places. Some choices may lead you to danger. Some choices may lead you to a happy ever after. You look around and see three possible paths.[n/]
 
 *choice
   #Go to the Whispering Willows.
@@ -23,29 +23,29 @@ The monster dimension is full of monsters, portals, and strange places. Some cho
     *goto page7
 
 *label page2
-You decide to follow the mermaid because she will take you to the poisonous lake. And there, you will find the magical potion to survive, or you will disappear forever.
+You decide to follow the mermaid because she will take you to the poisonous lake. And there, you will find the magical potion to survive, or you will disappear forever.[n/]
 
 *finish
 
 *label page3
-You run away, but there is a rock in your path. You trip over it.
-A bunch of monsters surround you. Some have fangs. Others have fur. One of them eats you.
+You run away, but there is a rock in your path. You trip over it.[n/]
+A bunch of monsters surround you. Some have fangs. Others have fur. One of them eats you.[n/]
 
 *finish
 
 *label page4
-You choose to sneak past the big monster.
-You start across the pond. The water feels slippery. You try to stay quiet, but your toe hits a rock.
-You cannot help it. You scream.
-The monster wakes up. Its eyes open, and it sees you. Then it starts coming at you.
-You try to run away, but it is too fast for you. It catches you in its mouth and shreds you to bits.
+You choose to sneak past the big monster.[n/]
+You start across the pond. The water feels slippery. You try to stay quiet, but your toe hits a rock.[n/]
+You cannot help it. You scream.[n/]
+The monster wakes up. Its eyes open, and it sees you. Then it starts coming at you.[n/]
+You try to run away, but it is too fast for you. It catches you in its mouth and shreds you to bits.[n/]
 
 *finish
 
 *label page5
-You decide to go to the Whispering Willows.
-You enter the Forest of Whispering Willows. There is a mysterious gate at the entrance to the forest.
-You see a unicorn and a mermaid.
+You decide to go to the Whispering Willows.[n/]
+You enter the Forest of Whispering Willows. There is a mysterious gate at the entrance to the forest.[n/]
+You see a unicorn and a mermaid.[n/]
 
 *choice
   #Follow the mermaid.
@@ -54,14 +54,14 @@ You see a unicorn and a mermaid.
     *goto page6
 
 *label page6
-You decided to follow the unicorn. You will have good luck if you do this! The unicorn will help show you the way out of the Whispering Willows. Congratulations.
+You decided to follow the unicorn. You will have good luck if you do this! The unicorn will help show you the way out of the Whispering Willows. Congratulations.[n/]
 
 *finish
 
 *label page7
-You chose to go to the valley. A pixie appears and starts throwing flowers at you. They look magical.
-Suddenly, it hits a squirrel, and the squirrel falls over. You look behind you and see a hole. You cannot see the end.
-You have to decide what to do quickly.
+You chose to go to the valley. A pixie appears and starts throwing flowers at you. They look magical.[n/]
+Suddenly, it hits a squirrel, and the squirrel falls over. You look behind you and see a hole. You cannot see the end.[n/]
+You have to decide what to do quickly.[n/]
 
 *choice
   #Run.
@@ -70,23 +70,23 @@ You have to decide what to do quickly.
     *goto page8
 
 *label page8
-You grab the flower.
-You feel stronger.
-She looks scared now. She grabs the key.
-You grab it.
-You see a gate and use the key. It opens, and you go through.
-It takes you back home.
-A mystery solved.
+You grab the flower.[n/]
+You feel stronger.[n/]
+She looks scared now. She grabs the key.[n/]
+You grab it.[n/]
+You see a gate and use the key. It opens, and you go through.[n/]
+It takes you back home.[n/]
+A mystery solved.[n/]
 
 *image ../images/dream_key/image5.png center
 
 *finish
 
 *label page9
-You choose to go to the poisonous pond.
-The poisonous pond is smelly. You look around while you wade through the mucky water. It is not a pleasant sight.
-All around you, the monsters are swimming in the pond, and the dying plants are sinking. Then you see one big monster.
-The big monster has scales and spikes, and it looks like a snake. It is still sleeping.
+You choose to go to the poisonous pond.[n/]
+The poisonous pond is smelly. You look around while you wade through the mucky water. It is not a pleasant sight.[n/]
+All around you, the monsters are swimming in the pond, and the dying plants are sinking. Then you see one big monster.[n/]
+The big monster has scales and spikes, and it looks like a snake. It is still sleeping.[n/]
 
 *choice
   #Sneak past the big monster.
@@ -95,13 +95,13 @@ The big monster has scales and spikes, and it looks like a snake. It is still sl
     *goto page10
 
 *label page10
-You choose to fight the big monster.
-You wade farther into the pond. You lift your sword high in the air and stab the big monster.
-Then you find the Dream Key hidden in the monster’s hide.
-You rush back to the spot where you came from. Then you unlock the Dream Gate.
-The gate opens, and you find yourself in the same place you were right before you got sucked up.
-You look down before you step down.
-And you live happily ever after.
+You choose to fight the big monster.[n/]
+You wade farther into the pond. You lift your sword high in the air and stab the big monster.[n/]
+Then you find the Dream Key hidden in the monster’s hide.[n/]
+You rush back to the spot where you came from. Then you unlock the Dream Gate.[n/]
+The gate opens, and you find yourself in the same place you were right before you got sucked up.[n/]
+You look down before you step down.[n/]
+And you live happily ever after.[n/]
 
 *image ../images/dream_key/image7.png center
 

@@ -1,28 +1,28 @@
 *title Your Whole Life Took a Turn
 *author Arlo & Dade
 
-In this story, you must choose between two dreams: football and F1 racing. Your choices decide which path your future takes.
-Good luck!
+In this story, you must choose between two dreams: football and F1 racing. Your choices decide which path your future takes.[n/]
+Good luck![n/]
 
 *choice
   #I'm Ready.
     *goto page1
 
 *label page1
-You have worked hard your whole life to get to the University of Oregon for football. Your dream is to become an NFL player someday, and every practice feels like one more step toward that goal. But football is not your only passion. You have also always loved cars, engines, and mechanics. Your older brother, Steve, became an F1 driver after a long career working for Mercedes-Benz, and you respect him greatly. You have gone to many of his races, and they are always exciting. Sometimes you wonder whether racing could be your path, too.
-One afternoon, you leave football practice feeling pretty good. That was a great practice. As you head off the field, your phone pings. You pull it out of your pocket. It is a text from Steve:
-Hey, bro. Audi is getting introduced to F1. They need drivers. Come. I can hook you up.
-You think to yourself, F1! Audi! I could finally be an F1 driver.
-Then your coach shouts to you across the field, “Hey! Wait up!” You run back to him and say, “Yes, Coach. What’s up?” He tells you that an NFL scout was at the last game and wants you in the next NFL training camp.
+You have worked hard your whole life to get to the University of Oregon for football. Your dream is to become an NFL player someday, and every practice feels like one more step toward that goal. But football is not your only passion. You have also always loved cars, engines, and mechanics. Your older brother, Steve, became an F1 driver after a long career working for Mercedes-Benz, and you respect him greatly. You have gone to many of his races, and they are always exciting. Sometimes you wonder whether racing could be your path, too.[n/]
+One afternoon, you leave football practice feeling pretty good. That was a great practice. As you head off the field, your phone pings. You pull it out of your pocket. It is a text from Steve:[n/]
+Hey, bro. Audi is getting introduced to F1. They need drivers. Come. I can hook you up.[n/]
+You think to yourself, F1! Audi! I could finally be an F1 driver.[n/]
+Then your coach shouts to you across the field, “Hey! Wait up!” You run back to him and say, “Yes, Coach. What’s up?” He tells you that an NFL scout was at the last game and wants you in the next NFL training camp.[n/]
 
 *image ../images/your_life_takes_a_turn/image6.png center
 
 *goto page2
 
 *label page2
-“The camp starts tomorrow,” your coach says. “If you want this chance, you need to leave tonight.”
-Your stomach flips. Steve’s F1 opportunity is tomorrow, too. You stare at your phone, then back at your coach. You cannot do both. For years, you have imagined yourself on a football field under bright
-stadium lights. But you have also wondered what it would feel like to race around a track, following in your brother’s footsteps. Now you have to choose.
+“The camp starts tomorrow,” your coach says. “If you want this chance, you need to leave tonight.”[n/]
+Your stomach flips. Steve’s F1 opportunity is tomorrow, too. You stare at your phone, then back at your coach. You cannot do both. For years, you have imagined yourself on a football field under bright[n/]
+stadium lights. But you have also wondered what it would feel like to race around a track, following in your brother’s footsteps. Now you have to choose.[n/]
 
 *choice
   #Text Steve back and choose the F1 opportunity.
@@ -31,60 +31,60 @@ stadium lights. But you have also wondered what it would feel like to race aroun
     *goto page7
 
 *label page3
-You decide to sign the contract right away.
-You sign the contract, but you notice that it says you can be traded at any time. Now you are scared. Your dream team was to play with Seattle. You live there, and you have been a fan of the team since you were a kid. But now you could be traded at any time, even to a team you do not like.
-The next week is the first game of the season against the Rams. You are put on the field at wide receiver.
-The quarterback says, “HIKE!”
-You run straight to the 30-yard line and turn inside. The ball comes toward you. You grab it, but as you are running, you drop it.
-Fumble!
-The next play, you catch the ball again. You run down the field into the end zone and celebrate by throwing the ball backward.
-But you were not actually in the end zone.
-The Rams get the ball and score.
-After the game, your coach meets you in the locker room.
-“You’re getting traded to the Browns,” he says.
-They are your least favorite team in the league, but at least you get to play with your cousin.
+You decide to sign the contract right away.[n/]
+You sign the contract, but you notice that it says you can be traded at any time. Now you are scared. Your dream team was to play with Seattle. You live there, and you have been a fan of the team since you were a kid. But now you could be traded at any time, even to a team you do not like.[n/]
+The next week is the first game of the season against the Rams. You are put on the field at wide receiver.[n/]
+The quarterback says, “HIKE!”[n/]
+You run straight to the 30-yard line and turn inside. The ball comes toward you. You grab it, but as you are running, you drop it.[n/]
+Fumble![n/]
+The next play, you catch the ball again. You run down the field into the end zone and celebrate by throwing the ball backward.[n/]
+But you were not actually in the end zone.[n/]
+The Rams get the ball and score.[n/]
+After the game, your coach meets you in the locker room.[n/]
+“You’re getting traded to the Browns,” he says.[n/]
+They are your least favorite team in the league, but at least you get to play with your cousin.[n/]
 
 *finish
 
 *label page4
-You decide to follow Steve through a different narrow tunnel.
-A rat scuttles across the shaft with a thap, thap, thap, thap.
-Steve yelps in alarm.
-“Hey, did you hear that?” ask the guards below.
-Steve leads you to a wide hole in the vent. You try to crawl over it, reaching your arm out to grab the other side, but it is too long a reach. Instead, you go tumbling into the hole and land on your back in a soft pile.
-“Where am I?” you ask.
-You cannot find Steve. You hear a scraping sound all around you.
-Suddenly, an alarm goes off, and two of the walls start to move closer to you.
-Then you know where you are…
-THE TRASH COMPACTOR!
+You decide to follow Steve through a different narrow tunnel.[n/]
+A rat scuttles across the shaft with a thap, thap, thap, thap.[n/]
+Steve yelps in alarm.[n/]
+“Hey, did you hear that?” ask the guards below.[n/]
+Steve leads you to a wide hole in the vent. You try to crawl over it, reaching your arm out to grab the other side, but it is too long a reach. Instead, you go tumbling into the hole and land on your back in a soft pile.[n/]
+“Where am I?” you ask.[n/]
+You cannot find Steve. You hear a scraping sound all around you.[n/]
+Suddenly, an alarm goes off, and two of the walls start to move closer to you.[n/]
+Then you know where you are…[n/]
+THE TRASH COMPACTOR![n/]
 
 *finish
 
 *label page5
-You text back. You walk to the edge of the sidewalk, and three minutes later, you see Steve's black car. He parks right in front of you. You open the car door and sit next to Steve. He drives you to the stadium for the F1 racing. Steve drives into the parking lot on level C2. It is very damp in the garage; it is hard to see where to park. You open the car door, and cold, damp air hits your face. Up ahead, you see a metal door. Rusty. Battered.
-You walk over to it, you open it, and gooey stuff spills onto the floor, and then it takes the shape of a human. The ground starts shaking beneath your feet. Then a pipe falls on your head. Everything goes black.
-Nine minutes later, you are awoken by a doctor. You look around the white walls with a red cross on each side. You ask, "Where is Steve?”
-“He is in the room next door on your left,” answers the doctor.
-“Can I see him?” You ask.
-You’re told that you cannot. And you wonder why?
-“Because,” says someone in a soft voice, “He died.”
-You are shocked- w-w-what? He died! “I'm so sorry. We didn't have time to save him. Your crying is so loud, you can't hear the doctor anymore. Nooooooooooooooooooooo! This can't be happening!!!
-You think to yourself, “This is a dream. Dream. Dream. Dream!”
-When it gets dark, you sneak quietly out of your room through the corridor to Steve's room. He is not there. You start to panic!
+You text back. You walk to the edge of the sidewalk, and three minutes later, you see Steve's black car. He parks right in front of you. You open the car door and sit next to Steve. He drives you to the stadium for the F1 racing. Steve drives into the parking lot on level C2. It is very damp in the garage; it is hard to see where to park. You open the car door, and cold, damp air hits your face. Up ahead, you see a metal door. Rusty. Battered.[n/]
+You walk over to it, you open it, and gooey stuff spills onto the floor, and then it takes the shape of a human. The ground starts shaking beneath your feet. Then a pipe falls on your head. Everything goes black.[n/]
+Nine minutes later, you are awoken by a doctor. You look around the white walls with a red cross on each side. You ask, "Where is Steve?”[n/]
+“He is in the room next door on your left,” answers the doctor.[n/]
+“Can I see him?” You ask.[n/]
+You’re told that you cannot. And you wonder why?[n/]
+“Because,” says someone in a soft voice, “He died.”[n/]
+You are shocked- w-w-what? He died! “I'm so sorry. We didn't have time to save him. Your crying is so loud, you can't hear the doctor anymore. Nooooooooooooooooooooo! This can't be happening!!![n/]
+You think to yourself, “This is a dream. Dream. Dream. Dream!”[n/]
+When it gets dark, you sneak quietly out of your room through the corridor to Steve's room. He is not there. You start to panic![n/]
 
 *goto page6
 
 *label page6
-Then you hear footsteps right behind you. You turn around. IT’S STEVE!!! You're so happy to see him. “I thought you were dead!” you scream.
-“I’m not dead!!!” he says. “Just RUUUUUUUUUUUUUUUUUN!!!”
-He starts running. You run with him.
-Alert! Alert! Alert! Escaping patient! Lockdown in 3…2…1.
-Lockdown completed.
-“Where do we go?” you ask.
-“Into the reactor shaft,” Steve answers.
-Steve points to a vent with nails. Just as you think all hope is lost, you remember you have a screwdriver in your backpack. You reach into your pack, feel something hard, and pull it out. The screwdriver! You unscrew the bolts.
-Clang!
-You and Steve crawl through the reactor shaft. You stop dead in your tracks. Guards. Two of them! Thump! But you're too loud; you hear guards rushing over.
+Then you hear footsteps right behind you. You turn around. IT’S STEVE!!! You're so happy to see him. “I thought you were dead!” you scream.[n/]
+“I’m not dead!!!” he says. “Just RUUUUUUUUUUUUUUUUUN!!!”[n/]
+He starts running. You run with him.[n/]
+Alert! Alert! Alert! Escaping patient! Lockdown in 3…2…1.[n/]
+Lockdown completed.[n/]
+“Where do we go?” you ask.[n/]
+“Into the reactor shaft,” Steve answers.[n/]
+Steve points to a vent with nails. Just as you think all hope is lost, you remember you have a screwdriver in your backpack. You reach into your pack, feel something hard, and pull it out. The screwdriver! You unscrew the bolts.[n/]
+Clang![n/]
+You and Steve crawl through the reactor shaft. You stop dead in your tracks. Guards. Two of them! Thump! But you're too loud; you hear guards rushing over.[n/]
 
 *choice
   #Crawl into a narrow side tunnel and look for another way out.
@@ -93,39 +93,39 @@ You and Steve crawl through the reactor shaft. You stop dead in your tracks. Gua
     *goto page9
 
 *label page7
-Now you get there and take an airplane to the Indianapolis Colts stadium. When you arrive, you meet the Browns’ coach. Your cousin plays for the Browns, and the coach wants to give you a contract.
-But you say, “The Seahawks have signed a contract with me.”
-You know you are lying, and you walk away.
-Then the Seahawks coach asks if he wants to draft you.
-You say, “Yes.”
-“He is coming tomorrow,” the coach says.
-“What?” you say.
-“The contract!” he yells.
-You walk away and try to find where you are supposed to train next. Then you remember that training starts at 5:00, and it is already 4:45. You do not know where you are, so you ask someone how to get to the field.
-They say, “Go down the stairs, turn left, and go through that door.”
-“Okay, thank you,” you say.
-You go down the stairs, turn left, and open the door. You are on the field.
-You get in line and wait. Now it is your turn.
-“Ready, set, go!” someone shouts.
-You run 30 miles per hour.
-Now you do the catching practice. It starts at 5:30, and it is only 5:15, so you get something to eat. You buy a slice of pizza for four dollars. You eat your pizza, go down the stairs, and open the door to the field.
+Now you get there and take an airplane to the Indianapolis Colts stadium. When you arrive, you meet the Browns’ coach. Your cousin plays for the Browns, and the coach wants to give you a contract.[n/]
+But you say, “The Seahawks have signed a contract with me.”[n/]
+You know you are lying, and you walk away.[n/]
+Then the Seahawks coach asks if he wants to draft you.[n/]
+You say, “Yes.”[n/]
+“He is coming tomorrow,” the coach says.[n/]
+“What?” you say.[n/]
+“The contract!” he yells.[n/]
+You walk away and try to find where you are supposed to train next. Then you remember that training starts at 5:00, and it is already 4:45. You do not know where you are, so you ask someone how to get to the field.[n/]
+They say, “Go down the stairs, turn left, and go through that door.”[n/]
+“Okay, thank you,” you say.[n/]
+You go down the stairs, turn left, and open the door. You are on the field.[n/]
+You get in line and wait. Now it is your turn.[n/]
+“Ready, set, go!” someone shouts.[n/]
+You run 30 miles per hour.[n/]
+Now you do the catching practice. It starts at 5:30, and it is only 5:15, so you get something to eat. You buy a slice of pizza for four dollars. You eat your pizza, go down the stairs, and open the door to the field.[n/]
 
 *goto page8
 
 *label page8
-You get in line again. The trainer gives everyone the instructions.
-“You run, catch, run, catch, run, catch.”
-When your turn gets close, there are two men left before you. One of them goes. He runs, catches, runs, catches, runs, and catches. The next person does the same thing.
-Now it is your turn. You do the same thing, and you pass.
-You are happy because the Seahawks are going to draft you.
-Now you are leaving the stadium. You take an Uber to your Airbnb. Your Uber gets there, and he takes you to the Airbnb.
-You brush your teeth, put your pajamas on, and go to sleep.
-The next morning, you hear a knock.
-It is the Seahawks coach.
-He comes in, and you read the contract. It says you get paid 900 million dollars a year.
-You look at the number again: 9 million dollars a year. That cannot be right. Your hand freezes over the paper. The Seahawks coach stares at you, waiting.
-“Are you signing or not?” he asks.
-You have to decide fast.
+You get in line again. The trainer gives everyone the instructions.[n/]
+“You run, catch, run, catch, run, catch.”[n/]
+When your turn gets close, there are two men left before you. One of them goes. He runs, catches, runs, catches, runs, and catches. The next person does the same thing.[n/]
+Now it is your turn. You do the same thing, and you pass.[n/]
+You are happy because the Seahawks are going to draft you.[n/]
+Now you are leaving the stadium. You take an Uber to your Airbnb. Your Uber gets there, and he takes you to the Airbnb.[n/]
+You brush your teeth, put your pajamas on, and go to sleep.[n/]
+The next morning, you hear a knock.[n/]
+It is the Seahawks coach.[n/]
+He comes in, and you read the contract. It says you get paid 900 million dollars a year.[n/]
+You look at the number again: 9 million dollars a year. That cannot be right. Your hand freezes over the paper. The Seahawks coach stares at you, waiting.[n/]
+“Are you signing or not?” he asks.[n/]
+You have to decide fast.[n/]
 
 *choice
   #Sign the contract without asking questions.
@@ -134,37 +134,37 @@ You have to decide fast.
     *goto page10
 
 *label page9
-You and Steve try to crawl past the guards.
-Suddenly, “Ah ha!” one of the guards shouts. “Security!”
-You think to yourself, there is no way I am getting out of here alive if I stick with Steve. He is my brother, but I know that he can figure it out on his own. We have got to split up.
-You decide to hide in a narrow side tunnel until the guards stop looking for you.
-After some time has passed, you notice they have started watching TikTok and are no longer searching for you.
-You think, this is a good time to go find Steve!
-You sneak quietly past the guards and crawl in the tunnel for several hours.
-You think to yourself, I am hungry.
-You crawl a few more minutes until you see a bright light up ahead. You crawl toward it and reach into your pack for the screwdriver, but you cannot find it.
-In a panic, you kick the vent, and it flies through the air.
-You cannot believe your eyes. Steve’s car is parked in the driveway of the hospital.
-“Where were you?” he asks incredulously.
-“Trying to escape, obviously,” you say.
-“Let’s go get some burgers! I’m starving!”
-And you lived happily ever after.
+You and Steve try to crawl past the guards.[n/]
+Suddenly, “Ah ha!” one of the guards shouts. “Security!”[n/]
+You think to yourself, there is no way I am getting out of here alive if I stick with Steve. He is my brother, but I know that he can figure it out on his own. We have got to split up.[n/]
+You decide to hide in a narrow side tunnel until the guards stop looking for you.[n/]
+After some time has passed, you notice they have started watching TikTok and are no longer searching for you.[n/]
+You think, this is a good time to go find Steve![n/]
+You sneak quietly past the guards and crawl in the tunnel for several hours.[n/]
+You think to yourself, I am hungry.[n/]
+You crawl a few more minutes until you see a bright light up ahead. You crawl toward it and reach into your pack for the screwdriver, but you cannot find it.[n/]
+In a panic, you kick the vent, and it flies through the air.[n/]
+You cannot believe your eyes. Steve’s car is parked in the driveway of the hospital.[n/]
+“Where were you?” he asks incredulously.[n/]
+“Trying to escape, obviously,” you say.[n/]
+“Let’s go get some burgers! I’m starving!”[n/]
+And you lived happily ever after.[n/]
 
 *image ../images/your_life_takes_a_turn/image5.png center
 
 *finish
 
 *label page10
-You decide to take some time to read the contract before you sign it.
-You notice that it says you can get traded at any time. Now you know that you have to work hard and practice every day. You cannot get traded away from your dream team! You can do this.
-You play your first game as wide receiver. You do not get the ball thrown to you at all, but you play defense too. You get five interceptions and one pick-six.
-The Seahawks win 35-28!
-Your coach pats you on the back and says, “Great job! But you cannot go home yet. We have a flight to Indianapolis for our game against the Colts.”
-“That’s where I met you!” you say. “Back when we were doing training.”
-“Now you get to play your second game in the NFL there,” your coach says. “How fun! You’re a star football player.”
-In Indianapolis, you win your game against the Colts. You even score a touchdown!
-At the end of the game, there are kids yelling at you to sign their jerseys. As you are signing, one kid asks, “Who do you play as in College Football Madden?”
-You say, “I play as myself and my cousin Shedeur Sanders.”
-Years later, you win eight Super Bowls, more than one of your favorite players, Tom Brady. You get into the Hall of Fame and are one of the best NFL players ever.
+You decide to take some time to read the contract before you sign it.[n/]
+You notice that it says you can get traded at any time. Now you know that you have to work hard and practice every day. You cannot get traded away from your dream team! You can do this.[n/]
+You play your first game as wide receiver. You do not get the ball thrown to you at all, but you play defense too. You get five interceptions and one pick-six.[n/]
+The Seahawks win 35-28![n/]
+Your coach pats you on the back and says, “Great job! But you cannot go home yet. We have a flight to Indianapolis for our game against the Colts.”[n/]
+“That’s where I met you!” you say. “Back when we were doing training.”[n/]
+“Now you get to play your second game in the NFL there,” your coach says. “How fun! You’re a star football player.”[n/]
+In Indianapolis, you win your game against the Colts. You even score a touchdown![n/]
+At the end of the game, there are kids yelling at you to sign their jerseys. As you are signing, one kid asks, “Who do you play as in College Football Madden?”[n/]
+You say, “I play as myself and my cousin Shedeur Sanders.”[n/]
+Years later, you win eight Super Bowls, more than one of your favorite players, Tom Brady. You get into the Hall of Fame and are one of the best NFL players ever.[n/]
 
 *finish
