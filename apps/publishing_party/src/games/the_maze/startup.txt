@@ -1,6 +1,12 @@
 *title The Maze
 *author Severn, Michael, Avery & Max S.
 
+You, a boy named Eli, are getting ready for the next school year and are trying to find cool artifacts for your school projects. You’ll be starting middle school and know you’ll need a collection of artifacts for your school projects. You are visiting San Diego, California with your cousins. While exploring with them, they dare you to go into a creepy old house that’s been abandoned for over 500 years! Little do you and your cousins know, there is a maze inside the house. Will you be able to find your way out alive? Good Luck! 
+
+*choice
+  #I'm Ready.
+    *goto page1
+
 *label page1
 You are on an airplane to San Diego, California with your uncle and cousins. You and your cousins plan to look for artifacts like bones, gems or minerals for your school projects, especially the science fair ones. Even though your cousins are so annoying, you will all be going to the same middle school in the new year, and you have always enjoyed searching for ancient things together. You arrive at the hotel and put your stuff down in your room. Your cousins ask you if you want to go out to search for artifacts, and you say, “Sure!” Now you find yourself being drug around by your cousins, who lead you to a big, humongous hill with a house sitting on the top. It is a rickety old house, worn down, and smells like a litter box with dirty socks in it. Your annoying cousins, you like to call them, dare you to go into the house.[n/]
 

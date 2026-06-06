@@ -3,6 +3,10 @@
 
 You have been in college for three years. After a time, you built a super computer and have picked up some weird radioactive waves coming from two different locations. Many people have tried to investigate. Only one person has come back to tell of dangers beyond imaginable. He also told of diamonds that could stop the rifts from eating the world. To save the world, you will need one emerald, one ruby, and at least one multi-diamond. Along the way you will meet ninja kitties, mythical creatures, and much, much more. Good luck![n/]
 
+*choice
+  #I'm Ready.
+    *goto page1
+    
 *label page1
 One day you go to your dorm room where inside is your one-of-a-kind super computer. You check the little thing that shows seismic waves and see a huge seismic spike. You instantly rush to your tracker to see where the spikes are coming from. You see that the places they are strongest are an abandoned tech lab in the Sahara Desert and a deserted island in the middle of the Pacific Ocean. If your calculations are correct, these waves are caused by rips in the space time continuum, which you know will eat the earth.[n/]
 

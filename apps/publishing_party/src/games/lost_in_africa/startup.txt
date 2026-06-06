@@ -1,6 +1,12 @@
 *title Lost in Africa
 *author Dallas, Josie, Lucia & Uma
 
+You are a dog travelling to Paris by plane with your owner and two other pets; a cat and a bird. You got separated from your owner in the airport and got on the wrong plane. The plane was flying to Africa! When you arrive in Africa you meet a baby elephant who is looking for water. There is also a poacher who wants the baby elephant’s tusks! Help your new friend, the elephant, find water and avoid losing his tusks and life to an evil poacher. Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
+
 *label page1
 You are sleeping on the couch. “Squawk. Hi, Rufus,” says Kiki the parrot. “Time to wake up Daisy,” says Violet the cat.  “ARF, ARF,” you bark to wake up Daisy. Daisy yawns and turns towards you. “Good morning you silly dog,” she says. You roll over and she hands you a treat. “Here is a treat and have some breakfast. Guys don’t forget that we’re going to Paris today, time to get in the car” says Daisy. You hop in the back seat and head to the airport. Once you get to the airport you follow Kyle onto the plane. “Welcome to Africa” says the pilot. What? Africa? Oh no, you followed the wrong person and got on the wrong plane! You leave the airport. You leave the airport and see a baby elephant. You go over and ask him what his name is. “My name is Trumpet” he responds. “I need help, a poacher is after my tusks and there is a drought. Can you help? I can even give you a ride.” Should you ride on Trumpet’s back? Hang on to his tusks? Sit on his trunk? Or walk next to him.[n/]
 

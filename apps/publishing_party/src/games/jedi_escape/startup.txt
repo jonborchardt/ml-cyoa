@@ -1,6 +1,12 @@
 *title Jedi Escape
 *author Evan, Jaxon & Lucas
 
+You are a Padawan, learning the ways of the ancient Jedi. You are on the planet Coruscant. Coruscant, the home of the Jedi Order and their temple, is under attack by Martians and clones. You (Kaden) must get out of the temple and save all the Jedi you can. The Jedi count on you to save them. Good Luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
+
 *label page1
 You have returned from a mission on the Forest Moon of Endor and now you are at the Jedi Temple on Coruscant. You go to the Jedi Council to tell them about your mission. Your master says, “We were just going to investigate Endor, then suddenly from the sky something sped towards us in the Ewok Village. When it hit the ground, big humanoids come out with spears. They started to burn and destroy the Ewok Village. We had to get the creatures into the pod.” The council member says, “Go to the archives”. “But...” “Just go,” You walk to the archives. At the archives you see halacrons for the past years. Suddenly, the wall breaks down and creatures with three legs and a dome shaped head and clones come into the archives! Should you warn the Head Master? Fight the clones? Hide in the archives, or run away?[n/]
 

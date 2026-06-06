@@ -1,6 +1,12 @@
 *title The Tunnel of Time
 *author Calen, Camille & Marcus
 
+While doing research for your class WWII project, you notice something peculiar. A big, fluffy dog in nearly every picture of the war. Later that day on your way home from school, you notice that same looking dog in an alleyway. You follow the dog through the town until you reach a large tunnel. You go through and suddenly you see a blinding light. When the light stops you find yourself in Japan and it’s 1945. Will you unravel the secrets of the war? Or be stuck in Japan forever. Good luck! 
+
+*choice
+  #I'm Ready.
+    *goto page1
+
 *label page1
 Your class is studying World War II (WWII). While looking at a WWII book        you keep noticing a big scruffy, sandy brown dog. “Hey,” you whisper to your friend, Jimmy. You show him the picture of the dog. “Cute dog,” he says, then he goes back to working. Maybe Jimmy is right. It is just a couple pictures of a dog. Nothing too weird, right? Suddenly, the bell rings. “Lunchtime!” your teacher shouts. You put the book away and run to catchup with your friends. Your little siblings, Thomas and Tessa, are waiting for you. They are nine-year-old twins. “Come sit with us,” they say. Instead, you go to sit with your friends. Later that day, on your way home from school, you see a dog that looks exactly like the one in the WWII books.[n/]
 

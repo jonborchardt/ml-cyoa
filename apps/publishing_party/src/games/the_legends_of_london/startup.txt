@@ -3,6 +3,10 @@
 
 You are a marshmallow spy. Humans are trying to take over your home. You need to stop the humans from eating your family and friends. Only you can save them from the dangers the humans behold. Good Luck![n/]
 
+*choice
+  #I'm Ready.
+    *goto page1
+    
 *label page1
 It was a normal day in London. Normal for a marshmallow like you...in London. You live in a marshmallow city that was built long ago by ancient marsh-ins. Anyway, you decided to go on a walk. Suddenly! You hear a scream, “HELP!” You run to the call and ask, “What’s happening miss?” She replies, "What do you mean, what’s happening!? My baby is stuck in a flaming building!” “It must be the Humans again” you reply.  The lady, mom of the baby, turns to you and asks if you can help. “I think we should call the police,” you say. “But they won’t get here in time!” the mom cries. Should you call the police for help? Or just jump in to save the baby?[n/]
 

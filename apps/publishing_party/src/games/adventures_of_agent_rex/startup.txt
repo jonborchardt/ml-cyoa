@@ -1,6 +1,12 @@
 *title Adventures of Agent Rex
 *author Sophie, Mia & Max
 
+You are a secret agent on your first mission, which is in a ghost town. You are trying to find the rest of your team who have mysteriously disappeared. You stumble into a house that, without you realizing, turns out to be a secret time portal. You end up going back to the time of the dinosaurs. Will you find your team alive and safe or get stepped on by a T. Rex? Good Luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
+
 *label page1
 At first you were an ordinary, average 12-year-old kid. But one day it all changed when you secretly got excepted into a spy agency!        And here you are now, 15 years old, in a helicopter and about to be dropped off on your first mission, which happens to be in a ghost town. You are trying to find your team mates who mysteriously disappeared. You feel a small bang as the helicopter lands. You wave goodbye to the pilot, step out of the helicopter, and start walking around. You start to hear weird voices from a rundown shack. You better investigate your surroundings.[n/]
 

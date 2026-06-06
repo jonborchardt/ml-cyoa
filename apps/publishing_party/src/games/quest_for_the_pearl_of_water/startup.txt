@@ -1,8 +1,11 @@
 *title The Quest for the Pearl of Water
 *author Audrey, Asne, Vivian & Judah
 
-
 You are going to a dinner party with only people who are vegetarians. A mean waiter puts chicken in the salad, turning everyone into chickens; everyone...but you. You brought your own salad. It is up to you to find the pearl of water or all hope of everyone turning back into themselves is lost forever! Good Luck![n/]
+
+*choice
+  #I'm Ready.
+    *goto page1
 
 *label page1
 You hear the phone ring and see your mom pick up the phone. She nods her head and says, “I am sorry but I can’t come tonight, but my daughter will be there.” After she hangs up, you ask, “Who was that?” She replies, “Just the restaurant calling to confirm my reservation that I made two months ago. Is it alright if you go with my friends instead of me? Roxy, our chicken is sick, and I need to take care of her. I’m sure my friends will take good care of you.” “Sure, I can go,” you reply. “But I need to make my own salad because Arthur told me he got food poisoning from their salads.” You head to the restaurant and see that near the entrance there is a man holding a sign saying, “Tickets for tonight’s game!” He looks at you and whispers, “Hey, you need some tickets for the Storm Game tonight?” Do you give him nothing and walk inside? Do you give him the salad that you made, and say, “You look hungry. Eat this.” Or do you buy the tickets for $10?[n/]

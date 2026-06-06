@@ -3,6 +3,10 @@
 
 You and your friend, Bill, are on an airplane headed to New York City for the summer before your final year of middle school. All of sudden, your plane is hit by a U.F.O.! You crash land on the island of Hawai’i with no way back to the mainland. You need to get home, quick, and find out what hit your plane! Good luck![n/]
 
+*choice
+  #I'm Ready.
+    *goto page1
+    
 *label page1
 “Wake up,” says Bill. “You have been out for 30 minutes.” “Where are we and what happened?!” you ask. You look around. You see palm trees, water, and your plane crashed in the sand. “I think we’re in Hawai’i,” guesses Bill. “I found some survivors and a weird button in the cockpit of the airplane.” “I’ve never seen anything like it.” “It says M.P.,” explains Bill. The two of you go to the cockpit of the airplane to inspect the button. “Uh. Should we press it?” you ask. “Maybe we should go figure out what hit our plane,” says Bill.[n/]
 
