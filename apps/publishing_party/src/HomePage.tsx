@@ -241,11 +241,11 @@ export function HomePage() {
         These books are different from other books.
       </Typography>
       <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
-        This story is a Choose Your Own Adventure, otherwise known as a CYOA. In
-        this story, YOU, and you alone, will encounter danger, choices, and
-        peril — or worse. The mid-level students at Spruce Street School wrote
-        the beginnings of these CYOAs together. Then each team member wrote a
-        different path with their own ending.
+        These stories are Choose Your Own Adventures, otherwise known as CYOAs.
+        In these stories, YOU, and you alone, will encounter danger, choices,
+        and peril, or worse. Teams of mid-level students at Spruce Street School
+        wrote the beginnings of these CYOAs together. Then each team member
+        wrote different paths with their own endings.
       </Typography>
 
       {byYear.map(([year, yearGames]) => (
