@@ -237,28 +237,15 @@ export function HomePage() {
       >
         BEWARE and WARNING!
       </Typography>
-      <Typography
-        variant="body1"
-        sx={{ lineHeight: 1.8, mb: 2 }}
-      >
+      <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
         These books are different from other books.
       </Typography>
-      <Typography
-        variant="body1"
-        sx={{ lineHeight: 1.8, mb: 2 }}
-      >
-        The mid-level at Spruce Street School worked in teams of three and four
-        to create these stories. Each team imagined the theme of their story and
-        crafted the beginning together. But the different middles and multiples
-        endings are the work of each individual team member.
-      </Typography>
-      <Typography
-        variant="body1"
-        sx={{ lineHeight: 1.8, mb: 5 }}
-      >
-        In these stories YOU, and you alone will encounter dangers, choices, and
-        peril, as that is part of the genre of Choose Your Own Adventure,
-        otherwise known as CYOA!
+      <Typography variant="body1" sx={{ lineHeight: 1.8, mb: 2 }}>
+        This story is a Choose Your Own Adventure, otherwise known as a CYOA. In
+        this story, YOU, and you alone, will encounter danger, choices, and
+        peril — or worse. The mid-level students at Spruce Street School wrote
+        the beginnings of these CYOAs together. Then each team member wrote a
+        different path with their own ending.
       </Typography>
 
       {byYear.map(([year, yearGames]) => (

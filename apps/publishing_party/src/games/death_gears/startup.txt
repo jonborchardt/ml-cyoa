@@ -1,8 +1,14 @@
 *title The Adventures of Courageous Vs. Death Gears
 *author Addi B., Nathaniel & Neby
 
+You are a cyborg living in the future when you find out an evil leader, Death Gears, is out to get you. Good luck.
+
+*choice
+  #I'm Ready.
+    *goto page1
+
 *label page1
-High above in the heart of Seattle, there is a floating temple where the evil Death Gears and his assistant 5Z.29 work. Death Gears is planning to disable all defective cyborgs. Not too far away, in the quiet neighborhood of Ballard, you are sound asleep, charging your batteries—you are a defective cyborg, but you don’t know it. When you wake up, you head to work where 5Z.29 also works. After work, you head home to watch TV and find out your boss, Death Gears is evil, planning to disable some cyborgs with a defective chip with lot numbers ending in 9004. You freeze in shock because your lot number ends in 9004. He’s coming for you. “What should you do?” you think. You could confront Death Gears, telling him what he plans is illegal. Or you could gather a team of defective cyborgs to take down Death Gears. Or, wait, maybe you should research more about him to see what he is really capable of doing.
+High above in the heart of Seattle, there is a floating temple where the evil Death Gears and his assistant 5Z.29 work. Death Gears is planning to disable all defective cyborgs. Not too far away, in the quiet neighborhood of Ballard, you are sound asleep, charging your batteries—you are a defective cyborg, but you don’t know it. When you wake up, you head to work where 5Z.29 also works. After work, you head home to watch TV and find out your boss, Death Gears is evil, planning to disable some cyborgs with a defective chip with lot numbers ending in 9004. You freeze in shock because your lot number ends in 9004. He’s coming for you. “What should you do?” you think. You could confront Death Gears, telling him what he plans is illegal. Or you could gather a team of defective cyborgs to take down Death Gears. Or, wait, maybe you should research more about him to see what he is really capable of doing.[n/]
 
 *choice
   #confront Death Gears.
@@ -13,24 +19,24 @@ High above in the heart of Seattle, there is a floating temple where the evil De
     *goto page9
 
 *label page2
-You decide to break through the walls, find Death Gears and confront him. You kiss your knuckles before you punch through. You feel your mind go black. The next minute you find yourself in a dark, musty room with no charger. No charger, no life. Game over.
+You decide to break through the walls, find Death Gears and confront him. You kiss your knuckles before you punch through. You feel your mind go black. The next minute you find yourself in a dark, musty room with no charger. No charger, no life. Game over.[n/]
 
 *finish
 
 *label page3
-You choose to hide. You find a bush, but you feel dizzy right when you sit down, and everything turns black.
+You choose to hide. You find a bush, but you feel dizzy right when you sit down, and everything turns black.[n/]
 
 *image ../images/death_gears/image1_1.png center
 
 *finish
 
 *label page4
-You hide under your bed and think you will fight whoever enters. You see a blur of a face, wearing a mask, a brown cloak, and holding a bucket of water in his hand. But before you can do anything, something hits you in the chest with a splash! Your cords sizzle and short circuit. Game Over. You died.
+You hide under your bed and think you will fight whoever enters. You see a blur of a face, wearing a mask, a brown cloak, and holding a bucket of water in his hand. But before you can do anything, something hits you in the chest with a splash! Your cords sizzle and short circuit. Game Over. You died.[n/]
 
 *finish
 
 *label page5
-You are A skilled cyborg, hiding in Seattle, 1,000 in the future. It is 3022. The world glows with neon lights (hover cars whiz by), and the only humans alive live far away in the forests of Peru. You need to confront Death Gears and tell him what he plans to do is illegal. “He is a reasonable fellow,” you think. You get up and give yourself some self-talk. Then you start your gears, go outside, and take some breaths. You start running. You see a shiny vibranium temple with a big tall wall. You think to yourself, “If I try to scale the wall, I might fall and hurt myself.  I could also break in, but that will be too loud.”
+You are A skilled cyborg, hiding in Seattle, 1,000 in the future. It is 3022. The world glows with neon lights (hover cars whiz by), and the only humans alive live far away in the forests of Peru. You need to confront Death Gears and tell him what he plans to do is illegal. “He is a reasonable fellow,” you think. You get up and give yourself some self-talk. Then you start your gears, go outside, and take some breaths. You start running. You see a shiny vibranium temple with a big tall wall. You think to yourself, “If I try to scale the wall, I might fall and hurt myself.  I could also break in, but that will be too loud.”[n/]
 
 *choice
   #break through the walls.
@@ -39,13 +45,13 @@ You are A skilled cyborg, hiding in Seattle, 1,000 in the future. It is 3022. Th
     *goto page6
 
 *label page6
-You decided to scale the wall. The wall is cold and damp. You lose your grip a couple of times, but you manage to make it to the top. You jump down, make a run for the temple opening, and find Death Gears. Someone already got to him and unplugged him. He is dead. You win. Game over.
+You decided to scale the wall. The wall is cold and damp. You lose your grip a couple of times, but you manage to make it to the top. You jump down, make a run for the temple opening, and find Death Gears. Someone already got to him and unplugged him. He is dead. You win. Game over.[n/]
 
 *finish
 
 *label page7
 
-After charging, you head out. You are a bit scared but determined to find as many cyborgs as possible. Five days later, you still have not found any cyborgs. Then you reach a little mossy brown-colored hut. Your sensors detect a cyborg! Your robotic heart races. You hear gears turning and a deep and familiar voice. It’s Death Gears. You think to yourself, “Oh no. I should find a place to hide. But I also want to know what he is doing here.”
+After charging, you head out. You are a bit scared but determined to find as many cyborgs as possible. Five days later, you still have not found any cyborgs. Then you reach a little mossy brown-colored hut. Your sensors detect a cyborg! Your robotic heart races. You hear gears turning and a deep and familiar voice. It’s Death Gears. You think to yourself, “Oh no. I should find a place to hide. But I also want to know what he is doing here.”[n/]
 
 *image ../images/death_gears/image1_2.png center
 
@@ -56,14 +62,14 @@ After charging, you head out. You are a bit scared but determined to find as man
     *goto page8
 
 *label page8
-You choose to see what is going on. You peek around the corner just in time to see Death Gears leave. You race over and check out the area, finding no cyborgs. You chop down a tree, settle into your new life and decide to stay and live there for the rest of your cyborg life. Game over.
+You choose to see what is going on. You peek around the corner just in time to see Death Gears leave. You race over and check out the area, finding no cyborgs. You chop down a tree, settle into your new life and decide to stay and live there for the rest of your cyborg life. Game over.[n/]
 
 *image ../images/death_gears/image1_3.png center
 
 *finish
 
 *label page9
-You choose to research more about Death Gears. You go to your computer, look up Death Gears, find many things about him, and read. Death Gears is unknown and supposedly got destroyed a long time ago when people lived peacefully. Until one dark day, on Friday, November 30, 1921, when a horrible storm grew with clouds, thunder, and lightning. You read more. On that day, Death Gears came to life. You see an image of him with red eyes, a dark-ragged cloak, and a blood-curdling red staff. Suddenly, you hear a big blast and see a flash of orange light—SMASH! “Quick,” you think to yourself, “He’s coming for me. I could hide under my bed, but then they will probably find me, or I could crawl the heck out of here, hoping nobody sees me.”
+You choose to research more about Death Gears. You go to your computer, look up Death Gears, find many things about him, and read. Death Gears is unknown and supposedly got destroyed a long time ago when people lived peacefully. Until one dark day, on Friday, November 30, 1921, when a horrible storm grew with clouds, thunder, and lightning. You read more. On that day, Death Gears came to life. You see an image of him with red eyes, a dark-ragged cloak, and a blood-curdling red staff. Suddenly, you hear a big blast and see a flash of orange light—SMASH! “Quick,” you think to yourself, “He’s coming for me. I could hide under my bed, but then they will probably find me, or I could crawl the heck out of here, hoping nobody sees me.”[n/]
 
 *choice
   #hide under your bed.
@@ -72,6 +78,6 @@ You choose to research more about Death Gears. You go to your computer, look up 
     *goto page10
 
 *label page10
-You crawl out of the room, stand up, and see a figure. You go up to the figure who is wearing a mask. He throws a blast of water at you. You dodge the water, grab a bat in a dim room, whack him in the face, and tie him up. “I want answers now,” you demand. “Fine, my name is 7W.29, and I work for Death Gears, and he has a bunch of guards protecting him.” He asks you, “Are you 5Z.29?” You answer, “No, but I work for him.” “Yeah, so do I, and I want to beat the electronics out of him.” You both bolt out, smashing mirrors, breaking tables, in search of a place to charge. After you finish charging, you upload all of 7W.29’s information. You figure out how to sneak past Death Gears guards and into his lair. He is only alive with one tiny black cord. You unplug him and save the fate of all cyborgs. Game Over.
+You crawl out of the room, stand up, and see a figure. You go up to the figure who is wearing a mask. He throws a blast of water at you. You dodge the water, grab a bat in a dim room, whack him in the face, and tie him up. “I want answers now,” you demand. “Fine, my name is 7W.29, and I work for Death Gears, and he has a bunch of guards protecting him.” He asks you, “Are you 5Z.29?” You answer, “No, but I work for him.” “Yeah, so do I, and I want to beat the electronics out of him.” You both bolt out, smashing mirrors, breaking tables, in search of a place to charge. After you finish charging, you upload all of 7W.29’s information. You figure out how to sneak past Death Gears guards and into his lair. He is only alive with one tiny black cord. You unplug him and save the fate of all cyborgs. Game Over.[n/]
 
 *finish

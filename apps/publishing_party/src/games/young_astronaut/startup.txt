@@ -1,0 +1,129 @@
+*title Young Astronaut
+*author Bo, Kai B. & Webb
+
+You are in a rocket ship and are running out of air. You are lost in outer space. You need to save three astronauts who got lost, too. You need to go to a planet to get more food and fuel so you can go save the astronauts. Good luck![n/]
+
+*choice
+  #I'm Ready.
+    *goto page1
+
+*label page1
+One morning, you wake up and hear the birds chirping. Suddenly, your alarm starts to ring.[n/]
+“Holy guacamole, it’s morning already!” you say.[n/]
+You get out of bed to put on your slippers as usual, but instead of carpet, there is a whole army. You start to fall, and you start to scream as you find yourself in a heap of rocks.[n/]
+Then everything goes black.[n/]
+When you open your eyes, you are in a rocket, and you are running out of air. You are lost in outer space, and three astronauts are lost too. They missed the space dock they were supposed to reach, and now it is your job to rescue them.[n/]
+You need more food, fuel, technology, and air before you can save the astronauts. Your rocket lacks sufficient supplies, so you need to decide where to go first.[n/]
+
+*choice
+  #Go to the planet of grass with holes in it.
+    *goto page5
+  #Go to the blue planet with trees.
+    *goto page7
+  #Keep exploring outer space.
+    *goto page9
+
+*label page2
+You run straight toward the monster, and the monster is running straight towards you.[n/]
+Then you feel a pinch.[n/]
+“Ow!” you say.[n/]
+You look down and see a large splinter on your leg. You also notice a wooden sword in your sheath and reach for it. The sword feels light in your hand.[n/]
+You throw the sword as hard as you can at the monster.  It flies straight at it. The monster opens its mouth, and the sword goes inside its mouth.[n/]
+The monster shrieks and falls to the grass with a thud.[n/]
+You killed the monster![n/]
+You start walking again, but then you trip on one of the holes in the ground and fall inside.  “AAAAAAAAAHHHHHHH!” You fall for a long time. While you are falling, you see rocks sticking out of the wall of the hole, and you hear the ground getting closer.[n/]
+Finally, you land on the ground. You find yourself on another grassy planet, but this one is different because it has more trees.[n/]
+Then you see some people. They are wearing space suits that look exactly like yours.[n/]
+It is the astronauts![n/]
+You found the astronauts, and now you can take them back to the space station.[n/]
+
+*finish
+
+*label page3
+You decide to climb the snake. You walk closer and notice that the snake is orange with stripes. It smells like a rotten corpse, and every time it breathes, you hear a low rumbling.[n/]
+You find two scales to climb up. The scales feel slimy under your hands. You place one foot on a golden scale and start pulling yourself higher.[n/]
+All of a sudden, one big eye opens.[n/]
+You scream and cover your mouth. The snake opens its mouth, and you see blood on its teeth. You try to climb down, but the snake is too slippery. You lose your balance because the snake is shaking.[n/]
+You fall into its mouth.[n/]
+
+*finish
+
+*label page4
+You keep exploring space. Your ship is losing all its air, and there is not enough for the entire crew.[n/]
+You come to a black hole, and someone has to sacrifice themselves by taking one of the escape pods into the black hole. Your screen flashes:[n/]
+CAUTION![n/]
+You hear beeping. You are beginning to feel a bunch of pressure, and the screen now says:[n/]
+EJECT! EJECT![n/]
+You pull the eject trigger, and you fly off.[n/]
+Thankfully, you escape just in the nick of time because your ship explodes. You are floating in space with black all around you. Finally, you fly out of the hole and back into space.[n/]
+You pass out.[n/]
+The next thing you know, you wake up in a hospital on planet Earth. The doctor tells you that your teammates completed the mission.[n/]
+The astronauts were all saved.[n/]
+
+*finish
+
+*label page5
+You decide to go to the grass planet. When you get to the grass planet, it is very windy. There are hardly any trees. Almost everything is covered in grass except the holes that are in the ground. And there are many holes in the ground. You can tell it is a very dangerous planet just by looking around. Suddenly you hear a slow rumbling sound. It is a big sound, so big that it shakes your whole body.[n/]
+Then you see two eyes and lots of sharp teeth. It is a very big monster. It is black and as big as a bus. It has long claws and two eyes on each side of its head. You think, I am in big trouble now, because it is coming right toward you.[n/]
+
+*choice
+  #Fight the monster.
+    *goto page2
+  #Run away.
+    *goto page6
+
+*label page6
+You are running away from the monster. The monster is right behind you, and you can hear it growling.[n/]
+You try to run faster, but then your foot slips. You trip into a hole and fall down. You fall further and further into the hole.[n/]
+You land hard on your back, and you feel weird and dizzy.[n/]
+You look around and notice small holes in the ground at the bottom of the hole. The holes look like shiny metal.[n/]
+Then you hear a “Ssss” sound coming from all the holes around you.[n/]
+At first, you think it might be one little snake, but then you realize it is actually poisonous liquid sizzling in the holes. You get closer to look, and the poisonous gas burns your eyes.[n/]
+The poison starts to come out of the holes. You try to get away, but it burns your skin.[n/]
+You take your last breath.[n/]
+
+*finish
+
+*label page7
+You fly down to the blue planet with trees. You walk on a path that has lots of berries that you have never seen before. You come to a giant sleeping snake. You could climb over the snake, but it's super scary. You want to take the shortest path, and the woods are scary. You do not want to be with the snake any longer.[n/]
+
+*image ../images/young_astronaut/image5.png center
+
+*choice
+  #Climb the snake.
+    *goto page3
+  #Find another path to take.
+    *goto page8
+
+*label page8
+You start walking through the woods, trying to stay quiet because the snake is close by. Suddenly, your foot catches on a root, and you fall on your face.[n/]
+When you touch your face, you realize there is a lot of blood. It hurts, but you know you have to keep going because you need medical care.[n/]
+You push yourself up and look around. Between two trees, you spot a small path. The path looks creepy, but it might be your only way out, so you decide to take it.[n/]
+You run down the path, and then you hear the vroom of a machine. At first, you think it might be a tree cutter, but then you see some white shapes through the trees.[n/]
+It’s the astronauts![n/]
+You run toward them and start to cry. You scoop them into a big hug and say, “Let’s go home.”[n/]
+
+*finish
+
+*label page9
+You see an Earth-like planet from your ship. You see green land, blue water, and even rain clouds. Everything looks like Earth.[n/]
+You think, “If this planet looks like Earth, then maybe it has fuel sources, just like Earth.”[n/]
+Since your ship is only a pod, you do not need a big spot to land. But you also cannot land just anywhere because it looks like a jungle down there, so you need to find an open area. You are sure one exists.[n/]
+You look down at the planet and spot a green, dewy field of grass. It might be a good place to land because it is open and flat.[n/]
+On the other hand, you cannot be sure if there is fuel there. As your pod gets closer, you notice a few scraps of metal. Now you have to decide what to do.[n/]
+
+*choice
+  #Continue searching space for what you need.
+    *goto page4
+  #Land and explore the planet for fuel sources.
+    *goto page10
+
+*label page10
+You decide to explore the new planet for more fuel. You land the aircraft. It is a tropical planet.[n/]
+You get out with your crew. You start bushwhacking. It has been hours, and you still cannot find any fuel. You and your crew are hungry, hot, and tired.[n/]
+You and your crew decide to go back to your ship. You get back to where your ship was.[n/]
+It is not there.[n/]
+You turn around and see that your crew is gone now, too![n/]
+You start breathing heavily, and you lose air and any chance of survival.[n/]
+
+*finish

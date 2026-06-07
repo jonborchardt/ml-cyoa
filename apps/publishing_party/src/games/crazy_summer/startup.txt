@@ -1,0 +1,167 @@
+*title My Crazy Summer at My Grandparents
+*author Emerson, Harrison & Ivan
+
+Watch out! This story has different endings. You are in control of what happens. You are at your grandparents’ house. Then, you fall into a hole!! How do you find your way out?! Good Luck! [n/]
+
+*choice
+  #I'm Ready.
+    *goto page1
+
+*label page1
+Every summer, you begin your summer break with a visit to your grandparents’ house. You just finished 6th grade, your first year of middle school, and you are excited to share your first-year experience with them.[n/]
+Your parents drive you to your grandparents’ house in their blue car. When you arrive, your grandparents are gone. They left you a note that says, “We had to fill up the car with gas. We’ll be right back.”[n/]
+You think, Maybe I could surprise them by cleaning their garage.[n/]
+Your parents think that is a good idea, too, and say, “Yeah! Sure!”[n/]
+You go into the garage. There are so many boxes full of holiday decorations. It is so dark that you can hardly see anything.[n/]
+After what seems like a long time, you hear the honk of your grandparents’ car. You pull the garage lever, expecting it to open the door so you can see your grandparents waiting for you.[n/]
+Instead, the garage door never opens.[n/]
+You are confused. You flick the lever again.[n/]
+All of a sudden, the ground begins to shake. A large trap door that you never noticed creaks open, and you fall through at top speed.[n/]
+You hit the ground.[n/]
+It is too high up for you to get out. You call out for help, but no one answers.[n/]
+Oh no, where am I? you think to yourself. How will I get back to my grandparents’ house?[n/]
+Suddenly, three portals appear right in front of you.[n/]
+
+*goto page2
+
+*label page2
+On the left, you see nothing but pitch black. You hear firework explosions, screams for help, and a loud crash coming from the portal.[n/]
+The middle portal has the sounds of cheering, swords clashing, and a rowdy crowd.[n/]
+From the right portal, you hear the sound of a familiar voice.[n/]
+You must quickly choose a portal, because the walls are closing in![n/]
+
+*choice
+  #Follow the fireworks, the left portal.
+    *goto page6
+  #Investigate the swords clashing, the middle.
+    *goto page8
+  #Go to something familiar, the right portal.
+    *goto page10
+
+*label page3
+You think the fireworks mean trouble, so you run for the lifeboat.[n/]
+You make it, soon find your way home, and later write about your visit in a book.[n/]
+
+*finish
+
+*label page4
+You choose to go into the sewers.[n/]
+It starts looking very strange, with dead fish bones everywhere. You ask a stranger, “How do I get out of here?”[n/]
+He says, “It is that way, all the way over there to the left!”[n/]
+You go where he tells you to go. You see an opening and get out safely.[n/]
+As soon as you get out, you start running again. You get to safety, but it is not over just yet. You soon see more people fighting.[n/]
+Finally, you get to safety and teleport back into your time.[n/]
+
+*image ../images/crazy_summer/image6.png center
+
+*finish
+
+*label page5
+You go with Minnie. She takes you to this weird door.[n/]
+“Go in,” she says.[n/]
+So you go in and end up outside your grandparents’ house. You go in.[n/]
+Your grandparents go straight to give you a big, big hug.[n/]
+“Where have you been?” they ask.[n/]
+“It is a long, long story,” you say.[n/]
+You tell them everything.[n/]
+“Are you okay?” they ask.[n/]
+“Yes,” you say.[n/]
+
+*finish
+
+*label page6
+You go through the left portal.[n/]
+You are on the Titanic, but you see fireworks.[n/]
+You wonder what they mean.[n/]
+What do you do?[n/]
+
+*choice
+  #Believe the fireworks mean trouble and run for the lifeboat.
+    *goto page3
+  #Check the captain just to make sure.
+    *goto page7
+  #Climb one of the smoke posts to save yourself.
+    *goto page12
+
+*label page7
+You check with the captain just to make sure. Then you see that water is coming your way![n/]
+You try to turn around, but it is too late.[n/]
+The ship breaks in half.[n/]
+You sink with the Titanic itself.[n/]
+For your life, it is…[n/]
+
+*finish
+
+*label page8
+You are falling from the sky, but you land safely in a haystack.[n/]
+You get out, and a fight is happening nearby. You get closer and ask a person why they are fighting.[n/]
+He gives you a confused look and says, « Cours, mon garçon ! La guerre n’est pas un endroit pour un enfant ! »[n/]
+You do not understand a word he says, but somehow you know what he means: “Run, boy! War is not a place for a kid!” You start to panic. You look around and see even more people fighting. You see a bunch of flags.[n/]
+It takes you a bit to recognize the flag, and then you notice that it is the French Revolution![n/]
+You start running immediately. After running for a while, you see an opening to the sewers.[n/]
+
+*choice
+  #Decide to go into the sewers.
+    *goto page4
+  #Decide NOT to go into the sewers.
+    *goto page9
+
+*label page9
+You choose not to go into the sewers.[n/]
+You run for about a mile, way past the battlefield. After that, you see even more people fighting, and you run into the middle of the fight.[n/]
+You are very scared. In fact, you get so scared that you pass out and die right there on the wet grass of France.[n/]
+
+*finish
+
+*label page10
+You end up in the middle of a big, big crowd.[n/]
+You ask someone where you are, and they say, “The grand opening of Disneyland!”[n/]
+Then the doors open, and you go in.[n/]
+You see Minnie, so you go over to her. You say hi, and you tell her everything that happened. After you finish, you tell her that you need to get home.[n/]
+She says she will help you. She is going to take you to Mickey.[n/]
+So, you walk and walk. Then this cute little puppy comes up to you and Minnie. She is whining.[n/]
+“What should we do, Minnie?” you ask.[n/]
+“I do not know,” Minnie says.[n/]
+“Well, we are going to Mickey,” you say. “Maybe he can help?”[n/]
+Finally, you get there, and Minnie tells Mickey everything about the dog.[n/]
+“I will take a look,” Mickey says. “Hmmm. Hmmm. Oh. I think she has a splinter. I can take it out. And done!”[n/]
+Now Minnie tells Mickey everything else.[n/]
+Mickey does not know what to do, so Minnie asks you, “Where do you live?”[n/]
+You say you are staying at your grandparents’ house and do not know where you live.[n/]
+“What does your grandparents’ house look like?” Minnie asks.[n/]
+“Well, it is all blue,” you say.[n/]
+
+*image ../images/crazy_summer/image7.png center
+
+*goto page11
+
+*label page11
+Minnie looks on her map.[n/]
+“Where did you get that?” you ask.[n/]
+“Uh… nowhere,” Minnie says.[n/]
+“Okay,” you say.[n/]
+“Is it this one?” Minnie asks.[n/]
+“OMG, it is!” you say.[n/]
+“Do you want to come with me? I know how to get there,” Minnie says.[n/]
+“Well, because you are here,” Mickey says, “do you want to come to my pool party today?”[n/]
+
+*choice
+  #Go with Minnie.
+    *goto page5
+  #Go with Mickey to the pool party.
+    *goto page13
+
+*label page12
+You climb one of the smokestacks to save yourself. Then you see that one smokestack has already fallen.[n/]
+Then the one you are on falls too.[n/]
+You fall off the ship, so no one is there to help you.[n/]
+Enjoy your last second of life before it is...[n/]
+
+*finish
+
+*label page13
+You go with Mickey. Now you are at the pool.[n/]
+You are going to get a snack, but you are so close to the pool, and Mickey accidentally bumps you.[n/]
+You fall into the pool, and you cannot make it.[n/]
+
+*finish

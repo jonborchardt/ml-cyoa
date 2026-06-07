@@ -1,8 +1,14 @@
 *title Lost in Africa
 *author Dallas, Josie, Lucia & Uma
 
+You are a dog travelling to Paris by plane with your owner and two other pets; a cat and a bird. You got separated from your owner in the airport and got on the wrong plane. The plane was flying to Africa! When you arrive in Africa you meet a baby elephant who is looking for water. There is also a poacher who wants the baby elephant’s tusks! Help your new friend, the elephant, find water and avoid losing his tusks and life to an evil poacher. Good luck!
+
+*choice
+  #I'm Ready.
+    *goto page1
+
 *label page1
-You are sleeping on the couch. “Squawk. Hi, Rufus,” says Kiki the parrot. “Time to wake up Daisy,” says Violet the cat.  “ARF, ARF,” you bark to wake up Daisy. Daisy yawns and turns towards you. “Good morning you silly dog,” she says. You roll over and she hands you a treat. “Here is a treat and have some breakfast. Guys don’t forget that we’re going to Paris today, time to get in the car” says Daisy. You hop in the back seat and head to the airport. Once you get to the airport you follow Kyle onto the plane. “Welcome to Africa” says the pilot. What? Africa? Oh no, you followed the wrong person and got on the wrong plane! You leave the airport. You leave the airport and see a baby elephant. You go over and ask him what his name is. “My name is Trumpet” he responds. “I need help, a poacher is after my tusks and there is a drought. Can you help? I can even give you a ride.” Should you ride on Trumpet’s back? Hang on to his tusks? Sit on his trunk? Or walk next to him.
+You are sleeping on the couch. “Squawk. Hi, Rufus,” says Kiki the parrot. “Time to wake up Daisy,” says Violet the cat.  “ARF, ARF,” you bark to wake up Daisy. Daisy yawns and turns towards you. “Good morning you silly dog,” she says. You roll over and she hands you a treat. “Here is a treat and have some breakfast. Guys don’t forget that we’re going to Paris today, time to get in the car” says Daisy. You hop in the back seat and head to the airport. Once you get to the airport you follow Kyle onto the plane. “Welcome to Africa” says the pilot. What? Africa? Oh no, you followed the wrong person and got on the wrong plane! You leave the airport. You leave the airport and see a baby elephant. You go over and ask him what his name is. “My name is Trumpet” he responds. “I need help, a poacher is after my tusks and there is a drought. Can you help? I can even give you a ride.” Should you ride on Trumpet’s back? Hang on to his tusks? Sit on his trunk? Or walk next to him.[n/]
 
 *choice
   #Ride on Trumpet’s back.
@@ -15,7 +21,7 @@ You are sleeping on the couch. “Squawk. Hi, Rufus,” says Kiki the parrot. �
     *goto page5
 
 *label page2
-You chose to climb on his back. You see his tail is hanging down and his trunk is scraping the ground. He asks you, “Are you getting on?” “Yes,” you say. You start to climb. You get on his back. He starts walking towards the savannah and, you see the poacher! But you see some wet sand! Do you dig up the water well or run away?
+You chose to climb on his back. You see his tail is hanging down and his trunk is scraping the ground. He asks you, “Are you getting on?” “Yes,” you say. You start to climb. You get on his back. He starts walking towards the savannah and, you see the poacher! But you see some wet sand! Do you dig up the water well or run away?[n/]
 
 *choice
   #Dig up the water well.
@@ -24,7 +30,7 @@ You chose to climb on his back. You see his tail is hanging down and his trunk i
     *goto page10
 
 *label page3
-You climb on to Trumpets small tusks. Then when you get on Trumpet to find water, Trumpet starts running. After a while later, you see a really big cave in the middle of a desert. It looks like a really old cave. There could be water in the cave. Then you see animal footprints besides the old cave going towards the desert. Where there is animal footprints there is probably water. Do you choose to go into the cave or follow the footprints?
+You climb on to Trumpets small tusks. Then when you get on Trumpet to find water, Trumpet starts running. After a while later, you see a really big cave in the middle of a desert. It looks like a really old cave. There could be water in the cave. Then you see animal footprints besides the old cave going towards the desert. Where there is animal footprints there is probably water. Do you choose to go into the cave or follow the footprints?[n/]
 
 *choice
   #Go in the cave.
@@ -33,7 +39,7 @@ You climb on to Trumpets small tusks. Then when you get on Trumpet to find water
     *goto page13
 
 *label page4
-You are riding on an elephant’s trunk.  You ask the elephant, “where are we going?” “We are going to the Savanna to look for my mom.” You wanted to look for water but you think looking for the momma elephants is fine too.
+You are riding on an elephant’s trunk.  You ask the elephant, “where are we going?” “We are going to the Savanna to look for my mom.” You wanted to look for water but you think looking for the momma elephants is fine too.[n/]
 
 *choice
   #Keep looking for water.
@@ -42,7 +48,7 @@ You are riding on an elephant’s trunk.  You ask the elephant, “where are we 
     *goto page12
 
 *label page5
-“Look! I see trails of lots of sand and rocks” you say. “I see 3 of them. One is bumpy, and has lost of rocks, the others are smooth and only really have sand.” You could go on one of the smooth trails, the left one or the right one. The only problem is, they have lots of turns and they cross other ones. So, you might lose your way. But if you choose the bumpy middle one, you would trip a lot.
+“Look! I see trails of lots of sand and rocks” you say. “I see 3 of them. One is bumpy, and has lost of rocks, the others are smooth and only really have sand.” You could go on one of the smooth trails, the left one or the right one. The only problem is, they have lots of turns and they cross other ones. So, you might lose your way. But if you choose the bumpy middle one, you would trip a lot.[n/]
 
 *choice
   #Go on the left trail.
@@ -53,12 +59,12 @@ You are riding on an elephant’s trunk.  You ask the elephant, “where are we 
     *goto page18
 
 *label page6
-You say “Look water” then, Trumpet asks “are those your owners?” “Yes” you say. “Is that water?” says Daisy then, Kyle says, “We will show it to Mohamed Tahir Ayala the prime minister of Sudan!” You save Sudan and go home.
+You say “Look water” then, Trumpet asks “are those your owners?” “Yes” you say. “Is that water?” says Daisy then, Kyle says, “We will show it to Mohamed Tahir Ayala the prime minister of Sudan!” You save Sudan and go home.[n/]
 
 *finish
 
 *label page7
-“Looks like we are going on the left trail.” “Okay, I see lots of turns. Maybe this was not a very good choice”, you say. “I see it’s crossing another,” you say. “Whoa, whoa, turning all the time.” Oh no, you get separated from Trumpet, because you guys are here, and Trumpet goes the other way. Well, you don’t want to be separated from Trumpet, you need to get together. But don’t forget you haven’t competed your mission. Should you go get water or should you find Trumpet? You need to do something.
+“Looks like we are going on the left trail.” “Okay, I see lots of turns. Maybe this was not a very good choice”, you say. “I see it’s crossing another,” you say. “Whoa, whoa, turning all the time.” Oh no, you get separated from Trumpet, because you guys are here, and Trumpet goes the other way. Well, you don’t want to be separated from Trumpet, you need to get together. But don’t forget you haven’t competed your mission. Should you go get water or should you find Trumpet? You need to do something.[n/]
 
 *choice
   #Find Trumpet.
@@ -67,7 +73,7 @@ You say “Look water” then, Trumpet asks “are those your owners?” “Yes�
     *goto page21
 
 *label page8
-You ask the elephant, “let’s go to the rainforest to look for water.” “Ok” said the baby elephant. After a long time, you see a puddle of water but the poacher is coming. Do you run away from the poacher or do you start digging up the water?
+You ask the elephant, “let’s go to the rainforest to look for water.” “Ok” said the baby elephant. After a long time, you see a puddle of water but the poacher is coming. Do you run away from the poacher or do you start digging up the water?[n/]
 
 *choice
   #Run away from the poacher.
@@ -76,7 +82,7 @@ You ask the elephant, “let’s go to the rainforest to look for water.” “O
     *goto page17
 
 *label page9
-You decided to go in the cave. You and trumpet run over to the cave. You look inside the cave It is pitch black. “oh no! We don’t have any lights”. You look around. “I think I see a lantern in that tree. how are going to get it?” asks Trumpet. We could use your trunk or I can try to climb the tree. Choose wisely.
+You decided to go in the cave. You and trumpet run over to the cave. You look inside the cave It is pitch black. “oh no! We don’t have any lights”. You look around. “I think I see a lantern in that tree. how are going to get it?” asks Trumpet. We could use your trunk or I can try to climb the tree. Choose wisely.[n/]
 
 *choice
   #Use Trumpet’s trunk.
@@ -85,12 +91,12 @@ You decided to go in the cave. You and trumpet run over to the cave. You look in
     *goto page15
 
 *label page10
-You decide to run. You run and run and run. You race under a tree and over a cliff “Oh, no!”, says Trumpet “It’s a lion! He wants to eat us! Help!” You scream. The lion Jumps on all three of you. You yelp, he eats you.
+You decide to run. You run and run and run. You race under a tree and over a cliff “Oh, no!”, says Trumpet “It’s a lion! He wants to eat us! Help!” You scream. The lion Jumps on all three of you. You yelp, he eats you.[n/]
 
 *finish
 
 *label page11
-“Let’s follow the middle trail. Whoooooooa! Ouch! Maybe this is too bumpy”, you say. You keep tripping and tripping. Maybe we should get back, and go on another one of these trails, or we could find other ones. But, I feel like the bumpy trail will lead to something we need, so what should we do?
+“Let’s follow the middle trail. Whoooooooa! Ouch! Maybe this is too bumpy”, you say. You keep tripping and tripping. Maybe we should get back, and go on another one of these trails, or we could find other ones. But, I feel like the bumpy trail will lead to something we need, so what should we do?[n/]
 
 *choice
   #Go somewhere else.
@@ -99,56 +105,56 @@ You decide to run. You run and run and run. You race under a tree and over a cli
     *goto page22
 
 *label page12
-Let’s keep moving forward,” you say. You have searched for a long time. You are hot, thirsty, and tired. You see the elephant momma but the poacher sees you. You run towards the poacher hoping to get to the momma elephant and you duck. The poacher misses you and you save the momma!
+Let’s keep moving forward,” you say. You have searched for a long time. You are hot, thirsty, and tired. You see the elephant momma but the poacher sees you. You run towards the poacher hoping to get to the momma elephant and you duck. The poacher misses you and you save the momma![n/]
 
 *finish
 
 *label page13
-You decided to follow the footprints. You ask Trumpet to stop. You get off Trumpet. You and Trumpet go look at the footprints. “They look like elephant footprints’,” you say. “I hope they are,” says Trumpet. “Let’s follow them,” you say. “Yeah,” says Trumpet. You and Trumpet follow the footprints. The tracks come to a stop. “Oh no!” you say. You and Trumpet look around to see if you can see any elephants. But you don’t see any elephants. But they see something else in the distance. “Do you see that?” you ask. “Yeah,” says Trumpet. “Oh no,” says Trumpet “What’s the matter?” you ask. “It’s the elephant poacher,” says Trumpet. “What’s that?” you ask. “It’s somebody who wants to kill elephants and sell their tusks!” ‘That’s not good,” you say. “Not at all,” says Trumpet. “We have to hide,” you say. “Yeah,” says Trumpet. You look around. “There,” says Trumpet. “It’s a small cave,” says Trumpet. You and Trumpet head over to the cave. It’s also really dark, like the other cave.” Oh no,” I forgot the lantern!’ ‘It’s ok. We can just go in and stay there for a little bit.” “We don’t need a lantern,” says Trumpet. “Ok,” you say. You and Trumpet go inside the cave. You walk a little way into the cave, and then you hear a CLAMP! “What was that, Trumpet?” you ask. No response. “Trumpet? Trumpet where are you? you shout. No response. You feel around the cave and then you hear something outside. You find your way out of the cave and see Trumpet getting loaded in a truck. Then you realize it was the poacher’s truck. It must have been Trumpet getting stuck in a trap when you were in the cave. You hear “help!” It must be Trumpet, you think. “I am coming!” you yell. The truck starts moving. You start running after the truck. You run and run but then you are out of breath. You pause and take a couple of breaths. But when you look up, the truck is gone.
+You decided to follow the footprints. You ask Trumpet to stop. You get off Trumpet. You and Trumpet go look at the footprints. “They look like elephant footprints’,” you say. “I hope they are,” says Trumpet. “Let’s follow them,” you say. “Yeah,” says Trumpet. You and Trumpet follow the footprints. The tracks come to a stop. “Oh no!” you say. You and Trumpet look around to see if you can see any elephants. But you don’t see any elephants. But they see something else in the distance. “Do you see that?” you ask. “Yeah,” says Trumpet. “Oh no,” says Trumpet “What’s the matter?” you ask. “It’s the elephant poacher,” says Trumpet. “What’s that?” you ask. “It’s somebody who wants to kill elephants and sell their tusks!” ‘That’s not good,” you say. “Not at all,” says Trumpet. “We have to hide,” you say. “Yeah,” says Trumpet. You look around. “There,” says Trumpet. “It’s a small cave,” says Trumpet. You and Trumpet head over to the cave. It’s also really dark, like the other cave.” Oh no,” I forgot the lantern!’ ‘It’s ok. We can just go in and stay there for a little bit.” “We don’t need a lantern,” says Trumpet. “Ok,” you say. You and Trumpet go inside the cave. You walk a little way into the cave, and then you hear a CLAMP! “What was that, Trumpet?” you ask. No response. “Trumpet? Trumpet where are you? you shout. No response. You feel around the cave and then you hear something outside. You find your way out of the cave and see Trumpet getting loaded in a truck. Then you realize it was the poacher’s truck. It must have been Trumpet getting stuck in a trap when you were in the cave. You hear “help!” It must be Trumpet, you think. “I am coming!” you yell. The truck starts moving. You start running after the truck. You run and run but then you are out of breath. You pause and take a couple of breaths. But when you look up, the truck is gone.[n/]
 
 *finish
 
 *label page14
-You decided to use Trumpets trunk to get to the lantern. You walk over to the tree and get on Trumpets trunk “ready” says Trumpet “ready” you say. Trumpet starts to lift his trunk in the air. Then he lifts his trunk higher, then you are high enough to reach the lantern “stop” you say “ok” says Trumpet. You grab the lantern, “I got it” you say “ok I’ll bring you down” says Trumpet “ok” you say. Trumpet brings you down with the lantern “thank you” you say “your welcome” says Trumpet. You and Trumpet go over to the old cave. You turn on the lantern. You and trumpet look inside the old cave. There is a rusty passageway, you and trumpet go in. You and trumpet see a narrow path and you go down the path. There is a dead end. You look around and you see a hole in the ground. You decide to go over to the hole. You can hear water running, “I hear water!” you shout. Trumpet was so happy he came over to hear the water too. They went in the wide hole in the ground and you and Trumpet land on a wide rock. There in front of you is a river you can drink out of. Trumpet was so thirsty, he drank for almost 10 minutes. “Wow you ere thirsty!” you say “at least we found water!” says Trumpet. You and Trumpet celebrate finding water!
+You decided to use Trumpets trunk to get to the lantern. You walk over to the tree and get on Trumpets trunk “ready” says Trumpet “ready” you say. Trumpet starts to lift his trunk in the air. Then he lifts his trunk higher, then you are high enough to reach the lantern “stop” you say “ok” says Trumpet. You grab the lantern, “I got it” you say “ok I’ll bring you down” says Trumpet “ok” you say. Trumpet brings you down with the lantern “thank you” you say “your welcome” says Trumpet. You and Trumpet go over to the old cave. You turn on the lantern. You and trumpet look inside the old cave. There is a rusty passageway, you and trumpet go in. You and trumpet see a narrow path and you go down the path. There is a dead end. You look around and you see a hole in the ground. You decide to go over to the hole. You can hear water running, “I hear water!” you shout. Trumpet was so happy he came over to hear the water too. They went in the wide hole in the ground and you and Trumpet land on a wide rock. There in front of you is a river you can drink out of. Trumpet was so thirsty, he drank for almost 10 minutes. “Wow you ere thirsty!” you say “at least we found water!” says Trumpet. You and Trumpet celebrate finding water![n/]
 
 *finish
 
 *label page15
-You chose to climb the tree to get to the lantern. You start climbing the tree. “It’s really slippery you say to Trumpet. “I hope I don’t fall off the tree,” you say. “You won’t I hope,” says Trumpet. You are really high up in the tree. You start to get a little worried that you are going to fall! You try. Not to think about it. But then you start to slip. “The sap is to slippery climb on,” you say “just try,” encourages Trumpet. “Alright” you say Then you start to really slip. “I am slipping!” you shout. “Alright, alright,” says Trumpet. “Can you try to get down by yourself?” asks Trumpet. “NO!” you yell “ok, ok,” says Trumpet “let me go find something to help you get down,” says Trumpet. “Hurry,” you say. “I will be right back,” says Trumpet. Trumpet goes to find something to help you down. You try to hold on, but you keep slipping. “I hope Trumpet is back soon,” you say. You are about to fall off the tree, and you are really high up. Now you are really worried. 5minutes later Trumpet is still not back. Your back paws start to lose grip. Then your front paws start to lose grip too. You are about to off the tree and Trumpet hasn’t returned! Then you imagine about what will happen if you fall off. It is an unpleasant thought. Then you realized you are in midair. “Oh no,” you think as you hit the ground and black out forever.
+You chose to climb the tree to get to the lantern. You start climbing the tree. “It’s really slippery you say to Trumpet. “I hope I don’t fall off the tree,” you say. “You won’t I hope,” says Trumpet. You are really high up in the tree. You start to get a little worried that you are going to fall! You try. Not to think about it. But then you start to slip. “The sap is to slippery climb on,” you say “just try,” encourages Trumpet. “Alright” you say Then you start to really slip. “I am slipping!” you shout. “Alright, alright,” says Trumpet. “Can you try to get down by yourself?” asks Trumpet. “NO!” you yell “ok, ok,” says Trumpet “let me go find something to help you get down,” says Trumpet. “Hurry,” you say. “I will be right back,” says Trumpet. Trumpet goes to find something to help you down. You try to hold on, but you keep slipping. “I hope Trumpet is back soon,” you say. You are about to fall off the tree, and you are really high up. Now you are really worried. 5minutes later Trumpet is still not back. Your back paws start to lose grip. Then your front paws start to lose grip too. You are about to off the tree and Trumpet hasn’t returned! Then you imagine about what will happen if you fall off. It is an unpleasant thought. Then you realized you are in midair. “Oh no,” you think as you hit the ground and black out forever.[n/]
 
 *finish
 
 *label page16
-You run away and you come to a cave. You go in and you see a letter, H. You think that the H could mean happy or it could mean horrible. You follow the H and you see something big in front of you. You get closer and you see that it is the momma elephant!
+You run away and you come to a cave. You go in and you see a letter, H. You think that the H could mean happy or it could mean horrible. You follow the H and you see something big in front of you. You get closer and you see that it is the momma elephant![n/]
 
 *finish
 
 *label page17
-You start digging in the puddle. The hole starts overflowing with water! You carry water back and save Africa!
+You start digging in the puddle. The hole starts overflowing with water! You carry water back and save Africa![n/]
 
 *finish
 
 *label page18
-“Let’s go on the right trail. Let’s be really careful, so we don’t lose each other. Oh no! It leads to the poacher who wants my tusks”, says Trumpet. “Run!” you shout. Oh good, Trumpet lifted the poacher up and threw him far away. Oh no! The poacher has things that will catch him, and get him a safe landing. Now he can still attack! You are going to chase him, and attack him and when you do, he says, “okay fine, I surrender”.  And right next to the poacher, you see water. Yay! It’s a happy ending. “C’mon Trumpet. Let’s drink the water.”
+“Let’s go on the right trail. Let’s be really careful, so we don’t lose each other. Oh no! It leads to the poacher who wants my tusks”, says Trumpet. “Run!” you shout. Oh good, Trumpet lifted the poacher up and threw him far away. Oh no! The poacher has things that will catch him, and get him a safe landing. Now he can still attack! You are going to chase him, and attack him and when you do, he says, “okay fine, I surrender”.  And right next to the poacher, you see water. Yay! It’s a happy ending. “C’mon Trumpet. Let’s drink the water.”[n/]
 
 *finish
 
 *label page19
-“Trumpet where are you?”, you ask. You look around, and you don’t see him ANYWHERE!!! You look by the dry sandy ponds that used to have water. They are now filled with dry HOT rocks. You look by the really windy places where the dry sand blows. Rocks rolling around. The rocks get hot in Africa because in Africa there is lots of sun. But once they go into the wind, they get nice and cool. You look by the rusty piles of burning sand. You don’t find him in any of those places.  “I’m gonna look over there by the… rain? Water! It’s water! Trumpet? I think I see you! Yay! I found you,” you say. It’s a happy ending.
+“Trumpet where are you?”, you ask. You look around, and you don’t see him ANYWHERE!!! You look by the dry sandy ponds that used to have water. They are now filled with dry HOT rocks. You look by the really windy places where the dry sand blows. Rocks rolling around. The rocks get hot in Africa because in Africa there is lots of sun. But once they go into the wind, they get nice and cool. You look by the rusty piles of burning sand. You don’t find him in any of those places.  “I’m gonna look over there by the… rain? Water! It’s water! Trumpet? I think I see you! Yay! I found you,” you say. It’s a happy ending.[n/]
 
 *finish
 
 *label page20
-“Let’s go back.” “Okay” You and Trumpet dodge the rocks. It’s hard to walk, plus it’s getting windy, you say. You are getting stuck. Oh no, the wind is so strong, that it’s blowing you away. Once the wind stops, you land by a pond of water! “Ouch!”, you say. But once you look next to you, you will see the water, and yay with a capital Y! And when that happens, you can’t wait to tell Trumpet.
+“Let’s go back.” “Okay” You and Trumpet dodge the rocks. It’s hard to walk, plus it’s getting windy, you say. You are getting stuck. Oh no, the wind is so strong, that it’s blowing you away. Once the wind stops, you land by a pond of water! “Ouch!”, you say. But once you look next to you, you will see the water, and yay with a capital Y! And when that happens, you can’t wait to tell Trumpet.[n/]
 
 *finish
 
 *label page21
-When you choose to go get water you look around. You can’t see anything but miles of dry sand, and rocky rocks. Until, you fall into a HUGE pile of rocks. You start digging in there, and you see water! You call Trumpet, and he comes to you.
+When you choose to go get water you look around. You can’t see anything but miles of dry sand, and rocky rocks. Until, you fall into a HUGE pile of rocks. You start digging in there, and you see water! You call Trumpet, and he comes to you.[n/]
 
 *finish
 
 *label page22
-Okay, are you sure you want to keep going? You will trip. Wait a minute, there are no more rocks! Yay, the rest of it is smooth. You think you see the poacher right in front of you, but then, you find out that it’s just a statue of him. Then, later, when you had walked around it, you find out that a river of water if going through the trail that you guys are in, because you see it coming to you FAST! Every fast. Then you, Trumpet, and the statue, get stuck in the water. “Help, help!” you and Trumpet say. You guys escape the river, when you guys are next to plants that are dying. The river fills those plants up with nice fresh clean water. Now the plants are growing beautifully. Now there is a river of water that you guys can drink from, and now this is a better vacation place. Now it’s just the poacher. But here, there is no poacher.
+Okay, are you sure you want to keep going? You will trip. Wait a minute, there are no more rocks! Yay, the rest of it is smooth. You think you see the poacher right in front of you, but then, you find out that it’s just a statue of him. Then, later, when you had walked around it, you find out that a river of water if going through the trail that you guys are in, because you see it coming to you FAST! Every fast. Then you, Trumpet, and the statue, get stuck in the water. “Help, help!” you and Trumpet say. You guys escape the river, when you guys are next to plants that are dying. The river fills those plants up with nice fresh clean water. Now the plants are growing beautifully. Now there is a river of water that you guys can drink from, and now this is a better vacation place. Now it’s just the poacher. But here, there is no poacher.[n/]
 
 *finish

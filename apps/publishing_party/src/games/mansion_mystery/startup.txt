@@ -2,7 +2,7 @@
 *author Eloise, Evelyn & Luke
 
 *label page1
-Your name is Evelyn and you are a young adult who was born in England in 1903. The year is 1927 just after electricity was invented. You live in a big house. It is white as snow. You are invited to your uncle’s mansion for his 40th birthday party. You get your carriage ready with horses that are black as ink. You ride to the mansion. By the time you get there, it is dinner. You eat a big turkey. When you finish…the lights go out! You freeze in shock. You think to yourself, “I want to hide.” But you could also get up and try to turn on the lights so you can see.
+Your name is Evelyn and you are a young adult who was born in England in 1903. The year is 1927 just after electricity was invented. You live in a big house. It is white as snow. You are invited to your uncle’s mansion for his 40th birthday party. You get your carriage ready with horses that are black as ink. You ride to the mansion. By the time you get there, it is dinner. You eat a big turkey. When you finish…the lights go out! You freeze in shock. You think to yourself, “I want to hide.” But you could also get up and try to turn on the lights so you can see.[n/]
 
 *choice
   #hide.
@@ -13,24 +13,24 @@ Your name is Evelyn and you are a young adult who was born in England in 1903. T
     *goto page9
 
 *label page2
-You chose to search the house. After lots of looking, you go to the master bedroom. It is dark and quiet. Then, you hear a loud, “Crack!” You’re now standing next to a bunch of people you don’t know. They say, “Welcome. We’ve been waiting for someone to help us. We’ve been trapped here for ten years.”
+You chose to search the house. After lots of looking, you go to the master bedroom. It is dark and quiet. Then, you hear a loud, “Crack!” You’re now standing next to a bunch of people you don’t know. They say, “Welcome. We’ve been waiting for someone to help us. We’ve been trapped here for ten years.”[n/]
 
 *finish
 
 *label page3
-You talk to a guy named, Bob. You see a knife in Bob’s hand, so you call the cops. The cops arrive and arrest, Bob. Because Bob was guilty. Definitely, guilty.
+You talk to a guy named, Bob. You see a knife in Bob’s hand, so you call the cops. The cops arrive and arrest, Bob. Because Bob was guilty. Definitely, guilty.[n/]
 
 *image ../images/mansion_mystery/image3_2.png center
 
 *finish
 
 *label page4
-You report him, he confesses he tried to murder Amy. “Why,” you ask him “Your uncle took everything from me!” You get the police and they take him to the jail.
+You report him, he confesses he tried to murder Amy. “Why,” you ask him “Your uncle took everything from me!” You get the police and they take him to the jail.[n/]
 
 *finish
 
 *label page5
-You go under a big rusty table. You hear loud footsteps. Black boots are stomping. You can’t see much, so you turn on the light. You are the only one in the room… so you think. You blink. Instead of seeing black, you see a faded face grinning at you. “AAHHHH!” you hear a high-pitched scream. “This is not good. I’m scared,” you think to yourself. I want to get out. You know it is not safe here. But so far, anyone in this mansion has disappeared or gets knocked out.  You might be next…
+You go under a big rusty table. You hear loud footsteps. Black boots are stomping. You can’t see much, so you turn on the light. You are the only one in the room… so you think. You blink. Instead of seeing black, you see a faded face grinning at you. “AAHHHH!” you hear a high-pitched scream. “This is not good. I’m scared,” you think to yourself. I want to get out. You know it is not safe here. But so far, anyone in this mansion has disappeared or gets knocked out.  You might be next…[n/]
 
 *image ../images/mansion_mystery/image3_4.png center
 
@@ -41,12 +41,12 @@ You go under a big rusty table. You hear loud footsteps. Black boots are stompin
     *goto page6
 
 *label page6
-You chose to find a way out. You make it outside and call the police. You never do find out who the murderer is… you think you should, but, meh.  You decide to get out of there and go home instead.
+You chose to find a way out. You make it outside and call the police. You never do find out who the murderer is… you think you should, but, meh.  You decide to get out of there and go home instead.[n/]
 
 *finish
 
 *label page7
-You freeze in shock. Then you hear a familiar yell, “AHHH….” It sounds like your cousin, Amy. You run to your uncle and say, “I just heard Amy yelling! I think something is wrong.” “You just heard Amy yelling?” your uncle asks. “Ha-ha! That is a nice joke,” he says.” “No, no. This is not a joke,” you insist. Then the lights turn on. You leave to look for Amy. The last room you go to is the kitchen. You run to your uncle and scream, “U-un-uncle. I saw Amy lying on the floor.” “Ha ha ha. You crack me up,” he answers.  “Ugh, just follow me,” you say. “WHAT? H-HOW?” He starts to sob loudly. It is so loud that everybody can hear him from the living room. Your other cousin asks you what happened. Before you answer, his sister (your cousin) points directly at you and says, “Duh. She did it! “What. You. No! You don’t have to be sassy about it. Zip it,” you say. Your sassy cousin says, “No. I won’t zip it,” and pulls your hair! “OWW!” you say you pull her hair back. “OWW!” Finally, her brother (your cousin) shouts, “STOP! Both of you, we don’t have time to fight.” He rolls his eyes at you and says, “Let’s get out of here.” You want to leave with them, but you’re also tired. Plus, your mom has the car and you don’t know where she went.
+You freeze in shock. Then you hear a familiar yell, “AHHH….” It sounds like your cousin, Amy. You run to your uncle and say, “I just heard Amy yelling! I think something is wrong.” “You just heard Amy yelling?” your uncle asks. “Ha-ha! That is a nice joke,” he says.” “No, no. This is not a joke,” you insist. Then the lights turn on. You leave to look for Amy. The last room you go to is the kitchen. You run to your uncle and scream, “U-un-uncle. I saw Amy lying on the floor.” “Ha ha ha. You crack me up,” he answers.  “Ugh, just follow me,” you say. “WHAT? H-HOW?” He starts to sob loudly. It is so loud that everybody can hear him from the living room. Your other cousin asks you what happened. Before you answer, his sister (your cousin) points directly at you and says, “Duh. She did it! “What. You. No! You don’t have to be sassy about it. Zip it,” you say. Your sassy cousin says, “No. I won’t zip it,” and pulls your hair! “OWW!” you say you pull her hair back. “OWW!” Finally, her brother (your cousin) shouts, “STOP! Both of you, we don’t have time to fight.” He rolls his eyes at you and says, “Let’s get out of here.” You want to leave with them, but you’re also tired. Plus, your mom has the car and you don’t know where she went.[n/]
 
 *image ../images/mansion_mystery/image1_4.png center
 
@@ -57,12 +57,12 @@ You freeze in shock. Then you hear a familiar yell, “AHHH….” It sounds lik
     *goto page3
 
 *label page8
-You ignore your sassy cousin and go upstairs to look for your mom.  Because your tired, you lie on the bed. You see a black, shadowy figure. You ignore it and decide to close your eyes. When you wake up, you’re in heaven.
+You ignore your sassy cousin and go upstairs to look for your mom.  Because your tired, you lie on the bed. You see a black, shadowy figure. You ignore it and decide to close your eyes. When you wake up, you’re in heaven.[n/]
 
 *finish
 
 *label page9
-You turn the lights on. It is suddenly bright again. Your cousin Amy is on the floor. You think she is dead. Your uncle is crying, “My daughter, my daughter.” But then you hear breathing. She is okay. You notice a door is open. You run to the door. You look down a hallway. A man in blue boots is running away. You follow him down a dark corridor. He opens a door and then closes it. You try to open it, but it is locked. You run back to the dining room ‘’the killer has blue boots’’, you tell your uncle. ‘’Thank you’’, your uncle says dismissively, still upset about Amy. You go to your room it is small, just a bed. You get into bed. It is soft. The following day you go straight to breakfast. You have eggs. You see Bob, your uncle's friend wearing blue sneakers. No, blue boots! You want to report him. But he is your uncle's friend.
+You turn the lights on. It is suddenly bright again. Your cousin Amy is on the floor. You think she is dead. Your uncle is crying, “My daughter, my daughter.” But then you hear breathing. She is okay. You notice a door is open. You run to the door. You look down a hallway. A man in blue boots is running away. You follow him down a dark corridor. He opens a door and then closes it. You try to open it, but it is locked. You run back to the dining room ‘’the killer has blue boots’’, you tell your uncle. ‘’Thank you’’, your uncle says dismissively, still upset about Amy. You go to your room it is small, just a bed. You get into bed. It is soft. The following day you go straight to breakfast. You have eggs. You see Bob, your uncle's friend wearing blue sneakers. No, blue boots! You want to report him. But he is your uncle's friend.[n/]
 
 *image ../images/mansion_mystery/image3_1.png center
 
@@ -73,6 +73,6 @@ You turn the lights on. It is suddenly bright again. Your cousin Amy is on the f
     *goto page10
 
 *label page10
-You ignore him, and…HE JUMPS OUT AT YOU!!!!! He picks you up and carries you to the freezer. He shuts and locks the door. You’re trapped and slowly die of freezer burn and hunger.
+You ignore him, and…HE JUMPS OUT AT YOU!!!!! He picks you up and carries you to the freezer. He shuts and locks the door. You’re trapped and slowly die of freezer burn and hunger.[n/]
 
 *finish

@@ -1,0 +1,171 @@
+*title The Hamster Escape
+*author Charlie, Ellis & Lily B.
+
+You are a hamster in a hamster cage. Your owner accidentally left the cage door open one day, and you decided to find your hamster family. You know there are predators out there. Good luck![n/]
+
+*choice
+  #I'm Ready.
+    *goto page1
+
+*label page1
+You are a tiny hamster living in a cage in your owner’s bedroom. Your cage has a squeaky wheel, a water bottle, a pile of wood shavings, and a little purple hamster ball. Every morning, your owner gives you crunchy food and a few sunflower seeds. You like your cage, but you miss your hamster family.[n/]
+Your owner loves you and says to you, “You must be living the life. You have a blue hamster wheel, igloo, and a whole hamster tube maze. He leaves suddenly, accidentally leaving the cage door open.[n/]
+You freeze.[n/]
+The room looks huge from inside your cage. The floor stretches out like a giant desert, and you know there could be predators out there. Maybe the family cat is hiding under the bed. Maybe the dog is sleeping in the hallway. Maybe there are other dangers you have never even seen before.[n/]
+Still, this might be your only chance to find your hamster family.[n/]
+You creep toward the open door and look down. Your heart beats fast.[n/]
+
+*choice
+  #Sneak out of the cage.
+    *goto page5
+  #Wait until your owner takes you out for playtime.
+    *goto page7
+  #Play it safe and stay put.
+    *goto page8
+
+*label page2
+You choose to hide in your owner’s shoe.[n/]
+You squeeze your tiny body inside and hold your breath. Outside, you hear a growl.[n/]
+The predator comes closer. You can see a lion.[n/]
+For a second, you think this is bad.[n/]
+The predator is at the door.[n/]
+You wait until everything is quiet. Then you slowly crawl out of the shoe.[n/]
+Across the room, you notice a trail of crumbs. It looks like it might lead to your hamster family.[n/]
+You follow it carefully. After a few minutes, you find a blue jay that seems likely to help you on your journey.[n/]
+Inside, you see your hamster family. They are happy to see you.[n/]
+You feel happy because you found your hamster family.[n/]
+Your hamster family tells you, “We are so happy you returned. We thought we might never find you again.”[n/]
+You all crawl into a vent, where it is safe, warm, and hidden.[n/]
+At last, you found your family. You survived the predators, escaped the cage, and made it to safety.[n/]
+
+*finish
+
+*label page3
+You have to fix the flashlight.[n/]
+The hamster found another flashlight in the drawer, but it was broken. So she took out the old batteries, put in new ones, and fixed the flashlight.[n/]
+She started walking to her parents’ cage, and the hamster family was found at last. They were in the ball, rolling around.[n/]
+They rolled out of the window and got free.[n/]
+They were all happy because the day was sunny and nice again.[n/]
+
+*finish
+
+*label page4
+You choose to trust the chickadee. “So, can I help you?” she asks.[n/]
+You say, “Yes, I would like your help. What is your name anyway?”[n/]
+“I’m Blackberry,” she says. “Good name,” you say.[n/]
+Then you keep walking. You come to a clearing with a small pond. In the middle of the pond, you see a small frog with black spots. You put out your paw to touch it. “Stop!” says Blackberry before you can.[n/]
+“Why?” you say. “Those are poison dart frogs. Their skin is deadly.”[n/]
+You keep walking. Then you hear the sound of rushing water. Blackberry takes a sharp right. The dirt turns to sand. You find yourself at a beach. The sand is hot under your feet. Small waves hit the shore, leaving smooth shells and rocks behind.[n/]
+“We can rest here for a while,” says Blackberry. “We can keep going tomorrow. Good night.”[n/]
+You drift off. The next morning, you wake up. Blackberry says, “Let’s go.” “Okay,” you say.[n/]
+So you start walking. Then you hear, “Hissss!”[n/]
+A ginormous scary snake is towering above you. It is about to eat you when Blackberry grabs you and gets you to safety.[n/]
+“Thank you,” you say.[n/]
+“Come on. We should go into the safety of the forest.”[n/]
+So, you go back to the forest. A ginormous oak is in the middle of the path. In a little nook between two roots, there is your family. You run over to them. They show you their home.[n/]
+
+*finish
+
+*label page5
+You decide to sneak out of the cage.[n/]
+First, you put one tiny paw on the open cage door. It makes a quiet creak sound. You freeze and listen.[n/]
+Your owner is hungry. The room is giant, and the floor looks dusty from way up in your cage.[n/]
+You carefully climb down the side of the cage. Your claws grip the metal bars. When you finally reach the floor, you land inside a shoe![n/]
+You sniff the air. It smells like snacks. Then you hear a sound.[n/]
+Sssssssss.[n/]
+You turn your head and see a family of snakes.[n/]
+Your heart starts beating fast because they are surrounding you.[n/]
+You remember that you are trying to find your hamster family. You think they might be in the bathtub, but to get there, you have to cross the dark hallway.[n/]
+As you sneak across the floor, you notice two possible hiding places.[n/]
+One is behind the dresser.[n/]
+The other is a shoe on the ground.[n/]
+Then the danger gets closer. The snakes are coming toward you.[n/]
+You have to choose quickly.[n/]
+
+*image ../images/the_hamster_escape/image6.png center
+
+*choice
+  #Hide in the shoe.
+    *goto page2
+  #Keep running across the room.
+    *goto page6
+
+*label page6
+You choose to keep running across the room.[n/]
+At first, you think this is a smart idea because it is a safe way to find your hamster family.[n/]
+Your tiny paws race across the floor. You run past the family of cats and the big dog.[n/]
+Then you hear a loud “Meow!” and “Woof!” behind you.[n/]
+You look back and see the family of cats and the big dog.[n/]
+You try to run faster, but they run faster.[n/]
+Suddenly, you slip onto the dining table, where they cannot get you.[n/]
+You tumble forward and land on a chair.[n/]
+The predators are right behind you now. You can see the cats’ and the dogs’ teeth.[n/]
+You try to hide under the table, but it is too late.[n/]
+The cats and the dog catch up to you.[n/]
+You squeak, “Aaaahhh!”[n/]
+Then everything goes dark.[n/]
+You should have hidden when you had the chance.[n/]
+
+*finish
+
+*label page7
+You decide to wait for your owner to take you out for playtime.[n/]
+A few minutes later, your owner comes. She takes you out of your cage. You jump up and slide under the wooden door.[n/]
+You’re free![n/]
+You start going towards the beautiful forest. When you’re there, you look around you. The tree branches block the sun’s light. On an old dead tree, a patch of daisies is blooming.[n/]
+Then you hear, “Chirp, chirp.”[n/]
+Then a female black-capped chickadee swoops down from an old red cedar.[n/]
+“Hi,” says the chickadee. “What are you doing in the forest?”[n/]
+You say, “I am looking for my parents.”[n/]
+“I can help you,” she says.[n/]
+
+*image ../images/the_hamster_escape/image4.png center
+
+*choice
+  #Accept the chickadee’s help.
+    *goto page4
+  #Keep walking.
+    *goto page10
+
+*label page8
+You stay put in your cage.[n/]
+You are a golden-and-white hamster in a sparkly cage.[n/]
+It all began on a Saturday, on a sunny morning. Hamster’s dance class was at 12:10 p.m. The hamster started getting ready for her class.[n/]
+Her class was called Hamster Adaptive Dance, and only hamsters were allowed in that class, since humans had their own Adaptive Dance class. Some humans do not like loud noises.[n/]
+The hamster left her sparkly cage and arrived at her class. Her adaptive dance class was in a giant cage called Studio #2.[n/]
+When she arrived, her teacher was waiting to tell her what to do, and she did an amazing free dance first. Then she said “hello” to all of her friends.[n/]
+After the class, the hamster went back to her very beautiful purple ball. She loved that ball so much that she did not want it to be ruined.[n/]
+She was jumping into the ball, and her parents went in there. Her mom asked her, “What do you want for lunch?”[n/]
+The hamster said, “Sushi.”[n/]
+Mom said, “Okay, you can have hamster sushi that is safe for hamsters.”[n/]
+They went home, and they had sushi for lunch. After that, the hamster’s family went to their own cage because they wanted to have dessert in there, and the hamster was waiting for them at her cage.[n/]
+They brought the dessert to the hamster cage, and they all had dessert together.[n/]
+
+*goto page9
+
+*label page9
+After dessert, they fell asleep together. When they woke up the next morning, they realized it was too rainy outside. They decided to stay inside.[n/]
+There was a big storm, and it knocked out the power. They had to use their hamster-size flashlight to see where they were going.[n/]
+They started walking around the house in the dark and accidentally separated into two rooms.[n/]
+
+*choice
+  #If you have to fix the flashlight.
+    *goto page3
+  #If not.
+    *goto page10
+
+*label page10
+You choose to keep walking.[n/]
+“So, do you want my help?” she says.[n/]
+“No, I do not need your help.”[n/]
+“Okay,” she says, and then she flies away.[n/]
+You keep going by yourself. The moss squelches under your feet. You see the sun is setting, so you find a pile of leaves under a big cedar.[n/]
+You go to sleep.[n/]
+You wake up. The sun is in the middle of the sky, so you start walking. A bee is buzzing near some flowers. A herd of deer trots by.[n/]
+You hear, “Rustle, rustle.”[n/]
+You look from left to right. You do not see anything, so you keep going.[n/]
+You walk and walk.[n/]
+Then a leopard jumps in front of you. The leopard has beautiful golden fur, sharp white fangs, and sharp gleaming claws.[n/]
+Then it pounces and eats you.[n/]
+
+*finish

@@ -1,0 +1,182 @@
+*title The Lost Ice Gem
+*author Hanna, George & Quinn
+
+You are a knight in an ice castle in the sky. A dragon is trying to melt your ice castle, and you are trying to save it. Watch out for its fire. [n/]
+Good luck![n/]
+
+*choice
+  #I'm Ready.
+    *goto page1
+
+*label page1
+You are a knight in an ice castle in the sky. The castle glows light ice blue above the clouds. Ice crystals hang from the towers and windows, and when the castle melts, tiny drops fall all the way down to the ground. The people below think it is raining, but you know the truth. It is pieces of your ice castle falling from the sky.[n/]
+You stand inside the castle in your green and red metallic outfit with blue stars on it. Your backpack is on your back. Inside it, you have rope and food in case your adventure gets dangerous.[n/]
+Then you hear a sound outside.[n/]
+You look out and see a dragon. It is melting your castle![n/]
+Down you go to ask the king and queen for advice. You might think that would be scary, but you feel good about it because they are actually your mother and father! They have always helped you whenever you need it, and this is no different.[n/]
+“Go and find the gem of ice,” they say. “It will save the castle. After you find it, put it on the castle wall. The fire from the dragon will go back at him, and he will fly away from the castle. The gem will also bring the castle back.”[n/]
+You know what you have to do. You need to find the magical ice gem to save the castle.[n/]
+The gem is hidden in a cave, and getting there will not be easy. There are dangerous obstacles in the way, like sharp icicles, pools of lava, and walls that block your path. You will have to be careful. If you make the wrong choice, you might die while trying to save the ice castle.[n/]
+
+*goto page2
+
+*label page2
+Outside the castle, you see three paths: a rainbow path, a pink path, and a creepy path.[n/]
+The rainbow path and the pink path twist together and go toward the bright side of the sky.[n/]
+The creepy path goes down into the dark clouds.[n/]
+Which path do you choose?[n/]
+
+*choice
+  #Take the pink path.
+    *goto page6
+  #Take the creepy path.
+    *goto page8
+  #Take the rainbow path.
+    *goto page10
+
+*label page3
+You choose to stay in the pink house.[n/]
+You look around. There is a pink couch and a pink table and chairs.[n/]
+Everything is pink![n/]
+The lady gives you a chocolate chip cookie, and you sit on the pink couch and eat it.[n/]
+Then you hear a sound upstairs.[n/]
+You decide to go upstairs to check it out.[n/]
+When you get upstairs, you see a door.[n/]
+You hear the sound coming from behind the door.[n/]
+You decide to go inside.[n/]
+There is the lady who gave you the cookie.[n/]
+Now she looks like a creepy witch![n/]
+The door clicks behind you.[n/]
+You will live in this house forever with a witch![n/]
+
+*finish
+
+*label page4
+You use the shiny sword to make the dragon fall asleep.[n/]
+The dragon closes its eyes.[n/]
+Now you can get past him.[n/]
+You find the ice gem and take it back to the ice castle.[n/]
+You put the ice gem on the castle wall.[n/]
+The castle starts to heal.[n/]
+The ice comes back.[n/]
+The dragon stays asleep.[n/]
+You saved the ice castle![n/]
+
+*finish
+
+*label page5
+You go to the mountain.[n/]
+It is cold, rocky, and snowy.[n/]
+You start climbing it, but a wall blocks your way.[n/]
+The wall is wet, slippery, and impossible to climb.[n/]
+You decide to use some of the rope in your backpack. You throw it over the wall and use it to help you climb.[n/]
+You make it to the top.[n/]
+At the top of the mountain, you find a cave.[n/]
+Inside the cave, you find the ice gem![n/]
+You go back to the castle and put the side of the ice gem on the castle wall.[n/]
+The castle starts to rebuild itself.[n/]
+The dragon tries to breathe fire on the castle, but the fire bounces back at him.[n/]
+The dragon flies away.[n/]
+Good job! You win, and you saved the ice castle![n/]
+
+*image ../images/the_lost_ice_gem/image6.png center
+
+*finish
+
+*label page6
+You go through the pink path.[n/]
+You spot a bunch of pink and blue houses.[n/]
+The bushes have pink and blue flowers.[n/]
+The houses have pink and blue lights on them.[n/]
+You go into one of the pink houses.[n/]
+Inside there is a lady.[n/]
+"Would you like a cookie?" she asks. "You can live here in this pink house if you would like to. But you can never go back to your own house."[n/]
+You think that the pink house looks comfortable and nice.[n/]
+But you know that you are supposed to find the ice gem.[n/]
+
+*choice
+  #Stay in the pink house.
+    *goto page3
+  #Go to the forest.
+    *goto page7
+
+*label page7
+You choose to leave the pink house and go to the forest.[n/]
+"Goodbye! Thank you for the cookie!" you say.[n/]
+You leave the pink and blue town and walk a long time to the forest.[n/]
+You see the forest, and it is very dark and creepy.[n/]
+You decide to go through the forest.[n/]
+You walk and walk.[n/]
+Then you hear a hissing sound.[n/]
+You look down and see a large snake.[n/]
+Oh no![n/]
+You start to run, but the snake is coming right behind you.[n/]
+Just as it is about to bite you, you get to the castle door.[n/]
+You push the door open.[n/]
+Your parents are standing inside.[n/]
+"Yay! You are home. We were hoping you would come home soon. Did you find the ice gem?" they ask.[n/]
+"No. I didn't."[n/]
+"That's okay," they say. "You can try again tomorrow! Let's go have some tea."[n/]
+
+*finish
+
+*label page8
+You choose the creepy trail.[n/]
+This trail is creepy.[n/]
+Along the way, you use special magic to make the shield rush into your hand.[n/]
+The shield falls.[n/]
+You pick it up and raise it to deflect the dragon’s flame.[n/]
+Then you run with the shield toward the bedroom door.[n/]
+Suddenly, you hear something.[n/]
+The sword is singing![n/]
+You grab the sword.[n/]
+The shield feels cold in one hand, and the sword hums in the other. Outside, the dragon is still breathing fire at the ice castle. You know you have to do something fast.[n/]
+Maybe the sword’s magic can make the dragon fall asleep.[n/]
+
+*choice
+  #Use the sword's magic to make the dragon fall asleep.
+    *goto page4
+  #Run outside and attack the dragon.
+    *goto page9
+
+*label page9
+You decide to run outside and attack the dragon before it melts more of the castle.[n/]
+You hold the singing sword tightly in your hand.[n/]
+The dragon sees you coming and roars.[n/]
+You run closer and raise the sword.[n/]
+Then you stab the dragon.[n/]
+The dragon stops breathing fire on the castle.[n/]
+You escape from the dragon and win.[n/]
+You saved the ice castle![n/]
+
+*image ../images/the_lost_ice_gem/image7.png center
+
+*finish
+
+*label page10
+You go through the rainbow path.[n/]
+You see candy everywhere on the floor.[n/]
+As you keep walking, you see two people talking.[n/]
+The people tell you their names are Bob and Tim.[n/]
+You tell Bob and Tim that you are looking for the ice gem.[n/]
+They tell you that they’ve heard about it, but they don’t know where it is.[n/]
+They think it’s either in the garden or in the cave on the mountain.[n/]
+You look ahead and see both places. The mountain looks cold and snowy. The garden is just ahead. You have to decide the best path.[n/]
+
+*choice
+  #Go to the mountain.
+    *goto page5
+  #Go to the garden.
+    *goto page11
+
+*label page11
+You go to the garden ahead.[n/]
+All around you, you see lots of flowers. Some are blue and purple. Some are red and green.[n/]
+You shuffle around the flowers, looking for the ice gem. You keep looking and looking for the ice gem.[n/]
+Then you see bees.[n/]
+Two of the bees are black and yellow.[n/]
+One of the bees flies over to you.[n/]
+It stings you with its venom.[n/]
+You die.[n/]
+
+*finish

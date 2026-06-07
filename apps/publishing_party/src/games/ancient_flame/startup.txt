@@ -1,0 +1,211 @@
+*title Ancient Flame
+*author Aylin, Calla & Heran
+
+In this story, you are Xavier Arrow, a warrior trying to find the Ancient Flame and save the lost spirits in your village. Your choices decide whether you prepare for the quest, run from danger, or search the forest for the flame. Good luck[n/]
+
+*choice
+  #I'm Ready.
+    *goto page1
+
+*label page1
+You live in an old village that is home to lost souls. Long ago, some of them were trapped in the ancient flame by an unknown creature of the woods.[n/]
+You are a warrior who has set out to seek the ancient flame. Your village is near the Forest of Bones. Dun dun dun![n/]
+One day, the queen calls you to the castle.[n/]
+“You must go on an adventure to find the ancient flame,” she tells you. “It has been guarded by an unknown creature of the woods. Your job is to find the flame, bring it back to me, and then I can restore the village.”[n/]
+You know the adventure could be dangerous. You might need supplies before you leave, but the flame could also be hidden deep in the forest already. Part of you wants to listen to the queen and help the village. Another part of you wants to run home and stay safe.[n/]
+Now you have to choose what to do first.[n/]
+
+*choice
+  #Go home first to get ready, then go on the adventure.
+    *goto page6
+  #Ignore the queen and run home.
+    *goto page8
+  #Run straight into the forest.
+    *goto page11
+
+*label page2
+You get up and knock the monster off of you. You grab your sword and slash at the monster’s eye.[n/]
+The monster makes a deafening ROARRRRRR!!!!!!!!!!!!![n/]
+Then it jumps at you.[n/]
+You dodge its attack, and the monster starts growing bigger. Its mouth opens into a big circle. You can see rows of razor-sharp teeth inside. On its muzzle, there is a big, sharp horn. It grows big, powerful wings that blow wind so hard they knock trees down.[n/]
+You run, panting violently, as fast as you can. Then you jump really high. You move the sword above your head, slash it forward at the monster, and jab it into the middle of its chest.[n/]
+The monster stops and falls to the ground with a thud![n/]
+You have defeated it, but that may not be the last monster you fight.[n/]
+It drops something. Not the flame, but something that might help you on your quest. It is a big wooden box. You go forward slowly, knowing there might be something there.[n/]
+There is nothing. You are safe.[n/]
+You open the box and see a magic sphere. You look at it more carefully. It is the flame!!!!!!!!!!!!!!!!!!!!!!!!!![n/]
+No, it will not help you on your quest.[n/]
+You completed it![n/]
+That means no more monsters![n/]
+
+*image ../images/ancient_flame/image6.png center
+
+*finish
+
+*label page3
+You choose to fight him![n/]
+He points his sword at you, and you run! You realize that you have run into a forest. You ran in because you saw two flashing lights and thought maybe you could find help.[n/]
+You follow the lights into a cave, and it is pitch black. You do not see the lights anymore. It is very cold, and you are afraid. You walk farther into the cave, and then you see a door. It is yellow.[n/]
+You go inside.[n/]
+This time, the air is hot. You see a box. There is a keyhole on the box. Then you see an orange spot in the rocks. You move a rock aside, and there is a key inside![n/]
+You pick it up and walk back to the box. You put the key in the keyhole. The box unlocks, and you open the lid.[n/]
+Inside, there is the flame![n/]
+You go out of the room, out of the cave, and back into the forest. The journey home is easy. When you get back to the village, you give the flame to the Queen.[n/]
+“Thank you, Xavier,” she says. “You saved the village!”[n/]
+The spirits come back, and the village is restored.[n/]
+
+*image ../images/ancient_flame/image3.png center
+
+*finish
+
+*label page4
+You decide to go down the path with the flashing light.[n/]
+The light flashes every five minutes. You keep walking toward the flashing lights. You walk and walk and walk.[n/]
+The light is so bright you can barely see, and you accidentally run into the bad guys you had met before.[n/]
+“Woof, woof, woof,” Virginia barks.[n/]
+You ask, “What are you guys doing here?”[n/]
+“Well, we’re trying to get the flame, of course,” the bad guys say.[n/]
+“Wait,” you say. “You know where the flame is?”[n/]
+“Of course, we do. We’ve lived here for over a decade. Why are you so interested in the flame?”[n/]
+“I’m also trying to get to the flame,” you say.[n/]
+The bad guy says, “ I believe we will get there first,” as he rushes off.[n/]
+“Wait, wait, wait,” you say. “How about a deal? We’ll have a fight with the sharpest stick we can find.”[n/]
+“All right, but on only one condition. You have only three minutes to find a stick.”[n/]
+You are confident with the time you have because you know Virginia is really good at finding sticks, so it only takes you a minute.[n/]
+You return to the logs where the bad guys are searching for their own sticks. The stick Virginia found was not that sharp, so you decide to sharpen it a little more.[n/]
+The bad guys come back with an amazingly sharp stick. You doubt that you’re going to win, but you still have the fight.[n/]
+
+*goto page5
+
+*label page5
+Surprisingly, you win![n/]
+You get a five-minute head start and run to the cave, arriving first.[n/]
+As you walk into the cave, you see a red door and decide to open it. Inside is a blue glow. You found the ancient flame and waste no time grabbing it![n/]
+You run back past the bad guys, past the sandwich, and to the village, restoring the lost spirits and saving your village forever.[n/]
+
+*finish
+
+*label page6
+You go home to grab supplies before heading to the woods. Then you notice it is night, so you find a safe place to rest.[n/]
+You go to find some twigs and leaves to make a comfy bed to sleep on. Before you can finish making your bed, you see rustling in the bushes and a flash of light.[n/]
+Maybe it was just the wind? You think. Or maybe just a squirrel. But that blur had a light. It could be something bad. Really bad. Not any of the things you thought of.[n/]
+It might be the flame![n/]
+But what would it be doing out here? No, it cannot be the flame. It might be a… MONSTER!!!!!!!!!!!!![n/]
+You want to be sure about that, so you get your net and creep closer, keeping it behind you. You move closer and swoop your net.[n/]
+But there is nothing.[n/]
+So you put your net away and finish making your leaf-and-twig bed. Then you go to sleep.[n/]
+In the morning, you wake up and see the same light you saw at night. You look where it connects, and you see a big, hairy monster![n/]
+You were right. It was a monster.[n/]
+It is big and hairy, with very sharp teeth. The monster glares right at you and says that you have walked into its boundaries and now you must pay. You do not know what to do, so you make a choice.[n/]
+
+*choice
+  #Fight the monster.
+    *goto page2
+  #Run for your life.
+    *goto page7
+
+*label page7
+You run for your life and escape the monster, only to find yourself facing it after stopping to rest. Since it's morning, the hungry monster wants breakfast, and you are the first thing it sees. Drool is dripping from its mouth all over you. It is standing on you, trying to pin you down. You are covered in slobber; you use it to slide out from under the monster.[n/]
+The monster tilts its head, confused. It pats its claws on the leaf-and-twig bed, making sure you did not just turn invisible. It frowns. Then it turns its head and looks back.[n/]
+It walks slowly toward you.[n/]
+Then it stops.[n/]
+It speaks in a low voice.[n/]
+“If you wish to—”[n/]
+It stops to eat one of your sandwiches, then continues.[n/]
+“If you wish to go past me, you have to answer my question. But you already got past me, so I am pointless. That means I have to help you.”[n/]
+You look at the monster angrily and say, “Why would I want to help you? You wanted to kill me!”[n/]
+Then the monster starts to look very sad.[n/]
+“I have been lonely for a long time,” it says. “And you also abandoned me.”[n/]
+Then it lunges at you.[n/]
+You run as fast as you can, your legs aching. The monster moves toward you. Then it catches you. You cannot escape.[n/]
+
+*finish
+
+*label page8
+You ignore the queen. It is just too much. Besides, the others are much more skilled.[n/]
+You start to walk home by yourself, considering what to do when you arrive. Then you hear a big gush of wind. At first, you think it is just the wind, and you keep walking home. But then you see a black blur. You think it is just some ash, but you are nervous.[n/]
+You keep looking behind you. There is no reason to be nervous, though. You keep walking home. Your house is kind of far away.[n/]
+But THEN, out from the bush, you see two black figures standing before you.[n/]
+You are terrified.[n/]
+One of the figures says to you, “Where is the ancient flame that brings back the great spirit?”[n/]
+You pause and consider whether to tell the truth. You choose to keep it to yourself. Plus, the queen herself said to keep it safe.[n/]
+So, you say, “I…”[n/]
+The figure points a sword at you. You stumble backward.[n/]
+“What is taking you so long?” the figure asks.[n/]
+This guy does not have patience, you think.[n/]
+“I do not know,” you say. “But the queen told me you would know.”[n/]
+You do not get it. Why would the queen tell a stranger?[n/]
+“Well, I do not know…” you say.[n/]
+
+*goto page9
+
+*label page9
+“I’ll give you a deal,” the figure says. “You find the flame, and I will use it for you.”[n/]
+“Okay,” you say. “But you must tell me your name.”[n/]
+“Okay. My name is Stone Mover.”[n/]
+That is a very creepy name, you think. Maybe he is a bad guy.[n/]
+“I am also called Bad Guy,” he says.[n/]
+“I knew it!” you say.[n/]
+Should I fight him? you wonder.[n/]
+
+*choice
+  #Fight him.
+    *goto page3
+  #Run.
+    *goto page10
+
+*label page10
+You run home.[n/]
+When you get home, you eat a delicious snack of apples and cheese.[n/]
+You decide to read a book about the flame. It says, “No one has ever found the flame before.”[n/]
+You sigh and say to yourself, “Oh well. I didn’t find the flame today. My village is still in danger.”[n/]
+You cross out the paragraph in the book and write in its place:[n/]
+Xavier Arrow hasn’t found the flame yet but will try another day.[n/]
+
+*finish
+
+*label page11
+You choose to run straight to the forest to find the Ancient Flame.[n/]
+You walk and walk until you hear a loud rumble and get really scared. You figure out it is your belly. So you find a tuna sandwich in your pocket. You decide to eat half of it and go on.[n/]
+You keep walking until you hear something rustle in the bushes![n/]
+You peek behind the bush and find a black-and-white tail. You are very curious about what it is, so you put the sandwich right behind it and hide by a tree.[n/]
+You wait a little while, and then the dog comes sneaking out. You catch it. It is a bit dirty from running around in the forest a lot. So, you find a lake to bathe it in.[n/]
+You do not have a scrub, so you use a leaf.[n/]
+After that, it howls, hurt. It has got a splinter on its paw! So, you snatch it out with your hand.[n/]
+After that, you decide to keep it as your pet. You also decide to name it Virginia, thinking that is a good name for a dog.[n/]
+You walk along with your dog until you find a fork in the road![n/]
+You are not sure which way to go. On one end, you see a flash of light. On the other end, you see darkness. Your dog is trying to take you toward the darkness, but you want to go to the flashing light.[n/]
+
+*choice
+  #Follow the path with the flashing light.
+    *goto page4
+  #Take the dark path.
+    *goto page12
+
+*label page12
+You choose to go to the dark path.[n/]
+You keep walking along the dark path to find the flame. It’s so dark you can’t see anything, so you accidentally run into the bad guys you met a long time ago. Virginia barks at them.[n/]
+You ask, “What the heck are you guys doing here?”[n/]
+“Well, we’re trying to get the flame, of course.”[n/]
+“Wait,” you say, “you know where the flame is?”[n/]
+“Well, of course we do,” one of them says. “We’ve been here decades longer than you have.”[n/]
+“Well,” you say.[n/]
+“Well, what?” one of them says.[n/]
+“Well,” you say, like you’re shy. “I’m also trying to get the flame.”[n/]
+One of them says, “Well, we’re going to get them first,” running ahead.[n/]
+“Wait,” one of them says. “Let’s make a deal with her. We’ll have a fight with her with the sharpest stick we can find. But to make it fair, everyone only gets 3 minutes.”[n/]
+You feel sort of confident in the time you have because Virginia would be helping you find.[n/]
+Virginia comes back with a stick in her mouth. You still have a bit of time, so you sharpen the stick.[n/]
+And then the bad guys come back with a really sharp stick.[n/]
+So, you guys have the fight. After a while, the stick stabs you right in the chest. It hurts so much you can’t fight anymore.[n/]
+
+*goto page13
+
+*label page13
+You walk past the bad guys, past the sandwich, and make it back to the village.[n/]
+“So, did you get it?” the queen asks.[n/]
+You say, “I did not make it.”[n/]
+And you walk back to your house.[n/]
+You’re very tired, so you take a nap.[n/]
+
+*finish

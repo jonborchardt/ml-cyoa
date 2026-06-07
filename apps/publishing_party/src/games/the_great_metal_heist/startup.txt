@@ -1,0 +1,126 @@
+*title The Great Metal Heist
+*author Cole, Tor I. & Wren
+
+In this story, you visit the rich part of town for a special trip to the Museum of Artifacts. When something important goes missing, you have to decide whether to leave or follow a suspicious clue.[n/]
+
+*choice
+  #I'm Ready.
+    *goto page1
+
+*label page1
+Now your story begins.[n/]
+You start in a small town as a detective trying to find out who stole a priceless artifact from the museum.[n/]
+This artifact is a key link to holding the world together. If it is not found, the world could be in danger.[n/]
+The thief has already escaped, and there is a time limit. There are no other detectives besides you, so it is your job to figure out who the thief is and where the artifact went.[n/]
+You know you need clues, but you are not sure where to begin.[n/]
+You have three choices.[n/]
+
+*choice
+  #Choose to go to the town to look for clues.
+    *goto page5
+  #Choose to go to the police station.
+    *goto page7
+  #Choose to go to the museum.
+    *goto page9
+
+*label page2
+You decide to go to the town square to look for the thief.[n/]
+You find nothing.[n/]
+Then you search the nearest building.[n/]
+Nothing again.[n/]
+You run out of the building and get outside just quickly enough to catch a glimpse of the thief escaping over the horizon.[n/]
+Maybe you will catch him next time.[n/]
+
+*finish
+
+*label page3
+You sprint as fast as you can.[n/]
+You arrive at the quiet and cold police station. Policemen are all around, sitting at their desks.[n/]
+You say, “Officer, officer! There’s a strange man chasing me!”[n/]
+“Oh really, where is he?” the officer says.[n/]
+“Follow me!”[n/]
+“Ok.”[n/]
+Then you see the man, and you say, “I see him!”[n/]
+Then the officer sprints at the man and blocks his path.[n/]
+The man tries to hide, but the officer catches him.[n/]
+You spill with joy.[n/]
+The man is arrested.[n/]
+Then the officer says, “Thanks for telling us.”[n/]
+“No problem!” you say.[n/]
+You’re now safe, for now.[n/]
+
+*finish
+
+*label page4
+The next day you hear a call. You decide to pick it up. There are two men on the phone. They say, “An Artifact got stolen, and we didn’t have enough time to stop the thief.” You sigh. The world has ended![n/]
+
+*image ../images/the_great_metal_heist/image6.png center
+
+*finish
+
+*label page5
+You go to town in search of clues and see an outdoor market.[n/]
+You think the thief might go inside to hide because you know it is very busy and crowded.[n/]
+Then you hear a noise. It sounds like coins clanking together as they are being put on a market booth.[n/]
+When you get there, it is very, very busy. You think the thief is here.[n/]
+You spend 30 minutes searching the market from top to bottom, and you do not see him anywhere.[n/]
+Then you think that the thief could be in the town square.[n/]
+
+*choice
+  #Decide to check the to town square.
+    *goto page2
+  #Decide to stay in the market to see if the thief shows up.
+    *goto page6
+
+*label page6
+You decide to stay in the market and wait to see if the thief shows up.[n/]
+At first, you do not see anything suspicious. The market is crowded with people buying food, jewelry, and supplies.[n/]
+Then you notice a knocked-over booth. You realize this might be the thief because you see a faint sparkle, and you remember the artifact was sparkly.[n/]
+You rush through the market after them, but they hurry back into the crowd.[n/]
+Finally, you stop the thief by knocking over a market booth full of vegetables. They fall onto the ground.[n/]
+You grab the thief and bring him to jail.[n/]
+The stolen artifact is returned.[n/]
+The world is saved, for now.[n/]
+
+*finish
+
+*label page7
+As you walk to the police station, you encounter a strange man walking towards you, and he asks you ‘’Where are you going?’’[n/]
+“UMM, the police station, why?” You say.[n/]
+“I don’t know.” The man smiles suspiciously, and you see a shiny metal object in his pocket.[n/]
+You say, “What’s in your pocket?”[n/]
+“Nothing,” The man says. And then… He pulls out a razor-sharp bayonet, threatening you. You realize it’s a robber! What do you do now?[n/]
+
+*image ../images/the_great_metal_heist/image4.png center
+
+*choice
+  #Decide to run to the police station.
+    *goto page3
+  #Decide to take the guy, on.
+    *goto page8
+
+*label page8
+You decide, “Why not. I can take this guy.” You start a fist fight with the guy, you see a different gold medal, but then you realize it is brass knuckles — golden knuckles that hurt a lot![n/]
+In a flash, you get hit right in the nose. Your nose is drowning with blood, and then you start to get nauseous.[n/]
+Just then, as the man is about to stab you in the chest, a big BOOM!!![n/]
+Smoke fills the air. A duel is underway nearby, with duelists armed with revolvers. Henry thinks this is unfair. The duel started because Henry McCallister got less gold than John Evergreen.[n/]
+You cough up dust. As you stand up, the man drops one of his brass knuckles. You pick up his brass knuckles, but then it was a trap![n/]
+He jumps at you with one final blow.[n/]
+OOF![n/]
+You are defeated and knocked unconscious.[n/]
+
+*finish
+
+*label page9
+You are a poor person searching for the museum.[n/]
+Today is a special day. You get to go to the rich part of town to see the Museum of Artifacts.[n/]
+Unfortunately, a thief has stolen a valuable artifact. It is an artifact that holds the world together. If it is in the wrong hands, then the world could end.[n/]
+No one else seems to be doing anything to solve this problem, so you decide that you are going to look for the stolen artifact.[n/]
+A huge crowd forms outside on the way to the museum.[n/]
+You go outside your house and see the museum. Then you see a man wearing all black near a shop.[n/]
+Outside of the museum, you see two men fighting. It seems like they are fighting because something got stolen. You can hear just a little bit of what they are talking about.[n/]
+One person is talking about something that got stolen. The other person is listening. You think it is the museum's manager.[n/]
+
+*choice
+  #You decide to go home.
+    *goto page4

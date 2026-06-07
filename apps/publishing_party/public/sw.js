@@ -4,7 +4,7 @@
 // - Cache-first for everything else (engine JS/CSS, JS bundles, fonts, etc.).
 // Bump CACHE_VERSION to invalidate the precache on the next visit.
 
-const CACHE_VERSION = 'ml-cyoa-v3';
+const CACHE_VERSION = 'ml-cyoa-v4';
 const PRECACHE_URLS = [
     './',
     'index.html',
@@ -50,6 +50,39 @@ self.addEventListener('fetch', (event) => {
     if (req.method !== 'GET') return;
 
     const url = new URL(req.url);
+
+    // Cache Google Fonts for offline PWA support.
+    // Font CSS (googleapis): network-first so updates reach users.
+    // Font files (gstatic): cache-first — content-addressed, never change.
+    if (url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com') {
+        if (url.hostname === 'fonts.gstatic.com') {
+            event.respondWith(
+                caches.match(req).then(
+                    (cached) => cached || fetch(req).then((res) => {
+                        if (res.ok) {
+                            const copy = res.clone();
+                            caches.open(CACHE_VERSION).then((cache) => cache.put(req, copy));
+                        }
+                        return res;
+                    })
+                )
+            );
+        } else {
+            event.respondWith(
+                fetch(req)
+                    .then((res) => {
+                        if (res.ok) {
+                            const copy = res.clone();
+                            caches.open(CACHE_VERSION).then((cache) => cache.put(req, copy));
+                        }
+                        return res;
+                    })
+                    .catch(() => caches.match(req))
+            );
+        }
+        return;
+    }
+
     if (url.origin !== self.location.origin) return;
 
     const isNavigation = req.mode === 'navigate' || req.destination === 'document';
