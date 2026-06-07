@@ -327,7 +327,11 @@ export const games: Game[] = [
   {
     id: 'ai_disaster',
     title: 'AI Disaster',
-    authors: authors('ai_disaster', [{ name: 'Nolan', bio: '' }]),
+    authors: authors('ai_disaster', [
+      { name: 'Ben', bio: '' },
+      { name: 'Lily S.', bio: '' },
+      { name: 'Nolan', bio: '' }
+    ]),
     year: '2025-2026',
     sceneList: ['startup'],
     scenes: { startup: startup('ai_disaster') },
@@ -364,7 +368,7 @@ export const games: Game[] = [
     title: 'Young Astronaut',
     authors: authors('young_astronaut', [
       { name: 'Bo', bio: '' },
-      { name: 'Kai', bio: '' },
+      { name: 'Kai B.', bio: '' },
       { name: 'Webb', bio: '' },
     ]),
     year: '2025-2026',

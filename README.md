@@ -123,8 +123,3 @@ The app ships a [manifest](apps/publishing_party/public/manifest.webmanifest) an
 - **ChoiceScript** engine — vendored from [dfabulich/choicescript](https://github.com/dfabulich/choicescript), BSD-2 licensed
 - **Vitest** + `@testing-library/react` — unit and integration tests (in `@ml-cyoa/editor`)
 - Service worker + web app manifest for installability and offline play
-
-
-[n/] s
-add fixed covers
-old game i'm ready's
