@@ -37,7 +37,7 @@ export function GameShell() {
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', height: '100vh' }}>
-            <GameTabHeader game={game} />
+            <GameTabHeader game={game} hideAuthors />
 
             <Box sx={{ flex: 1, minHeight: 0, flexDirection: 'column', display: tabValue === 0 ? 'flex' : 'none' }}>
                 <ChoiceScriptGame game={game} onChoiceMade={handleChoiceMade} />

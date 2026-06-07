@@ -7,9 +7,10 @@ interface Props {
     game: Game;
     basePath?: string;
     homePath?: string;
+    hideAuthors?: boolean;
 }
 
-export function GameTabHeader({ game, basePath, homePath = '/' }: Props) {
+export function GameTabHeader({ game, basePath, homePath = '/', hideAuthors = false }: Props) {
     const { pathname } = useLocation();
     const navigate = useNavigate();
 
@@ -41,7 +42,7 @@ export function GameTabHeader({ game, basePath, homePath = '/' }: Props) {
                 onChange={(_e, v: number) => navigate(paths[v])}
                 sx={{ minHeight: 48 }}>
                 <Tab label="Story" value={0} sx={{ minHeight: 48, py: 0 }} />
-                <Tab label="Authors" value={1} sx={{ minHeight: 48, py: 0, display: 'none' }} />
+                {!hideAuthors && <Tab label="Authors" value={1} sx={{ minHeight: 48, py: 0 }} />}
                 <Tab label="Flow" value={2} sx={{ minHeight: 48, py: 0 }} />
             </Tabs>
         </Box>
