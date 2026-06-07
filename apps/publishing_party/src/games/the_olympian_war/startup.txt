@@ -65,9 +65,9 @@ You decide to go Troy, and you get out of there as fast as you can. But as you r
 You’re at Troy. People are staring at you, and Perseus looks like he’s about to attack you. A man asks you where you are from. All of a sudden, an explosion rips through Troy. The man yells at you, “Stay here!” like he's serious. Then he runs towards the explosion.  People start screaming. What should you do?[n/]
 
 *choice
-  #decided to run away.
+  #decide to run away.
     *goto page11
-  #decided to stay, put.
+  #decide to stay put.
     *goto page15
 
 *label page8
